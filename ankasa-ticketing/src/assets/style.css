@@ -24,3 +24,8 @@
             padding-left: 0 !important;
         }
     }
+    @media (max-width: 767px) {
+        .mobileProfileNavbar{
+            margin-left: 50px !important;
+        }
+    }
