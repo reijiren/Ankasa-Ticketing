@@ -1,0 +1,26 @@
+.ms-10{
+    margin-left: 100px !important;
+}
+
+ .listStyle{
+    list-style: none;
+ }
+
+ .listStyle a{
+    text-decoration: none;
+    color: #6c757d;
+ }
+
+ .footer-down {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  .imgFooter{
+    margin-left: -25px;
+  }
+  /* media query footer */
+    @media (max-width: 767px) {
+        .mobileOuterFooter{
+            padding-left: 0 !important;
+        }
+    }
