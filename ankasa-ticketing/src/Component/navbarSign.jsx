@@ -2,17 +2,13 @@ import React from "react";
 import "../assets/style.css";
 // import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const NavbarSign = () => {
   return (
     <>
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-light fixed-top">
           <a class="navbar-brand ms-10" href="#">
-            <img
-              src={require("../assets/images/vector 02.png")}
-              width="30"
-              alt=""
-            />
+            <img src={require("../assets/images/vector 02.png")} width="30" alt="" />
             Ankasa
           </a>
           <button
@@ -51,32 +47,12 @@ const Navbar = () => {
               <a class="nav-link active mx-5" aria-current="page" href="#">
                 My Booking
               </a>
-              <div class="dropdown">
-                <a
-                  class="nav-link active mx-5"
-                  aria-current="page"
-                  href="#"
-                  id="dropdownMenuButton1"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img src={require("../assets/images/Group 797.png")} width="20" alt="" class="mx-4" />
-                  <img
-                    src={require("../assets/images/btnNotifications.png")}
-                    width="20"
-                    alt=""
-                    class="mx-2"
-                  />
-                </a>
-              </div>
-              <a href="#">
-                <img
-                  src={require("../assets/images/Group 14.png")}
-                  width="40"
-                  class="mobileProfileNavbar"
-                  alt=""
-                />
-              </a>
+              <button
+                type="button"
+                class="btn btn-primary shadow-lg rounded mx-5"
+              >
+                Sign Up
+              </button>
             </div>
           </div>
         </nav>
@@ -84,4 +60,4 @@ const Navbar = () => {
     </>
   );
 };
-export default Navbar;
+export default NavbarSign;
