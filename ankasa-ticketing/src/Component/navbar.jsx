@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <>
       <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
           <a class="navbar-brand ms-10" href="#">
             <img
               src={require("../assets/images/vector 02.png")}
