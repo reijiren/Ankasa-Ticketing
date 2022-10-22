@@ -14,14 +14,14 @@ create table users(
     post_code varchar(5),
     level integer, -- 0: Admin, 1: User
     photo text,
-    date_created date
+    date_created varchar(30)
 );
 
 create table airline(
     id_airline serial primary key,
     name varchar(50),
     logo text,
-    date_created date
+    date_created varchar(30)
 );
 
 create table flight(
@@ -41,7 +41,7 @@ create table flight(
     reschedule integer, -- 0: No Reschedule, 1: Reschedule
     insurance integer, -- 0: No Insurance, 1: Insurance
     transit integer, -- 0: Direct, 1: 1 Transit, 2: 2+ Transit
-    date_created date
+    date_created varchar(30)
 );
 
 create table booking(
@@ -53,5 +53,5 @@ create table booking(
     gate integer,
     class varchar(20),
     history integer, -- 0: Flight Incomplete, 1: Flight Complete
-    date_created date
+    date_created varchar(30)
 );
