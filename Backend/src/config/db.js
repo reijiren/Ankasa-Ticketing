@@ -18,8 +18,6 @@ try{
         if(err){
             throw "Cannot connect to Database";
         }
-
-        console.log("Database connected");
     });
 
     module.exports = db;
