@@ -1,10 +1,6 @@
 const multer = require('multer');
 const path = require('path');
 
-const name = path.basename(file.originalname);
-const ext = path.extname(file.originalname);
-const nameSplit = name.split(`${ext}`);
-
 const currentDate = new Date();
 const dateTime = currentDate.getDate() + (currentDate.getMonth()+1) + currentDate.getFullYear();
 const timestamp = currentDate.getHours() + currentDate.getMinutes() + currentDate.getSeconds() + currentDate.getMilliseconds();
@@ -15,6 +11,10 @@ const multerProfileUpload = multer({
             cb(null, './assets/profile_pic');
         },
         filename: (req, file, cb) => {
+            const name = path.basename(file.originalname);
+            const ext = path.extname(file.originalname);
+            const nameSplit = name.split(`${ext}`);
+
             const fileName = nameSplit[0] + ' - ' + dateTime + timestamp + ext;
             cb(null, fileName);
         }
@@ -42,7 +42,12 @@ const multerAirlineUpload = multer({
             cb(null, './assets/airline');
         },
         filename: (req, file, cb) => {
+            const name = path.basename(file.originalname);
+            const ext = path.extname(file.originalname);
+            const nameSplit = name.split(`${ext}`);
+            
             const fileName = nameSplit[0] + ' - ' + dateTime + timestamp + ext;
+            console.log(dateTime)
             cb(null, fileName);
         }
     }),
@@ -52,6 +57,8 @@ const multerAirlineUpload = multer({
     },
 
     fileFilter: (req, file, cb) => {
+        const ext = path.extname(file.originalname);
+
         if(ext === '.jpg' || ext === '.png' || ext === '.jpeg' || ext === '.jfif' || ext === '.svg'){
             cb(null, true);
         }else{
@@ -78,6 +85,7 @@ module.exports = {
             }
         })
     },
+
     uploadAirlineLogo: (req, res, next) => {
         const multerSingle = multerAirlineUpload.single('logo');
         multerSingle(req, res, (err) => {
@@ -87,7 +95,7 @@ module.exports = {
                     error: err
                 })
             }else{
-
+                console.log('bisa');
                 next();
             }
         })

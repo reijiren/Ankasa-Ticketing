@@ -9,6 +9,7 @@ const xss = require('xss-clean');
 // buat route
 // const userRouter = require('./src/route/user.routes.js');
 // const recipeRouter = require('./src/route/recipe.routes.js')
+const airlineRouter = require('./src/router/airline.routes');
 
 const app = express();
 
@@ -20,12 +21,13 @@ try {
   // app.use(cookieparser());
   app.use(cors());
 //   app.options('*', cors())
-
+  app.use(airlineRouter);
 } catch (err) {
   console.log(err);
 }
 // app.use(userRouter);
 // app.use(recipeRouter);
+
 
 // jalankan express
 app.listen(process.env.PORT, () => {
