@@ -16,6 +16,7 @@ const userController = {
 					username,
 					email,
 					password: hash,
+					photo: req.file ? req.file.filename : "default.png",
 				};
 
 				userModel.checkEmail(email).then((result) => {
@@ -38,6 +39,46 @@ const userController = {
 		} catch (err) {
 			failed(res, err.message, "failed", "internal server error");
 		}
+	},
+	updateUser: (req, res) => {
+		const id_user = req.params.id_user;
+		const {
+			username,
+			email,
+			credit_card,
+			phone,
+			city,
+			address,
+			post_code,
+			level,
+			photo,
+			balance,
+			gender,
+		} = req.body;
+
+		const data = {
+			id_user,
+			username,
+			email,
+			credit_card,
+			phone,
+			city,
+			address,
+			post_code,
+			level,
+			photo,
+			balance,
+			gender,
+		};
+
+		userModel
+			.updateProfile(data)
+			.then((result) => {
+				res.json(result);
+			})
+			.catch((error) => {
+				res.json(error);
+			});
 	},
 };
 

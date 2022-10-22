@@ -1,3 +1,5 @@
+const { response } = require("express");
+const { resolve } = require("path");
 const db = require("../config/db");
 
 const userModel = {
@@ -30,6 +32,60 @@ const userModel = {
 					resolve(res);
 				}
 			);
+		});
+	},
+
+	updateProfile: ({
+		username,
+		email,
+		credit_card,
+		phone,
+		city,
+		address,
+		post_code,
+		level,
+		photo,
+		balance,
+		gender,
+		id_user,
+	}) => {
+		return new Promise((resolve, reject) => {
+			db.query(`
+			UPDATE users SET
+			username = COALESCE ($1, username),
+			email = COALESCE ($2, email),
+			credit_card = COALESCE ($3, credit_card),
+			phone = COALESCE ($4, phone),
+			city = COALESCE ($5, city),
+			address = COALESCE ($6, address),
+			post_code = COALESCE ($7, post_code),
+			level = COALESCE ($8, level),
+			photo = COALESCE ($9, photo),
+			balance = COALESCE ($10, balance),
+			gender = COALESCE ($11, gender)
+			WHERE id_user = $12
+			`),
+				[
+					username,
+					email,
+					credit_card,
+					phone,
+					city,
+					address,
+					post_code,
+					level,
+					photo,
+					balance,
+					gender,
+					id_user,
+				],
+				(err, res) => {
+					if (err) {
+						reject(err);
+					} else {
+						resolve(res);
+					}
+				};
 		});
 	},
 };
