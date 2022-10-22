@@ -1,5 +1,5 @@
 const fs = require("fs");
-const userModel = require("../model/user.model");
+// const userModel = require("../model/user.model");
 
 module.exports = {
 	removeProfilePic: async (req, res, next) => {
@@ -27,7 +27,7 @@ module.exports = {
 	removeAirlineLogo: async (req, res, next) => {
 		const id = req.params.id;
 
-		const data = await userModel.selectUserId(id);
+		// const data = await userModel.findUser(id);
 		if (data.rows[0].logo) {
 			const img = data.rows[0].logo;
 			if (img !== "default.png") {
