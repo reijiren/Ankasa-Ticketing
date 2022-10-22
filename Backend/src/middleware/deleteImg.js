@@ -1,5 +1,5 @@
 const fs = require("fs");
-// const userModel = require("../model/user.model");
+const userModel = require("../model/user.model");
 
 module.exports = {
 	removeProfilePic: async (req, res, next) => {

@@ -1,5 +1,4 @@
 const db = require("../config/db");
-const response = require("../helper/response");
 
 const userModel = {
 	selectUserId: (id) => {
@@ -110,6 +109,21 @@ const userModel = {
 				`
 			UPDATE users SET photo = '${photo}' WHERE id = ${id}
 			`
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	},
+
+	deleteUser: (id) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`
+			DELETE FROM users WHERE id = ${id}`
 			)
 				.then((response) => {
 					resolve(response);

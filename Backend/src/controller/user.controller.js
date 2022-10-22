@@ -105,6 +105,19 @@ const userController = {
 				res.json(error);
 			});
 	},
+
+	deleteUser: (req, res) => {
+		const id = req.params.id;
+
+		userModel
+			.deleteUser(id)
+			.then((result) => {
+				res.json(result);
+			})
+			.catch((error) => {
+				res.json(error);
+			});
+	},
 };
 
 module.exports = userController;

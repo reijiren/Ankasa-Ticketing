@@ -5,6 +5,7 @@ const {
 	register,
 	updateUser,
 	updatePhoto,
+	deleteUser,
 } = require("../controller/user.controller");
 const { uploadProfilePic } = require("../middleware/uploadImg");
 const { removeProfilePic } = require("../middleware/deleteImg");
@@ -20,6 +21,7 @@ userRouter
 		removeProfilePic,
 		uploadProfilePic,
 		updatePhoto
-	);
+	)
+	.delete("/user/:id", removeProfilePic, deleteUser);
 
 module.exports = userRouter;
