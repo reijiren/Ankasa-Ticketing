@@ -1,10 +1,6 @@
 const multer = require("multer");
 const path = require("path");
 
-const name = path.basename(file.originalname);
-const ext = path.extname(file.originalname);
-const nameSplit = name.split(`${ext}`);
-
 const currentDate = new Date();
 const dateTime =
 	currentDate.getDate() +
