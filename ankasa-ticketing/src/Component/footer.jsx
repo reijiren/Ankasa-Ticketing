@@ -5,7 +5,7 @@ import "../assets/style.css";
 const Footer = () => {
   return (
     <>
-      <footer class="bg-light">
+      <footer class="bg-white">
         <div class="container-fluid p-4 px-5 mobileOuterFooter">
           <div class="row p-5 mobileInnerFooter">
             <div class="col-md-3">

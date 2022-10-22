@@ -1,10 +1,10 @@
 create database ankasa_ticketing;
 
 create table users(
-    id serial primary key,
-    username varchar(40),
-    email varchar(40),
-    password varchar(25),
+    id_user serial primary key,
+    username varchar(40) unique,
+    email varchar(40) unique,
+    password text,
     credit_card varchar(16),
     phone varchar(12),
     city varchar(30),
@@ -17,9 +17,16 @@ create table users(
     gender varchar(6)
 );
 
+create table airline(
+    id_airline serial primary key,
+    name varchar(50),
+    logo text,
+    date_created date
+);
+
 create table flight(
     id_flight varchar(10) primary key,
-    airline text,
+    airline integer,
     city_departure varchar(30),
     city_destination varchar(30),
     region_departure varchar(30),
@@ -32,7 +39,6 @@ create table flight(
     price integer,
     refundable integer, -- 0: No Refund, 1: Refundable
     reschedule integer, -- 0: No Reschedule, 1: Reschedule
-    logo text,
     transit integer, -- 0: Direct, 1: 1 Transit, 2: 2+ Transit
     date_created date
 );
