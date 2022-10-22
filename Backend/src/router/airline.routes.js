@@ -15,6 +15,6 @@ router
 .post('/airline/insert', uploadAirlineLogo, addAirline)
 .put('/airline/update/:id', updateAirline)
 .put('/airline/changeimg/:id', uploadAirlineLogo, removeAirlineLogo, updateLogo)
-.delete('/airline/delete/:id', deleteAirline);
+.delete('/airline/delete/:id', removeAirlineLogo, deleteAirline);
 
 module.exports = router;
