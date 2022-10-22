@@ -70,7 +70,7 @@ const airlineController = {
 
         airlineModel.updateAirline(id_airline, name)
         .then((result) => {
-            success(res, result.rows, 'success', 'Update Airline Success');
+            success(res, result.rowCount, 'success', 'Update Airline Success');
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Failed to update airline');
@@ -89,7 +89,7 @@ const airlineController = {
 
         airlineModel.updateLogo(data)
         .then((result) => {
-            success(res, result.rows, 'success', 'Update Logo Success');
+            success(res, result.rowCount, 'success', 'Update Logo Success');
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Failed to update logo');
@@ -102,7 +102,7 @@ const airlineController = {
 
         airlineModel.deleteAirline(id_airline)
         .then((result) => {
-            success(res, result.rows, 'success', 'Delete airline Success');
+            success(res, result.rowCount, 'success', 'Delete airline Success');
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Failed to delete airline');

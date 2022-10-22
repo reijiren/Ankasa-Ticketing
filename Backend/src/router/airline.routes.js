@@ -14,7 +14,7 @@ router
 .get('/airline/find/:page', findAirline)
 .post('/airline/insert', uploadAirlineLogo, addAirline)
 .put('/airline/update/:id', updateAirline)
-.put('/airline/changeimg/:id', updateLogo)
+.put('/airline/changeimg/:id', uploadAirlineLogo, removeAirlineLogo, updateLogo)
 .delete('/airline/delete/:id', deleteAirline);
 
 module.exports = router;
