@@ -48,7 +48,7 @@ const multerAirlineUpload = multer({
             const ext = path.extname(file.originalname);
             const nameSplit = name.split(`${ext}`);
             
-            const fileName = nameSplit[0] + ' - ' + dateTime + timestamp + ext;
+            const fileName = nameSplit[0] + '-' + dateTime + timestamp + ext;
             console.log(dateTime)
             cb(null, fileName);
         }
