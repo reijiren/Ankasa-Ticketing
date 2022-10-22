@@ -1,7 +1,7 @@
 import React from "react";
-import "../assets/style.css";
-import Footer from "../Component/footer";
-import Navbar from "../Component/navbar";
+import "../../assets/style.css";
+import Footer from "../../Component/footer";
+import Navbar from "../../Component/navbar";
 // import { Link } from "react-router-dom";
 
 const Profile = () => {
@@ -15,7 +15,7 @@ const Profile = () => {
               <div class="row text-center">
                 <div class="col-md-12 my-2">
                   <img
-                    src={require("../assets/images/nnzkZNYWHaU.png")}
+                    src={require("../../assets/images/nnzkZNYWHaU.png")}
                     width="100"
                     alt=""
                     class="mx-auto d-block rounded-circle customBorder"
