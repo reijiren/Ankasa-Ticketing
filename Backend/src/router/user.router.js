@@ -1,10 +1,9 @@
 const express = require("express");
-const uploadProfilePic = require("../middleware/uploadImg");
 
-const { register, updateUser } = require("../controller/user.controller");
+const { register } = require("../controller/user.controller");
 
 const userRouter = express.Router();
 
-userRouter.post("/register", register).put("/user/update", updateUser);
+userRouter.post("/register", register);
 
 module.exports = userRouter;
