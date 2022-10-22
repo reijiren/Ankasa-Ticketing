@@ -23,7 +23,9 @@ try {
 } catch (err) {
 	console.log(err);
 }
+
 app.use(userRouter);
+
 // app.use(recipeRouter);
 
 // jalankan express

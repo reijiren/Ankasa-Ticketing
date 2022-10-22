@@ -65,7 +65,7 @@ const multerAirlineUpload = multer({
 
 module.exports = {
     uploadProfilePic: (req, res, next) => {
-        const multerSingle = multerProfileUpload.single('image');
+        const multerSingle = multerProfileUpload.single('photo');
         multerSingle(req, res, (err) => {
             if(err){
                 res.json({
@@ -79,7 +79,7 @@ module.exports = {
         })
     },
     uploadAirlineLogo: (req, res, next) => {
-        const multerSingle = multerAirlineUpload.single('image');
+        const multerSingle = multerAirlineUpload.single('logo');
         multerSingle(req, res, (err) => {
             if(err){
                 res.json({
