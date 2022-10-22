@@ -1,11 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import Profile from '../src/views/Profile';
+import "./App.css";
+import Footer from "./Component/footer";
+import Header from "./Component/navbar";
+import Router from "./router/index";
 
 function App() {
   return (
     <>
-      <Profile />
+      <Router />
     </>
   );
 }

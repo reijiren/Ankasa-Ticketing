@@ -10,7 +10,11 @@ const Footer = () => {
           <div class="row p-5 mobileInnerFooter">
             <div class="col-md-3">
               <h4 class="">
-                <img src={require("../assets/images/vector 02.png")} width="30" alt="" />
+                <img
+                  src={require("../assets/images/vector 02.png")}
+                  width="30"
+                  alt=""
+                />
                 Ankasa
               </h4>
               <p class="mt-3 ms-3 text-muted">
