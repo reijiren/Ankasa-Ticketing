@@ -17,15 +17,15 @@ try {
   app.use(helmet());
   app.use(bodyParser.json());
   app.use(xss());
-  app.use(cookieparser());
+  // app.use(cookieparser());
   app.use(cors());
 //   app.options('*', cors())
 
 } catch (err) {
   console.log(err);
 }
-app.use(userRouter);
-app.use(recipeRouter);
+// app.use(userRouter);
+// app.use(recipeRouter);
 
 // jalankan express
 app.listen(process.env.PORT, () => {
