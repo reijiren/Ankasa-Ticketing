@@ -16,6 +16,26 @@ const userModel = {
 		});
 	},
 
+	searchUser: (username, limit, offset) => {
+		// searchUser: (username) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				// 	`
+				// SELECT * FROM users WHERE username ILIKE '%${username}%'
+				// `
+				`
+				SELECT * FROM users WHERE username ILIKE '%${username}%' LIMIT ${limit} OFFSET ${offset}
+				`
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	},
+
 	register: ({ username, email, password, photo }) => {
 		return new Promise((resolve, reject) => {
 			db.query(

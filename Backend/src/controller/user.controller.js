@@ -16,6 +16,23 @@ const userController = {
 			});
 	},
 
+	searchUser: (req, res) => {
+		const limit = parseInt(req.query.limit) || 2;
+		const page = parseInt(req.query.page) || 1;
+		const offset = (page - 1) * limit;
+		const username = req.params.username;
+
+		userModel
+			.searchUser(username, limit, offset)
+			// .searchUser(username)
+			.then((result) => {
+				success(res, result.rows, "success", "get user success");
+			})
+			.catch((err) => {
+				failed(res, err.message, "failed", "get user failed");
+			});
+	},
+
 	register: (req, res) => {
 		try {
 			const { username, email, password } = req.body;

@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
 	getUserId,
+	searchUser,
 	register,
 	updateUser,
 	updatePhoto,
@@ -14,6 +15,7 @@ const userRouter = express.Router();
 
 userRouter
 	.get("/user/:id", getUserId)
+	.get("/search/:username", searchUser)
 	.post("/register", register)
 	.put("/user/update/:id", updateUser)
 	.put(
