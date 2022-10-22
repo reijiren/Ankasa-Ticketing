@@ -30,7 +30,7 @@ const airlineModel = {
         return new Promise((resolve, reject) => {
             const offset = (page - 1) * limit;
 
-            if(sortOrd.toLowerCase() !== 'desc') asc='asc';
+            if(sortOrd.toLowerCase() !== 'desc') sortOrd='asc';
             // if(sort.toLowerCase() !== 'date_created') sort='title';
 
             db.query(`select * from airline where lower(name) like lower('%${airlineName}%') order by ${sortBy} ${sortOrd} limit ${limit} offset ${offset}`, (err, res) => {
@@ -57,7 +57,7 @@ const airlineModel = {
 
             const date_created = `${yyyy}/${mm}/${dd} - ${time}`;
 
-            db.query(`insert into airline (name, logo, date_created) values ('${name}', '${logo}', Now());`, (err, res) => {
+            db.query(`insert into airline (name, logo, date_created) values ('${name}', '${logo}', '${date_created}');`, (err, res) => {
                 if(err){
                     reject(err);
                 }

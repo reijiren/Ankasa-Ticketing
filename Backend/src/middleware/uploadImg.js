@@ -2,8 +2,8 @@ const multer = require('multer');
 const path = require('path');
 
 const currentDate = new Date();
-const dateTime = currentDate.getDate() + (currentDate.getMonth()+1) + currentDate.getFullYear();
-const timestamp = currentDate.getHours() + currentDate.getMinutes() + currentDate.getSeconds() + currentDate.getMilliseconds();
+const dateTime = currentDate.getDate() + '' + (currentDate.getMonth()+1) + '' + currentDate.getFullYear();
+const timestamp = currentDate.getHours() + '' + currentDate.getMinutes() + '' + currentDate.getSeconds() + '' + currentDate.getMilliseconds();
 
 const multerProfileUpload = multer({
     storage: multer.diskStorage({
@@ -15,7 +15,7 @@ const multerProfileUpload = multer({
             const ext = path.extname(file.originalname);
             const nameSplit = name.split(`${ext}`);
 
-            const fileName = nameSplit[0] + ' - ' + dateTime + timestamp + ext;
+            const fileName = nameSplit[0] + '-' + dateTime + timestamp + ext;
             cb(null, fileName);
         }
     }),
@@ -25,6 +25,8 @@ const multerProfileUpload = multer({
     },
 
     fileFilter: (req, file, cb) => {
+        const ext = path.extname(file.originalname);
+
         if(ext === '.jpg' || ext === '.png' || ext === '.jpeg' || ext === '.jfif'){
             cb(null, true);
         }else{
@@ -46,7 +48,7 @@ const multerAirlineUpload = multer({
             const ext = path.extname(file.originalname);
             const nameSplit = name.split(`${ext}`);
             
-            const fileName = nameSplit[0] + ' - ' + dateTime + timestamp + ext;
+            const fileName = nameSplit[0] + '-' + dateTime + timestamp + ext;
             console.log(dateTime)
             cb(null, fileName);
         }
@@ -95,7 +97,6 @@ module.exports = {
                     error: err
                 })
             }else{
-                console.log('bisa');
                 next();
             }
         })
