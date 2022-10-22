@@ -1,6 +1,10 @@
 const multer = require("multer");
 const path = require("path");
 
+const name = path.basename(file.originalname);
+const ext = path.extname(file.originalname);
+const nameSplit = name.split(`${ext}`);
+
 const currentDate = new Date();
 const dateTime =
 	currentDate.getDate() +
@@ -18,9 +22,6 @@ const multerProfileUpload = multer({
 			cb(null, "./assets/profile_pic");
 		},
 		filename: (req, file, cb) => {
-			const name = path.basename(file.originalname);
-			const ext = path.extname(file.originalname);
-			const nameSplit = name.split(`${ext}`);
 			const fileName = nameSplit[0] + " - " + dateTime + timestamp + ext;
 			cb(null, fileName);
 		},
@@ -54,9 +55,6 @@ const multerAirlineUpload = multer({
 			cb(null, "./assets/airline");
 		},
 		filename: (req, file, cb) => {
-			const name = path.basename(file.originalname);
-			const ext = path.extname(file.originalname);
-			const nameSplit = name.split(`${ext}`);
 			const fileName = nameSplit[0] + " - " + dateTime + timestamp + ext;
 			cb(null, fileName);
 		},
@@ -67,7 +65,6 @@ const multerAirlineUpload = multer({
 	},
 
 	fileFilter: (req, file, cb) => {
-		const ext = path.extname(file.originalname);
 		if (
 			ext === ".jpg" ||
 			ext === ".png" ||

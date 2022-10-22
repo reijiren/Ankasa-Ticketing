@@ -9,16 +9,17 @@ const xss = require("xss-clean");
 // buat route
 const userRouter = require("./src/router/user.router");
 // const recipeRouter = require('./src/route/recipe.routes.js')
+const airlineRouter = require("./src/router/airline.routes");
 
 const app = express();
 
 try {
 	app.use(express.static("assets"));
-	app.use(cors());
 	app.use(helmet());
 	app.use(bodyParser.json());
 	app.use(xss());
 	// app.use(cookieparser());
+	app.use(cors());
 	//   app.options('*', cors())
 } catch (err) {
 	console.log(err);
