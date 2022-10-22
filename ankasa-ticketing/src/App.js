@@ -1,7 +1,6 @@
 import "./App.css";
-import Footer from "./Component/footer";
-import Header from "./Component/navbar";
 import Router from "./router/index";
+// import Profile from "../src/pages/profile/Profile";
 
 function App() {
   return (
