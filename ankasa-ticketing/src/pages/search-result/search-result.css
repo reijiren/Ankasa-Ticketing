@@ -1,0 +1,207 @@
+.container-fluid-search-result {
+    height: auto;
+    background-color: #F5F6FA;
+    padding-bottom: 50px;
+}
+
+.background-blue-search-result {
+    background-color: #2395FF;
+    height: auto;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.background-blue-search-result img {
+    height: auto;
+    width: 130px;
+}
+
+.container-fluid-search-result .search-container-fluid-search-result {
+    margin-top: 70px;
+    margin-left: -50px;
+    padding-bottom: 0px !important;
+    color: white;
+}
+
+.container-fluid-search-result .search-container-fluid-search-result input{
+    border: none;
+    background-color: #2395FF;
+    border-bottom: 1px solid white !important;
+    width: 120px;
+}
+
+.container-fluid-search-result .bottom-container-fluid-search-result button {
+    margin-top: 90px;
+    color: white;
+    border: none;
+    background-color: #2395FF;
+}
+
+/* CSS FILTER */
+
+.container-main-search-result .title-filter-search-result .button-title-filter-search-result {
+    border: none;
+    background-color:  #F5F6FA;
+    padding-left: 220px;
+}
+
+.container-main-search-result .form-filter-search-result {
+    background-color: #FFFFFF;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 2px 2px 15px rgb(204, 200, 200);
+}
+
+.container-main-search-result .form-filter-search-result .collapse-transit button {
+    background-color: #FFFFFF;
+    border: none;
+    width: 100%;
+}
+
+.container-main-search-result .form-filter-search-result {
+    padding: 30px;
+}
+
+
+.container-main-search-result .form-filter-search-result .airline button {
+    width: 100%;
+    border: none;
+    background-color: #FFFFFF;
+    
+}
+
+.container-main-search-result .form-filter-search-result .airline .icon-collapse-airline {
+    padding-left: 180px;
+    color: #2395FF;
+}
+
+.container-main-search-result .form-filter-search-result .airline input {
+    margin-left: -18px;
+}
+
+.container-main-search-result .form-filter-search-result .airline .collapse-airline {
+    padding-left: 10px;
+}
+
+.container-main-search-result .form-filter-search-result .type button {
+    width: 100%;
+    border: none;
+    background-color: #FFFFFF;
+    
+}
+
+.container-main-search-result .form-filter-search-result .type .icon-filter-type {
+    padding-left: 194px;
+    color: #2395FF;
+}
+
+.container-main-search-result .form-filter-search-result .type input {
+    margin-left: -18px;
+}
+
+.container-main-search-result .form-filter-search-result .type .collapse-type {
+    padding-left: 10px;
+}
+
+.container-main-search-result .form-filter-search-result .transit button {
+    width: 100%;
+    border: none;
+    background-color: #FFFFFF;
+    
+}
+
+.container-main-search-result .form-filter-search-result .transit .icon-filter-transit {
+    padding-left: 178px;
+    color: #2395FF;
+}
+
+.container-main-search-result .form-filter-search-result .transit input {
+    margin-left: -18px;
+}
+
+.container-main-search-result .form-filter-search-result .transit .collapse-transit {
+    padding-left: 10px;
+}
+
+.container-main-search-result .form-filter-search-result .facilities button {
+    width: 100%;
+    border: none;
+    background-color: #FFFFFF;
+    
+}
+
+.container-main-search-result .form-filter-search-result .facilities .icon-filter-facilities {
+    padding-left: 165px;
+    color: #2395FF;
+}
+
+.container-main-search-result .form-filter-search-result .facilities input {
+    margin-left: -18px;
+}
+
+.container-main-search-result .form-filter-search-result .facilities .collapse-facilities {
+    padding-left: 10px;
+}
+
+
+
+/* CSS SELECT TICKET */
+
+.container-main-search-result .container-select-ticket-search-result .title-select-ticket-search-result span {
+    margin-left: -20px;
+}
+
+.container-main-search-result .container-select-ticket-search-result .title-select-ticket-search-result .sorting-title-select-ticket-search-result {
+    padding-left: 400px;
+}
+
+.container-main-search-result .container-select-ticket-search-result .title-select-ticket-search-result .button-sorting {
+    border: none;
+    background-color: #F5F6FA;
+    margin-left: -20px;
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result {
+    background-color: #FFFFFF;
+    height: auto;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 2px 2px 15px rgb(204, 200, 200);
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .btn-info {
+    color: #2395FF;
+    background-color: white;
+    border: none;
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .facility-select-ticket {
+    margin-left: -80px;
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .facility-select-ticket .facility-select-ticket-food img {
+    margin-left: -15px;
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .facility-select-ticket .facility-select-ticket-wifi img {
+    margin-left: -15px;
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .count-select-ticket h6 {
+    color: #2395FF;
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .pax-select-ticket {
+    margin-left: -20px;
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .button-select-ticket button {
+    border: none;
+    background-color: #2395FF;
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0px 5px 10px rgba(35, 149, 255, 0.3);
+    margin-top: -5px;
+}
