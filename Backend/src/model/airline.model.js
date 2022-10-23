@@ -31,7 +31,7 @@ const airlineModel = {
             const offset = (page - 1) * limit;
 
             if(sortOrd.toLowerCase() !== 'desc') sortOrd='asc';
-            // if(sort.toLowerCase() !== 'date_created') sort='title';
+            if(sortBy.toLowerCase() !== 'date_created') sortBy='name';
 
             db.query(`select * from airline where lower(name) like lower('%${airlineName}%') order by ${sortBy} ${sortOrd} limit ${limit} offset ${offset}`, (err, res) => {
                 if(err){
