@@ -7,7 +7,7 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 
 // buat route
-const userRouter = require("./src/router/user.router");
+const userRouter = require("./src/router/user.routes");
 // const recipeRouter = require('./src/route/recipe.routes.js')
 const airlineRouter = require("./src/router/airline.routes");
 
