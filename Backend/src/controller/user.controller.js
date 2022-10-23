@@ -1,7 +1,8 @@
 const userModel = require("../model/user.model");
-const { success, failed } = require("../helper/response");
+const { success, failed, successWithToken } = require("../helper/response");
 
 const bcrypt = require("bcrypt");
+const jwtToken = require("../helper/generateJWT");
 
 const userController = {
 	getUserId: (req, res) => {
@@ -13,6 +14,17 @@ const userController = {
 			})
 			.catch((err) => {
 				failed(res, err.message, "failed", "get user failed");
+			});
+	},
+
+	getAllUser: (req, res) => {
+		userModel
+			.getAllUser()
+			.then((result) => {
+				success(res, result.rows, "success", "get all user success");
+			})
+			.catch((err) => {
+				failed(res, err.message, "failed", "get all user failed");
 			});
 	},
 
@@ -69,6 +81,44 @@ const userController = {
 			failed(res, err.message, "failed", "internal server error");
 		}
 	},
+
+	login: (req, res) => {
+		const { email, password } = req.body;
+
+		userModel
+			.checkEmail(email)
+			.then((result) => {
+				const user = result.rows[0];
+				if (result.rowCount > 0) {
+					bcrypt
+						.compare(password, result.rows[0].password)
+						.then(async (result) => {
+							if (result) {
+								const token = await jwtToken({
+									email: user.email,
+									level: user.level,
+								});
+								delete user.password;
+								delete user.credit_card;
+								successWithToken(
+									res,
+									{ token, data: user },
+									"success",
+									"login success"
+								);
+							} else {
+								failed(res, null, "failed", "email or password incorrect");
+							}
+						});
+				} else {
+					failed(res, null, "failed", "email or password incorrect");
+				}
+			})
+			.catch((error) => {
+				failed(res, err.message, "failed", "internal server error");
+			});
+	},
+
 	updateUser: (req, res) => {
 		const id = req.params.id;
 		// const photo = req.file.filename;

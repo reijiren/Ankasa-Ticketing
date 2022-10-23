@@ -16,6 +16,22 @@ const userModel = {
 		});
 	},
 
+	getAllUser: () => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`
+			SELECT * FROM users
+			`
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	},
+
 	searchUser: (username, limit, offset) => {
 		// searchUser: (username) => {
 		return new Promise((resolve, reject) => {
@@ -39,7 +55,7 @@ const userModel = {
 	register: ({ username, email, password, photo }) => {
 		return new Promise((resolve, reject) => {
 			db.query(
-				`INSERT INTO users (username, email, password, photo)
+				`INSERT INTO users (username, email, password, photo, level)
         VALUES
         ('${username}', '${email}', '${password}', '${photo}')`
 			)
