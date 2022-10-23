@@ -60,7 +60,12 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <img src={require("../assets/images/Group 797.png")} width="20" alt="" class="mx-4" />
+                  <img
+                    src={require("../assets/images/Group 797.png")}
+                    width="20"
+                    alt=""
+                    class="mx-4"
+                  />
                   <img
                     src={require("../assets/images/btnNotifications.png")}
                     width="20"
