@@ -52,6 +52,7 @@ create table booking(
     terminal varchar(5),
     gate integer,
     class varchar(20),
+    seat varchar(5),
     history integer, -- 0: Flight Incomplete, 1: Flight Complete
     date_created varchar(30)
 );
