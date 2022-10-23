@@ -1,0 +1,71 @@
+import React from "react";
+import "../mybooking/mybooking.css";
+import Footer from "../../Component/footer";
+import Navbar from "../../Component/navbar";
+import Profiles from "../../Component/profile";
+// import { Link } from "react-router-dom";
+
+const Mybook = () => {
+  return (
+    <>
+      <Navbar />
+      <main class="bg-light">
+        <section class="container-fluid p-5 customMainBooking">
+          <div class="row">
+            <Profiles />
+            <div className="col-md-8">
+              <div class="col-md-12 bg-warning ps-5 pt-4 pe-5 bg-white m-2 customBorderBooking">
+                <h5 class="blue">MY BOOKING</h5>
+                <h3 class="mb-1">My Booking</h3>
+                <h6 class="order-history">Order History</h6>
+              </div>
+              <div class="col-md-12 bg-warning p-5 bg-white mt-4 ms-2 customBorderBooking2">
+                <h5 class="date">Monday, 20 July ‘20 - 12:33</h5>
+                <div class="d-flex align-items-start mt-2">
+                  <h3 class="pe-4">IDN</h3>
+                  <img
+                    class="pe-4 mt-2"
+                    src={require("../../assets/images/Vector.png")}
+                    alt=""
+                  />
+                  <h3 class="pe-4">JPN</h3>
+                </div>
+                <p>Garuda Indonesia, AB-221</p>
+                <hr class="w-100"/>
+                <div class="d-flex align-items-end mt-2">
+                  <p class="pe-4 mt-2 status">Status</p>
+                  <button class="btn-custom">Waiting for payment</button>
+                  
+                </div>
+                <p class="details">View Details</p>
+              </div>
+              <div class="col-md-12 bg-warning p-5 bg-white mt-4 ms-2 customBorderBooking2">
+                <h5 class="date">Monday, 20 July ‘20 - 12:33</h5>
+                <div class="d-flex align-items-start mt-2">
+                  <h3 class="pe-4">IDN</h3>
+                  <img
+                    class="pe-4 mt-2"
+                    src={require("../../assets/images/Vector.png")}
+                    alt=""
+                  />
+                  <h3 class="pe-4">JPN</h3>
+                </div>
+                <p>Garuda Indonesia, AB-221</p>
+                <hr class="w-100"/>
+                <div class="d-flex align-items-end mt-2">
+                  <p class="pe-4 mt-2 status">Status</p>
+                  <button class="btn-custom">Waiting for payment</button>
+                  
+                </div>
+                <p class="details">View Details</p>
+              </div>
+              
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+};
+export default Mybook;

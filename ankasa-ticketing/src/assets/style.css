@@ -91,6 +91,14 @@ body {
   margin-right: 100px;
 }
 
+.customCollapseView{
+    min-height: 120px;
+}
+
+.customCard{
+    width: 300px !important;
+}
+
 /* .mobileOuterFooter{
     padding: 2.5rem;
 }
@@ -119,3 +127,87 @@ body {
     margin-bottom: -50px !important;
   }
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .px-5 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .flexRow {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .flexCol {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flexAuto {
+    flex: 1 1 auto;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .wFull {
+    width: 100%;
+  }
+  
+  .whitespaceNowrap {
+    white-space: nowrap;
+  }
+  
+  .gapSmall {
+    gap: 8px;
+  }
+  
+  .gapMedium {
+    gap: 16px;
+  }
+  
+  .cardSlider {
+    position: relative;
+    max-height: 262px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 10;
+  }
+  
+  .cardOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  }
+  
+  .cardLabel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+  }
+  
+  .cardDescription {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 10;
+    color: white;
+  }
+  
+  
