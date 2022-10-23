@@ -20,13 +20,61 @@ const SeacrhResult = () => {
             </div>
             <div className="col-md-8 search-container-fluid-search-result">
               <div className="row">
-                    {/* <div className="col-md-2">
+                <div className="col-auto icon-airplane">
                   <img
-                  src={require("../../assets/images/vector 02.png")}
-                  width="30"
-                  alt=""
-                />
-                  </div> */}  
+                    className=""
+                    src={require("../../assets/images/icon airplane.png")}
+                  />
+                </div>
+                <div className="col-auto">
+                  <div>
+                    <span>From</span>
+                  </div>
+                  <div>
+                    <input placeholder="Medan (IDN)" />
+                  </div>
+                  <div></div>
+                </div>
+                <div className="col-auto icon-switch">
+                  <img
+                    className=""
+                    src={require("../../assets/images/Vector (4).png")}
+                  />
+                </div>
+                <div className="col-auto">
+                  <div>
+                    <span>To</span>
+                  </div>
+                  <div>
+                    <input placeholder="Tokyo (JPN)" />
+                  </div>
+                </div>
+                <div className="mt-1 result-search">
+                  <div className="row">
+                    <div className="col-auto">
+                      <p>Monday, 20 July 20</p>
+                    </div>
+                    <div className="col-auto icon-hole">
+                      <img
+                        src={require("../../assets/images/Ellipse 36.png")}
+                      />
+                    </div>
+                    <div className="col-auto">
+                      <p>6 Passenger</p>
+                    </div>
+                    <div className="col-auto icon-hole">
+                      <img
+                        src={require("../../assets/images/Ellipse 36.png")}
+                      />
+                    </div>
+                    <div className="col-auto">
+                      <p>Economy</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* <div className="row">
                 <div className="col-md-4">
                   <span>From</span>
                 </div>
@@ -36,16 +84,18 @@ const SeacrhResult = () => {
               </div>
               <div className="row">
                 <div className="col-md-2">
-                  <input placeholder="Medan (IDN)"/>
+                  <input placeholder="Medan (IDN)" />
+                </div>
+                <div className="col-md-2 icon-switch">
+                  <img
+                    className=""
+                    src={require("../../assets/images/Vector (4).png")}
+                  />
                 </div>
                 <div className="col-md-2">
-                  <span>Medan (IDN)</span>
+                  <input placeholder="Tokyo (JPN)" />
                 </div>
-                <div className="col-md-2">
-                <input placeholder="Tokyo (JPN)"/>
-                 
-                </div>
-              </div>
+              </div> */}
             </div>
             <div className="col-md-2 bottom-container-fluid-search-result">
               <button>Change Search</button>
