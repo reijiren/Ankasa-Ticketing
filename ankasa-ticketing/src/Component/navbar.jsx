@@ -76,10 +76,10 @@ const Navbar = () => {
               </div>
               <a href="#">
                 <img
-                  src={require("../assets/images/Group 14.png")}
+                  src={require("../assets/images/nnzkZNYWHaU.png")}
                   width="40"
-                  class="mobileProfileNavbar"
-                  alt=""
+                  class="mobileProfileNavbar rounded-circle customBorder"
+                  alt="profile image"
                 />
               </a>
             </div>
