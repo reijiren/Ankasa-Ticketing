@@ -4,7 +4,7 @@ const { listAirline, detailAirline, findAirline, addAirline, updateAirline, upda
 const router = express.Router();
 
 const jwtAuth = require('../middleware/jwtAuth');
-const {} = require('../middleware/auth');
+const { isAdmin, isCustomer } = require('../middleware/auth');
 const {uploadAirlineLogo} = require('../middleware/uploadImg');
 const {removeAirlineLogo} = require('../middleware/deleteImg');
 

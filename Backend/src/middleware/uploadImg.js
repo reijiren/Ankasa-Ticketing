@@ -3,7 +3,7 @@ const path = require('path');
 
 const currentDate = new Date();
 const dateTime = currentDate.getDate() + '' + (currentDate.getMonth()+1) + '' + currentDate.getFullYear();
-const timestamp = currentDate.getHours() + '' + currentDate.getMinutes() + '' + currentDate.getSeconds() + '' + currentDate.getMilliseconds();
+const timestamp = currentDate.getHours() + '' + currentDate.getMinutes() + '' + currentDate.getSeconds()
 
 const multerProfileUpload = multer({
     storage: multer.diskStorage({
@@ -49,7 +49,6 @@ const multerAirlineUpload = multer({
             const nameSplit = name.split(`${ext}`);
             
             const fileName = nameSplit[0] + '-' + dateTime + timestamp + ext;
-            console.log(dateTime)
             cb(null, fileName);
         }
     }),

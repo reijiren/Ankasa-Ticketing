@@ -7,8 +7,8 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 
 // buat route
-const userRouter = require("./src/router/user.routes");
-// const recipeRouter = require('./src/route/recipe.routes.js')
+const userRouter = require("./src/router/user.router");
+const flightRouter = require('./src/router/flight.routes');
 const airlineRouter = require("./src/router/airline.routes");
 
 const app = express();
@@ -21,15 +21,16 @@ try {
 	// app.use(cookieparser());
 	app.use(cors());
 	//   app.options('*', cors())
+  app.use(airlineRouter);
+  app.use(userRouter);
+  app.use(flightRouter);
 } catch (err) {
 	console.log(err);
 }
-
-app.use(userRouter);
 
 // app.use(recipeRouter);
 
 // jalankan express
 app.listen(process.env.PORT, () => {
-	console.log("SERVICE IS RUNNING ON PORT 3005");
+	console.log("SERVICE IS RUNNING ON PORT 3001");
 });

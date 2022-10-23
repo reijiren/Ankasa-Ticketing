@@ -1,0 +1,358 @@
+{
+	"info": {
+		"_postman_id": "8140c4a7-b920-4e16-b4e5-99ebd1aeef08",
+		"name": "Ankasa Ticketing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23292697"
+	},
+	"item": [
+		{
+			"name": "Airline",
+			"item": [
+				{
+					"name": "GET ALL AIRLINE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/airline",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET DETAIL AIRLINE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/airline/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"airline",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEARCH AIRLINE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"limit\": 2,\r\n    \"sortBy\": \"id_airline\",\r\n    \"sortOrd\": \"asc\",\r\n    \"airlineName\": \"gar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/airline/find/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"airline",
+								"find",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "INSERT AIRLINE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Air Popoy",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Profile/buffalo.jfif"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3001/airline/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"airline",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE AIRLINE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Garud\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/airline/update/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"airline",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE LOGO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Profile/zebra.jfif"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3001/airline/changeimg/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"airline",
+								"changeimg",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE AIRLINE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/airline/delete/7",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"airline",
+								"delete",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flight",
+			"item": [
+				{
+					"name": "GET ALL FLIGHT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/flight",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"flight"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET DETAIL FLIGHT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/flight/detail?id=GRD-229",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"flight",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "GRD-229"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FIND FLIGHT",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"limit\": 2,\r\n    \"sortBy\": \"price\",\r\n    \"sortOrd\": \"desc\",\r\n    \"data\": {\r\n        \"luggage\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/flight/find/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"flight",
+								"find",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "INSERT FLIGHT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"GRD-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 0,\r\n        \"reschedule\": 0,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/flight/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"flight",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE FLIGHT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"GRD-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 1,\r\n        \"reschedule\": 1,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/flight/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"flight",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE FLIGHT",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/flight/delete?id=GRD-229",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"flight",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "GRD-229"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
