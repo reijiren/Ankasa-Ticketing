@@ -7,33 +7,62 @@
 .background-blue-search-result {
     background-color: #2395FF;
     height: auto;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .background-blue-search-result img {
     height: auto;
-    width: 130px;
+    width: 170px;
 }
 
 .container-fluid-search-result .search-container-fluid-search-result {
     margin-top: 70px;
     margin-left: -50px;
     padding-bottom: 0px !important;
+    font-size: 17px;
     color: white;
 }
 
 .container-fluid-search-result .search-container-fluid-search-result input{
-    border: none;
-    background-color: #2395FF;
-    border-bottom: 1px solid white !important;
+    background-color: #FFFFFF;
+    border: 1px solid white;
+    border-radius: 15px;
+    box-shadow: 2px 2px 6px #1c45c2;
+    font-size: 15px;
+    height: 30px;
     width: 120px;
+    width: auto;
+    padding-left: 10px;
 }
 
+.container-fluid-search-result .search-container-fluid-search-result .icon-airplane img{
+    height: auto;
+    width: 70px;
+    padding-top: 15px;
+}
+
+.container-fluid-search-result .search-container-fluid-search-result .icon-switch img{
+    height: auto;
+    width: 20px;
+    padding-top: 35px;
+}
+
+.container-fluid-search-result .search-container-fluid-search-result .result-search{
+   margin-left: 95px;
+   font-size: 14px;
+}
+
+.container-fluid-search-result .search-container-fluid-search-result .result-search .icon-hole img{
+    height: 5px;
+    width: 5px;
+ }
+
 .container-fluid-search-result .bottom-container-fluid-search-result button {
-    margin-top: 90px;
+    margin-top: 100px;
     color: white;
     border: none;
+    font-size: 17px;
     background-color: #2395FF;
 }
 
@@ -49,7 +78,7 @@
     background-color: #FFFFFF;
     height: auto;
     border-radius: 15px;
-    box-shadow: 2px 2px 15px rgb(204, 200, 200);
+    box-shadow: 2px 2px 10px rgb(221, 216, 216);
 }
 
 .container-main-search-result .form-filter-search-result .collapse-transit button {
@@ -166,7 +195,7 @@
     height: auto;
     border-radius: 15px;
     padding: 30px;
-    box-shadow: 2px 2px 15px rgb(204, 200, 200);
+    box-shadow: 2px 2px 10px rgb(221, 216, 216);
 }
 
 .container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .btn-info {

@@ -22,7 +22,7 @@ const BookingDetail = () => {
                 <img src={require("../../assets/images/Ellipse 5.png")} />
               </div>
             </div>
-            <div className="mt-4 container ticket-flight-main">
+            <div className="mt-3 container ticket-flight-main">
               <div className="row">
                 <div className="col-md-9 ticket-flight-main-left-border">
                   <div className="ticket-flight-main-left">
@@ -33,13 +33,17 @@ const BookingDetail = () => {
                         />
                       </div>
                       <div className="pt-3 col-auto">
-                        <h3>IDN</h3>
+                        <h3>
+                          <b>IDN</b>
+                        </h3>
                       </div>
                       <div className="pt-3 col-auto">
                         <img src={require("../../assets/images/Vector.png")} />
                       </div>
                       <div className="pt-3 col-auto">
-                        <h3>JPN</h3>
+                        <h3>
+                          <b>JPN</b>
+                        </h3>
                       </div>
                     </div>
                     <div className="mt-3 row">
