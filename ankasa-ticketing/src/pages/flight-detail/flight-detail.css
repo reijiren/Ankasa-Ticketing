@@ -1,5 +1,7 @@
-.container-fluid {
+.container-fluid-flight-detail {
     background-color: #F5F6FA;
+    height: auto;
+    padding-bottom: 50px;
 }
 
 .background-title {
@@ -34,8 +36,9 @@
 .form-contact-person-details {
     background-color: #FFFFFF;
     height: auto;
-    border-radius: 25px;
+    border-radius: 15px;
     padding-bottom: 15px;
+    box-shadow: 2px 2px 10px rgb(221, 216, 216);
 }
 
 .form-contact-person-details form {
@@ -67,8 +70,9 @@
 .form-flight-details {
     background-color: #FFFFFF;
     height: auto;
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 30px;
+    box-shadow: 2px 2px 10px rgb(221, 216, 216);
 }
 
 .form-flight-details .name-airplane {
@@ -122,8 +126,9 @@
 .form-passenger-details-one {
     background-color: #FFFFFF;
     height: auto;
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 15px;
+    box-shadow: 2px 2px 10px rgb(221, 216, 216);
 }
 
 .form-passenger-details-one form {
@@ -172,8 +177,9 @@
 .form-passenger-details-two {
     background-color: #FFFFFF;
     height: auto;
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 30px;
+    box-shadow: 2px 2px 10px rgb(221, 216, 216);
 }
 
 @media (max-width: 720px) {

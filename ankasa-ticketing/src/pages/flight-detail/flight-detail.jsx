@@ -9,7 +9,7 @@ const FlightDetail = () => {
       {/* Start Navbar */}
       <Navbar />
       {/* End Navbar */}
-      <div className="container-fluid">
+      <div className="container-fluid container-fluid-flight-detail">
         <div className="background-title">
           <img src={require("../../assets/images/vector 3.png")} />
         </div>
@@ -111,30 +111,28 @@ const FlightDetail = () => {
                   <h5>Passenger Details</h5>
                 </div>
                 <div className="form-passenger-details-two">
-                    <div className="row">
-                        <div className="col-auto">
-                        <img
-                            src={require("../../assets/images/Ellipse 50.png")}
-                          />
-                        </div>
-                        <div className="col-auto">
-                            <h5>Travel Insurance</h5>
-                        </div>
-                        <div className="col-auto">
-                            <h5>$20</h5>
-                        </div>
+                  <div className="row">
+                    <div className="col-auto">
+                      <img
+                        src={require("../../assets/images/Ellipse 50.png")}
+                      />
                     </div>
-                    <hr />
-                    <div className="row">
-                        <div className="col-auto">
-                        <span>
-                        Get travel compensation up to
-                        </span>
-                        </div>
-                        <div className="col-auto">
-                            <span>$10.000,00</span>
-                        </div>
+                    <div className="col-auto">
+                      <h5>Travel Insurance</h5>
                     </div>
+                    <div className="col-auto">
+                      <h5>$20</h5>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-auto">
+                      <span>Get travel compensation up to</span>
+                    </div>
+                    <div className="col-auto">
+                      <span>$10.000,00</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
