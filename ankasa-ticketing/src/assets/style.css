@@ -118,9 +118,9 @@ body {
 }
 
 .customCard{
-    width: 300px !important;
+    width: 340px !important;
     margin-top: -550px !important;
-    margin-left: 25px;
+    margin-left: 18px;
 }
 
 /* media query footer */
@@ -256,7 +256,10 @@ body {
   .spaceCust{
     margin-left: 70px;
   }
-
+  .customImg{
+    width: 800px !important;
+    height: auto;
+}
   @media (max-width: 767px) {
     .img-fluid{
         width: 40% !important;
@@ -268,13 +271,14 @@ body {
     #trending{
         margin-top: 50px !important;
     }
+    .customImg{
+        width: 100% !important;
+        height: auto;
+    }
 }
 
 /*  */
-.icon-switch{
-    color: #2395ff !important;
-    font-size: 20px;
-    margin-left: 10px;
-}
+/*  */
+
   
   
