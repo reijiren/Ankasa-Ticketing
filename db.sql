@@ -49,6 +49,7 @@ create table booking(
     id_user integer references users(id_user),
     id_flight varchar(10) references flight(id_flight),
     status integer, -- 0: Payment Incomplete, 1: Payment Complete
+    passenger integer,
     terminal varchar(5),
     gate integer,
     class varchar(20),
