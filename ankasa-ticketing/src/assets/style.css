@@ -97,14 +97,10 @@ body {
 
 .customCard{
     width: 300px !important;
+    margin-top: -550px !important;
+    margin-left: 25px;
 }
 
-/* .mobileOuterFooter{
-    padding: 2.5rem;
-}
-.mobileInnerFooter{
-    padding: 2.5rem ;
-} */
 /* media query footer */
 @media (max-width: 767px) {
   .mobileOuterFooter {
@@ -128,11 +124,11 @@ body {
   }
 }
 
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+  } */
   
   .px-5 {
     padding-left: 10px;
@@ -209,5 +205,44 @@ body {
     z-index: 10;
     color: white;
   }
+
+  .customSpace{
+    padding: 60px !important;
+    /* margin: 100px !important; */
+  }
+  .customButton{
+    background-color: hsla(0,0%,100%,.17) !important;
+    align-items: center;
+    color: white !important;
+    border-radius: 15px !important;
+    height: 25px !important;
+    width: 25px !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  @media (max-width: 767px) {
+    .customSpace{
+      padding: 0 !important;
+      /* margin: 100px !important; */
+    }
+  }
+  .imgCustom {
+    max-width: 160px;
+    height: 160px;
+    border: 5px solid white;
+  }
+  .spaceCust{
+    margin-left: 70px;
+  }
+
+  @media (max-width: 767px) {
+    .img-fluid{
+        width: 40% !important;
+        height: 50% !important;
+    }
+    .cusImg{
+        margin-top: -100px !important;
+    }
+}
   
   
