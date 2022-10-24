@@ -53,11 +53,23 @@ const userModel = {
 	},
 
 	register: ({ username, email, password, photo }) => {
+		const date = new Date();
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+
+        if (dd< 10) dd = '0' + dd;
+        if (mm< 10) mm = '0' + mm;
+
+        const time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+
+        const date_created = `${yyyy}/${mm}/${dd} - ${time}`;
+		
 		return new Promise((resolve, reject) => {
 			db.query(
-				`INSERT INTO users (username, email, password, photo, level)
+				`INSERT INTO users (username, email, password, photo, level, date_created)
         VALUES
-        ('${username}', '${email}', '${password}', '${photo}')`
+        ('${username}', '${email}', '${password}', '${photo}', 1, '${date_created}')`
 			)
 				.then((response) => {
 					resolve(response);
