@@ -32,7 +32,7 @@ userRouter
 		updatePhoto
 	)
 	.put("/update/password", updateUserPassword)
-	.put("/forgot", forgotUserPassword)
+	// .put("/forgot", forgotUserPassword)
 	.delete("/user/:id", removeProfilePic, deleteUser)
 	.post("/login", login);
 

@@ -124,7 +124,6 @@
   border: 1px solid rgb(240, 233, 233) !important;
 }
 
-
 .customCard{
     width: 380px !important;
     margin-left: 0px !important;
@@ -295,7 +294,10 @@
   .spaceCust{
     margin-left: 70px;
   }
-
+  .customImg{
+    width: 800px !important;
+    height: auto;
+}
   @media (max-width: 767px) {
     .img-fluid{
         width: 40% !important;
@@ -307,13 +309,14 @@
     #trending{
         margin-top: 50px !important;
     }
+    .customImg{
+        width: 100% !important;
+        height: auto;
+    }
 }
 
 /*  */
-.icon-switch{
-    color: #2395ff !important;
-    font-size: 20px;
-    margin-left: 10px;
-}
+/*  */
+
   
   
