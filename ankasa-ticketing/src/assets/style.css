@@ -8,6 +8,28 @@ body {
   margin-left: 100px !important;
 }
 
+.navbar {
+  box-shadow: 1px 1px 10px rgb(141, 147, 172, 0.5);
+}
+
+.navbar .collapse .input-group input {
+  border-radius: 20px;
+  border-right: none !important;
+  height: 35px;
+  width: auto;
+  
+}
+
+.navbar .collapse .input-group span {
+  border-radius: 20px;
+  background-color: white !important;
+  border-left: none !important;
+  padding-right: 10px;
+  height: 35px;
+  width: auto;
+  padding-bottom: 8px;
+}
+
 .listStyle {
   list-style: none;
 }

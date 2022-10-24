@@ -19,7 +19,13 @@ const bookingController = {
     list: (req, res) => {
         bookingModel.getAllBooking()
         .then((result) => {
-            success(res, result.rows, 'success', 'Get All Booking List Success');
+            const data = result.rows;
+            data.map((e, i) => {
+                delete data[i].password;
+                delete data[i].credit_card;
+            });
+            
+            success(res, data, 'success', 'Get All Booking List Success');
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Failed to get all booking list');
@@ -32,6 +38,9 @@ const bookingController = {
 
         bookingModel.getDetailBooking(id)
         .then((result) => {
+            delete result.rows[0].password;
+            delete result.rows[0].credit_card;
+
             success(res, result.rows, 'success', 'Get Booking Detail Success');
         })
         .catch((err) => {
@@ -44,9 +53,19 @@ const bookingController = {
         const id = req.params.id;
         const { status } = req.body;
 
-        bookingModel.updateStatus(id, status)
+        bookingModel.getDetailBooking(id_booking)
         .then((result) => {
-            success(res, result.rowCount, 'success', 'Update Status Success');
+            if(result.rowCount != 0){
+                bookingModel.updateStatus(id, status)
+                .then((result) => {
+                    success(res, result.rowCount, 'success', 'Update Status Success');
+                })
+                .catch((err) => {
+                    failed(res, err.message, 'failed', 'Failed to update status');
+                });
+            }else{
+                failed(res, null, 'failed', 'Booking ID is not found');
+            }
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Failed to update status');
@@ -55,14 +74,25 @@ const bookingController = {
 
     // update history
     changeHistory: (req, res) => {
-        const id = req.params.id;
+        const id_booking = req.params.id;
+        const { history } = req.body;
 
-        bookingModel.updateHistory(id)
+        bookingModel.getDetailBooking(id_booking)
         .then((result) => {
-            success(res, result.rowCount, 'success', 'Update Status Success');
+            if(result.rowCount != 0){
+                bookingModel.updateHistory(id_booking, history)
+                .then((result) => {
+                    success(res, result.rowCount, 'success', 'Update History Success');
+                })
+                .catch((err) => {
+                    failed(res, err.message, 'failed', 'Failed to update history');
+                });
+            }else{
+                failed(res, null, 'failed', 'Booking ID is not found');
+            }
         })
         .catch((err) => {
-            failed(res, err.message, 'failed', 'Failed to update status');
+            failed(res, err.message, 'failed', 'Failed to update history');
         });
     },
 

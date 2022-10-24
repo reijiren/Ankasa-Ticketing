@@ -137,6 +137,9 @@ const FlightDetail = () => {
                   </div>
                 </div>
               </div>
+              <div className="mt-4 button-payment text-center">
+                <button>Proceed to Payment</button>
+              </div>
             </div>
             <div className="col-md-4">
               <div className="flight-details">
@@ -145,7 +148,7 @@ const FlightDetail = () => {
                     <div className="col-auto">
                       <h5>Flight Details</h5>
                     </div>
-                    <div className="col-auto">
+                    <div className="col-auto button-view-detail">
                       <span className="right">Views Details</span>
                     </div>
                   </div>

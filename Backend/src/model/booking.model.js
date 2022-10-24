@@ -59,8 +59,9 @@ const bookingModel = {
 
     // update status
     updateStatus: (id, status) => {
+        if(typeof status !== 'number') status = parseInt(status);
         return new Promise((resolve, reject) => {
-            db,query(`update booking set status = ${status} where id_booking = ${id}`, (err, res) => {
+            db.query(`update booking set status = ${status} where id_booking = ${id}`, (err, res) => {
                 if(err){
                     reject(err);
                 }
@@ -70,9 +71,9 @@ const bookingModel = {
     },
 
     // update history
-    updateHistory: (id) => {
+    updateHistory: (id_booking, history) => {
         return new Promise((resolve, reject) => {
-            db,query(`update booking set history = 1 where id_booking = ${id}`, (err, res) => {
+            db.query(`update booking set history = ${history} where id_booking = ${id_booking};`, (err, res) => {
                 if(err){
                     reject(err);
                 }
