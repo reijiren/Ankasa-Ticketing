@@ -15,15 +15,15 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/">
-        <Route index element={<Explore />} />
-          <Route path="FlightDetail" element={<FlightDetail />} />
-          <Route path="Profile" element={<Profile />} />
-          <Route path="Login" element={<Login />} />
-          <Route path="Register" element={<Register />} />
-          <Route path="Forget" element={<Forget />} />
-          <Route path="Mybook" element={<Mybook />} />
-          <Route path="BookingDetail" element={<BookingDetail />} />
-          <Route path="SearchResult" element={<SeacrhResult />} />
+          <Route index element={<Explore />} />
+          <Route path="flight-detail" element={<FlightDetail />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="forget" element={<Forget />} />
+          <Route path="mybook" element={<Mybook />} />
+          <Route path="booking-detail" element={<BookingDetail />} />
+          <Route path="search-result" element={<SeacrhResult />} />
         </Route>
       </Routes>
     </BrowserRouter>
