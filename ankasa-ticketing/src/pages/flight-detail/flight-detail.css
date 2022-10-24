@@ -1,3 +1,4 @@
+
 .container-fluid-flight-detail {
     background-color: #F5F6FA;
     height: auto;
@@ -50,7 +51,7 @@
    border-top: none;
    border-left: none;
    border-right: none;
-   border-color: rgba(210, 194, 255, 0.68);;
+   border-color: rgba(210, 194, 255, 0.68);
    border-width: 2px;
    border-radius: 0px;
 }
@@ -182,6 +183,18 @@
     box-shadow: 2px 2px 10px rgb(221, 216, 216);
 }
 
+/* CSS BUTTON PAYMENT */
+
+.container-fluid-flight-detail .container-main .button-payment button{
+    border: none;
+    background-color: #2395FF;
+    color: white;
+    height: 50px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
+}
+
 @media (max-width: 720px) {
     .flight-details .title-flight-details h5 {
         padding-top: 35px;
@@ -191,6 +204,11 @@
     .flight-details .title-flight-details span {
         padding-top: 35px;
         color: black;
+    }
+
+    .flight-details .title-flight-details .button-view-detail {
+        padding-top: 34px;
+        
     }
 }
 
