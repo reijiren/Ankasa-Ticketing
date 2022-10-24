@@ -344,7 +344,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"AAP-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 0,\r\n        \"reschedule\": 0,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"AAP-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"max_capacity\": 40,\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 0,\r\n        \"reschedule\": 0,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -372,7 +372,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"AAP-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 1,\r\n        \"reschedule\": 1,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"AAP-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"max_capacity\": 40,\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 1,\r\n        \"reschedule\": 1,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -388,6 +388,34 @@
 							"path": [
 								"flight",
 								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE FLIGHT CURRENT CAPACITY",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_flight\": \"AAP-229\",\r\n    \"capacity\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/flight/capacity",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"flight",
+								"capacity"
 							]
 						}
 					},
