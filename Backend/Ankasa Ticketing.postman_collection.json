@@ -33,14 +33,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3001/airline/1",
+							"raw": "localhost:3001/airline/2",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
 								"airline",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -56,7 +56,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"limit\": 2,\r\n    \"sortBy\": \"id_airline\",\r\n    \"sortOrd\": \"asc\",\r\n    \"airlineName\": \"gar\"\r\n}",
+							"raw": "{\r\n    \"limit\": 2,\r\n    \"sortBy\": \"id_airline\",\r\n    \"sortOrd\": \"asc\",\r\n    \"airlineName\": \"ru\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,7 +88,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Air Popoy",
+									"value": "Air Asia",
 									"type": "text"
 								},
 								{
@@ -119,7 +119,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Garud\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Garuda\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -152,7 +152,7 @@
 								{
 									"key": "logo",
 									"type": "file",
-									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Profile/zebra.jfif"
+									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Profile/dante.jpeg"
 								}
 							]
 						},
@@ -177,7 +177,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:3001/airline/delete/7",
+							"raw": "localhost:3001/airline/delete/1",
 							"host": [
 								"localhost"
 							],
@@ -185,7 +185,7 @@
 							"path": [
 								"airline",
 								"delete",
-								"7"
+								"1"
 							]
 						}
 					},
@@ -249,7 +249,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"limit\": 2,\r\n    \"sortBy\": \"price\",\r\n    \"sortOrd\": \"desc\",\r\n    \"data\": {\r\n        \"luggage\": 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"limit\": 2,\r\n    \"sortBy\": \"price\",\r\n    \"sortOrd\": \"desc\",\r\n    \"data\": {\r\n        \"airlineName\": \"air\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -267,9 +267,75 @@
 								"find",
 								"1"
 							]
-						}
+						},
+						"description": "List data field available:\n\n\"price\", \"direct\", \"transit\", \"transit2\", \"luggage\", \"inflight_meal\", \"wifi\", \"depMidnight\", \"depMorning\", \"depAfternoon\", \"depNight\", \"arrMidnight\", \"arrMorning\", \"arrAfternoon\", \"arrNight\", \"airlineName\""
 					},
-					"response": []
+					"response": [
+						{
+							"name": "FIND FLIGHT",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"limit\": 2,\r\n    \"sortBy\": \"price\",\r\n    \"sortOrd\": \"desc\",\r\n    \"data\": {\r\n        \"luggage\": \"1\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/flight/find/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"flight",
+										"find",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "FIND FLIGHT",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"limit\": 2,\r\n    \"sortBy\": \"price\",\r\n    \"sortOrd\": \"desc\",\r\n    \"data\": {\r\n        \"airlineName\": \"air\",\r\n        \"transit\": \"1\",\r\n        \"transit2\": \"1\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/flight/find/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"flight",
+										"find",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
 				},
 				{
 					"name": "INSERT FLIGHT",
@@ -278,7 +344,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"GRD-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 0,\r\n        \"reschedule\": 0,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"AAP-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 0,\r\n        \"reschedule\": 0,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,7 +372,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"GRD-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 1,\r\n        \"reschedule\": 1,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"id_flight\": \"AAP-229\",\r\n        \"airline\": 1,\r\n        \"city_departure\": \"Bekasi\",\r\n        \"city_destination\": \"Jakarta\",\r\n        \"region_departure\": \"Bekasi\",\r\n        \"region_destination\": \"Indonesia\",\r\n        \"luggage\": 1,\r\n        \"inflight_meal\": 0,\r\n        \"wifi\": 1,\r\n        \"time_departure\": \"05:00:00\",\r\n        \"time_arrived\": \"15:00:00\",\r\n        \"price\": 5000000,\r\n        \"refundable\": 1,\r\n        \"reschedule\": 1,\r\n        \"insurance\": 1,\r\n        \"transit\": 0\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -347,6 +413,385 @@
 									"key": "id",
 									"value": "GRD-229"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET DETAIL USER BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/user/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL USER (ADMIN ONLY)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsZmF0aEBnbWFpbC5jb20iLCJsZXZlbCI6MCwiaWF0IjoxNjY2NTk2NjMyfQ.TYUPx8pzZdTPwLdEYh1QbVnjGqa9nxuVqAqImgwCjQo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user"
+							]
+						},
+						"description": "Hanya akan dipakai di halaman admin"
+					},
+					"response": []
+				},
+				{
+					"name": "SEARCH USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/search/th?limit=2&page=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"search",
+								"th"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTER USER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"reyrey\",\r\n    \"email\": \"reyrey@gmail.com\",\r\n    \"password\": \"reyrey\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN USER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"alfath@gmail.com\",\r\n    \"password\": \"fafath\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PROFILE USER",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"alfath@gmail.com\",\r\n    \"level\": \"0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/user/update/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PHOTO PROFILE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3001/user/update/photo/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"update",
+								"photo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE USER PASSWORD",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"alfath@gmail.com\",\r\n    \"password\": \"aw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/update/password",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"update",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE USER",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/user/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "INSERT BOOKING",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_user\": 1,\r\n    \"id_flight\": \"AAP-229\",\r\n    \"status\": 0,\r\n    \"passenger\": 1,\r\n    \"terminal\": \"A\",\r\n    \"gate\": 221,\r\n    \"class\": \"Economy\",\r\n    \"seat\": \"26 A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/booking/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"booking",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL BOOKING LIST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/booking",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET DETAIL BOOKING",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/booking/detail/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"booking",
+								"detail",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CHANGE BOOKING PAYMENT STATUS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/booking/status/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"booking",
+								"status",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CHANGE BOOKING HISTORY",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/booking/history/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"booking",
+								"history",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE BOOKING",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/booking/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"booking",
+								"delete",
+								"1"
 							]
 						}
 					},

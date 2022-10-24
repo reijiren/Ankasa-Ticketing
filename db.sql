@@ -3,6 +3,7 @@ create database ankasa_ticketing;
 create table users(
     id_user serial primary key,
     username varchar(40) unique,
+    fullname varchar(40),
     email varchar(40) unique,
     password text,
     phone varchar(12),

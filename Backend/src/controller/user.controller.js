@@ -60,16 +60,23 @@ const userController = {
 					photo: req.file ? req.file.filename : "default.png",
 				};
 
-				userModel.checkEmail(email).then((result) => {
+				userModel.checkEmail(email)
+				.then((result) => {
 					if (result.rowCount == 0) {
-						userModel
-							.register(data)
-							.then((result) => {
-								success(res, result, "success", "register success");
-							})
-							.catch((err) => {
-								failed(res, err.message, "failed", "register failed");
-							});
+						userModel.checkUsername(username)
+						.then((result) => {
+							if (result.rowCount == 0) {
+								userModel.register(data)
+								.then((result) => {
+									success(res, result, "success", "register success");
+								})
+								.catch((err) => {
+									failed(res, err.message, "failed", "register failed");
+								});
+							}else{
+								failed(res, null, "failed", "username has been taken");
+							}
+						})
 					}
 
 					if (result.rowCount > 0) {
@@ -90,6 +97,7 @@ const userController = {
 			.then((result) => {
 				const user = result.rows[0];
 				if (result.rowCount > 0) {
+					
 					bcrypt
 						.compare(password, result.rows[0].password)
 						.then(async (result) => {
@@ -107,11 +115,11 @@ const userController = {
 									"login success"
 								);
 							} else {
-								failed(res, null, "failed", "email or password incorrect");
+								failed(res, null, "failed", "username or password incorrect");
 							}
 						});
 				} else {
-					failed(res, null, "failed", "email or password incorrect");
+					failed(res, null, "failed", "username or password incorrect");
 				}
 			})
 			.catch((error) => {
@@ -124,6 +132,7 @@ const userController = {
 		// const photo = req.file.filename;
 		const {
 			username,
+			fullname,
 			email,
 			credit_card,
 			phone,
@@ -138,6 +147,7 @@ const userController = {
 		const data = {
 			id,
 			username,
+			fullname,
 			email,
 			credit_card,
 			phone,
@@ -150,17 +160,32 @@ const userController = {
 			gender,
 		};
 
-		userModel
-			.updateProfile(data)
-			.then((result) => {
-				res.json(result);
-			})
-			.catch((error) => {
-				res.json(error);
-			});
+		userModel.checkEmail(data.email)
+		.then((result) => {
+			if (result.rowCount == 0) {
+				userModel.checkUsername(username)
+				.then((result) => {
+					if (result.rowCount == 0) {
+						userModel.updateProfile(data)
+						.then((result) => {
+							res.json(result);
+						})
+						.catch((error) => {
+							res.json(error);
+						});
+					}else{
+						failed(res, null, "failed", "username has been taken");
+					}
+				})
+			}
+			if (result.rowCount > 0) {
+				failed(res, null, "failed", "email has been taken");
+			}
+		});
+		
 	},
 
-	forgotUserPassword: (req, res) => {
+	updateUserPassword: (req, res) => {
 		const { email, password } = req.body;
 		bcrypt.hash(password, 10, (err, hash) => {
 			if (err) {
@@ -191,28 +216,28 @@ const userController = {
 		});
 	},
 
-	updateUserPassword: (req, res) => {
-		const { email, password } = req.body;
-		bcrypt.hash(password, 10, (err, hash) => {
-			if (err) {
-				failed(res, err.message, "failer", "failed hash password");
-			}
+	// forgotUserPassword: (req, res) => {
+	// 	const { email, password } = req.body;
+	// 	bcrypt.hash(password, 10, (err, hash) => {
+	// 		if (err) {
+	// 			failed(res, err.message, "failer", "failed hash password");
+	// 		}
 
-			const data = {
-				email,
-				password: hash,
-			};
+	// 		const data = {
+	// 			email,
+	// 			password: hash,
+	// 		};
 
-			userModel
-				.forgotUserPassword(data)
-				.then((result) => {
-					success(res, result, "success", "update password success");
-				})
-				.catch((err) => {
-					failed(res, err.message, "failed", "update password failed");
-				});
-		});
-	},
+	// 		userModel
+	// 			.forgotUserPassword(data)
+	// 			.then((result) => {
+	// 				success(res, result, "success", "update password success");
+	// 			})
+	// 			.catch((err) => {
+	// 				failed(res, err.message, "failed", "update password failed");
+	// 			});
+	// 	});
+	// },
 
 	updatePhoto: (req, res) => {
 		const id = req.params.id;
