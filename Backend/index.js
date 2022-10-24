@@ -10,6 +10,7 @@ const xss = require("xss-clean");
 const userRouter = require("./src/router/user.routes");
 const flightRouter = require('./src/router/flight.routes');
 const airlineRouter = require("./src/router/airline.routes");
+const bookingRouter = require("./src/router/booking.routes");
 
 const app = express();
 
@@ -24,6 +25,7 @@ try {
   app.use(airlineRouter);
   app.use(userRouter);
   app.use(flightRouter);
+  app.use(bookingRouter);
 } catch (err) {
 	console.log(err);
 }
