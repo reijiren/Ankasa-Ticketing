@@ -66,6 +66,19 @@ const flightController = {
         });
     },
 
+    // update capacity
+    updateCapacity: (req, res) => {
+        const { id_flight, capacity } = req.body;
+
+        flightModel.updateCapacity(id_flight, capacity)
+        .then((result) => {
+            success(res, result.rowCount, 'success', 'Update Flight Capacity Success');
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Failed to update flight capacity');
+        });
+    },
+
     // insert flight
     insert: (req, res) => {
         const { data } = req.body;

@@ -1,3 +1,4 @@
+const { resolve } = require('path');
 const db = require('../config/db');
 
 const flightModel = {
@@ -141,10 +142,22 @@ const flightModel = {
     updateFlight: (data) => {
         return new Promise((resolve, reject) => {
             db.query(`update flight set airline=${data.airline}, city_departure='${data.city_departure}', city_destination='${data.city_destination}',
-            region_departure='${data.region_departure}', region_destination='${data.region_destination}', luggage=${data.luggage}, inflight_meal=${data.inflight_meal},
+            region_departure='${data.region_departure}', region_destination='${data.region_destination}', max_capacity=${data.max_capacity}, luggage=${data.luggage}, inflight_meal=${data.inflight_meal},
             wifi=${data.wifi}, time_departure='${data.time_departure}', time_arrived='${data.time_arrived}', price=${data.price}, refundable=${data.refundable},
             reschedule=${data.reschedule}, insurance=${data.insurance}, transit=${data.transit} where id_flight='${data.id_flight}'`,
             (err, res) => {
+                if(err){
+                    reject(err);
+                }
+                resolve(res);
+            })
+        })
+    },
+
+    // update flight capacity
+    updateCapacity: (id, passenger) => {
+        return new Promise((resolve, reject) => {
+            db.query(`update flight set current_capacity=${passenger} where id_flight='${id}'`, (err, res) => {
                 if(err){
                     reject(err);
                 }
@@ -170,7 +183,7 @@ const flightModel = {
         return new Promise((resolve, reject) => {
             db.query(`insert into flight values (
                 '${data.id_flight}', ${data.airline},  '${data.city_departure}', '${data.city_destination}',
-                '${data.region_departure}', '${data.region_destination}', ${data.luggage}, ${data.inflight_meal}, ${data.wifi},
+                '${data.region_departure}', '${data.region_destination}', ${data.max_capacity}, 0, ${data.luggage}, ${data.inflight_meal}, ${data.wifi},
                 '${data.time_departure}', '${data.time_arrived}', ${data.price}, ${data.refundable}, ${data.reschedule}, ${data.insurance},
                 ${data.transit}, '${date_created}'
                 );`, (err, res) => {
