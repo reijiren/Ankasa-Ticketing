@@ -35,9 +35,8 @@ const Navbar = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Search"
+                  placeholder="where you want to go?"
                   aria-label="Search"
-                  aria-describedby="basic-addon2"
                 />
                 <span className="input-group-text" id="basic-addon2">
                   <i className="fa fa-search"></i>
@@ -60,7 +59,12 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <img src={require("../assets/images/Group 797.png")} width="20" alt="" class="mx-4" />
+                  <img
+                    src={require("../assets/images/Group 797.png")}
+                    width="20"
+                    alt=""
+                    class="mx-4"
+                  />
                   <img
                     src={require("../assets/images/btnNotifications.png")}
                     width="20"
