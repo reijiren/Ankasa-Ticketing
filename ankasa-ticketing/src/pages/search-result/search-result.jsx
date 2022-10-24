@@ -26,7 +26,7 @@ const SeacrhResult = () => {
                     src={require("../../assets/images/icon airplane.png")}
                   />
                 </div>
-                <div className="col-auto">
+                <div className="col-auto input-from">
                   <div>
                     <span>From</span>
                   </div>
@@ -41,7 +41,7 @@ const SeacrhResult = () => {
                     src={require("../../assets/images/Vector (4).png")}
                   />
                 </div>
-                <div className="col-auto">
+                <div className="col-auto input-to">
                   <div>
                     <span>To</span>
                   </div>
@@ -52,7 +52,7 @@ const SeacrhResult = () => {
                 <div className="mt-1 result-search">
                   <div className="row">
                     <div className="col-auto">
-                      <p>Monday, 20 July 20</p>
+                      <p className="date">Monday, 20 July 20</p>
                     </div>
                     <div className="col-auto icon-hole">
                       <img
@@ -60,7 +60,7 @@ const SeacrhResult = () => {
                       />
                     </div>
                     <div className="col-auto">
-                      <p>6 Passenger</p>
+                      <p className="passenger">6 Passenger</p>
                     </div>
                     <div className="col-auto icon-hole">
                       <img
@@ -68,34 +68,11 @@ const SeacrhResult = () => {
                       />
                     </div>
                     <div className="col-auto">
-                      <p>Economy</p>
+                      <p className="class">First Economy</p>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* <div className="row">
-                <div className="col-md-4">
-                  <span>From</span>
-                </div>
-                <div className="col-md-4">
-                  <span>To</span>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-2">
-                  <input placeholder="Medan (IDN)" />
-                </div>
-                <div className="col-md-2 icon-switch">
-                  <img
-                    className=""
-                    src={require("../../assets/images/Vector (4).png")}
-                  />
-                </div>
-                <div className="col-md-2">
-                  <input placeholder="Tokyo (JPN)" />
-                </div>
-              </div> */}
             </div>
             <div className="col-md-2 bottom-container-fluid-search-result">
               <button>Change Search</button>
@@ -108,7 +85,9 @@ const SeacrhResult = () => {
               <div className="title-filter-search-result">
                 <div className="row">
                   <div className="col-auto">
-                    <h5>Filter</h5>
+                    <h5>
+                      <b>Filter</b>
+                    </h5>
                   </div>
                   <div className="col-auto">
                     <button className="button-title-filter-search-result">
@@ -143,7 +122,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -153,7 +132,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -163,7 +142,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -173,7 +152,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -183,7 +162,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -193,7 +172,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -226,7 +205,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -236,7 +215,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -246,7 +225,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -279,7 +258,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -289,7 +268,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -299,7 +278,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -335,7 +314,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -345,7 +324,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -355,7 +334,7 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
-                          type="radio"
+                          type="checkbox"
                           name=""
                         />
                       </div>
@@ -371,26 +350,324 @@ const SeacrhResult = () => {
               <div className="title-select-ticket-search-result">
                 <div className="row">
                   <div className="col-auto">
-                    <h5>Select Filter</h5>
+                    <h5>
+                      <b>Select Filter</b>
+                    </h5>
                   </div>
                   <div className="col-auto">
                     <span className="text-secondary">(6 flight found)</span>
                   </div>
                   <div className="col-auto sorting-title-select-ticket-search-result">
                     <div className="row">
-                      <div className="col-auto">
-                        <h6>Sort by</h6>
-                      </div>
-                      <div className="col-auto">
-                        <button className="button-sorting">
-                          <i class="fa fa-sort"></i>
+                      <div class="dropdown dropdown-sorting">
+                        <button
+                          class="btn dropdown-toggle"
+                          type="button"
+                          id="sorting"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <b>Sort by</b>
                         </button>
+                        <ul
+                          class="dropdown-menu dropdown-menu"
+                          aria-labelledby="sorting"
+                        >
+                          <li>
+                            <a class="dropdown-item" onClick="">
+                              Price
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" onClick="">
+                              Facilities
+                            </a>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              {/* TICKET */}
+
               <div className="mt-3 form-select-ticket-search-result">
+                <div className="select-ticket-search-result">
+                  <div className="row">
+                    <div className="col-auto">
+                      <img
+                        src={require("../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo 1.png")}
+                      />
+                    </div>
+                    <div className="col-auto name-airplane-select-ticket">
+                      <span className="text-secondary">Garuda Indonesia</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 row">
+                    <div className="col-auto">
+                      <h4>
+                        <b>IDN</b>
+                      </h4>
+                      <span className="text-secondary">12:33</span>
+                    </div>
+                    <div className="col-auto">
+                      <img src={require("../../assets/images/Vector.png")} />
+                    </div>
+                    <div className="col-auto">
+                      <h4>
+                        <b>JPN</b>
+                      </h4>
+                      <span className="text-secondary">15:21</span>
+                    </div>
+                    <div className="col-auto">
+                      <div className="row">
+                        <div className="col-auto">
+                          <span className="text-secondary">
+                            3 hours 11 minutes
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-secondary">(1transit)</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-auto facility-select-ticket">
+                      <div className="row">
+                        <div className="col-auto facility-select-ticket-bag">
+                          <img
+                            src={require("../../assets/images/Vector (1).png")}
+                          />
+                        </div>
+                        <div className="col-auto facility-select-ticket-food">
+                          <img
+                            src={require("../../assets/images/Vector (2).png")}
+                          />
+                        </div>
+                        <div className="col-auto facility-select-ticket-wifi">
+                          <img
+                            src={require("../../assets/images/Vector (3).png")}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-auto">
+                      <div className="row">
+                        <div className="col-auto count-select-ticket">
+                          <h6>$124,00</h6>
+                        </div>
+                        <div className="col-auto pax-select-ticket">
+                          <span className="text-secondary">/pax</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-auto button-select-ticket">
+                      <button>Select</button>
+                    </div>
+                  </div>
+                  <div className="btn-view-detail">
+                    <button
+                      type="button"
+                      className="mt-3 btn btn-info"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#demo"
+                    >
+                      View Details <i className="fa fa-sort-down" />
+                    </button>
+                    <div id="demo" className="collapse">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+
+                {/* TIKET 2 */}
+
+                <div className="select-ticket-search-result">
+                  <div className="row">
+                    <div className="col-auto">
+                      <img
+                        src={require("../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo 1.png")}
+                      />
+                    </div>
+                    <div className="col-auto name-airplane-select-ticket">
+                      <span className="text-secondary">Garuda Indonesia</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 row">
+                    <div className="col-auto">
+                      <h4>
+                        <b>IDN</b>
+                      </h4>
+                      <span className="text-secondary">12:33</span>
+                    </div>
+                    <div className="col-auto">
+                      <img src={require("../../assets/images/Vector.png")} />
+                    </div>
+                    <div className="col-auto">
+                      <h4>
+                        <b>JPN</b>
+                      </h4>
+                      <span className="text-secondary">15:21</span>
+                    </div>
+                    <div className="col-auto">
+                      <div className="row">
+                        <div className="col-auto">
+                          <span className="text-secondary">
+                            3 hours 11 minutes
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-secondary">(1transit)</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-auto facility-select-ticket">
+                      <div className="row">
+                        <div className="col-auto facility-select-ticket-bag">
+                          <img
+                            src={require("../../assets/images/Vector (1).png")}
+                          />
+                        </div>
+                        <div className="col-auto facility-select-ticket-food">
+                          <img
+                            src={require("../../assets/images/Vector (2).png")}
+                          />
+                        </div>
+                        <div className="col-auto facility-select-ticket-wifi">
+                          <img
+                            src={require("../../assets/images/Vector (3).png")}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-auto">
+                      <div className="row">
+                        <div className="col-auto count-select-ticket">
+                          <h6>$124,00</h6>
+                        </div>
+                        <div className="col-auto pax-select-ticket">
+                          <span className="text-secondary">/pax</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-auto button-select-ticket">
+                      <button>Select</button>
+                    </div>
+                  </div>
+                  <div className="btn-view-detail">
+                    <button
+                      type="button"
+                      className="mt-3 btn btn-info"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#demo"
+                    >
+                      View Details <i className="fa fa-sort-down" />
+                    </button>
+                    <div id="demo" className="collapse">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+
+                {/* TIKET 3 */}
+                <div className="select-ticket-search-result">
+                  <div className="row">
+                    <div className="col-auto">
+                      <img
+                        src={require("../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo 1.png")}
+                      />
+                    </div>
+                    <div className="col-auto name-airplane-select-ticket">
+                      <span className="text-secondary">Garuda Indonesia</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 row">
+                    <div className="col-auto">
+                      <h4>
+                        <b>IDN</b>
+                      </h4>
+                      <span className="text-secondary">12:33</span>
+                    </div>
+                    <div className="col-auto">
+                      <img src={require("../../assets/images/Vector.png")} />
+                    </div>
+                    <div className="col-auto">
+                      <h4>
+                        <b>JPN</b>
+                      </h4>
+                      <span className="text-secondary">15:21</span>
+                    </div>
+                    <div className="col-auto">
+                      <div className="row">
+                        <div className="col-auto">
+                          <span className="text-secondary">
+                            3 hours 11 minutes
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-secondary">(1transit)</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-auto facility-select-ticket">
+                      <div className="row">
+                        <div className="col-auto facility-select-ticket-bag">
+                          <img
+                            src={require("../../assets/images/Vector (1).png")}
+                          />
+                        </div>
+                        <div className="col-auto facility-select-ticket-food">
+                          <img
+                            src={require("../../assets/images/Vector (2).png")}
+                          />
+                        </div>
+                        <div className="col-auto facility-select-ticket-wifi">
+                          <img
+                            src={require("../../assets/images/Vector (3).png")}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-auto">
+                      <div className="row">
+                        <div className="col-auto count-select-ticket">
+                          <h6>$124,00</h6>
+                        </div>
+                        <div className="col-auto pax-select-ticket">
+                          <span className="text-secondary">/pax</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-auto button-select-ticket">
+                      <button>Select</button>
+                    </div>
+                  </div>
+                  <div className="btn-view-detail">
+                    <button
+                      type="button"
+                      className="mt-3 btn btn-info"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#demo"
+                    >
+                      View Details <i className="fa fa-sort-down" />
+                    </button>
+                    <div id="demo" className="collapse">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+
+                {/* TIKET 4 */}
+
                 <div className="select-ticket-search-result">
                   <div className="row">
                     <div className="col-auto">

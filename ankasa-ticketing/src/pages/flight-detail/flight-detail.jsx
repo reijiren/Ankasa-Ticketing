@@ -113,8 +113,10 @@ const FlightDetail = () => {
                 <div className="form-passenger-details-two">
                   <div className="row">
                     <div className="col-auto">
-                      <img
-                        src={require("../../assets/images/Ellipse 50.png")}
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name=""
                       />
                     </div>
                     <div className="col-auto">
@@ -189,8 +191,10 @@ const FlightDetail = () => {
                     <div className="refundable">
                       <div className="row">
                         <div className="col-auto">
-                          <img
-                            src={require("../../assets/images/Ellipse 50.png")}
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            name=""
                           />
                           <span>Refundable</span>
                         </div>
@@ -199,8 +203,10 @@ const FlightDetail = () => {
                     <div className="mt-2 reschedule">
                       <div className="row">
                         <div className="col-auto">
-                          <img
-                            src={require("../../assets/images/Ellipse 50.png")}
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            name=""
                           />
                           <span>Can Reschedule</span>
                         </div>
