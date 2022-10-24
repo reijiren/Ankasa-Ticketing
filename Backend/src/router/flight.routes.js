@@ -1,5 +1,5 @@
 const express = require('express');
-const { list, detail, find, insert, update, destroy } = require('../controller/flight.controller')
+const { list, detail, find, insert, update, destroy, updateCapacity } = require('../controller/flight.controller')
 
 const router = express.Router();
 
@@ -12,6 +12,7 @@ router
 .get('/flight/find/:page', find)
 .post('/flight/insert', insert)
 .put('/flight/update', update)
+.put('/flight/capacity', updateCapacity)
 .delete('/flight/delete', destroy);
 
 module.exports = router;
