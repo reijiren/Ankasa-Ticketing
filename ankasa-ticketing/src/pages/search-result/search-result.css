@@ -1,3 +1,6 @@
+/* import font */
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
 .container-fluid-search-result {
     height: auto;
     background-color: #F5F6FA;
@@ -27,10 +30,10 @@
 .container-fluid-search-result .search-container-fluid-search-result input{
     background-color: #FFFFFF;
     border: 1px solid white;
-    border-radius: 15px;
-    box-shadow: 2px 2px 6px #1c45c2;
+    border-radius: 20px;
+    box-shadow: 2px 2px 6px #0040ff;
     font-size: 15px;
-    height: 30px;
+    height: 35px;
     width: auto;
     padding-left: 10px;
 }
@@ -48,7 +51,7 @@
 }
 
 .container-fluid-search-result .search-container-fluid-search-result .result-search{
-   margin-left: 95px;
+   margin-left: 75px;
    font-size: 14px;
 }
 
@@ -331,11 +334,23 @@
 
     .container-fluid-search-result .search-container-fluid-search-result .input-from{
         margin-bottom: 10px;
-        margin-left: 30px;
+        margin-left: 23px;
+    }
+
+    .container-fluid-search-result .search-container-fluid-search-result .input-from input{
+        width: 250px;
+        height: 40px;
+        border-radius: 20px;
     }
 
     .container-fluid-search-result .search-container-fluid-search-result .input-to{
-        margin-left: 55px;
+        margin-left: 23px;
+    }
+
+    .container-fluid-search-result .search-container-fluid-search-result .input-to input{
+        width: 250px;
+        height: 40px;
+        border-radius: 20px;
     }
     
 
@@ -345,7 +360,7 @@
     }
 
     .container-fluid-search-result .search-container-fluid-search-result .result-search .date{
-       margin-left: -110px;
+       margin-left: -91px;
        margin-top: 20px;
     }
 
@@ -367,9 +382,10 @@
         font-size: 17px;
         background-color: #1383df;
         margin-bottom: 30px;
-        margin-left: 120px;
+        margin-left: 85px;
         border-radius: 15px;
         box-shadow: 1px 1px 4px rgb(23, 54, 114);
+        width: 200px;
     }
     
 }
