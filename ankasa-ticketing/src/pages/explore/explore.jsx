@@ -104,10 +104,10 @@ const LandingPage = () => {
               </div>
               <div className="customCollapseView">
                 <div
-                  class="collapse collapse-vertical"
+                  class="collapse collapse-vertical show"
                   id="collapseWidthExample"
                 >
-                  <div class="card card-body customCard border rounded shadow-lg">
+                  <div class="card card-body customCard">
                     <div className="col-12">
                       <p>Hey,</p>
                       <h5>where you want to go?</h5>
@@ -119,14 +119,14 @@ const LandingPage = () => {
                           <i className="fa fa-angle-right blue fw-bold"></i>
                         </div>
                       </div>
-                      <div className="row border shadow-lg rounded mb-3 m-1 pt-2">
+                      <div className="row mb-3 m-1 pt-2 border-destination">
                         <div className="col-6 text-start">
-                          <p>from</p>
+                          <p className="text-secondary">From</p>
                         </div>
                         {/* <div className="col-4">
                             </div> */}
                         <div className="col-6 text-end">
-                          <p>to</p>
+                          <p className="text-secondary">To</p>
                         </div>
                         <div className="col-4 text-start">
                           <h6>Medan</h6>
@@ -182,7 +182,7 @@ const LandingPage = () => {
                           />
                         </div>
                       </div>
-                      <div className="col-12">
+                      <div className="mt-2 col-12">
                         <label
                           for="inputDeparture"
                           className="form-label text-muted"
@@ -196,7 +196,6 @@ const LandingPage = () => {
                               className="form-control customBorderInput"
                               id="inputDeparture"
                               placeholder="Child"
-                              value="2"
                             />
                           </div>
                           <div className="col-6">
@@ -205,12 +204,11 @@ const LandingPage = () => {
                               className="form-control customBorderInput"
                               id="inputDeparture"
                               placeholder="Adult"
-                              value="4"
                             />
                           </div>
                         </div>
                       </div>
-                      <div className="col-12">
+                      <div className="mt-2 col-12">
                         <label
                           for="inputDeparture"
                           className="form-label text-muted"
@@ -218,35 +216,49 @@ const LandingPage = () => {
                           Which class do you want?
                         </label>
                         <div className="row">
-                              <div className="col-4 p-1 d-flex flex-row">
-                                <input
-                                  type="radio"
-                                  name="class"
-                                  id="class"
-                                  value="Economy"
-                                />
-                                <label for="class" className="d-flex ps-1 align-items-center">Economy</label>
-                              </div>
-                              <div className="col-4 p-1 d-flex flex-row">
-                                <input
-                                  type="radio"
-                                  name="class"
-                                  id="class"
-                                  value="Business"
-                                />
-                                <label for="class" className="d-flex ps-1 align-items-center">Business</label>
-                              </div>
-                              <div className="col-4 p-1 d-flex flex-row">
-                                <input
-                                  type="radio"
-                                  name="class"
-                                  id="class"
-                                  value="First Class"
-                                />
-                                <label for="class" className="d-flex ps-1 align-items-center">First Class</label>
-                              </div>
-                            </div>
-
+                          <div className="col-4 p-1 d-flex flex-row">
+                            <input
+                              type="radio"
+                              name="class"
+                              id="class"
+                              value="Economy"
+                            />
+                            <label
+                              for="class"
+                              className="d-flex ps-1 align-items-center"
+                            >
+                              Economy
+                            </label>
+                          </div>
+                          <div className="col-4 p-1 d-flex flex-row">
+                            <input
+                              type="radio"
+                              name="class"
+                              id="class"
+                              value="Business"
+                            />
+                            <label
+                              for="class"
+                              className="d-flex ps-1 align-items-center"
+                            >
+                              Business
+                            </label>
+                          </div>
+                          <div className="col-4 p-1 d-flex flex-row">
+                            <input
+                              type="radio"
+                              name="class"
+                              id="class"
+                              value="First Class"
+                            />
+                            <label
+                              for="class"
+                              className="d-flex ps-1 align-items-center"
+                            >
+                              First Class
+                            </label>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -297,7 +309,9 @@ const LandingPage = () => {
                       <div className="cardImage">
                         <img src={data.img} alt="" className="" />
                       </div>
-                      <div className="cardLabel">{data.label} Airlines</div>
+                      <div className="cardLabel text-center">
+                        {data.label} Airlines
+                      </div>
                       <div className="cardDescription flexRow">
                         <div className="flexCol flexAuto">
                           <p>{data.location.city},</p>
@@ -327,8 +341,8 @@ const LandingPage = () => {
             <div className="container-fluid bgImage">
               <div className="row justify-content-center mb-4">
                 <div className="col-md-8 text-center">
-                  <p className="mb-3">TOP 10</p>
-                  <h2 className="">Top Destinations</h2>
+                  <p className="mb-3">T O P 10</p>
+                  <h2 className="">Top 10 destinations</h2>
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
@@ -362,7 +376,7 @@ const LandingPage = () => {
                           <SwiperSlide key={data.id}>
                             <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
                               <div className="row">
-                                <div className="col-md-12">
+                                <div className="col-md-12 story">
                                   <img
                                     // src="jakarta.png"
                                     src={data.img}

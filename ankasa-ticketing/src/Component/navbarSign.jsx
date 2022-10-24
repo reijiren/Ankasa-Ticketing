@@ -35,7 +35,7 @@ const NavbarSign = () => {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Search"
+                  placeholder="where you want to go?"
                   aria-label="Search"
                   aria-describedby="basic-addon2"
                 />
@@ -60,10 +60,7 @@ const NavbarSign = () => {
               <a class="nav-link active mx-5" aria-current="page" href="#">
                 My Booking
               </a>
-              <button
-                type="button"
-                class="btn btn-primary shadow-lg rounded mx-5"
-              >
+              <button type="button" class="btn btn-signup mx-5">
                 Sign Up
               </button>
             </div>
