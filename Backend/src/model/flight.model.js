@@ -1,7 +1,7 @@
 const db = require('../config/db');
 
 const flightModel = {
-    // all flight list (NOT DONE)
+    // all flight list
     getAllFlight: () => {
         return new Promise((resolve, reject) => {
             db.query(`select * from flight join airline on flight.airline = airline.id_airline;`, (err, res) => {
