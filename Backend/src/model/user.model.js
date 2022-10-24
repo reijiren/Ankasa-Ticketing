@@ -5,7 +5,7 @@ const userModel = {
 		return new Promise((resolve, reject) => {
 			db.query(
 				`
-			SELECT * FROM users WHERE id = ${id}`
+			SELECT * FROM users WHERE id_user = ${id}`
 			)
 				.then((response) => {
 					resolve(response);
@@ -67,9 +67,9 @@ const userModel = {
 		
 		return new Promise((resolve, reject) => {
 			db.query(
-				`INSERT INTO users (username, email, password, photo, level, date_created)
+				`INSERT INTO users (username, fullname, email, password, photo, level, date_created)
         VALUES
-        ('${username}', '${email}', '${password}', '${photo}', 1, '${date_created}')`
+        ('${username}', '${username}',  '${email}', '${password}', '${photo}', 1, '${date_created}')`
 			)
 				.then((response) => {
 					resolve(response);
@@ -85,6 +85,22 @@ const userModel = {
 			db.query(
 				`
         SELECT * FROM users WHERE email = '${email}'
+        `
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	},
+
+	checkUsername: (username) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`
+        SELECT * FROM users WHERE username = '${username}'
         `
 			)
 				.then((response) => {
@@ -124,7 +140,7 @@ const userModel = {
 			level = COALESCE ($8, level),
 			balance = COALESCE ($9, balance),
 			gender = COALESCE ($10, gender)
-			WHERE id = $11
+			WHERE id_user = $11
 			`,
 				[
 					username,
@@ -172,7 +188,7 @@ const userModel = {
 		return new Promise((resolve, reject) => {
 			db.query(
 				`
-			UPDATE users SET photo = '${photo}' WHERE id = ${id}
+			UPDATE users SET photo = '${photo}' WHERE id_user = ${id}
 			`
 			)
 				.then((response) => {
@@ -188,7 +204,7 @@ const userModel = {
 		return new Promise((resolve, reject) => {
 			db.query(
 				`
-			DELETE FROM users WHERE id = ${id}`
+			DELETE FROM users WHERE id_user = ${id}`
 			)
 				.then((response) => {
 					resolve(response);
