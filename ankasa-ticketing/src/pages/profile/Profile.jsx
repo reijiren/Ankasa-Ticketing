@@ -7,25 +7,25 @@ import Profiles from "../../Component/profile";
 
 const Profile = () => {
   return (
-    <>
+    <div className="body">
       <Navbar />
-      <main class="bg-light">
-        <section class="container-fluid p-5 customMainProfile">
-          <div class="row">
+      <main className="bg-light">
+        <section className="container-fluid p-5 customMainProfile">
+          <div className="row">
             <Profiles />
-            <div class="col-md-8 bg-warning p-5 bg-white m-2 customBorderProfile">
-              <h5 class="blue">PROFILE</h5>
-              <h3 class="mb-5">Profile</h3>
-              <div class="row">
-                <div class="col-md-6">
-                  <h5 class="mb-4">Contact</h5>
+            <div className="col-md-8 bg-warning p-5 bg-white m-2 customBorderProfile">
+              <h5 className="blue">PROFILE</h5>
+              <h3 className="mb-5">Profile</h3>
+              <div className="row">
+                <div className="col-md-6">
+                  <h5 className="mb-4">Contact</h5>
                   <div>
-                    <label for="inputEmail" class="form-label text-muted">
+                    <label for="inputEmail" className="form-label text-muted">
                       Email
                     </label>
                     <input
                       type="email"
-                      class="form-control customBorderInput"
+                      className="form-control customBorderInput"
                       id="inputEmail"
                       placeholder="email@gmail.com"
                       value="jon@gmail.com"
@@ -33,33 +33,33 @@ const Profile = () => {
                     <hr />
                   </div>
                   <div>
-                    <label for="inputPhone" class="form-label text-muted">
+                    <label for="inputPhone" className="form-label text-muted">
                       Phone Number
                     </label>
                     <input
                       type="text"
-                      class="form-control customBorderInput"
+                      className="form-control customBorderInput"
                       id="inputPhone"
                       placeholder="08123456789"
                       value="08123456789"
                     />
                     <hr />
                   </div>
-                  <div class="col-md-12 blue text-end">
+                  <div className="col-md-12 blue text-end">
                     <h6>
-                      Account Setting <i class="fa fa-arrow-right"></i>
+                      Account Setting <i className="fa fa-arrow-right"></i>
                     </h6>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <h5 class="mb-4">Biodata</h5>
+                <div className="col-md-6">
+                  <h5 className="mb-4">Biodata</h5>
                   <div>
-                    <label for="inputUsername" class="form-label text-muted">
+                    <label for="inputUsername" className="form-label text-muted">
                       Username
                     </label>
                     <input
                       type="text"
-                      class="form-control customBorderInput"
+                      className="form-control customBorderInput"
                       id="inputUsername"
                       placeholder="John Doe"
                       value="John Doe"
@@ -67,12 +67,12 @@ const Profile = () => {
                     <hr />
                   </div>
                   <div>
-                    <label for="inputCity" class="form-label text-muted">
+                    <label for="inputCity" className="form-label text-muted">
                       City
                     </label>
-                    <div class="col-md-6 w-100">
+                    <div className="col-md-6 w-100">
                       <select
-                        class="form-select customBorderInput"
+                        className="form-select customBorderInput"
                         id="inputCity"
                       >
                         <option selected>Medan</option>
@@ -84,12 +84,12 @@ const Profile = () => {
                     <hr />
                   </div>
                   <div>
-                    <label for="inputAddress" class="form-label text-muted">
+                    <label for="inputAddress" className="form-label text-muted">
                       Address
                     </label>
                     <input
                       type="text"
-                      class="form-control customBorderInput"
+                      className="form-control customBorderInput"
                       id="inputAddress"
                       placeholder="Jl. Sisingamangaraja No. 45"
                       value="Jl. Sisingamangaraja No. 45"
@@ -97,12 +97,12 @@ const Profile = () => {
                     <hr />
                   </div>
                   <div>
-                    <label for="inputPostCode" class="form-label text-muted">
+                    <label for="inputPostCode" className="form-label text-muted">
                       Pos Code
                     </label>
                     <input
                       type="text"
-                      class="form-control customBorderInput"
+                      className="form-control customBorderInput"
                       id="inputPostCode"
                       placeholder="21***"
                       value="20212"
@@ -110,8 +110,8 @@ const Profile = () => {
                     <hr />
                   </div>
                 </div>
-                <div class="col-md-12 text-end mt-3">
-                  <button class="btn btn-primary bgBlue">Save</button>
+                <div className="col-md-12 text-end mt-3">
+                  <button className="btn btn-primary bgBlue">Save</button>
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@ const Profile = () => {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 export default Profile;

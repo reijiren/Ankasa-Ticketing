@@ -5,11 +5,11 @@ import "../assets/style.css";
 const Footer = () => {
   return (
     <>
-      <footer class="bg-white">
-        <div class="container-fluid p-4 px-5 mobileOuterFooter">
-          <div class="row p-5 mobileInnerFooter">
-            <div class="col-md-3">
-              <h4 class="">
+      <footer className="bg-white">
+        <div className="container-fluid bg-white p-4 mobileOuterFooter">
+          <div className="row p-5 mobileInnerFooter">
+            <div className="col-md-3">
+              <h4 className="">
                 <img
                   src={require("../assets/images/vector 02.png")}
                   width="30"
@@ -17,39 +17,39 @@ const Footer = () => {
                 />
                 Ankasa
               </h4>
-              <p class="mt-3 ms-3 text-muted">
+              <p className="mt-3 ms-3 text-muted">
                 Find your Flight and explore the world with us. We will take
                 care of the rest
               </p>
             </div>
-            <div class="col-md-3">
-              <h5 class="ms-4">Features</h5>
-              <ul class="listStyle">
-                <li class="py-1">
+            <div className="col-md-3">
+              <h5 className="ms-4">Features</h5>
+              <ul className="listStyle">
+                <li className="py-1">
                   <a href="#">Find Ticket</a>
                 </li>
-                <li class="py-1">
+                <li className="py-1">
                   <a href="#">My Booking</a>
                 </li>
-                <li class="py-1">
+                <li className="py-1">
                   <a href="#">Chat</a>
                 </li>
-                <li class="py-1">
+                <li className="py-1">
                   <a href="#">Notification</a>
                 </li>
               </ul>
             </div>
-            <div class="col-md-3">
-              <h5 class="ms-2">Download Angkasa App</h5>
-              <ul class="listStyle">
-                <a href="#" class="imgFooter">
+            <div className="col-md-3">
+              <h5 className="ms-2">Download Angkasa App</h5>
+              <ul className="listStyle">
+                <a href="#" className="imgFooter">
                   <img
                     src={require("../assets/images/apple-app-store-travel-awards-globestamp-7 2.png")}
                     alt=""
-                    class="mb-3"
+                    className="mb-3"
                   />
                 </a>
-                <a href="#" class="imgFooter">
+                <a href="#" className="imgFooter">
                   <img
                     src={require("../assets/images/apple-app-store-travel-awards-globestamp-7 3.png")}
                     alt=""
@@ -57,41 +57,41 @@ const Footer = () => {
                 </a>
               </ul>
             </div>
-            <div class="col-md-3">
-              <h5 class="ms-4">Follow Us</h5>
-              <ul class="listStyle d-flex flex-row">
-                <li class="pe-2">
+            <div className="col-md-3">
+              <h5 className="ms-4">Follow Us</h5>
+              <ul className="listStyle d-flex flex-row">
+                <li className="pe-2">
                   <a href="#">
-                    <i class="fa fa-facebook"></i>
+                    <i className="fa fa-facebook"></i>
                   </a>
                 </li>
-                <li class="px-2">
+                <li className="px-2">
                   <a href="#">
-                    <i class="fa fa-twitter"></i>
+                    <i className="fa fa-twitter"></i>
                   </a>
                 </li>
-                <li class="px-2">
+                <li className="px-2">
                   <a href="#">
-                    <i class="fa fa-instagram"></i>
+                    <i className="fa fa-instagram"></i>
                   </a>
                 </li>
-                <li class="px-2">
+                <li className="px-2">
                   <a href="#">
-                    <i class="fa fa-youtube"></i>
+                    <i className="fa fa-youtube"></i>
                   </a>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="footer-down px-5">
-            <div class="container">
-              <div class="row text-muted">
-                <div class="col-12 col-md-6">
+          <div className="footer-down px-5">
+            <div className="container">
+              <div className="row text-muted">
+                <div className="col-12 col-md-6">
                   <p>© 2022 Company, Inc. All rights reserved.</p>
                 </div>
-                <div class="col-12 col-md-6">
-                  <p class="text-end mx-5">
-                    <i class="fa fa-map-marker"></i>
+                <div className="col-12 col-md-6">
+                  <p className="text-end mx-5">
+                    <i className="fa fa-map-marker"></i>
                     Jakarta, Indonesia
                   </p>
                 </div>

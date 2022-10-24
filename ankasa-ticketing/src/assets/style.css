@@ -1,3 +1,9 @@
+/* import font */
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+body {
+  font-family: "Poppins";
+}
 .ms-10 {
   margin-left: 100px !important;
 }
@@ -9,6 +15,7 @@
 .listStyle a {
   text-decoration: none;
   color: #6c757d;
+  display: flex;
 }
 
 .footer-down {
@@ -38,12 +45,69 @@
   border: 3px solid #2395ff !important;
 }
 .customBorderInput {
-  border: none !important;
+  border: none;
 }
+
+.bgImage {
+  background-image: url("../assets/images/bgImageTopDest.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50px;
+}
+
+.infoNext {
+  background-color: white !important;
+  color: #2395ff !important;
+  width: 50px !important;
+}
+
+.infoNext:hover {
+  background-color: #a3b0bc !important;
+  border-color: white !important;
+  color: white !important;
+}
+
+.infoBack {
+  border-color: white !important;
+  color: white !important;
+  width: 50px !important;
+}
+.infoBack:hover {
+  background: white !important;
+  color: #2395ff !important;
+}
+
+.wArrow {
+  font-size: 30px !important;
+}
+
+.textFlight {
+  color: #2395ff;
+}
+
+.customImageBubble {
+  margin-top: 10px;
+  margin-right: 100px;
+}
+
+.customCollapseView{
+    min-height: 120px;
+}
+
+.customCard{
+    width: 300px !important;
+    margin-top: -550px !important;
+    margin-left: 25px;
+}
+
 /* media query footer */
 @media (max-width: 767px) {
   .mobileOuterFooter {
-    padding-left: 0 !important;
+    padding: 30px 0 0 0 !important;
+  }
+  .mobileInnerFooter {
+    padding: 0 !important;
   }
 }
 /* media query profile navbar */
@@ -59,3 +123,126 @@
     margin-bottom: -50px !important;
   }
 }
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  } */
+  
+  .px-5 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .flexRow {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .flexCol {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flexAuto {
+    flex: 1 1 auto;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .wFull {
+    width: 100%;
+  }
+  
+  .whitespaceNowrap {
+    white-space: nowrap;
+  }
+  
+  .gapSmall {
+    gap: 8px;
+  }
+  
+  .gapMedium {
+    gap: 16px;
+  }
+  
+  .cardSlider {
+    position: relative;
+    max-height: 262px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 10;
+  }
+  
+  .cardOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  }
+  
+  .cardLabel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+  }
+  
+  .cardDescription {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 10;
+    color: white;
+  }
+
+  .customSpace{
+    padding: 60px !important;
+    /* margin: 100px !important; */
+  }
+  .customButton{
+    background-color: hsla(0,0%,100%,.17) !important;
+    align-items: center;
+    color: white !important;
+    border-radius: 15px !important;
+    height: 25px !important;
+    width: 25px !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  @media (max-width: 767px) {
+    .customSpace{
+      padding: 0 !important;
+      /* margin: 100px !important; */
+    }
+  }
+  .imgCustom {
+    max-width: 160px;
+    height: 160px;
+    border: 5px solid white;
+  }
+  .spaceCust{
+    margin-left: 70px;
+  }
+
+  @media (max-width: 767px) {
+    .img-fluid{
+        width: 40% !important;
+        height: 50% !important;
+    }
+    .cusImg{
+        margin-top: -100px !important;
+    }
+}
+  
+  

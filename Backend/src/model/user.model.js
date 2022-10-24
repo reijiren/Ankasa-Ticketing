@@ -1,12 +1,75 @@
 const db = require("../config/db");
 
 const userModel = {
-	register: ({ username, email, password, photo }) => {
+	selectUserId: (id) => {
 		return new Promise((resolve, reject) => {
 			db.query(
-				`INSERT INTO users (username, email, password, photo)
+				`
+			SELECT * FROM users WHERE id = ${id}`
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	},
+
+	getAllUser: () => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`
+			SELECT * FROM users
+			`
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	},
+
+	searchUser: (username, limit, offset) => {
+		// searchUser: (username) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				// 	`
+				// SELECT * FROM users WHERE username ILIKE '%${username}%'
+				// `
+				`
+				SELECT * FROM users WHERE username ILIKE '%${username}%' LIMIT ${limit} OFFSET ${offset}
+				`
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	},
+
+	register: ({ username, email, password, photo }) => {
+		const date = new Date();
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+
+        if (dd< 10) dd = '0' + dd;
+        if (mm< 10) mm = '0' + mm;
+
+        const time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+
+        const date_created = `${yyyy}/${mm}/${dd} - ${time}`;
+		
+		return new Promise((resolve, reject) => {
+			db.query(
+				`INSERT INTO users (username, email, password, photo, level, date_created)
         VALUES
-        ('${username}', '${email}', '${password}', '${photo}')`
+        ('${username}', '${email}', '${password}', '${photo}', 1, '${date_created}')`
 			)
 				.then((response) => {
 					resolve(response);
@@ -22,14 +85,14 @@ const userModel = {
 			db.query(
 				`
         SELECT * FROM users WHERE email = '${email}'
-        `,
-				(err, res) => {
-					if (err) {
-						reject(err);
-					}
-					resolve(res);
-				}
-			);
+        `
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
 		});
 	},
 
@@ -42,13 +105,14 @@ const userModel = {
 		address,
 		post_code,
 		level,
-		photo,
+		// photo,
 		balance,
 		gender,
-		id_user,
+		id,
 	}) => {
 		return new Promise((resolve, reject) => {
-			db.query(`
+			db.query(
+				`
 			UPDATE users SET
 			username = COALESCE ($1, username),
 			email = COALESCE ($2, email),
@@ -58,11 +122,10 @@ const userModel = {
 			address = COALESCE ($6, address),
 			post_code = COALESCE ($7, post_code),
 			level = COALESCE ($8, level),
-			photo = COALESCE ($9, photo),
-			balance = COALESCE ($10, balance),
-			gender = COALESCE ($11, gender)
-			WHERE id_user = $12
-			`),
+			balance = COALESCE ($9, balance),
+			gender = COALESCE ($10, gender)
+			WHERE id = $11
+			`,
 				[
 					username,
 					email,
@@ -72,10 +135,10 @@ const userModel = {
 					address,
 					post_code,
 					level,
-					photo,
+					// photo,
 					balance,
 					gender,
-					id_user,
+					id,
 				],
 				(err, res) => {
 					if (err) {
@@ -83,7 +146,39 @@ const userModel = {
 					} else {
 						resolve(res);
 					}
-				};
+				}
+			);
+		});
+	},
+
+	updatePhoto: (id, photo) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`
+			UPDATE users SET photo = '${photo}' WHERE id = ${id}
+			`
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	},
+
+	deleteUser: (id) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`
+			DELETE FROM users WHERE id = ${id}`
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
 		});
 	},
 };

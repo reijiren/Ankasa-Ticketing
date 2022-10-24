@@ -6,9 +6,13 @@ const NavbarSign = () => {
   return (
     <>
       <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
           <a class="navbar-brand ms-10" href="#">
-            <img src={require("../assets/images/vector 02.png")} width="30" alt="" />
+            <img
+              src={require("../assets/images/vector 02.png")}
+              width="30"
+              alt=""
+            />
             Ankasa
           </a>
           <button
@@ -41,7 +45,16 @@ const NavbarSign = () => {
               </div>
             </form>
             <div class="navbar-nav me-5 mx-5">
-              <a class="nav-link active mx-5" aria-current="page" href="#">
+              <a
+                class="nav-link active mx-5"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseWidthExample"
+                aria-expanded="false"
+                aria-controls="collapseWidthExample"
+                href="#"
+                aria-current="page"
+              >
                 Find Ticket
               </a>
               <a class="nav-link active mx-5" aria-current="page" href="#">
