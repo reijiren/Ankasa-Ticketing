@@ -45,7 +45,7 @@ const NavbarSign = () => {
               </div>
             </form>
             <div class="navbar-nav me-5 mx-5">
-              <a
+              {/* <a
                 class="nav-link active mx-5"
                 type="button"
                 data-bs-toggle="collapse"
@@ -55,6 +55,9 @@ const NavbarSign = () => {
                 href="#"
                 aria-current="page"
               >
+                Find Ticket
+              </a> */}
+              <a className="nav-link active mx-5" aria-current="page" href="#">
                 Find Ticket
               </a>
               <a class="nav-link active mx-5" aria-current="page" href="#">
