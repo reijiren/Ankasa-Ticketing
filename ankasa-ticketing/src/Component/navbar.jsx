@@ -11,7 +11,7 @@ const Navbar = () => {
             <img
               src={require("../assets/images/vector 02.png")}
               width="30"
-              alt=""
+              alt="logo"
             />
             Ankasa
           </a>
