@@ -160,6 +160,60 @@ const userController = {
 			});
 	},
 
+	forgotUserPassword: (req, res) => {
+		const { email, password } = req.body;
+		bcrypt.hash(password, 10, (err, hash) => {
+			if (err) {
+				failed(res, err.message, "failer", "failed hash password");
+			}
+
+			const data = {
+				email,
+				password: hash,
+			};
+
+			userModel.checkEmail(email).then((result) => {
+				if (result.rowCount == 1) {
+					userModel
+						.forgotUserPassword(data)
+						.then((result) => {
+							success(res, result, "success", "update password success");
+						})
+						.catch((err) => {
+							failed(res, err.message, "failed", "update password failed");
+						});
+				}
+
+				if (result.rowCount == 0) {
+					failed(res, null, "failed", "email is not registered");
+				}
+			});
+		});
+	},
+
+	updateUserPassword: (req, res) => {
+		const { email, password } = req.body;
+		bcrypt.hash(password, 10, (err, hash) => {
+			if (err) {
+				failed(res, err.message, "failer", "failed hash password");
+			}
+
+			const data = {
+				email,
+				password: hash,
+			};
+
+			userModel
+				.forgotUserPassword(data)
+				.then((result) => {
+					success(res, result, "success", "update password success");
+				})
+				.catch((err) => {
+					failed(res, err.message, "failed", "update password failed");
+				});
+		});
+	},
+
 	updatePhoto: (req, res) => {
 		const id = req.params.id;
 		const photo = req.file.filename;

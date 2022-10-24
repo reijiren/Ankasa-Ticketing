@@ -7,6 +7,8 @@ const {
 	register,
 	login,
 	updateUser,
+	forgotUserPassword,
+	updateUserPassword,
 	updatePhoto,
 	deleteUser,
 } = require("../controller/user.controller");
@@ -29,6 +31,8 @@ userRouter
 		uploadProfilePic,
 		updatePhoto
 	)
+	.put("/update/password", updateUserPassword)
+	.put("/forgot", forgotUserPassword)
 	.delete("/user/:id", removeProfilePic, deleteUser)
 	.post("/login", login);
 
