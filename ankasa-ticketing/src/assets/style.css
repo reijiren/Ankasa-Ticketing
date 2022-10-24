@@ -263,8 +263,18 @@ body {
         height: 50% !important;
     }
     .cusImg{
-        margin-top: -100px !important;
+        margin-top: -120px !important;
     }
+    #trending{
+        margin-top: 50px !important;
+    }
+}
+
+/*  */
+.icon-switch{
+    color: #2395ff !important;
+    font-size: 20px;
+    margin-left: 10px;
 }
   
   

@@ -107,105 +107,148 @@ const LandingPage = () => {
                   class="collapse collapse-vertical"
                   id="collapseWidthExample"
                 >
-                  <div class="card card-body customCard">
-                    <div className="col-md-12">
-                      <p>Hey</p>
-                      <h6>where you want to go?</h6>
+                  <div class="card card-body customCard border rounded shadow-lg">
+                    <div className="col-12">
+                      <p>Hey,</p>
+                      <h5>where you want to go?</h5>
                       <div className="row">
-                        <div className="col-md-8 text-start">
-                          <p>recently searched</p>
+                        <div className="col-8 text-start">
+                          <p className="fw-bold blue">Recently searched</p>
                         </div>
-                        <div className="col-md-4 text-end">
-                          <i className="fa fa-angle-right"></i>
+                        <div className="col-4 text-end">
+                          <i className="fa fa-angle-right blue fw-bold"></i>
                         </div>
                       </div>
-                      <div className="row">
-                        <div className="col-md-6 text-start">
+                      <div className="row border shadow-lg rounded mb-3 m-1 pt-2">
+                        <div className="col-6 text-start">
                           <p>from</p>
                         </div>
-                        {/* <div className="col-md-4">
+                        {/* <div className="col-4">
                             </div> */}
-                        <div className="col-md-6 text-end">
+                        <div className="col-6 text-end">
                           <p>to</p>
                         </div>
-                        <div className="col-md-4 text-start">
-                          <h5>Medan</h5>
+                        <div className="col-4 text-start">
+                          <h6>Medan</h6>
+                          <p className="text-muted">Indonesia</p>
                         </div>
-                        <div className="col-md-4 text-center">
-                          <div className="row">
-                            <div className="col-md-12">
-                              <i className="fa fa-arrow-right"></i>
-                            </div>
-                            <div className="col-md-12">
-                              <i className="fa fa-arrow-left"></i>
-                            </div>
+                        <div className="col-4 text-center">
+                          <div className="col-12">
+                            <i className="fa fa-arrow-right blue"></i>
+                          </div>
+                          <div className="col-12">
+                            <i className="fa fa-arrow-left blue"></i>
                           </div>
                         </div>
-                        <div className="col-md-4 text-end">
-                          <h5>Tokyo</h5>
+                        <div className="col-4 text-end">
+                          <h6>Tokyo</h6>
+                          <p className="text-muted">Japan</p>
                         </div>
-                        <div className="col-md-12">
-                          <div className="row text-center">
-                            <div className="col-md-6">
-                              <button type="button" className="btn btn-primary">
-                                one way
-                              </button>
-                            </div>
-                            <div className="col-md-6">
-                              <button type="button" className="btn btn-danger">
-                                Round trip
-                              </button>
-                            </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="row text-center">
+                          <div className="col-6">
+                            <button type="button" className="btn btn-primary">
+                              <img
+                                src={require("../../assets/images/Vector putih.png")}
+                                width="20"
+                                alt=""
+                              />
+                              One way
+                            </button>
+                          </div>
+                          <div className="col-6">
+                            <button type="button" className="btn btn-light">
+                              <i className="fa fa-refresh text-muted"></i>
+                              Round trip
+                            </button>
                           </div>
                         </div>
-                        <div className="col-md-12">
-                          <div>
-                            <label
-                              for="inputDeparture"
-                              className="form-label text-muted"
-                            >
-                              Departure
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control customBorderInput"
-                              id="inputDeparture"
-                              placeholder="Medan"
-                              value="Medan"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-12">
+                      </div>
+                      <div className="col-12 mt-2">
+                        <div>
                           <label
                             for="inputDeparture"
                             className="form-label text-muted"
                           >
-                            How many person?
+                            Departure
                           </label>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <input
-                                type="text"
-                                className="form-control customBorderInput"
-                                id="input"
-                                placeholder="Child"
-                                value="2"
-                              />
-                            </div>
-                            <div className="col-md-6">
-                              <input
-                                type="number"
-                                className="form-control customBorderInput"
-                                id="inputDeparture"
-                                placeholder="Adult"
-                                value="4"
-                              />
-                            </div>
+                          <input
+                            type="text"
+                            className="form-control customBorderInput"
+                            id="inputDeparture"
+                            placeholder="Medan"
+                            value="Medan"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <label
+                          for="inputDeparture"
+                          className="form-label text-muted"
+                        >
+                          How many person?
+                        </label>
+                        <div className="row">
+                          <div className="col-6">
+                            <input
+                              type="number"
+                              className="form-control customBorderInput"
+                              id="inputDeparture"
+                              placeholder="Child"
+                              value="2"
+                            />
+                          </div>
+                          <div className="col-6">
+                            <input
+                              type="number"
+                              className="form-control customBorderInput"
+                              id="inputDeparture"
+                              placeholder="Adult"
+                              value="4"
+                            />
                           </div>
                         </div>
                       </div>
+                      <div className="col-12">
+                        <label
+                          for="inputDeparture"
+                          className="form-label text-muted"
+                        >
+                          Which class do you want?
+                        </label>
+                        <div className="row">
+                              <div className="col-4 p-1 d-flex flex-row">
+                                <input
+                                  type="radio"
+                                  name="class"
+                                  id="class"
+                                  value="Economy"
+                                />
+                                <label for="class" className="d-flex ps-1 align-items-center">Economy</label>
+                              </div>
+                              <div className="col-4 p-1 d-flex flex-row">
+                                <input
+                                  type="radio"
+                                  name="class"
+                                  id="class"
+                                  value="Business"
+                                />
+                                <label for="class" className="d-flex ps-1 align-items-center">Business</label>
+                              </div>
+                              <div className="col-4 p-1 d-flex flex-row">
+                                <input
+                                  type="radio"
+                                  name="class"
+                                  id="class"
+                                  value="First Class"
+                                />
+                                <label for="class" className="d-flex ps-1 align-items-center">First Class</label>
+                              </div>
+                            </div>
+
+                      </div>
                     </div>
-                    <div className="col-md-12"></div>
                   </div>
                 </div>
               </div>
@@ -297,19 +340,19 @@ const LandingPage = () => {
                       slidesOffsetAfter={10}
                       breakpoints={{
                         100: {
-                            slidesPerView: 1.5, // tampilkan sedikit preview dari card sebelum dan sesudahnya
-                          },
-                          400: {
-                            slidesPerView: 2.1,
-                          },
-                          768: {
-                            slidesPerView: 3.1,
-                          },
-                          1024: {
-                            slidesPerView: 4, // tampilkan list card tanpa preview sebelum dan sesudahnya
-                          },
-                          1280: {
-                            slidesPerView: 5,
+                          slidesPerView: 1.5, // tampilkan sedikit preview dari card sebelum dan sesudahnya
+                        },
+                        400: {
+                          slidesPerView: 2.1,
+                        },
+                        768: {
+                          slidesPerView: 3.1,
+                        },
+                        1024: {
+                          slidesPerView: 4, // tampilkan list card tanpa preview sebelum dan sesudahnya
+                        },
+                        1280: {
+                          slidesPerView: 5,
                         },
                       }}
                       onSlideChange={() => console.log("slide change")}

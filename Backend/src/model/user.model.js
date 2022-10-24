@@ -129,6 +129,7 @@ const userModel = {
 				[
 					username,
 					email,
+					// password,
 					credit_card,
 					phone,
 					city,
@@ -148,6 +149,22 @@ const userModel = {
 					}
 				}
 			);
+		});
+	},
+
+	forgotUserPassword: ({ email, password }) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`
+			UPDATE users SET password = '${password}' WHERE email = '${email}'
+			`
+			)
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(error);
+				});
 		});
 	},
 

@@ -17,8 +17,8 @@ const bookingModel = {
         const date_created = `${yyyy}/${mm}/${dd} - ${time}`;
 
         return new Promise((resolve, reject) => {
-            db.query(`insert into booking (id_user, id_flight, status, terminal, gate, class, seat, history, date_created)
-            values (${data.id_user}, '${data.id_flight}', 0, '${data.terminal}', ${data.gate}, '${data.class}', '${data.seat}', 0, '${date_created}');`,
+            db.query(`insert into booking (id_user, id_flight, status, passenger, terminal, gate, class, seat, history, date_created)
+            values (${data.id_user}, '${data.id_flight}', ${data.status}, ${data.passenger}, '${data.terminal}', ${data.gate}, '${data.class}', '${data.seat}', 0, '${date_created}');`,
             (err, res) => {
                 if(err){
                     reject(err);
