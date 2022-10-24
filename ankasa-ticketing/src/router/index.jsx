@@ -8,12 +8,14 @@ import Register from "../pages/register/register";
 import Forget from "../pages/forget/forget";
 import Mybook from "../pages/mybooking/mybooking";
 import SeacrhResult from "../pages/search-result/search-result";
+import Explore from "../pages/explore/explore";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/">
+        <Route index element={<Explore />} />
           <Route path="FlightDetail" element={<FlightDetail />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="Login" element={<Login />} />
