@@ -3,71 +3,65 @@ import "../../assets/style.css";
 import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/css'
+import "swiper/css";
 
 const LandingPage = () => {
-    const data = [
-        {
-          id: 1,
-          img:
-            "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-          label: 15,
-          location: {
-            city: "Barcelona",
-            country: "Spain"
-          }
-        },
-        {
-          id: 2,
-          img:
-            "https://images.unsplash.com/photo-1666112567387-6eb27bd3ecba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1516&q=80",
-          label: 15,
-          location: {
-            city: "Istana Negara",
-            country: "Wakanda"
-          }
-        },
-        {
-          id: 3,
-          img:
-            "https://images.unsplash.com/photo-1665837231807-fcc190001ece?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1375&q=80",
-          label: 15,
-          location: {
-            city: "Barcelona",
-            country: "Spain"
-          }
-        },
-        {
-          id: 4,
-          img:
-            "https://images.unsplash.com/photo-1659719852548-4f097c37d448?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-          label: 15,
-          location: {
-            city: "Barcelona",
-            country: "Spain"
-          }
-        },
-        {
-          id: 5,
-          img:
-            "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-          label: 15,
-          location: {
-            city: "Barcelona",
-            country: "Spain"
-          }
-        },
-        {
-          id: 6,
-          img:
-            "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-          label: 15,
-          location: {
-            city: "Barcelona",
-            country: "Spain"
-          }
-        }
-      ];
+  const data = [
+    {
+      id: 1,
+      img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+      label: 15,
+      location: {
+        city: "Barcelona",
+        country: "Spain",
+      },
+    },
+    {
+      id: 2,
+      img: "https://images.unsplash.com/photo-1666112567387-6eb27bd3ecba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1516&q=80",
+      label: 15,
+      location: {
+        city: "Istana Negara",
+        country: "Wakanda",
+      },
+    },
+    {
+      id: 3,
+      img: "https://images.unsplash.com/photo-1665837231807-fcc190001ece?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1375&q=80",
+      label: 15,
+      location: {
+        city: "Barcelona",
+        country: "Spain",
+      },
+    },
+    {
+      id: 4,
+      img: "https://images.unsplash.com/photo-1659719852548-4f097c37d448?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+      label: 15,
+      location: {
+        city: "Barcelona",
+        country: "Spain",
+      },
+    },
+    {
+      id: 5,
+      img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+      label: 15,
+      location: {
+        city: "Barcelona",
+        country: "Spain",
+      },
+    },
+    {
+      id: 6,
+      img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+      label: 15,
+      location: {
+        city: "Barcelona",
+        country: "Spain",
+      },
+    },
+  ];
   return (
     <div className="body">
       <Navbar />
@@ -95,7 +89,7 @@ const LandingPage = () => {
                 <img
                   //  src="image 5.png"
                   src={require("../../assets/images/image 5.png")}
-                  className="img-fluid"
+                  className="img-fluid cusImg"
                   alt=""
                 />
               </div>
@@ -190,22 +184,22 @@ const LandingPage = () => {
                           </label>
                           <div className="row">
                             <div className="col-md-6">
-                            <input
-                              type="text"
-                              className="form-control customBorderInput"
-                              id="input"
-                              placeholder="Child"
-                              value="2"
-                            />
+                              <input
+                                type="text"
+                                className="form-control customBorderInput"
+                                id="input"
+                                placeholder="Child"
+                                value="2"
+                              />
                             </div>
                             <div className="col-md-6">
-                            <input
-                              type="number"
-                              className="form-control customBorderInput"
-                              id="inputDeparture"
-                              placeholder="Adult"
-                              value="4"
-                            />
+                              <input
+                                type="number"
+                                className="form-control customBorderInput"
+                                id="inputDeparture"
+                                placeholder="Adult"
+                                value="4"
+                              />
                             </div>
                           </div>
                         </div>
@@ -219,83 +213,72 @@ const LandingPage = () => {
           </div>
         </section>
         <section id="trending" className="flex-col">
-        <div className="flex-row px-5">
-          <div className="flex-col gap-small flex-auto">
-            <h5>TRENDING</h5>
-            <h1>Trending Destinations</h1>
-          </div>
-          <div>
+          <div className="flex-row px-5">
+            <div className="flex-col gap-small flex-auto">
+              <h5 className="blue">TRENDING</h5>
+              <h2 className="fw-bold mb-3">Trending Destinations</h2>
+            </div>
+            {/* <div>
             <button className="whitespace-nowrap">View All</button>
+          </div> */}
           </div>
-        </div>
-        {data.length > 0 ? (
-          <div>
-            <Swiper
-              spaceBetween={10}
-              slidesOffsetBefore={10}
-              slidesOffsetAfter={10}
-              breakpoints={{
-                100: {
-                  slidesPerView: 1.1 // tampilkan sedikit preview dari card sebelum dan sesudahnya
-                },
-                400: {
-                  slidesPerView: 2.1
-                },
-                768: {
-                  slidesPerView: 3.1
-                },
-                1024: {
-                  slidesPerView: 4 // tampilkan list card tanpa preview sebelum dan sesudahnya
-                },
-                1280: {
-                  slidesPerView: 5
-                }
-              }}
-              onSlideChange={() => console.log("slide change")}
-            >
-              {data.map((data) => (
-                <SwiperSlide key={data.id}>
-                  <div className="cardSlider">
-                    <div className="cardOverlay" />
-                    <div className="cardImage">
-                      <img src={data.img} alt="" className="" />
-                    </div>
-                    <div className="cardLabel">{data.label} Airlines</div>
-                    <div className="cardDescription flexRow">
-                      <div className="flexCol flexAuto">
-                        <div>{data.location.city},</div>
-                        <div>{data.location.country}</div>
+          {data.length > 0 ? (
+            <div className="customSpace">
+              <Swiper
+                spaceBetween={30}
+                slidesOffsetBefore={10}
+                slidesOffsetAfter={10}
+                breakpoints={{
+                  100: {
+                    slidesPerView: 1.5, // tampilkan sedikit preview dari card sebelum dan sesudahnya
+                  },
+                  400: {
+                    slidesPerView: 2.1,
+                  },
+                  768: {
+                    slidesPerView: 3.1,
+                  },
+                  1024: {
+                    slidesPerView: 4, // tampilkan list card tanpa preview sebelum dan sesudahnya
+                  },
+                  1280: {
+                    slidesPerView: 5,
+                  },
+                }}
+                onSlideChange={() => console.log("slide change")}
+              >
+                {data.map((data) => (
+                  <SwiperSlide key={data.id}>
+                    <div className="cardSlider">
+                      <div className="cardOverlay" />
+                      <div className="cardImage">
+                        <img src={data.img} alt="" className="" />
                       </div>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => console.log(data.location.city)}
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            className="bi biChevronRight"
-                            viewBox="0 0 16 16"
+                      <div className="cardLabel">{data.label} Airlines</div>
+                      <div className="cardDescription flexRow">
+                        <div className="flexCol flexAuto">
+                          <p>{data.location.city},</p>
+                          <h4>{data.location.country}</h4>
+                        </div>
+                        <div>
+                          <button
+                            type="button"
+                            className="customButton"
+                            onClick={() => console.log(data.location.city)}
                           >
-                            <path
-                              fillRule="evenodd"
-                              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                            />
-                          </svg>
-                        </button>
+                            <i className="fa fa-angle-right wArrow"></i>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        ) : (
-          <div>No Data Available</div>
-        )}
-      </section>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          ) : (
+            <div>No Data Available</div>
+          )}
+        </section>
         <section className="container-fluid p-5">
           <div className="py-5 bgImage text-white">
             <div className="container-fluid bgImage">
@@ -306,71 +289,57 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
-                <div className="col-lg-2 mb-4 d-flex justify-content-center">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <img
-                        // src="jakarta.png"
-                        src={require("../../assets/images/jakarta.png")}
-                        alt="wrapkit"
-                        className="img-fluid rounded-circle"
-                      />
-                      <h5 className="mt-4 text-center">Mr Farid</h5>
-                    </div>
+                {data.length > 0 ? (
+                  <div className="">
+                    <Swiper
+                      spaceBetween={10}
+                      slidesOffsetBefore={10}
+                      slidesOffsetAfter={10}
+                      breakpoints={{
+                        100: {
+                            slidesPerView: 1.5, // tampilkan sedikit preview dari card sebelum dan sesudahnya
+                          },
+                          400: {
+                            slidesPerView: 2.1,
+                          },
+                          768: {
+                            slidesPerView: 3.1,
+                          },
+                          1024: {
+                            slidesPerView: 4, // tampilkan list card tanpa preview sebelum dan sesudahnya
+                          },
+                          1280: {
+                            slidesPerView: 5,
+                        },
+                      }}
+                      onSlideChange={() => console.log("slide change")}
+                    >
+                      {data.map((data) => (
+                        <div className="">
+                          <SwiperSlide key={data.id}>
+                            <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
+                              <div className="row">
+                                <div className="col-md-12">
+                                  <img
+                                    // src="jakarta.png"
+                                    src={data.img}
+                                    alt="wrapkit"
+                                    className="imgCustom rounded-circle"
+                                  />
+                                  <h5 className="mt-4 text-center">
+                                    {data.location.city}
+                                  </h5>
+                                </div>
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        </div>
+                      ))}
+                    </Swiper>
                   </div>
-                </div>
-                <div className="col-lg-2 mb-4 d-flex justify-content-center">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <img
-                        // src="jambi.png"
-                        src={require("../../assets/images/jambi.png")}
-                        alt="wrapkit"
-                        className="img-fluid rounded-circle"
-                      />
-                      <h5 className="mt-4 text-center">Mr Tofa</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-2 mb-4 d-flex justify-content-center">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <img
-                        // src="bali.png"
-                        src={require("../../assets/images/bali.png")}
-                        alt="wrapkit"
-                        className="img-fluid rounded-circle"
-                      />
-                      <h5 className="mt-4 text-center">Michael Doe</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-2 mb-4 d-flex justify-content-center">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <img
-                        // src="singapore.png"
-                        src={require("../../assets/images/singapore.png")}
-                        alt="wrapkit"
-                        className="img-fluid rounded-circle"
-                      />
-                      <h5 className="mt-4 text-center">Michael Doe</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-2 mb-4 d-flex justify-content-center">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <img
-                        // src="padang.png"
-                        src={require("../../assets/images/padang.png")}
-                        alt="wrapkit"
-                        className="img-fluid rounded-circle"
-                      />
-                      <h5 className="mt-4 text-center">Michael Doe</h5>
-                    </div>
-                  </div>
-                </div>
+                ) : (
+                  <div>No Data Available</div>
+                )}
               </div>
             </div>
             <div className="row justify-content-center mt-4">
