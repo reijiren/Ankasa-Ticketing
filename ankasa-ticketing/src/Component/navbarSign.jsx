@@ -65,7 +65,7 @@ const NavbarSign = () => {
               </a>
               <button
                 type="button"
-                class="btn btn-primary shadow-lg rounded mx-5"
+                class="btn btn-primary bgBlue shadow-lg rounded mx-5"
               >
                 Sign Up
               </button>

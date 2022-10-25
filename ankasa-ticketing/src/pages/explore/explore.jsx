@@ -1,67 +1,83 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../../assets/style.css";
 import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import axios from "axios";
 
 const LandingPage = () => {
-  const data = [
-    {
-      id: 1,
-      img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-    {
-      id: 2,
-      img: "https://images.unsplash.com/photo-1666112567387-6eb27bd3ecba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1516&q=80",
-      label: 15,
-      location: {
-        city: "Istana Negara",
-        country: "Wakanda",
-      },
-    },
-    {
-      id: 3,
-      img: "https://images.unsplash.com/photo-1665837231807-fcc190001ece?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1375&q=80",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-    {
-      id: 4,
-      img: "https://images.unsplash.com/photo-1659719852548-4f097c37d448?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-    {
-      id: 5,
-      img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-    {
-      id: 6,
-      img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-  ];
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        axios
+          .get(`http://localhost:3001/flight`)
+          .then((res) => {
+            setTimeout(() => {
+              setData(res.data);    
+            });
+            console.log(data);
+            // console.log(Object.keys(data).length);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, []);
+//   const data = [
+//     {
+//       id: 1,
+//       img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+//       label: 15,
+//       location: {
+//         city: "Barcelona",
+//         country: "Spain",
+//       },
+//     },
+//     {
+//       id: 2,
+//       img: "https://images.unsplash.com/photo-1666112567387-6eb27bd3ecba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1516&q=80",
+//       label: 15,
+//       location: {
+//         city: "Istana Negara",
+//         country: "Wakanda",
+//       },
+//     },
+//     {
+//       id: 3,
+//       img: "https://images.unsplash.com/photo-1665837231807-fcc190001ece?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1375&q=80",
+//       label: 15,
+//       location: {
+//         city: "Barcelona",
+//         country: "Spain",
+//       },
+//     },
+//     {
+//       id: 4,
+//       img: "https://images.unsplash.com/photo-1659719852548-4f097c37d448?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+//       label: 15,
+//       location: {
+//         city: "Barcelona",
+//         country: "Spain",
+//       },
+//     },
+//     {
+//       id: 5,
+//       img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+//       label: 15,
+//       location: {
+//         city: "Barcelona",
+//         country: "Spain",
+//       },
+//     },
+//     {
+//       id: 6,
+//       img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+//       label: 15,
+//       location: {
+//         city: "Barcelona",
+//         country: "Spain",
+//       },
+//     },
+//   ];
   return (
     <div className="body">
       <Navbar />
@@ -280,7 +296,7 @@ const LandingPage = () => {
             <button className="whitespace-nowrap">View All</button>
           </div> */}
           </div>
-          {data.length > 0 ? (
+          {Object.keys(data).length > 0 ? (
             <div className="customSpace">
               <Swiper
                 spaceBetween={30}
@@ -305,24 +321,26 @@ const LandingPage = () => {
                 }}
                 onSlideChange={() => console.log("slide change")}
               >
-                {data.map((data) => (
-                  <SwiperSlide key={data.id}>
+                
+                {
+                data.data.map((data, i) => (
+                  <SwiperSlide key={data.id_flight}>
                     <div className="cardSlider">
                       <div className="cardOverlay" />
                       <div className="cardImage">
-                        <img src={data.img} alt="" className="" />
+                        <img src={`http://localhost:3001/airline/${data.logo}`} alt="" className="image" />
                       </div>
-                      <div className="cardLabel">{data.label} Airlines</div>
+                      <div className="cardLabel">{data.max_capacity} Airlines</div>
                       <div className="cardDescription flexRow">
                         <div className="flexCol flexAuto">
-                          <p>{data.location.city},</p>
-                          <h4>{data.location.country}</h4>
+                          <p>{data.city_departure},</p>
+                          <h4>{data.region_destination}</h4>
                         </div>
                         <div>
                           <button
                             type="button"
                             className="customButton"
-                            onClick={() => console.log(data.location.city)}
+                            onClick={() => console.log(data.region_departure)}
                           >
                             <i className="fa fa-angle-right wArrow"></i>
                           </button>
@@ -347,7 +365,7 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
-                {data.length > 0 ? (
+                {Object.keys(data).length ? (
                   <div className="">
                     <Swiper
                       spaceBetween={10}
@@ -372,20 +390,21 @@ const LandingPage = () => {
                       }}
                       onSlideChange={() => console.log("slide change")}
                     >
-                      {data.map((data) => (
+                      {data.data.map((data) => (
                         <div className="">
-                          <SwiperSlide key={data.id}>
+                          <SwiperSlide key={data.id_flight}>
                             <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
                               <div className="row">
                                 <div className="col-md-12">
                                   <img
                                     // src="jakarta.png"
-                                    src={data.img}
+                                    // src={data.img}
+                                    src={`http://localhost:3001/airline/${data.logo}`}
                                     alt="wrapkit"
                                     className="imgCustom rounded-circle"
                                   />
                                   <h5 className="mt-4 text-center">
-                                    {data.location.city}
+                                    {data.region_destination}
                                   </h5>
                                 </div>
                               </div>
