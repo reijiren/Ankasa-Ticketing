@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./search-result.css";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
 
+import axios from 'axios';
+import { useState } from "react";
+
 const SeacrhResult = () => {
+  const [ticket, setTicket] = useState([]);
+
+  useEffect(() => {
+    const page = 1;
+    const body = {
+      limit: 2,
+      sortBy: "name",
+      sortOrd: "asc",
+      data: {
+        airlineName: "A",
+      },
+    };
+
+    
+    console.log(body);
+    axios
+      .post(`http://localhost:3001/flight/find/${page}`, body)
+      .then((res) => {
+        setTicket(res.data);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <section>
       {/* Start Navbar */}
