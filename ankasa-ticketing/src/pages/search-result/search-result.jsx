@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./search-result.css";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
-import { useParams } from "react-router-dom";
+import { getFindFlight } from "../../redux/action/flight";
 
 const SeacrhResult = () => {
   const [page, setPage] = useState(1);
   const [counter, setCounter] = useState(1);
+  const dispatch = useDispatch();
   const [ticket, setTicket] = useState([]);
+
+  const flight = useSelector((state) => {
+    return state.flight
+  })
+  
   // const { page } = useParams();
   useEffect(() => {
     const body = {
@@ -18,15 +24,10 @@ const SeacrhResult = () => {
       data: {},
     };
     console.log(body);
-    axios
-      .post(`http://localhost:3001/flight/find/${page}`, body)
-      .then((res) => {
-        setTicket(res.data);
-        console.log(ticket);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const handleSuccess = (data) => {
+      setTicket(data);
+    }
+    dispatch(getFindFlight(page, body, handleSuccess))
   }, []);
 
   const NextPage = () => {
@@ -449,8 +450,8 @@ const SeacrhResult = () => {
               </div>
 
               {/* TICKET */}
-              {/* {JSON.stringify(ticket)} */}
-              {ticket.data.map((data, index) => (
+              {/* {JSON.stringify(flight)} */}
+              {flight.data.map((data, index) => (
                 <div
                   key={index}
                   className="mt-3 form-select-ticket-search-result"
