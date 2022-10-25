@@ -1,7 +1,47 @@
-import React from "react";
+import React, {useState} from "react";
 import "../login/login.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+       username:'',
+       email:'',
+       password:'',
+       password2:'',
+  })
+  
+  const onSubmit =  (e) => {
+      e.preventDefault();
+      // console.log(form)
+      if(form.username == "" || form.email == "" || form.password == ""){
+          alert('Semua input wajib diisi')
+      }else {
+          if (form.password !== form.password2) {
+            alert("Password harus sama");
+            return navigate ("/register")
+          }
+          const body = {
+              username: form.username,
+              password: form.password,
+              email: form.email,
+          }
+          axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, body)
+          .then((response) => {
+              if(response.data.code !== 200){
+                  alert('error:' + response.data.message)
+              }
+              else{
+                  console.log(response.data)
+                  return navigate('/login')
+              }
+          }).catch((err) => {
+              console.error(err)
+          })
+      }
+  }
+
   return (
     <section>
      <div className="container-fluid">
@@ -15,15 +55,18 @@ const Register = () => {
         <div className="heading">
           <h1 className="fw-bold">Register</h1>
         </div>
-        <form>
+        <form onSubmit={(e) => onSubmit(e)}>
           <div className="form-input">
-            <input type="text" name="username" id="username" placeholder="Username" required />
+            <input type="text" name="username" onChange={(e) => setForm({...form, username: e.target.value})} id="username" placeholder="Username" required />
           </div>
           <div className="form-input">
-            <input type="email" name="email" id="password" placeholder="Email" required />
+            <input type="email" name="email" onChange={(e) => setForm({...form, email: e.target.value})} id="email" placeholder="Email" required />
           </div>
           <div className="form-input">
-            <input type="password" name="password" id="password" placeholder="Password" required />
+            <input type="password" name="password" onChange={(e) => setForm({...form, password: e.target.value})} id="password" placeholder="Password" required />
+          </div>
+          <div className="form-input">
+            <input type="password" name="password2" onChange={(e) => setForm({...form, password2: e.target.value})} id="password2" placeholder="Confirm Password" required />
           </div>
           <div className="text-left mb-3">
             <button type="submit" className="custom-btn">Sign up</button>
