@@ -11,6 +11,7 @@ const {
 	updateUserPassword,
 	updatePhoto,
 	deleteUser,
+	searchEmail,
 } = require("../controller/user.controller");
 const { uploadProfilePic } = require("../middleware/uploadImg");
 const { removeProfilePic } = require("../middleware/deleteImg");
@@ -23,6 +24,7 @@ userRouter
 	.get("/user/:id", getUserId)
 	.get("/user", jwtAuth, isAdmin, getAllUser)
 	.get("/search/:username", searchUser)
+	.get("/user/findemail:email", searchEmail)
 	.post("/register", register)
 	.put("/user/update/:id", updateUser)
 	.put(

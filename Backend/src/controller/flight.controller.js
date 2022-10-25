@@ -31,10 +31,12 @@ const flightController = {
   // find flight
   find: (req, res) => {
     const page = req.params.page;
-    const { limit, sortBy, sortOrd, data } = req.body;
+    const data = req.body;
+
+    console.log(data);
 
     flightModel
-      .findFlight(limit, page, sortBy, sortOrd, data)
+      .findFlight(data.limit, page, data.sortBy, data.sortOrd, data.data)
       .then((result) => {
         success(res, result.rows, "success", "Search Flight Success");
       })
