@@ -67,7 +67,10 @@ const NavbarSign = () => {
               <a class="nav-link active mx-5" aria-current="page" href="#">
                 My Booking
               </a>
-              <button type="button" class="btn btn-signup mx-5">
+              <button
+                type="button"
+                class="btn btn-primary shadow-lg bgBlue rounded mx-5"
+              >
                 Sign Up
               </button>
             </div>

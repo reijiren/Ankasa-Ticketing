@@ -15,6 +15,8 @@ import Forget from "../pages/forget/forget";
 import Mybook from "../pages/mybooking/mybooking";
 import SeacrhResult from "../pages/search-result/search-result";
 import Explore from "../pages/explore/explore";
+import { Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import ScrollToTop from "../Component/ScrollToTop";
 
