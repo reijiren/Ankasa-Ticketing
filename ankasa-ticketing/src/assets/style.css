@@ -1,7 +1,7 @@
 /* import font */
 @import url("https://fonts.googleapis.com/css?family=Poppins");
 
-body {
+.body {
   font-family: "Poppins";
 }
 .ms-10 {
@@ -117,10 +117,48 @@ body {
     min-height: 120px;
 }
 
+.card {
+  border-radius: 20px !important;
+  border: none !important;
+  box-shadow: 0px 10px 10px rgb(221, 216, 216, 0.7) !important;
+  border: 1px solid rgb(240, 233, 233) !important;
+}
+
 .customCard{
-    width: 340px !important;
-    margin-top: -550px !important;
-    margin-left: 18px;
+    width: 380px !important;
+    margin-left: 0px !important;
+    margin-top: -600px !important;
+    padding: 40px !important;
+    height: auto !important;
+}
+
+.customCard .border-destination{
+  box-shadow: 1px 2px 10px rgb(221, 216, 216) !important;
+  width: auto;
+  border-radius: 10px;
+}
+
+.navbar-nav .btn-signup {
+  background-color: #2395ff;
+  box-shadow: 1px 2px 10px rgb(221, 216, 216) !important;
+  color: white;
+  border-radius: 15px;
+  width: 110px;
+}
+
+#trending .customSpace .cardLabel {
+  background-color: rgb(243, 233, 233, 0.5);
+  width: 100px;
+  border-radius: 10px;
+  color: white;
+}
+
+#trending .customSpace button {
+  border: none;
+}
+
+.story img{
+  padding: 7px;
 }
 
 /* media query footer */
