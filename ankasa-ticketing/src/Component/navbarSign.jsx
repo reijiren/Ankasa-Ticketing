@@ -35,7 +35,7 @@ const NavbarSign = () => {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Search"
+                  placeholder="where you want to go?"
                   aria-label="Search"
                   aria-describedby="basic-addon2"
                 />
@@ -65,7 +65,7 @@ const NavbarSign = () => {
               </a>
               <button
                 type="button"
-                class="btn btn-primary bgBlue shadow-lg rounded mx-5"
+                class="btn btn-primary shadow-lg bgBlue rounded mx-5"
               >
                 Sign Up
               </button>

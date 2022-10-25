@@ -4,37 +4,18 @@ import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getFlight } from "../../redux/action/flight";
 
 const LandingPage = () => {
-    const [data, setData] = useState([]);
+    const dispatch = useDispatch();
+    const flight = useSelector((state) => state.flight);
+    const data = JSON.stringify(flight)
     useEffect(() => {
-        axios
-          .get(`http://localhost:3001/flight`)
-          .then((res) => {
-            setTimeout(() => {
-              setData(res.data);    
-            });
-            console.log(data);
-            // console.log(Object.keys(data).length);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }, []);
+        dispatch(getFlight());
+        // console.log(data);
+    }, []);
 
-      const handlePrevious = () => {
-        if (Object.id_flight.data > 1) {
-            console.log(Object.id_flight.data);
-          setData(data.slice(1));
-        }
-      }
-        const handleNext = () => {
-            if (Object.id_flight.data > 1) {
-                console.log(Object.id_flight.data);
-                setData(data.slice(0, -1));
-            }
-        }
 //   const data = [
 //     {
 //       id: 1,
@@ -136,7 +117,7 @@ const LandingPage = () => {
                   class="collapse collapse-vertical"
                   id="collapseWidthExample"
                 > */}
-              <div class="card card-body customCard border rounded shadow-lg">
+              <div class="card card-body customCard">
                 <div className="col-12">
                   <p>Hey,</p>
                   <h5>Where you want to go?</h5>
@@ -148,7 +129,7 @@ const LandingPage = () => {
                       <i className="fa fa-angle-right blue fw-bold"></i>
                     </div>
                   </div>
-                  <div className="row border shadow-lg rounded mb-3 m-1 pt-2">
+                  <div className="row border-destination mb-3 m-1 pt-2">
                     <div className="col-6 text-start">
                       <p>from</p>
                     </div>
@@ -177,7 +158,10 @@ const LandingPage = () => {
                   <div className="col-12">
                     <div className="row text-center">
                       <div className="col-6">
-                        <button type="button" className="btn btn-primary bgBlue">
+                        <button
+                          type="button"
+                          className="btn btn-primary bgBlue"
+                        >
                           <img
                             src={require("../../assets/images/Vector putih.png")}
                             width="20"
@@ -291,7 +275,9 @@ const LandingPage = () => {
                       </div>
                     </div>
                   </div>
-                        <button className="btn btn-primary bgBlue p-2 px-5 mt-3 fw-bold">SEARCH FLIGHT <i className="ms-5 fa fa-arrow-right"></i> </button>
+                  <button className="btn btn-primary bgBlue p-2 px-5 mt-3 fw-bold">
+                    SEARCH FLIGHT <i className="ms-5 fa fa-arrow-right"></i>{" "}
+                  </button>
                 </div>
               </div>
             </div>
@@ -336,32 +322,33 @@ const LandingPage = () => {
               >
                 
                 {
-                data.data.map((data, i) => (
-                  <SwiperSlide key={data.id_flight}>
-                    <div className="cardSlider">
-                      <div className="cardOverlay" />
-                      <div className="cardImage">
-                        <img src={`http://localhost:3001/airline/${data.logo}`} alt="" className="image" />
-                      </div>
-                      <div className="cardLabel">{data.max_capacity} Airlines</div>
-                      <div className="cardDescription flexRow">
-                        <div className="flexCol flexAuto">
-                          <p>{data.city_departure},</p>
-                          <h4>{data.region_destination}</h4>
-                        </div>
-                        <div>
-                          <button
-                            type="button"
-                            className="customButton"
-                            onClick={() => console.log(data.region_departure)}
-                          >
-                            <i className="fa fa-angle-right wArrow"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
+                // data.map((data, i) => (
+                //   <SwiperSlide key={data.id_flight}>
+                //     <div className="cardSlider">
+                //       <div className="cardOverlay" />
+                //       <div className="cardImage">
+                //         <img src={`http://localhost:3001/airline/${data.logo}`} alt="" className="image" />
+                //       </div>
+                //       <div className="cardLabel">{data.label} Airlines</div>
+                //       <div className="cardDescription flexRow">
+                //         <div className="flexCol flexAuto">
+                //           <p>{data.city_departure},</p>
+                //           <h4>{data.region_destination}</h4>
+                //         </div>
+                //         <div>
+                //           <button
+                //             type="button"
+                //             className="customButton"
+                //             onClick={() => console.log(data.region_departure)}
+                //           >
+                //             <i className="fa fa-angle-right wArrow"></i>
+                //           </button>
+                //         </div>
+                //       </div>
+                //     </div>
+                //   </SwiperSlide>
+                // ))}
+}
               </Swiper>
             </div>
           ) : (
@@ -403,28 +390,30 @@ const LandingPage = () => {
                       }}
                       onSlideChange={() => console.log("slide change")}
                     >
-                      {data.data.map((data) => (
-                        <div className="">
-                          <SwiperSlide key={data.id_flight}>
-                            <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
-                              <div className="row">
-                                <div className="col-md-12">
-                                  <img
-                                    // src="jakarta.png"
-                                    // src={data.img}
-                                    src={`http://localhost:3001/airline/${data.logo}`}
-                                    alt="wrapkit"
-                                    className="imgCustom rounded-circle"
-                                  />
-                                  <h5 className="mt-4 text-center">
-                                    {data.region_destination}
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                        </div>
-                      ))}
+                      {
+                    //   data.data.map((data) => (
+                    //     <div className="">
+                    //       <SwiperSlide key={data.id_flight}>
+                    //         <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
+                    //           <div className="row">
+                    //             <div className="col-md-12 story">
+                    //               <img
+                    //                 // src="jakarta.png"
+                    //                 // src={data.img}
+                    //                 src={`http://localhost:3001/airline/${data.logo}`}
+                    //                 alt="wrapkit"
+                    //                 className="imgCustom rounded-circle"
+                    //               />
+                    //               <h5 className="mt-4 text-center">
+                    //                 {data.region_destination}
+                    //               </h5>
+                    //             </div>
+                    //           </div>
+                    //         </div>
+                    //       </SwiperSlide>
+                    //     </div>
+                    //   ))}
+                      }
                     </Swiper>
                   </div>
                 ) : (
@@ -435,10 +424,10 @@ const LandingPage = () => {
             <div className="row justify-content-center mt-4">
               <div className="col-md-8 text-center">
                 <nav aria-label="Page navigation example">
-                  <button type="button" className="btn infoBack mx-3" onClick={()=>handlePrevious()}>
+                  <button type="button" className="btn infoBack mx-3" >
                     <i className="fa fa-angle-left wArrow"></i>
                   </button>
-                  <button type="button" className="btn infoNext mx-3" onClick={()=>handleNext()}>
+                  <button type="button" className="btn infoNext mx-3">
                     <i className="fa fa-angle-right wArrow"></i>
                   </button>
                 </nav>
