@@ -22,6 +22,19 @@ const LandingPage = () => {
             console.log(err);
           });
       }, []);
+
+      const handlePrevious = () => {
+        if (Object.id_flight.data > 1) {
+            console.log(Object.id_flight.data);
+          setData(data.slice(1));
+        }
+      }
+        const handleNext = () => {
+            if (Object.id_flight.data > 1) {
+                console.log(Object.id_flight.data);
+                setData(data.slice(0, -1));
+            }
+        }
 //   const data = [
 //     {
 //       id: 1,
@@ -422,10 +435,10 @@ const LandingPage = () => {
             <div className="row justify-content-center mt-4">
               <div className="col-md-8 text-center">
                 <nav aria-label="Page navigation example">
-                  <button type="button" className="btn infoBack mx-3">
+                  <button type="button" className="btn infoBack mx-3" onClick={()=>handlePrevious()}>
                     <i className="fa fa-angle-left wArrow"></i>
                   </button>
-                  <button type="button" className="btn infoNext mx-3">
+                  <button type="button" className="btn infoNext mx-3" onClick={()=>handleNext()}>
                     <i className="fa fa-angle-right wArrow"></i>
                   </button>
                 </nav>
