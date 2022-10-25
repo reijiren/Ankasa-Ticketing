@@ -10,9 +10,34 @@ import Mybook from "../pages/mybooking/mybooking";
 import SeacrhResult from "../pages/search-result/search-result";
 import Explore from "../pages/explore/explore";
 
+import ScrollToTop from "../component/ScrollToTop";
+
+const PrivateRoute = () => {
+  const token = localStorage.getItem('token');
+
+  if(token){
+      return <Outlet />
+  }else{
+      alert('Please login first');
+      return <Navigate to='/login' />
+  }
+}
+
+const AdminRoute = () => {
+  const data = localStorage.getItem('data');
+
+  if(data.level !== 0){
+    return <Outlet />
+  }else{
+      alert('You have no access to this site');
+      return <Navigate to='/' />
+  }
+}
+
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop/>
       <Routes>
         <Route path="/">
           <Route index element={<Explore />} />
