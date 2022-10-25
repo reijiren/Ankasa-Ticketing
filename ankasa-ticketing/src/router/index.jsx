@@ -13,9 +13,34 @@ import HomeAdmin from "../pages/admin-home";
 import LoginAdmin from "../pages/login-admin/loginAdmin";
 import InsertAirlines from "../pages/admin-insert/insertFlight";
 
+import ScrollToTop from "../component/ScrollToTop";
+
+const PrivateRoute = () => {
+  const token = localStorage.getItem('token');
+
+  if(token){
+      return <Outlet />
+  }else{
+      alert('Please login first');
+      return <Navigate to='/login' />
+  }
+}
+
+const AdminRoute = () => {
+  const data = localStorage.getItem('data');
+
+  if(data.level !== 0){
+    return <Outlet />
+  }else{
+      alert('You have no access to this site');
+      return <Navigate to='/' />
+  }
+}
+
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop/>
       <Routes>
         <Route path="/">
           <Route index element={<Explore />} />

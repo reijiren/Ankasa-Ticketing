@@ -107,7 +107,7 @@ const LandingPage = () => {
                   class="collapse collapse-vertical"
                   id="collapseWidthExample"
                 > */}
-              <div class="card card-body customCard border rounded shadow-lg">
+              <div class="card card-body customCard">
                 <div className="col-12">
                   <p>Hey,</p>
                   <h5>Where you want to go?</h5>
@@ -119,7 +119,7 @@ const LandingPage = () => {
                       <i className="fa fa-angle-right blue fw-bold"></i>
                     </div>
                   </div>
-                  <div className="row border shadow-lg rounded mb-3 m-1 pt-2">
+                  <div className="row border-destination mb-3 m-1 pt-2">
                     <div className="col-6 text-start">
                       <p>from</p>
                     </div>
@@ -148,7 +148,10 @@ const LandingPage = () => {
                   <div className="col-12">
                     <div className="row text-center">
                       <div className="col-6">
-                        <button type="button" className="btn btn-primary bgBlue">
+                        <button
+                          type="button"
+                          className="btn btn-primary bgBlue"
+                        >
                           <img
                             src={require("../../assets/images/Vector putih.png")}
                             width="20"
@@ -262,7 +265,9 @@ const LandingPage = () => {
                       </div>
                     </div>
                   </div>
-                        <button className="btn btn-primary bgBlue p-2 px-5 mt-3 fw-bold">SEARCH FLIGHT <i className="ms-5 fa fa-arrow-right"></i> </button>
+                  <button className="btn btn-primary bgBlue p-2 px-5 mt-3 fw-bold">
+                    SEARCH FLIGHT <i className="ms-5 fa fa-arrow-right"></i>{" "}
+                  </button>
                 </div>
               </div>
             </div>
@@ -312,7 +317,9 @@ const LandingPage = () => {
                       <div className="cardImage">
                         <img src={data.img} alt="" className="" />
                       </div>
-                      <div className="cardLabel">{data.label} Airlines</div>
+                      <div className="cardLabel text-center">
+                        {data.label} Airlines
+                      </div>
                       <div className="cardDescription flexRow">
                         <div className="flexCol flexAuto">
                           <p>{data.location.city},</p>
@@ -377,7 +384,7 @@ const LandingPage = () => {
                           <SwiperSlide key={data.id}>
                             <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
                               <div className="row">
-                                <div className="col-md-12">
+                                <div className="col-md-12 story">
                                   <img
                                     // src="jakarta.png"
                                     src={data.img}

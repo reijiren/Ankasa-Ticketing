@@ -32,6 +32,25 @@ const bookingController = {
         });
     },
 
+    // get user booking
+    userBooking: (req, res) => {
+        const id = req.params.id;
+
+        bookingModel.getUserBooking(id)
+        .then((result) => {
+            const data = result.rows;
+            data.map((e, i) => {
+                delete data[i].password;
+                delete data[i].credit_card;
+            });
+            
+            success(res, data, 'success', 'Get User BOoking Success');
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Failed to get user booking');
+        });
+    },
+
     // get detail
     detail: (req, res) => {
         const id = req.params.id;

@@ -32,6 +32,8 @@ create table flight(
     city_destination varchar(30),
     region_departure varchar(30),
     region_destination varchar(30),
+    max_capacity integer,
+    current_capacity integer,
     luggage integer, -- 0: No Luggage, 1: Luggage
     inflight_meal integer, -- 0: No Meal, 1: Meal
     wifi integer, -- 0: No Wifi, 1: Wifi

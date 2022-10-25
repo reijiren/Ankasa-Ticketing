@@ -57,6 +57,21 @@ const bookingModel = {
         })
     },
 
+    // get detail user's bookings
+    getUserBooking: (id) => {
+        return new Promise((resolve, reject) => {
+            db.query(`select * from booking
+            join users on booking.id_user = users.id_user
+            join flight on booking.id_flight = flight.id_flight
+            where id_user = ${id};`, (err, res) => {
+                if(err){
+                    reject(err);
+                }
+                resolve(res);
+            })
+        })
+    },
+
     // update status
     updateStatus: (id, status) => {
         if(typeof status !== 'number') status = parseInt(status);

@@ -29,9 +29,11 @@ const flightController = {
     // find flight
     find: (req, res) => {
         const page = req.params.page;
-        const { limit, sortBy, sortOrd, data } = req.body;
+        const data = req.body;
 
-        flightModel.findFlight(limit, page, sortBy, sortOrd, data)
+        console.log(data)
+
+        flightModel.findFlight(data.limit, page, data.sortBy, data.sortOrd, data.data)
         .then((result) => {
             success(res, result.rows, 'success', 'Search Flight Success');
         })
@@ -63,6 +65,19 @@ const flightController = {
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Failed to update flight');
+        });
+    },
+
+    // update capacity
+    updateCapacity: (req, res) => {
+        const { id_flight, capacity } = req.body;
+
+        flightModel.updateCapacity(id_flight, capacity)
+        .then((result) => {
+            success(res, result.rowCount, 'success', 'Update Flight Capacity Success');
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Failed to update flight capacity');
         });
     },
 
