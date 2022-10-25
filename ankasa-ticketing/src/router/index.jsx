@@ -9,6 +9,9 @@ import Forget from "../pages/forget/forget";
 import Mybook from "../pages/mybooking/mybooking";
 import SeacrhResult from "../pages/search-result/search-result";
 import Explore from "../pages/explore/explore";
+import HomeAdmin from "../pages/admin-home";
+import LoginAdmin from "../pages/login-admin/loginAdmin";
+import InsertAirlines from "../pages/admin-insert/insertFlight";
 
 const Router = () => {
   return (
@@ -25,6 +28,11 @@ const Router = () => {
           <Route path="booking-detail" element={<BookingDetail />} />
           <Route path="search-result" element={<SeacrhResult />} />
         </Route>
+        <Route path="/admin">
+					<Route index element={<HomeAdmin />} />
+          <Route path="login" element={<LoginAdmin />} />
+          <Route path="insert-airlines" element={<InsertAirlines />} />
+				</Route>
       </Routes>
     </BrowserRouter>
   );
