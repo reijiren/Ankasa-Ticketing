@@ -1,20 +1,20 @@
 import React from "react";
 import "../assets/style.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NavbarSign = () => {
   return (
     <>
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-white fixed-top">
-          <a class="navbar-brand ms-10" href="#">
+          <Link class="navbar-brand ms-10" to="/">
             <img
               src={require("../assets/images/vector 02.png")}
               width="30"
               alt=""
             />
             Ankasa
-          </a>
+          </Link>
           <button
             class="navbar-toggler"
             type="button"
@@ -35,7 +35,7 @@ const NavbarSign = () => {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Search"
+                  placeholder="where you want to go?"
                   aria-label="Search"
                   aria-describedby="basic-addon2"
                 />
@@ -57,15 +57,19 @@ const NavbarSign = () => {
               >
                 Find Ticket
               </a> */}
-              <a className="nav-link active mx-5" aria-current="page" href="#">
+              <Link
+                className="nav-link active mx-5"
+                aria-current="page"
+                to="search-result"
+              >
                 Find Ticket
-              </a>
+              </Link>
               <a class="nav-link active mx-5" aria-current="page" href="#">
                 My Booking
               </a>
               <button
                 type="button"
-                class="btn btn-primary shadow-lg rounded mx-5"
+                class="btn btn-primary shadow-lg bgBlue rounded mx-5"
               >
                 Sign Up
               </button>

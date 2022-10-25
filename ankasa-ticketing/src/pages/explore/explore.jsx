@@ -1,67 +1,22 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../../assets/style.css";
 import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useDispatch,useSelector } from "react-redux";
+import { getFlight } from "../../redux/action/flight";
 
 const LandingPage = () => {
-  const data = [
-    {
-      id: 1,
-      img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-    {
-      id: 2,
-      img: "https://images.unsplash.com/photo-1666112567387-6eb27bd3ecba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1516&q=80",
-      label: 15,
-      location: {
-        city: "Istana Negara",
-        country: "Wakanda",
-      },
-    },
-    {
-      id: 3,
-      img: "https://images.unsplash.com/photo-1665837231807-fcc190001ece?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1375&q=80",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-    {
-      id: 4,
-      img: "https://images.unsplash.com/photo-1659719852548-4f097c37d448?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-    {
-      id: 5,
-      img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-    {
-      id: 6,
-      img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-      label: 15,
-      location: {
-        city: "Barcelona",
-        country: "Spain",
-      },
-    },
-  ];
+    const dispatch = useDispatch();
+    const flight = useSelector((state) => state.flight);
+
+    useEffect(() => {
+        const handleSuccess = (data) => {
+            console.log(data);
+        }
+        dispatch(getFlight(handleSuccess));
+    }, []);
   return (
     <div className="body">
       <Navbar />
@@ -107,7 +62,7 @@ const LandingPage = () => {
                   class="collapse collapse-vertical"
                   id="collapseWidthExample"
                 > */}
-              <div class="card card-body customCard border rounded shadow-lg">
+              <div class="card card-body customCard">
                 <div className="col-12">
                   <p>Hey,</p>
                   <h5>Where you want to go?</h5>
@@ -119,7 +74,7 @@ const LandingPage = () => {
                       <i className="fa fa-angle-right blue fw-bold"></i>
                     </div>
                   </div>
-                  <div className="row border shadow-lg rounded mb-3 m-1 pt-2">
+                  <div className="row border-destination mb-3 m-1 pt-2">
                     <div className="col-6 text-start">
                       <p>from</p>
                     </div>
@@ -148,7 +103,10 @@ const LandingPage = () => {
                   <div className="col-12">
                     <div className="row text-center">
                       <div className="col-6">
-                        <button type="button" className="btn btn-primary bgBlue">
+                        <button
+                          type="button"
+                          className="btn btn-primary bgBlue"
+                        >
                           <img
                             src={require("../../assets/images/Vector putih.png")}
                             width="20"
@@ -262,7 +220,9 @@ const LandingPage = () => {
                       </div>
                     </div>
                   </div>
-                        <button className="btn btn-primary bgBlue p-2 px-5 mt-3 fw-bold">SEARCH FLIGHT <i className="ms-5 fa fa-arrow-right"></i> </button>
+                  <button className="btn btn-primary bgBlue p-2 px-5 mt-3 fw-bold">
+                    SEARCH FLIGHT <i className="ms-5 fa fa-arrow-right"></i>{" "}
+                  </button>
                 </div>
               </div>
             </div>
@@ -280,7 +240,7 @@ const LandingPage = () => {
             <button className="whitespace-nowrap">View All</button>
           </div> */}
           </div>
-          {data.length > 0 ? (
+          {Object.keys(flight).length > 0 ? (
             <div className="customSpace">
               <Swiper
                 spaceBetween={30}
@@ -305,24 +265,25 @@ const LandingPage = () => {
                 }}
                 onSlideChange={() => console.log("slide change")}
               >
-                {data.map((data) => (
-                  <SwiperSlide key={data.id}>
+                {
+                flight.data.data.map((data, i) => (
+                  <SwiperSlide key={data.id_flight}>
                     <div className="cardSlider">
                       <div className="cardOverlay" />
                       <div className="cardImage">
-                        <img src={data.img} alt="" className="" />
+                        <img src={`http://localhost:3001/airline/${data.logo}`} alt="" className="image" />
                       </div>
-                      <div className="cardLabel">{data.label} Airlines</div>
+                      <div className="cardLabel">{data.max_capacity} Airlines</div>
                       <div className="cardDescription flexRow">
                         <div className="flexCol flexAuto">
-                          <p>{data.location.city},</p>
-                          <h4>{data.location.country}</h4>
+                          <p>{data.city_departure},</p>
+                          <h4>{data.region_destination}</h4>
                         </div>
                         <div>
                           <button
                             type="button"
                             className="customButton"
-                            onClick={() => console.log(data.location.city)}
+                            onClick={() => console.log(data.region_departure)}
                           >
                             <i className="fa fa-angle-right wArrow"></i>
                           </button>
@@ -347,7 +308,7 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
-                {data.length > 0 ? (
+                {Object.keys(flight).length ? (
                   <div className="">
                     <Swiper
                       spaceBetween={10}
@@ -372,20 +333,22 @@ const LandingPage = () => {
                       }}
                       onSlideChange={() => console.log("slide change")}
                     >
-                      {data.map((data) => (
+                      {
+                      flight.data.data.map((data) => (
                         <div className="">
-                          <SwiperSlide key={data.id}>
+                          <SwiperSlide key={data.id_flight}>
                             <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
                               <div className="row">
-                                <div className="col-md-12">
+                                <div className="col-md-12 story">
                                   <img
                                     // src="jakarta.png"
-                                    src={data.img}
+                                    // src={data.img}
+                                    src={`http://localhost:3001/airline/${data.logo}`}
                                     alt="wrapkit"
                                     className="imgCustom rounded-circle"
                                   />
                                   <h5 className="mt-4 text-center">
-                                    {data.location.city}
+                                    {data.region_destination}
                                   </h5>
                                 </div>
                               </div>
@@ -403,10 +366,10 @@ const LandingPage = () => {
             <div className="row justify-content-center mt-4">
               <div className="col-md-8 text-center">
                 <nav aria-label="Page navigation example">
-                  <button type="button" className="btn infoBack mx-3">
+                  <button type="button" className="btn infoBack mx-3" >
                     <i className="fa fa-angle-left wArrow"></i>
                   </button>
-                  <button type="button" className="btn infoNext mx-3">
+                  <button type="button" className="btn infoNext mx-3" >
                     <i className="fa fa-angle-right wArrow"></i>
                   </button>
                 </nav>

@@ -60,7 +60,6 @@ const airlineController = {
         }catch (err){
             console.error(err);
         }
-        
     },
 
     // update airline
