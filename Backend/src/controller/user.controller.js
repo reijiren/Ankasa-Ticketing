@@ -45,6 +45,18 @@ const userController = {
 			});
 	},
 
+	searchEmail: (req, res) => {
+		const email = req.params.email;
+
+		userModel.checkEmail(email)
+		.then((result) => {
+			success(res, result.rows, "success", "get email success");
+		})
+		.catch((err) => {
+			failed(res, err.message, "failed", "get email failed");
+		});
+	},
+
 	register: (req, res) => {
 		try {
 			const { username, email, password } = req.body;
@@ -92,37 +104,68 @@ const userController = {
 	login: (req, res) => {
 		const { email, password } = req.body;
 
-		userModel
-			.checkEmail(email)
-			.then((result) => {
-				const user = result.rows[0];
-				if (result.rowCount > 0) {
-					
-					bcrypt
-						.compare(password, result.rows[0].password)
-						.then(async (result) => {
-							if (result) {
-								const token = await jwtToken({
-									email: user.email,
-									level: user.level,
-								});
-								delete user.password;
-								delete user.credit_card;
-								successWithToken(
-									res,
-									{ token, data: user },
-									"success",
-									"login success"
-								);
-							} else {
-								failed(res, null, "failed", "username or password incorrect");
-							}
-						});
+		const login = (user) => {
+			bcrypt.compare(password, user.password)
+			.then(async (result) => {
+				if (result) {
+					const token = await jwtToken({
+						email: user.email,
+						level: user.level,
+					});
+					delete user.password;
+					delete user.credit_card;
+					successWithToken(
+						res,
+						{ token, data: user },
+						"success",
+						"login success"
+					);
 				} else {
 					failed(res, null, "failed", "username or password incorrect");
 				}
+			});
+		}
+
+		userModel
+			.checkEmail(email)
+			.then((result) => {
+				if (result.rowCount > 0) {
+					login(result.rows[0]);
+				// const user = result.rows[0];
+					// bcrypt.compare(password, result.rows[0].password)
+					// .then(async (result) => {
+					// 	if (result) {
+					// 		const token = await jwtToken({
+					// 			email: user.email,
+					// 			level: user.level,
+					// 		});
+					// 		delete user.password;
+					// 		delete user.credit_card;
+					// 		successWithToken(
+					// 			res,
+					// 			{ token, data: user },
+					// 			"success",
+					// 			"login success"
+					// 		);
+					// 	} else {
+					// 		failed(res, null, "failed", "username or password incorrect");
+					// 	}
+					// });
+				} else {
+					userModel.checkUsername(email)
+					.then((result) => {
+						if (result.rowCount > 0) {
+							login(result.rows[0]);
+						}else{
+							failed(res, null, "failed", "username or password incorrect");
+						}
+					})
+					.catch((err) => {
+						failed(res, null, "failed", "username or password incorrect");
+					})
+				}
 			})
-			.catch((error) => {
+			.catch((err) => {
 				failed(res, err.message, "failed", "internal server error");
 			});
 	},

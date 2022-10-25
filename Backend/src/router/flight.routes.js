@@ -9,7 +9,7 @@ const { isAdmin, isCustomer } = require('../middleware/auth');
 router
 .get('/flight', list)
 .get('/flight/detail', detail)
-.get('/flight/find/:page', find)
+.post('/flight/find/:page', find)
 .post('/flight/insert', insert)
 .put('/flight/update', update)
 .put('/flight/capacity', updateCapacity)
