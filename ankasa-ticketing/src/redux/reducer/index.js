@@ -6,10 +6,10 @@ import flightReducer from './flight';
 import userReducer from './user';
 
 const rootReducer = combineReducers({
-    airline: airlineReducer,
-    booking: bookingReducer,
-    user: userReducer,
-    flight: flightReducer,
+    // airline: airlineReducer,
+    // booking: bookingReducer,
+    // user: userReducer,
+    // flight: flightReducer,
 })
 
 export default rootReducer;
