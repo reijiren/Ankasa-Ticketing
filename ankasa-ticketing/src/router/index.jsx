@@ -57,14 +57,26 @@ const Router = () => {
       <Routes>
         <Route path="/">
           <Route index element={<Explore />} />
-          <Route path="flight-detail/:id_flight" element={<FlightDetail />} />
-          <Route path="profile" element={<Profile />} />
+		  <Route path="profile" element={<PrivateRoute/>}>
+		  <Route index element={<Profile />} />
+		  </Route>
+		  <Route path="flight-detail/:id_flight" element={<PrivateRoute/>}>
+		  <Route index element={<FlightDetail />} />
+		  </Route>
+		  <Route path="mybook" element={<PrivateRoute/>}>
+		  <Route index element={<Mybook />} />
+		  </Route>
+		  <Route path="booking-detail/:id" element={<PrivateRoute/>}>
+		  <Route index element={<BookingDetail />} />
+		  </Route>
+		  <Route path="search-result" element={<PrivateRoute/>}>
+		  <Route index element={<SeacrhResult />} />
+		  </Route>
+          
+          
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forget" element={<Forget />} />
-          <Route path="mybook" element={<Mybook />} />
-          <Route path="booking-detail/:id" element={<BookingDetail />} />
-          <Route path="search-result" element={<SeacrhResult />} />
           <Route path="forget-password" element={<ForgetPassword />} />
         </Route>
 				<Route path="/admin">

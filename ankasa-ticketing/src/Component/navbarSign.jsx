@@ -71,12 +71,12 @@ const NavbarSign = () => {
               >
                 My Booking
               </Link>
-              <Link to="/register">
+              <Link to="/login">
                 <button
                   type="button"
                   class="btn btn-primary shadow-lg bgBlue rounded mx-5"
                 >
-                  Sign Up
+                  Sign In
                 </button>
               </Link>
             </div>
