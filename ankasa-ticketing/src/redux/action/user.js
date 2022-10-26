@@ -17,7 +17,6 @@ export const getUser = (id_user,handleSuccess) => ({
         axios.get(`http://localhost:3001/user/${id_user}`)
         .then((res) => {
             handleSuccess(res)
-            console.log(res.data)
             resolve(res);
         })
         .catch((err) => {

@@ -13,7 +13,8 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        thisUser: action.payload.data.data.rows,
+        isError: false,
+        thisUser: action.payload.data.data,
       };
     case "LOGIN_REJECTED":
       return { ...state, isLoading: false, isError: true };
@@ -23,7 +24,8 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        user: action.payload.data.data.rows,
+        isError: false,
+        user: action.payload.data.data,
       };
     case "REGISTER_REJECTED":
       return { ...state, isLoading: false, isError: true };
@@ -34,6 +36,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        isError: false,
         thisUser: action.payload.data.data,
       };
     case "GET_USER_REJECTED":

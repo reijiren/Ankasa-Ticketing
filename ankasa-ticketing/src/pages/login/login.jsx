@@ -45,7 +45,7 @@ const onSubmit = (e) => {
         </div>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="form-input">
-            <input type="email" onChange={(e) => setForm({...form, email: e.target.value})} name="email" id="email" placeholder="Email" required />
+            <input type="text" onChange={(e) => setForm({...form, email: e.target.value})} name="email" id="email" placeholder="Email" required />
           </div>
           <div className="form-input">
             <input type="password" onChange={(e) => setForm({...form, password: e.target.value})} name="password" id="password" placeholder="Password" required />

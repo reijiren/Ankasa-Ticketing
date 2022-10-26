@@ -12,7 +12,7 @@ const FlightDetail = () => {
   const dispatch = useDispatch();
 
   const detailflight = useSelector((state) => {
-    return state.detailflight;
+    return state.flight;
   });
 
   //get ID from parameter URL
