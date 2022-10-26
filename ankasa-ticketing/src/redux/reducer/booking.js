@@ -1,5 +1,5 @@
 const initialState = {
-    data: [],
+    booking: [],
     userBook: [],
     isLoading: false,
     isError: false,
