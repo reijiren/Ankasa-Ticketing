@@ -125,7 +125,7 @@ const LandingPage = () => {
                   <div className="col-12 mt-2">
                     <div>
                       <label
-                        for="inputDeparture"
+                        htmlFor="inputDeparture"
                         className="form-label text-muted"
                       >
                         Departure
@@ -141,7 +141,7 @@ const LandingPage = () => {
                   </div>
                   <div className="col-12">
                     <label
-                      for="inputDeparture"
+                      htmlFor="inputDeparture"
                       className="form-label text-muted mt-2"
                     >
                       How many person?
@@ -169,7 +169,7 @@ const LandingPage = () => {
                   </div>
                   <div className="col-12">
                     <label
-                      for="inputDeparture"
+                      htmlFor="inputDeparture"
                       className="form-label text-muted mt-2"
                     >
                       Which class do you want?
@@ -183,7 +183,7 @@ const LandingPage = () => {
                           value="Economy"
                         />
                         <label
-                          for="class"
+                          htmlFor="class"
                           className="d-flex ps-1 align-items-center"
                         >
                           Economy
@@ -197,7 +197,7 @@ const LandingPage = () => {
                           value="Business"
                         />
                         <label
-                          for="class"
+                          htmlFor="class"
                           className="d-flex ps-1 align-items-center"
                         >
                           Business
@@ -211,7 +211,7 @@ const LandingPage = () => {
                           value="First Class"
                         />
                         <label
-                          for="class"
+                          htmlFor="class"
                           className="d-flex ps-1 align-items-center"
                         >
                           First Class
