@@ -1,37 +1,66 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./search-result.css";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
-
-import axios from 'axios';
-import { useState } from "react";
+import { getFindFlight } from "../../redux/action/flight";
 
 const SeacrhResult = () => {
+  const [page, setPage] = useState(1);
+  const [counter, setCounter] = useState(1);
+  const dispatch = useDispatch();
   const [ticket, setTicket] = useState([]);
 
-  useEffect(() => {
-    const page = 1;
-    const body = {
-      limit: 2,
-      sortBy: "name",
-      sortOrd: "asc",
-      data: {
-        airlineName: "A",
-      },
-    };
+  const flight = useSelector((state) => {
+    return state.flight;
+  });
 
-    
-    console.log(body);
-    axios
-      .post(`http://localhost:3001/flight/find/${page}`, body)
-      .then((res) => {
-        setTicket(res.data);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const [sort, setSort] = useState("desc");
+  //SORT ORDER
+  const handlesortOrd = (body) => {
+    if (sort == "desc") {
+      setSort("asc");
+    } else {
+      setSort("desc");
+    }
+  };
+
+  useEffect(() => {
+    const body = {
+      limit: 3,
+      sortBy: "name",
+      sortOrd: sort,
+      data: {},
+    };
+    const handleSuccess = (data) => {
+      setTicket(data);
+    };
+    dispatch(getFindFlight(page, body, handleSuccess));
   }, []);
+
+  const NextPage = () => {
+    setPage(page + 1);
+    // getDataFindFLight(2, page, sortBy, sortOrd, data);
+    console.log(page);
+  };
+
+  const PreviousPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+      // dispatch(getDataFindFLight(2, page, sortBy, sortOrd, data));
+    }
+  };
+
+  //SORTING
+  // const handlesortOrd = () => {
+  //   if (sort == "id") {
+  //     setSort("title");
+  //   } else {
+  //     setSort("id");
+  //   }
+  //   dispatch(getPagination(sort, asc, 3, page));
+  // };
   return (
     <section>
       {/* Start Navbar */}
@@ -383,7 +412,9 @@ const SeacrhResult = () => {
                     </h5>
                   </div>
                   <div className="col-auto">
-                    <span className="text-secondary">(6 flight found)</span>
+                    <span className="text-secondary">
+                      ({Object.keys(flight.data).length} flight found)
+                    </span>
                   </div>
                   <div className="col-auto sorting-title-select-ticket-search-result">
                     <div className="row">
@@ -402,6 +433,14 @@ const SeacrhResult = () => {
                           aria-labelledby="sorting"
                         >
                           <li>
+                            <a
+                              class="dropdown-item"
+                              onClick={() => handlesortOrd()}
+                            >
+                              {sort}
+                            </a>
+                          </li>
+                          <li>
                             <a class="dropdown-item" onClick="">
                               Price
                             </a>
@@ -419,373 +458,169 @@ const SeacrhResult = () => {
               </div>
 
               {/* TICKET */}
-
-              <div className="mt-3 form-select-ticket-search-result">
-                <div className="select-ticket-search-result">
-                  <div className="row">
-                    <div className="col-auto">
-                      <img
-                        src={require("../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo 1.png")}
-                      />
-                    </div>
-                    <div className="col-auto name-airplane-select-ticket">
-                      <span className="text-secondary">Garuda Indonesia</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 row">
-                    <div className="col-auto">
-                      <h4>
-                        <b>IDN</b>
-                      </h4>
-                      <span className="text-secondary">12:33</span>
-                    </div>
-                    <div className="col-auto">
-                      <img src={require("../../assets/images/Vector.png")} />
-                    </div>
-                    <div className="col-auto">
-                      <h4>
-                        <b>JPN</b>
-                      </h4>
-                      <span className="text-secondary">15:21</span>
-                    </div>
-                    <div className="col-auto">
-                      <div className="row">
-                        <div className="col-auto">
-                          <span className="text-secondary">
-                            3 hours 11 minutes
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-secondary">(1transit)</span>
-                        </div>
+              {/* {JSON.stringify(flight)} */}
+              {flight.flight.map((data, index) => (
+                <div
+                  key={index}
+                  className="mt-3 form-select-ticket-search-result"
+                >
+                  <div className="select-ticket-search-result">
+                    <div className="row">
+                      <div className="col-auto">
+                        <img src={`http://localhost:3001/airline/${data.logo}`} />
+                      </div>
+                      <div className="col-auto name-airplane-select-ticket">
+                        <span className="text-secondary">{data.name}</span>
                       </div>
                     </div>
-                    <div className="col-auto facility-select-ticket">
-                      <div className="row">
-                        <div className="col-auto facility-select-ticket-bag">
-                          <img
-                            src={require("../../assets/images/Vector (1).png")}
-                          />
-                        </div>
-                        <div className="col-auto facility-select-ticket-food">
-                          <img
-                            src={require("../../assets/images/Vector (2).png")}
-                          />
-                        </div>
-                        <div className="col-auto facility-select-ticket-wifi">
-                          <img
-                            src={require("../../assets/images/Vector (3).png")}
-                          />
+                    <div className="mt-4 row">
+                      <div className="col-auto">
+                        <h4>
+                          <b>{data.city_departure}</b>
+                        </h4>
+                        <span className="text-secondary">
+                          {data.time_departure}
+                        </span>
+                      </div>
+                      <div className="col-auto">
+                        <img src={require("../../assets/images/Vector.png")} />
+                      </div>
+                      <div className="col-auto">
+                        <h4>
+                          <b>{data.city_destination}</b>
+                        </h4>
+                        <span className="text-secondary">
+                          {data.time_arrived}
+                        </span>
+                      </div>
+                      <div className="col-auto">
+                        <div className="row">
+                          <div className="col-auto">
+                            <span className="text-secondary">
+                              3 hours 11 minutes
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-secondary">
+                              {data.transit === 0
+                                ? "Direct"
+                                : data.transit === 1
+                                ? "1 transit"
+                                : "2 transit"}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-auto">
-                      <div className="row">
-                        <div className="col-auto count-select-ticket">
-                          <h6>$124,00</h6>
-                        </div>
-                        <div className="col-auto pax-select-ticket">
-                          <span className="text-secondary">/pax</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-auto button-select-ticket">
-                      <button>Select</button>
-                    </div>
-                  </div>
-                  <div className="btn-view-detail">
-                    <button
-                      type="button"
-                      className="mt-3 btn btn-info"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#demo"
-                    >
-                      View Details <i className="fa fa-sort-down" />
-                    </button>
-                    <div id="demo" className="collapse">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                  </div>
-                </div>
-
-                {/* TIKET 2 */}
-
-                <div className="select-ticket-search-result">
-                  <div className="row">
-                    <div className="col-auto">
-                      <img
-                        src={require("../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo 1.png")}
-                      />
-                    </div>
-                    <div className="col-auto name-airplane-select-ticket">
-                      <span className="text-secondary">Garuda Indonesia</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 row">
-                    <div className="col-auto">
-                      <h4>
-                        <b>IDN</b>
-                      </h4>
-                      <span className="text-secondary">12:33</span>
-                    </div>
-                    <div className="col-auto">
-                      <img src={require("../../assets/images/Vector.png")} />
-                    </div>
-                    <div className="col-auto">
-                      <h4>
-                        <b>JPN</b>
-                      </h4>
-                      <span className="text-secondary">15:21</span>
-                    </div>
-                    <div className="col-auto">
-                      <div className="row">
-                        <div className="col-auto">
-                          <span className="text-secondary">
-                            3 hours 11 minutes
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-secondary">(1transit)</span>
+                      <div className="col-auto facility-select-ticket">
+                        <div className="row">
+                          <div className="col-auto facility-select-ticket-bag">
+                            {data.luggage === 1 && (
+                              <img
+                                src={require("../../assets/images/Vector (1).png")}
+                              />
+                            )}
+                          </div>
+                          <div className="col-auto facility-select-ticket-food">
+                            {data.inflight_meal === 1 && (
+                              <img
+                                src={require("../../assets/images/Vector (2).png")}
+                              />
+                            )}
+                          </div>
+                          <div className="col-auto facility-select-ticket-wifi">
+                            {data.wifi === 1 && (
+                              <img
+                                src={require("../../assets/images/Vector (3).png")}
+                              />
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-auto facility-select-ticket">
-                      <div className="row">
-                        <div className="col-auto facility-select-ticket-bag">
-                          <img
-                            src={require("../../assets/images/Vector (1).png")}
-                          />
-                        </div>
-                        <div className="col-auto facility-select-ticket-food">
-                          <img
-                            src={require("../../assets/images/Vector (2).png")}
-                          />
-                        </div>
-                        <div className="col-auto facility-select-ticket-wifi">
-                          <img
-                            src={require("../../assets/images/Vector (3).png")}
-                          />
+                      <div className="col-auto">
+                        <div className="row">
+                          <div className="col-auto count-select-ticket">
+                            <h6>Rp.{data.price}</h6>
+                          </div>
+                          <div className="col-auto pax-select-ticket">
+                            <span className="text-secondary">/pax</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-auto">
-                      <div className="row">
-                        <div className="col-auto count-select-ticket">
-                          <h6>$124,00</h6>
-                        </div>
-                        <div className="col-auto pax-select-ticket">
-                          <span className="text-secondary">/pax</span>
-                        </div>
+                      <div className="mt-4 button-select-ticket">
+                        <Link to={`/flight-detail/${data.id_flight}`}>
+                          <button>Select</button>
+                        </Link>
                       </div>
                     </div>
-                    <div className="col-auto button-select-ticket">
-                      <button>Select</button>
-                    </div>
-                  </div>
-                  <div className="btn-view-detail">
-                    <button
-                      type="button"
-                      className="mt-3 btn btn-info"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#demo"
-                    >
-                      View Details <i className="fa fa-sort-down" />
-                    </button>
-                    <div id="demo" className="collapse">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    <div className="btn-view-detail">
+                      <button
+                        type="button"
+                        className="mt-3 btn btn-info"
+                        data-bs-toggle="collapse"
+                        data-bs-target={`#demo${index}`}
+                      >
+                        View Details <i className="fa fa-sort-down" />
+                      </button>
+                      <div id={`demo${index}`} className="collapse">
+                        <div className="mt-3 view-detail-ticket">
+                          <div className="row">
+                            <div className="col-md-6 view-detail-ticket-left">
+                              <div className="text-secondary">
+                                <h6>Ticket Detail</h6>
+                              </div>
+                              <p className="text-secondary">
+                                Airline : {data.name}
+                              </p>
+                              <p className="text-secondary">
+                                City Departure : {data.city_departure} -{" "}
+                                {data.region_departure}
+                              </p>
+                              <p className="text-secondary">
+                                City Destination : {data.city_destination} -{" "}
+                                {data.region_destination}
+                              </p>
+                              <p className="text-secondary">
+                                Time estimation : {data.time_departure} -{" "}
+                                {data.time_arrived}
+                              </p>
+                              <p className="text-secondary">
+                                Transit :{" "}
+                                {data.transit === 0
+                                  ? "Direct"
+                                  : data.transit === 1
+                                  ? "1 transit"
+                                  : "2 transit"}
+                              </p>
+                            </div>
+                            <div className="col-md-6 view-detail-ticket-right">
+                              <div className="text-secondary">
+                                <h6>Facilities</h6>
+                              </div>
+                              <p className="text-secondary">
+                                Refundable :{" "}
+                                {data.refundable === 1 ? "Yes" : "No"}
+                              </p>
+                              <p className="text-secondary">
+                                Luggage : {data.luggage === 1 ? "Yes" : "No"}
+                              </p>
+                              <p className="text-secondary">
+                                Meal : {data.inflight_meal === 1 ? "Yes" : "No"}
+                              </p>
+                              <p className="text-secondary">
+                                Wifi : {data.wifi === 1 ? "Yes" : "No"}
+                              </p>
+                              <p className="text-secondary">
+                                Insurance :{" "}
+                                {data.insurance === 1 ? "Yes" : "No"}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                {/* TIKET 3 */}
-                <div className="select-ticket-search-result">
-                  <div className="row">
-                    <div className="col-auto">
-                      <img
-                        src={require("../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo 1.png")}
-                      />
-                    </div>
-                    <div className="col-auto name-airplane-select-ticket">
-                      <span className="text-secondary">Garuda Indonesia</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 row">
-                    <div className="col-auto">
-                      <h4>
-                        <b>IDN</b>
-                      </h4>
-                      <span className="text-secondary">12:33</span>
-                    </div>
-                    <div className="col-auto">
-                      <img src={require("../../assets/images/Vector.png")} />
-                    </div>
-                    <div className="col-auto">
-                      <h4>
-                        <b>JPN</b>
-                      </h4>
-                      <span className="text-secondary">15:21</span>
-                    </div>
-                    <div className="col-auto">
-                      <div className="row">
-                        <div className="col-auto">
-                          <span className="text-secondary">
-                            3 hours 11 minutes
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-secondary">(1transit)</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-auto facility-select-ticket">
-                      <div className="row">
-                        <div className="col-auto facility-select-ticket-bag">
-                          <img
-                            src={require("../../assets/images/Vector (1).png")}
-                          />
-                        </div>
-                        <div className="col-auto facility-select-ticket-food">
-                          <img
-                            src={require("../../assets/images/Vector (2).png")}
-                          />
-                        </div>
-                        <div className="col-auto facility-select-ticket-wifi">
-                          <img
-                            src={require("../../assets/images/Vector (3).png")}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-auto">
-                      <div className="row">
-                        <div className="col-auto count-select-ticket">
-                          <h6>$124,00</h6>
-                        </div>
-                        <div className="col-auto pax-select-ticket">
-                          <span className="text-secondary">/pax</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-auto button-select-ticket">
-                      <button>Select</button>
-                    </div>
-                  </div>
-                  <div className="btn-view-detail">
-                    <button
-                      type="button"
-                      className="mt-3 btn btn-info"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#demo"
-                    >
-                      View Details <i className="fa fa-sort-down" />
-                    </button>
-                    <div id="demo" className="collapse">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                  </div>
-                </div>
-
-                {/* TIKET 4 */}
-
-                <div className="select-ticket-search-result">
-                  <div className="row">
-                    <div className="col-auto">
-                      <img
-                        src={require("../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo 1.png")}
-                      />
-                    </div>
-                    <div className="col-auto name-airplane-select-ticket">
-                      <span className="text-secondary">Garuda Indonesia</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 row">
-                    <div className="col-auto">
-                      <h4>
-                        <b>IDN</b>
-                      </h4>
-                      <span className="text-secondary">12:33</span>
-                    </div>
-                    <div className="col-auto">
-                      <img src={require("../../assets/images/Vector.png")} />
-                    </div>
-                    <div className="col-auto">
-                      <h4>
-                        <b>JPN</b>
-                      </h4>
-                      <span className="text-secondary">15:21</span>
-                    </div>
-                    <div className="col-auto">
-                      <div className="row">
-                        <div className="col-auto">
-                          <span className="text-secondary">
-                            3 hours 11 minutes
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-secondary">(1transit)</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-auto facility-select-ticket">
-                      <div className="row">
-                        <div className="col-auto facility-select-ticket-bag">
-                          <img
-                            src={require("../../assets/images/Vector (1).png")}
-                          />
-                        </div>
-                        <div className="col-auto facility-select-ticket-food">
-                          <img
-                            src={require("../../assets/images/Vector (2).png")}
-                          />
-                        </div>
-                        <div className="col-auto facility-select-ticket-wifi">
-                          <img
-                            src={require("../../assets/images/Vector (3).png")}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-auto">
-                      <div className="row">
-                        <div className="col-auto count-select-ticket">
-                          <h6>$124,00</h6>
-                        </div>
-                        <div className="col-auto pax-select-ticket">
-                          <span className="text-secondary">/pax</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-auto button-select-ticket">
-                      <button>Select</button>
-                    </div>
-                  </div>
-                  <div className="btn-view-detail">
-                    <button
-                      type="button"
-                      className="mt-3 btn btn-info"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#demo"
-                    >
-                      View Details <i className="fa fa-sort-down" />
-                    </button>
-                    <div id="demo" className="collapse">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

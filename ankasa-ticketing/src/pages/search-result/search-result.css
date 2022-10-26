@@ -262,6 +262,29 @@
     margin-top: -5px;
 }
 
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .btn-view-detail .view-detail-ticket {
+    padding: 30px;
+    background-color: #FFFFFF;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgb(221, 216, 216);
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .btn-view-detail .view-detail-ticket p{
+    border-bottom: 2px solid rgba(210, 194, 255, 0.68);
+    padding-bottom: 5px;
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .btn-view-detail .view-detail-ticket .view-detail-ticket-left {
+    padding: 20px;
+    border-right: 2px dashed rgb(202, 193, 193);
+}
+
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .btn-view-detail .view-detail-ticket .view-detail-ticket-right {
+    padding: 20px;
+    padding-left: 30px !important;
+}
+
 @media (max-width: 720px) {
     .background-blue-search-result img {
         display: none;

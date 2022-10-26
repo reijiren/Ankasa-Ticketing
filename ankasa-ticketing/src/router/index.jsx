@@ -22,35 +22,35 @@ import SearchUser from "../pages/admin-searchUser/searchUser";
 import ScrollToTop from "../Component/ScrollToTop";
 
 const PrivateRoute = () => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
-  if(token){
-      return <Outlet />
-  }else{
-      alert('Please login first');
-      return <Navigate to='/login' />
+  if (token) {
+    return <Outlet />;
+  } else {
+    alert("Please login first");
+    return <Navigate to="/login" />;
   }
-}
+};
 
 const AdminRoute = () => {
-  const data = localStorage.getItem('data');
+  const data = localStorage.getItem("data");
 
-  if(data.level !== 0){
-    return <Outlet />
-  }else{
-      alert('You have no access to this site');
-      return <Navigate to='/' />
+  if (data.level !== 0) {
+    return <Outlet />;
+  } else {
+    alert("You have no access to this site");
+    return <Navigate to="/" />;
   }
-}
+};
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
         <Route path="/">
           <Route index element={<Explore />} />
-          <Route path="flight-detail" element={<FlightDetail />} />
+          <Route path="flight-detail/:id_flight" element={<FlightDetail />} />
           <Route path="profile" element={<Profile />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
