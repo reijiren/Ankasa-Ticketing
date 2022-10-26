@@ -11,12 +11,15 @@ const LandingPage = () => {
     const dispatch = useDispatch();
     const flight = useSelector((state) => state.flight);
 
-    useEffect(() => {
+    // let output;
+
+    useEffect( () => {
         const handleSuccess = (data) => {
-            console.log(data);
+            // output = JSON.stringify(data);
         }
-        dispatch(getFlight(handleSuccess));
+         dispatch(getFlight(handleSuccess));
     }, []);
+
   return (
     <div className="body">
       <Navbar />
@@ -265,8 +268,9 @@ const LandingPage = () => {
                 }}
                 onSlideChange={() => console.log("slide change")}
               >
+                {/* {JSON.stringify(flight)} */}
                 {
-                flight.data.data.map((data, i) => (
+                flight.data.map((data, i) => (
                   <SwiperSlide key={data.id_flight}>
                     <div className="cardSlider">
                       <div className="cardOverlay" />
@@ -334,7 +338,7 @@ const LandingPage = () => {
                       onSlideChange={() => console.log("slide change")}
                     >
                       {
-                      flight.data.data.map((data) => (
+                      flight.data.map((data) => (
                         <div className="">
                           <SwiperSlide key={data.id_flight}>
                             <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">

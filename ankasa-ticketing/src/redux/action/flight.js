@@ -12,7 +12,6 @@ import axios from "axios";
 export const getFlight = (handleSuccess) => ({
     type: 'GET_FLIGHT',
     payload: new Promise((resolve, reject) => {
-        console.log('masuk')
         axios.get('http://localhost:3001/flight')
         .then((res) => {
             handleSuccess(res)

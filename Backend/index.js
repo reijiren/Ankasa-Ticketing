@@ -30,8 +30,6 @@ try {
   console.log(err);
 }
 
-// app.use(recipeRouter);
-
 // jalankan express
 app.listen(process.env.PORT, () => {
   console.log("SERVICE IS RUNNING ON PORT 3001");
