@@ -1,15 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "../assets/style.css";
 // import { Link } from "react-router-dom";
 
 const Profiles = () => {
+  const user = useSelector((state) => state.user);
+
   return (
     <>
       <div className="col-md-3 p-5 bg-white m-2 customBorderProfile">
         <div className="row text-center">
           <div className="col-md-12 my-2">
             <img
-              src={require("../assets/images/nnzkZNYWHaU.png")}
+              src={`http://localhost:3001/profile_pic/${user.thisUser.map((data) => data.photo)}`}
               width="100"
               alt=""
               className="mx-auto d-block rounded-circle customBorder"
@@ -19,8 +22,8 @@ const Profiles = () => {
             <button className="btn btn-outline-primary">Select Photo</button>
           </div>
           <div className="col-md-12">
-            <h3 className="text-center">John Doe</h3>
-            <p className="text-muted">Medan, Indonesia</p>
+            <h3 className="text-center">{user.thisUser.map((data) => data.fullname)}</h3>
+            <p className="text-muted">{user.thisUser.map((data) => data.city)} Indonesia</p>
           </div>
           <div className="col-md-12">
             <div className="row">
@@ -34,12 +37,12 @@ const Profiles = () => {
             <div className="card bgBlue text-white">
               <div className="card-body">
                 <div className="row">
-                  <p>4441 1235 5512 5551</p>
+                  <p>{user.thisUser.map((data) => data.credit_card ? data.credit_card : "-")}</p>
                   <div className="col-md-6 text-start">
                     <p>X Card</p>
                   </div>
                   <div className="col-md-6 text-end">
-                    <p>$ 100</p>
+                    <p>$ {user.thisUser.map((data) => data.balance ? data.balance : "-")}</p>
                   </div>
                 </div>
               </div>

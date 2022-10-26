@@ -63,7 +63,7 @@ const bookingModel = {
             db.query(`select * from booking
             join users on booking.id_user = users.id_user
             join flight on booking.id_flight = flight.id_flight
-            where id_user = ${id};`, (err, res) => {
+            where booking.id_user = ${id};`, (err, res) => {
                 if(err){
                     reject(err);
                 }

@@ -11,7 +11,7 @@ const SearchFlights = () => {
 						<h1>Search Flights</h1>
 					</div>
 					<div class="mb-3">
-						<label for="exampleInputEmail1" class="form-label">
+						<label htmlFor="exampleInputEmail1" class="form-label">
 							Search Flights
 						</label>
 						<input
