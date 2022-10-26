@@ -5,7 +5,40 @@ const initialState = {
 };
 
 const airlineReducer = (state = initialState, action) => {
-  switch (action.type) {
+	switch (action.type) {
+		case "INSERT_AIRLINES_PENDING":
+			return { ...state, isLoading: true };
+		case "INSERT_AIRLINES_FULFILLED":
+			return {
+				...state,
+				isLoading: false,
+				// thisUser: action.payload.data.data.rows,
+				airline: action.payload.data.data,
+			};
+		case "INSERT_AIRLINES_REJECTED":
+			return { ...state, isLoading: false, isError: true };
+		case "GET_SEARCH_AIRLINES_PENDING":
+			return { ...state, isLoading: true };
+		case "GET_SEARCH_AIRLINES_FULFILLED":
+			return {
+				...state,
+				isLoading: false,
+				// thisUser: action.payload.data.data.rows,
+				airline: action.payload.data.data,
+			};
+		case "GET_SEARCH_AIRLINES_REJECTED":
+			return { ...state, isLoading: false, isError: true };
+		case "DELETE_AIRLINES_PENDING":
+			return { ...state, isLoading: true };
+		case "DELETE_AIRLINES_FULFILLED":
+			return {
+				...state,
+				isLoading: false,
+				// thisUser: action.payload.data.data.rows,
+				airline: action.payload.data.data,
+			};
+		case "DELETE_AIRLINES_REJECTED":
+			return { ...state, isLoading: false, isError: true };
     case "GET_DETAIL_AIRLINE_PENDING":
       return {
         ...state,
@@ -25,9 +58,9 @@ const airlineReducer = (state = initialState, action) => {
         isError: false,
         airline: action.payload.data,
       };
-    default:
-      return state;
-  }
+		default:
+			return state;
+	}
 };
 
 export default airlineReducer;

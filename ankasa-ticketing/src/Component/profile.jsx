@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import "../assets/style.css";
-// import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updatePhoto } from "../redux/action/user";
 
 const Profiles = () => {
+    const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const data = JSON.parse(localStorage.getItem("userdata"));
+
+  const hiddenFileInput = useRef(null);
+  const handleClick = (event) => {
+    console.log(event);
+    hiddenFileInput.current.click();
+  };
+  const handleChange = (event) => {
+    const fileUploaded = event.target.files[0];
+  };
+
+  const handleSuccess = (data) => {
+    console.log(data);
+    alert("Success");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("photo", e.target.photo.files[0]);
+    console.log(data.id_user);
+    updatePhoto(data.id_user, formData, handleSuccess);
+  };
 
   return (
     <>
@@ -12,18 +37,35 @@ const Profiles = () => {
         <div className="row text-center">
           <div className="col-md-12 my-2">
             <img
-              src={`http://localhost:3001/profile_pic/${user.thisUser.map((data) => data.photo)}`}
+              src={`http://localhost:3001/profile_pic/${user.thisUser.map(
+                (data) => data.photo
+              )}`}
               width="100"
               alt=""
               className="mx-auto d-block rounded-circle customBorder"
             />
           </div>
           <div className="col-md-12 my-2">
-            <button className="btn btn-outline-primary">Select Photo</button>
+            <form action="" onSubmit={handleSubmit}>
+              <button className="btn btn-outline-primary" onClick={handleClick}>
+                Select Photo
+              </button>
+              <input
+                type="file"
+                ref={hiddenFileInput}
+                id="formFile"
+                onChange={(e) => handleChange(e)}
+                style={{ display: "none" }}
+              />
+            </form>
           </div>
           <div className="col-md-12">
-            <h3 className="text-center">{user.thisUser.map((data) => data.fullname)}</h3>
-            <p className="text-muted">{user.thisUser.map((data) => data.city)}, Indonesia</p>
+            <h3 className="text-center">
+              {user.thisUser.map((data) => data.fullname)}
+            </h3>
+            <p className="text-muted">
+              {user.thisUser.map((data) => data.city)} Indonesia
+            </p>
           </div>
           <div className="col-md-12">
             <div className="row">
@@ -37,12 +79,21 @@ const Profiles = () => {
             <div className="card bgBlue text-white">
               <div className="card-body">
                 <div className="row">
-                  <p>{user.thisUser.map((data) => data.credit_card ? data.credit_card : "-")}</p>
+                  <p>
+                    {user.thisUser.map((data) =>
+                      data.credit_card ? data.credit_card : "-"
+                    )}
+                  </p>
                   <div className="col-md-6 text-start">
                     <p>X Card</p>
                   </div>
                   <div className="col-md-6 text-end">
-                    <p>$ {user.thisUser.map((data) => data.balance ? data.balance : "-")}</p>
+                    <p>
+                      ${" "}
+                      {user.thisUser.map((data) =>
+                        data.balance ? data.balance : "-"
+                      )}
+                    </p>
                   </div>
                 </div>
               </div>

@@ -8,11 +8,8 @@ import { getDetailBooking } from "../../redux/action/booking";
 import { getDetailAirline } from "../../redux/action/airline";
 
 const BookingDetail = () => {
-  //get ID from parameter URL
-  // const {id} = useParams();
-
-  const id = 1;
-  const id_airline = 1;
+  // get ID from parameter URL
+  const {id} = useParams();
 
   //untuk get action
   const dispatch = useDispatch();
