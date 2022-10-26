@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./search-result.css";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
@@ -547,7 +548,9 @@ const SeacrhResult = () => {
                         </div>
                       </div>
                       <div className="mt-4 button-select-ticket">
-                        <button>Select</button>
+                        <Link to={`/flight-detail/${data.id_flight}`}>
+                          <button>Select</button>
+                        </Link>
                       </div>
                     </div>
                     <div className="btn-view-detail">

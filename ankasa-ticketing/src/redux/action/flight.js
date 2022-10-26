@@ -38,3 +38,17 @@ export const getFindFlight = (page, body, handleSuccess) => ({
       });
   }),
 });
+
+export const getDetailFlight = (id_flight) => ({
+  type: "GET_DETAIL_FLIGHT",
+  payload: new Promise((resolve, reject) => {
+    axios
+      .get(`http://localhost:3001/flight/detail?id=${id_flight}`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  }),
+});
