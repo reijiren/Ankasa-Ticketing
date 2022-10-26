@@ -15,7 +15,7 @@ const bookingRouter = require("./src/router/booking.routes");
 const app = express();
 
 try {
-  app.use(express.static("assets/airline/"));
+  app.use(express.static("assets"));
   app.use(helmet());
   app.use(bodyParser.json());
   app.use(xss());
