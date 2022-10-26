@@ -1,11 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import "../login/login.css";
-import axios from "axios";
 
 const Forget = () => {
-  // const 
-
-
   return (
     <section>
         <div>
@@ -22,10 +18,13 @@ const Forget = () => {
           </div>
           <form>
             <div className="form-input">
-              <input type="email" name="email" id="email" placeholder="Email" required />
+              <input type="password" name="password" id="password" placeholder="New Password" required />
+            </div>
+            <div className="form-input">
+              <input type="password" name="password2" id="password2" placeholder="Confirm New Password" required />
             </div>
             <div className="text-left mb-3">
-              <button type="submit" className="custom-btn">Next</button>
+              <button type="submit" className="custom-btn">Sign in</button>
             </div>
             <div className="text-center mt-2">
               <p>You’ll get message soon on your email</p><p>

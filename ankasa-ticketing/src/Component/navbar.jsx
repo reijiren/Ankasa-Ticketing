@@ -1,20 +1,20 @@
 import React from "react";
 import "../assets/style.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <>
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg bg-white fixed-top">
-          <a className="navbar-brand ms-10" href="#">
+          <Link className="navbar-brand ms-10" to="/">
             <img
               src={require("../assets/images/vector 02.png")}
               width="30"
               alt="logo"
             />
             Ankasa
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -44,9 +44,13 @@ const Navbar = () => {
               </div>
             </form>
             <div className="navbar-nav me-5 mx-5">
-              <a className="nav-link active mx-5" aria-current="page" href="#">
+              <Link
+                className="nav-link active mx-5"
+                aria-current="page"
+                to="search-result"
+              >
                 Find Ticket
-              </a>
+              </Link>
               <a className="nav-link active mx-5" aria-current="page" href="#">
                 My Booking
               </a>
