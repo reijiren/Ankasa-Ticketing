@@ -10,5 +10,6 @@ const rootReducer = combineReducers({
   // booking: bookingReducer,
   // user: userReducer,
   flight: flightReducer,
+  detailflight: flightReducer,
 });
 export default rootReducer;

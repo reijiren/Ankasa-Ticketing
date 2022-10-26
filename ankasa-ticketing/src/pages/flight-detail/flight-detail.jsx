@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./flight-detail.css";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
+import { getDetailFlight } from "../../redux/action/flight";
 
 const FlightDetail = () => {
+  const userdata = JSON.parse(localStorage.getItem("userdata"));
+  //untuk get action
+  const dispatch = useDispatch();
+
+  const detailflight = useSelector((state) => {
+    return state.detailflight;
+  });
+
+  //get ID from parameter URL
+  const { id_flight } = useParams();
+
+  //hook useEffect
+  useEffect(() => {
+    //panggil method "fetchData"
+    dispatch(getDetailFlight(id_flight));
+  }, []);
+
   return (
     <section>
       {/* Start Navbar */}
@@ -28,7 +48,7 @@ const FlightDetail = () => {
                       </label>
                       <input
                         type="text"
-                        defaultValue="Mike Kowalski"
+                        defaultValue={userdata.fullname}
                         className="form-control"
                       />
                     </div>
@@ -38,7 +58,7 @@ const FlightDetail = () => {
                       </label>
                       <input
                         type="email"
-                        defaultValue="flightbooking@ankasa.com"
+                        defaultValue={userdata.email}
                         className="form-control"
                         id="email"
                       />
@@ -49,7 +69,7 @@ const FlightDetail = () => {
                       </label>
                       <input
                         type="number"
-                        defaultValue="81987654321"
+                        defaultValue={userdata.phone}
                         className="form-control"
                         id="phone"
                       />
@@ -153,6 +173,7 @@ const FlightDetail = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="form-flight-details">
                   <div className="row">
                     <div className="col-auto brand-airplane">
