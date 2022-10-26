@@ -451,7 +451,7 @@ const SeacrhResult = () => {
 
               {/* TICKET */}
               {/* {JSON.stringify(flight)} */}
-              {flight.data.map((data, index) => (
+              {flight.flight.map((data, index) => (
                 <div
                   key={index}
                   className="mt-3 form-select-ticket-search-result"

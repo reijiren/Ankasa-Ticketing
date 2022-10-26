@@ -11,11 +11,11 @@ const LandingPage = () => {
     const dispatch = useDispatch();
     const flight = useSelector((state) => state.flight);
 
-    // let output;
+    let output;
 
     useEffect( () => {
         const handleSuccess = (data) => {
-            // output = JSON.stringify(data);
+            output = JSON.stringify(data)
         }
          dispatch(getFlight(handleSuccess));
     }, []);
@@ -270,32 +270,41 @@ const LandingPage = () => {
               >
                 {/* {JSON.stringify(flight)} */}
                 {
-                flight.data.map((data, i) => (
-                  <SwiperSlide key={data.id_flight}>
-                    <div className="cardSlider">
-                      <div className="cardOverlay" />
-                      <div className="cardImage">
-                        <img src={`http://localhost:3001/airline/${data.logo}`} alt="" className="image" />
-                      </div>
-                      <div className="cardLabel">{data.max_capacity} Airlines</div>
-                      <div className="cardDescription flexRow">
-                        <div className="flexCol flexAuto">
-                          <p>{data.city_departure},</p>
-                          <h4>{data.region_destination}</h4>
+                  flight.isLoading ? (
+                    <h1>Loading</h1>
+                  ) : flight.isError ? (
+                    <h1>Error</h1>
+                  ) : flight.flight == '' ? (
+                    <h1>Data is not found</h1>
+                  ) : (
+                    flight.flight.map((data, i) => (
+                      <SwiperSlide key={data.id_flight}>
+                        <div className="cardSlider">
+                          <div className="cardOverlay" />
+                          <div className="cardImage">
+                            <img src={`http://localhost:3001/airline/${data.logo}`} alt="" className="image" />
+                          </div>
+                          <div className="cardLabel">{data.max_capacity} Airlines</div>
+                          <div className="cardDescription flexRow">
+                            <div className="flexCol flexAuto">
+                              <p>{data.city_departure},</p>
+                              <h4>{data.region_destination}</h4>
+                            </div>
+                            <div>
+                              <button
+                                type="button"
+                                className="customButton"
+                                onClick={() => console.log(data.region_departure)}
+                              >
+                                <i className="fa fa-angle-right wArrow"></i>
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <button
-                            type="button"
-                            className="customButton"
-                            onClick={() => console.log(data.region_departure)}
-                          >
-                            <i className="fa fa-angle-right wArrow"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
+                      </SwiperSlide>
+                    ))
+                  )
+                }
               </Swiper>
             </div>
           ) : (
@@ -338,7 +347,7 @@ const LandingPage = () => {
                       onSlideChange={() => console.log("slide change")}
                     >
                       {
-                      flight.data.map((data) => (
+                      flight.flight.map((data) => (
                         <div className="">
                           <SwiperSlide key={data.id_flight}>
                             <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
