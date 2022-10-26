@@ -36,11 +36,11 @@
     background-color: #FF7F23;
   }
 
-  .details {
+  .view-details {
     margin-left: 400px;
   }
 
-  .details a {
+  .view-details a {
     color: #2395FF;
     font-weight: 500;
     text-decoration: none;
