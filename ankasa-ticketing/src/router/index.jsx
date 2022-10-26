@@ -57,7 +57,7 @@ const Router = () => {
           <Route path="register" element={<Register />} />
           <Route path="forget" element={<Forget />} />
           <Route path="mybook" element={<Mybook />} />
-          <Route path="booking-detail" element={<BookingDetail />} />
+          <Route path="booking-detail/:id" element={<BookingDetail />} />
           <Route path="search-result" element={<SeacrhResult />} />
           <Route path="forget-password" element={<ForgetPassword />} />
         </Route>
