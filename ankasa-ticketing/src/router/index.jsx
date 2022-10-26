@@ -15,6 +15,7 @@ import Forget from "../pages/forget/forget";
 import Mybook from "../pages/mybooking/mybooking";
 import SeacrhResult from "../pages/search-result/search-result";
 import Explore from "../pages/explore/explore";
+import ForgetPassword from "../pages/forgetpassword/forgetpassword";
 
 import ScrollToTop from "../Component/ScrollToTop";
 
@@ -55,6 +56,7 @@ const Router = () => {
           <Route path="mybook" element={<Mybook />} />
           <Route path="booking-detail" element={<BookingDetail />} />
           <Route path="search-result" element={<SeacrhResult />} />
+          <Route path="forget-password" element={<ForgetPassword />} />
         </Route>
       </Routes>
     </BrowserRouter>

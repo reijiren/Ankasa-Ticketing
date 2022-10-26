@@ -5,7 +5,7 @@ import Navbar from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
-// import { getFlight } from "../../redux/action/flight";
+import { getFlight } from "../../redux/action/flight";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
