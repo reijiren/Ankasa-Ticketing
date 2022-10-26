@@ -26,12 +26,12 @@ const bookingReducer = (state = initialState, action) => {
         booking: action.payload.data.data,
       };
     case "ADD_BOOKING_PENDING":
-    return {
+      return {
         ...state,
         isLoading: true,
         isError: false,
       };
-      
+
     case "GET_MY_BOOKING_PENDING":
       return {
         ...state,
@@ -39,7 +39,7 @@ const bookingReducer = (state = initialState, action) => {
         isError: false,
       };
     case "ADD_BOOKING_REJECTED":
-    return {
+      return {
         ...state,
         isLoading: false,
         isError: true,
@@ -51,11 +51,10 @@ const bookingReducer = (state = initialState, action) => {
         isError: true,
       };
     case "ADD_BOOKING_FULFILLED":
-    return {
+      return {
         ...state,
         isLoading: false,
         isError: false,
-        booking: action.payload.data.data,
       };
     case "GET_MY_BOOKING_FULFILLED":
       return {
