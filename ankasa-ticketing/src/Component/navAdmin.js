@@ -49,11 +49,14 @@ const NavAdmin = () => {
 									</button>
 									<div className="collapse" id="airlines">
 										<div className="card card-body">
-											<Link className="side-link" to="insert-airlines">
+											<Link
+												className="side-link mid"
+												to="/admin/search-airlines">
+												Search Airlines
+											</Link>
+											<Link className="side-link" to="/admin/insert-airlines">
 												Insert Airlines
 											</Link>
-											<Link className="side-link mid">Update Airlines</Link>
-											<Link className="side-link">Delete Airlines</Link>
 										</div>
 									</div>
 								</div>
@@ -69,9 +72,14 @@ const NavAdmin = () => {
 									</button>
 									<div className="collapse" id="flight">
 										<div className="card card-body">
-											<Link className="side-link">Insert Flights</Link>
-											<Link className="side-link mid">Update Flight</Link>
-											<Link className="side-link">Delete Flights</Link>
+											<Link
+												className="side-link mid"
+												to="/admin/search-flights">
+												Search Flight
+											</Link>
+											<Link className="side-link" to="/admin/insert-flights">
+												Insert Flights
+											</Link>
 										</div>
 									</div>
 								</div>
@@ -87,8 +95,9 @@ const NavAdmin = () => {
 									</button>
 									<div className="collapse" id="user">
 										<div className="card card-body">
-											<Link className="side-link mid">Update User Data</Link>
-											<Link className="side-link">Delete User</Link>
+											<Link className="side-link mid" to="/admin/search-user">
+												Search User
+											</Link>
 										</div>
 									</div>
 								</div>

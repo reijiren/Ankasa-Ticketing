@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import BookingDetail from "../pages/booking-detail/booking-detail";
 import FlightDetail from "../pages/flight-detail/flight-detail";
 import Profile from "../pages/profile/Profile";
@@ -11,9 +11,15 @@ import SeacrhResult from "../pages/search-result/search-result";
 import Explore from "../pages/explore/explore";
 import HomeAdmin from "../pages/admin-home";
 import LoginAdmin from "../pages/login-admin/loginAdmin";
-import InsertAirlines from "../pages/admin-insert/insertFlight";
+import InsertAirlines from "../pages/admin-insertAirlines/insertAirlines";
+import UpdateAirlines from "../pages/admin-updateAirlines/updateAirlines";
+import SearchAirlines from "../pages/admin-searchAirlines/searchAirlines";
+import InsertFlight from "../pages/admin-insertFlight/insertFlight";
+import SearchFlights from "../pages/admin-searchFlights/searchFlights";
+import UpdateFlights from "../pages/admin-updateFlights/updateFlights";
+import SearchUser from "../pages/admin-searchUser/searchUser";
 
-import ScrollToTop from "../component/ScrollToTop";
+import ScrollToTop from "../Component/ScrollToTop";
 
 const PrivateRoute = () => {
   const token = localStorage.getItem('token');
@@ -57,6 +63,12 @@ const Router = () => {
 					<Route index element={<HomeAdmin />} />
           <Route path="login" element={<LoginAdmin />} />
           <Route path="insert-airlines" element={<InsertAirlines />} />
+          <Route path="update-airlines" element={<UpdateAirlines />} />
+          <Route path="search-airlines" element={<SearchAirlines />} />
+          <Route path="insert-flights" element={<InsertFlight />} />
+          <Route path="update-flights" element={<UpdateFlights />} />
+          <Route path="search-flights" element={<SearchFlights />} />
+          <Route path="search-user" element={<SearchUser />} />
 				</Route>
       </Routes>
     </BrowserRouter>

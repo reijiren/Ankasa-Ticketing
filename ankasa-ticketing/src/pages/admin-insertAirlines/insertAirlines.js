@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import NavAdmin from "../../Component/navAdmin";
 
 const InsertAirlines = () => {
+	// const [form, setForm] = useState({
+	// 	name: "",
+	// });
+
+	// const [addImage, setAddImage] = useState()
+
+	// const onSubmit = (e) => {
+	// 	e.preventDefault()
+
+	// 	let inputForm = new FormData
+	// }
+
 	return (
 		<div>
 			<NavAdmin />
