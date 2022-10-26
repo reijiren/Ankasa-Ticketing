@@ -12,10 +12,10 @@ const SeacrhResult = () => {
   const [ticket, setTicket] = useState([]);
 
   const flight = useSelector((state) => {
-    return state.flight
-  })
+    return state.flight;
+  });
 
-  const [sort, setSort] = useState('desc')
+  const [sort, setSort] = useState("desc");
   //SORT ORDER
   const handlesortOrd = (body) => {
     if (sort == "desc") {
@@ -24,7 +24,6 @@ const SeacrhResult = () => {
       setSort("desc");
     }
   };
-
 
   useEffect(() => {
     const body = {
@@ -35,8 +34,8 @@ const SeacrhResult = () => {
     };
     const handleSuccess = (data) => {
       setTicket(data);
-    }
-    dispatch(getFindFlight(page, body, handleSuccess))
+    };
+    dispatch(getFindFlight(page, body, handleSuccess));
   }, []);
 
   const NextPage = () => {
@@ -52,7 +51,7 @@ const SeacrhResult = () => {
     }
   };
 
-      //SORTING
+  //SORTING
   // const handlesortOrd = () => {
   //   if (sort == "id") {
   //     setSort("title");
@@ -412,7 +411,9 @@ const SeacrhResult = () => {
                     </h5>
                   </div>
                   <div className="col-auto">
-                    <span className="text-secondary">({Object.keys(flight.data).length} flight found)</span>
+                    <span className="text-secondary">
+                      ({Object.keys(flight.data).length} flight found)
+                    </span>
                   </div>
                   <div className="col-auto sorting-title-select-ticket-search-result">
                     <div className="row">
@@ -430,14 +431,14 @@ const SeacrhResult = () => {
                           class="dropdown-menu dropdown-menu"
                           aria-labelledby="sorting"
                         >
-                        <li>
-                      <a
-                        class="dropdown-item"
-                        onClick={() => handlesortOrd()}
-                      >
-                        {sort}
-                      </a>
-                    </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              onClick={() => handlesortOrd()}
+                            >
+                              {sort}
+                            </a>
+                          </li>
                           <li>
                             <a class="dropdown-item" onClick="">
                               Price
@@ -464,7 +465,9 @@ const SeacrhResult = () => {
                   <div className="select-ticket-search-result">
                     <div className="row">
                       <div className="col-auto">
-                        <img src={`http://localhost:3001/airline/${data.logo}`} />
+                        <img
+                          src={`http://localhost:3001/airline/${data.logo}`}
+                        />
                       </div>
                       <div className="col-auto name-airplane-select-ticket">
                         <span className="text-secondary">{data.name}</span>
@@ -560,35 +563,40 @@ const SeacrhResult = () => {
                         <div className="mt-3 view-detail-ticket">
                           <div className="row">
                             <div className="col-md-6 view-detail-ticket-left">
-                            <div className="text-secondary">
-                              <h6>Ticket Detail</h6>
-                            </div>
+                              <div className="text-secondary">
+                                <h6>Ticket Detail</h6>
+                              </div>
                               <p className="text-secondary">
                                 Airline : {data.name}
                               </p>
                               <p className="text-secondary">
-                                City Departure : {data.city_departure} - {data.region_departure}
+                                City Departure : {data.city_departure} -{" "}
+                                {data.region_departure}
                               </p>
                               <p className="text-secondary">
-                                City Destination : {data.city_destination} - {data.region_destination}
+                                City Destination : {data.city_destination} -{" "}
+                                {data.region_destination}
                               </p>
                               <p className="text-secondary">
-                                Time estimation : {data.time_departure} - {data.time_arrived}
+                                Time estimation : {data.time_departure} -{" "}
+                                {data.time_arrived}
                               </p>
                               <p className="text-secondary">
-                                Transit : {data.transit === 0
-                                ? "Direct"
-                                : data.transit === 1
-                                ? "1 transit"
-                                : "2 transit"}
+                                Transit :{" "}
+                                {data.transit === 0
+                                  ? "Direct"
+                                  : data.transit === 1
+                                  ? "1 transit"
+                                  : "2 transit"}
                               </p>
                             </div>
                             <div className="col-md-6 view-detail-ticket-right">
-                            <div className="text-secondary">
-                              <h6>Facilities</h6>
-                            </div>
-                            <p className="text-secondary">
-                                Refundable : {data.refundable === 1 ? "Yes" : "No"}
+                              <div className="text-secondary">
+                                <h6>Facilities</h6>
+                              </div>
+                              <p className="text-secondary">
+                                Refundable :{" "}
+                                {data.refundable === 1 ? "Yes" : "No"}
                               </p>
                               <p className="text-secondary">
                                 Luggage : {data.luggage === 1 ? "Yes" : "No"}
@@ -600,7 +608,8 @@ const SeacrhResult = () => {
                                 Wifi : {data.wifi === 1 ? "Yes" : "No"}
                               </p>
                               <p className="text-secondary">
-                                Insurance : {data.insurance === 1 ? "Yes" : "No"}
+                                Insurance :{" "}
+                                {data.insurance === 1 ? "Yes" : "No"}
                               </p>
                             </div>
                           </div>
