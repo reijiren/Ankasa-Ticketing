@@ -5,7 +5,7 @@ const initialState = {
 }
 
 const airlineReducer = (state = initialState, action) => {
-
+    
 }
 
 export default airlineReducer;

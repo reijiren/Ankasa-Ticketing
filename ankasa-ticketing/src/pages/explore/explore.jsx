@@ -347,28 +347,36 @@ const LandingPage = () => {
                       onSlideChange={() => console.log("slide change")}
                     >
                       {
-                      flight.flight.map((data) => (
-                        <div className="">
-                          <SwiperSlide key={data.id_flight}>
-                            <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
-                              <div className="row">
-                                <div className="col-md-12 story">
-                                  <img
-                                    // src="jakarta.png"
-                                    // src={data.img}
-                                    src={`http://localhost:3001/airline/${data.logo}`}
-                                    alt="wrapkit"
-                                    className="imgCustom rounded-circle"
-                                  />
-                                  <h5 className="mt-4 text-center">
-                                    {data.region_destination}
-                                  </h5>
+                        flight.isLoading ? (
+                          <h1>Loading</h1>
+                        ) : flight.isError ? (
+                          <h1>Error</h1>
+                        ) : flight.flight == '' ? (
+                          <h1>Data is not found</h1>
+                        ) : (
+                          flight.flight.map((data) => (
+                            <div className="">
+                              <SwiperSlide key={data.id_flight}>
+                                <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
+                                  <div className="row">
+                                    <div className="col-md-12 story">
+                                      <img
+                                        // src="jakarta.png"
+                                        // src={data.img}
+                                        src={`http://localhost:3001/airline/${data.logo}`}
+                                        alt="wrapkit"
+                                        className="imgCustom rounded-circle"
+                                      />
+                                      <h5 className="mt-4 text-center">
+                                        {data.region_destination}
+                                      </h5>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
+                              </SwiperSlide>
                             </div>
-                          </SwiperSlide>
-                        </div>
-                      ))}
+                          
+                      )))}
                     </Swiper>
                   </div>
                 ) : (
