@@ -14,16 +14,25 @@ const SeacrhResult = () => {
   const flight = useSelector((state) => {
     return state.flight
   })
-  
-  // const { page } = useParams();
+
+  const [sort, setSort] = useState('desc')
+  //SORT ORDER
+  const handlesortOrd = (body) => {
+    if (sort == "desc") {
+      setSort("asc");
+    } else {
+      setSort("desc");
+    }
+  };
+
+
   useEffect(() => {
     const body = {
-      limit: 2,
+      limit: 3,
       sortBy: "name",
-      sortOrd: "asc",
+      sortOrd: sort,
       data: {},
     };
-    console.log(body);
     const handleSuccess = (data) => {
       setTicket(data);
     }
@@ -43,7 +52,7 @@ const SeacrhResult = () => {
     }
   };
 
-  // // /SORTING
+      //SORTING
   // const handlesortOrd = () => {
   //   if (sort == "id") {
   //     setSort("title");
@@ -52,17 +61,6 @@ const SeacrhResult = () => {
   //   }
   //   dispatch(getPagination(sort, asc, 3, page));
   // };
-
-  //ASCENDING
-  // const handleSortingAsc = () => {
-  //   if (sortBy == "asc") {
-  //     setAsc("desc");
-  //   } else {
-  //     setAsc("asc");
-  //   }
-  //   dispatch(getPagination(sort, asc, 3, page));
-  // };
-
   return (
     <section>
       {/* Start Navbar */}
@@ -414,7 +412,7 @@ const SeacrhResult = () => {
                     </h5>
                   </div>
                   <div className="col-auto">
-                    <span className="text-secondary">(6 flight found)</span>
+                    <span className="text-secondary">({Object.keys(flight.data).length} flight found)</span>
                   </div>
                   <div className="col-auto sorting-title-select-ticket-search-result">
                     <div className="row">
@@ -432,6 +430,14 @@ const SeacrhResult = () => {
                           class="dropdown-menu dropdown-menu"
                           aria-labelledby="sorting"
                         >
+                        <li>
+                      <a
+                        class="dropdown-item"
+                        onClick={() => handlesortOrd()}
+                      >
+                        {sort}
+                      </a>
+                    </li>
                           <li>
                             <a class="dropdown-item" onClick="">
                               Price
@@ -450,7 +456,6 @@ const SeacrhResult = () => {
               </div>
 
               {/* TICKET */}
-              {/* {JSON.stringify(flight)} */}
               {flight.data.map((data, index) => (
                 <div
                   key={index}
@@ -459,7 +464,7 @@ const SeacrhResult = () => {
                   <div className="select-ticket-search-result">
                     <div className="row">
                       <div className="col-auto">
-                        <img src={`http://localhost:3001/${data.logo}`} />
+                        <img src={`http://localhost:3001/airline/${data.logo}`} />
                       </div>
                       <div className="col-auto name-airplane-select-ticket">
                         <span className="text-secondary">{data.name}</span>
