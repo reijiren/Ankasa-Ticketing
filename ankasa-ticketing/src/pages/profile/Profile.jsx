@@ -5,31 +5,19 @@ import Navbar from "../../Component/navbar";
 import Profiles from "../../Component/profile";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../redux/action/user";
+import { json } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 const Profile = () => {
-  const user = useSelector((state) => state.thisUser);
-  // console.log(user)
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const data = (JSON.parse(localStorage.getItem("userdata")));
-  console.log(data.id_user)
+  
   useEffect(() => {
-    const handleSuccess = (data) => {
-      console.log(data);
-    }
-    dispatch(getUser(data.id_user, handleSuccess));
+    // const handleSuccess = (data) => {};
+    // dispatch(getUser(data.id_user, handleSuccess));
   }, []);
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:3001/user/${id_user}`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
+ 
   const onSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -37,8 +25,7 @@ const Profile = () => {
   };
   return (
     <div className="body">
-      <h1>{JSON.stringify(user)} ya</h1>
-      {/* <Navbar />
+      <Navbar />
       <main className="bg-light">
         <section className="container-fluid p-5 customMainProfile">
           <div className="row">
@@ -51,7 +38,7 @@ const Profile = () => {
                   <div className="col-md-6">
                     <h5 className="mb-4">Contact</h5>
                     <div>
-                      <label for="inputEmail" className="form-label text-muted">
+                      <label htmlFor="inputEmail" className="form-label text-muted">
                         Email
                       </label>
                       <input
@@ -60,12 +47,18 @@ const Profile = () => {
                         id="inputEmail"
                         placeholder="email@gmail.com"
                         name="email"
-                        value={user.email}
+                        defaultValue={
+                          user.isLoading ? (
+                            "Loading..."
+                          ) : (
+                            user.thisUser.map((data) => {return data.email})
+                          )
+                        }
                       />
                       <hr />
                     </div>
                     <div>
-                      <label for="inputPhone" className="form-label text-muted">
+                      <label htmlFor="inputPhone" className="form-label text-muted">
                         Phone Number
                       </label>
                       <input
@@ -73,7 +66,13 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputPhone"
                         placeholder="08123456789"
-                        defaultValue={user.phone}
+                        defaultValue={
+                          user.isLoading ? (
+                            "Loading..."
+                          ) : (
+                            user.thisUser.map((data) => {return data.phone})
+                          )
+                        }
                       />
                       <hr />
                     </div>
@@ -87,7 +86,7 @@ const Profile = () => {
                     <h5 className="mb-4">Biodata</h5>
                     <div>
                       <label
-                        for="inputUsername"
+                        htmlFor="inputUsername"
                         className="form-label text-muted"
                       >
                         Username
@@ -97,12 +96,18 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputUsername"
                         placeholder="John Doe"
-                        value={user.username}
+                        defaultValue={
+                          user.isLoading ? (
+                            "Loading..."
+                          ) : (
+                            user.thisUser.map((data) => {return data.username})
+                          )
+                        }
                       />
                       <hr />
                     </div>
                     <div>
-                      <label for="inputCity" className="form-label text-muted">
+                      <label htmlFor="inputCity" className="form-label text-muted">
                         City
                       </label>
                       <div className="col-md-6 w-100">
@@ -120,7 +125,7 @@ const Profile = () => {
                     </div>
                     <div>
                       <label
-                        for="inputAddress"
+                        htmlFor="inputAddress"
                         className="form-label text-muted"
                       >
                         Address
@@ -130,13 +135,19 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputAddress"
                         placeholder="Jl. Sisingamangaraja No. 45"
-                        value={user.address}
+                        defaultValue={
+                          user.isLoading ? (
+                            "Loading..."
+                          ) : (
+                            user.thisUser.map((data) => {return data.address})
+                          )
+                        }
                       />
                       <hr />
                     </div>
                     <div>
                       <label
-                        for="inputPostCode"
+                        htmlFor="inputPostCode"
                         className="form-label text-muted"
                       >
                         Pos Code
@@ -146,7 +157,13 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputPostCode"
                         placeholder="21***"
-                        defaultValue={user.post_code}
+                        defaultValue={
+                          user.isLoading ? (
+                            "Loading..."
+                          ) : (
+                            user.thisUser.map((data) => {return data.post_code})
+                          )
+                        }
                       />
                       <hr />
                     </div>
@@ -160,7 +177,7 @@ const Profile = () => {
           </div>
         </section>
       </main>
-      <Footer /> */}
+      <Footer />
     </div>
   );
 };

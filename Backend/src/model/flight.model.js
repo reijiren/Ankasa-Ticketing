@@ -152,6 +152,13 @@ const flightModel = {
                 : ""
             }
             ${
+              data.city_departure
+                ? `lower(city_departure) like lower('%${data.city_departure}%') ${
+                    counter < max ? addCount() : ""
+                  }`
+                : ""
+            }
+            ${
               data.airlineName
                 ? `lower(name) like lower('%${data.airlineName}%')`
                 : ""
