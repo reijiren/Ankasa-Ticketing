@@ -28,21 +28,17 @@ const SearchFlights = () => {
 					<div className={`text-center`}>
 						<h1>Search Flights</h1>
 					</div>
-					<form onSubmit={(e) => onSubmit(e)}>
-						<div class="mb-3">
-							<label for="exampleInputEmail1" class="form-label">
-								Search Flights
-							</label>
-							<input
-								type="text"
-								class="form-control"
-								id="exampleInputEmail1"
-								aria-describedby="emailHelp"
-								onChange={(e) => setIdFlight(e.target.value)}
-							/>
-						</div>
-					</form>
-					<SearchFlightDetail />
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label">
+							Search Flights
+						</label>
+						<input
+							type="email"
+							class="form-control"
+							id="exampleInputEmail1"
+							aria-describedby="emailHelp"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

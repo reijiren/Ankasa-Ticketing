@@ -24,7 +24,7 @@ userRouter
 	.get("/user/:id", getUserId)
 	.get("/user", jwtAuth, isAdmin, getAllUser)
 	.get("/search/:username", searchUser)
-	.get("/user/findemail:email", searchEmail)
+	.get("/user/findemail/:email", searchEmail)
 	.post("/register", register)
 	.put("/user/update/:id", updateUser)
 	.put(

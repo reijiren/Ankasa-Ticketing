@@ -8,7 +8,6 @@ import { getFindFlight } from "../../redux/action/flight";
 
 const SeacrhResult = () => {
   const [page, setPage] = useState(1);
-  const [counter, setCounter] = useState(1);
   const dispatch = useDispatch();
   const [ticket, setTicket] = useState([]);
 
@@ -16,19 +15,16 @@ const SeacrhResult = () => {
     return state.flight;
   });
 
+  // SORTING ASCENDING - DESCENDING
   const [sort, setSort] = useState("desc");
-  //SORT ORDER
-  const handlesortOrd = (body) => {
+  const handlesortOrd = () => {
     if (sort == "desc") {
       setSort("asc");
     } else {
       setSort("desc");
     }
-  };
-
-  useEffect(() => {
     const body = {
-      limit: 3,
+      limit: 2,
       sortBy: "name",
       sortOrd: sort,
       data: {},
@@ -37,30 +33,72 @@ const SeacrhResult = () => {
       setTicket(data);
     };
     dispatch(getFindFlight(page, body, handleSuccess));
-  }, []);
+  };
+
+  //SORT ORDER PRICE
+  // const [price, setPrice] = useState(price.min);
+  // const handlesorPrice = () => {
+  //   if (price == price.min) {
+  //     setPrice(price.max);
+  //   } else {
+  //     setPrice(price.min);
+  //   }
+  //   const body = {
+  //     limit: 2,
+  //     sortBy: "name",
+  //     sortOrd: sort,
+  //     price,
+  //     data: {},
+  //   };
+  //   const handleSuccess = (data) => {
+  //     setTicket(data);
+  //   };
+  //   dispatch(getFindFlight(page, body, handleSuccess));
+  // };
+
+  useEffect(() => {
+    const body = {
+      limit: 2,
+      sortBy: "name",
+      sortOrd: sort,
+      data: {},
+    };
+    const handleSuccess = (data) => {
+      setTicket(data);
+    };
+    dispatch(getFindFlight(page, body, handleSuccess));
+  }, [page, sort]);
 
   const NextPage = () => {
     setPage(page + 1);
-    // getDataFindFLight(2, page, sortBy, sortOrd, data);
-    console.log(page);
+    const body = {
+      limit: 2,
+      sortBy: "name",
+      sortOrd: "asc",
+      data: {},
+    };
+    const handleSuccess = (data) => {
+      setTicket(data);
+    };
+    dispatch(getFindFlight(page, body, handleSuccess));
   };
 
   const PreviousPage = () => {
     if (page > 1) {
       setPage(page - 1);
-      // dispatch(getDataFindFLight(2, page, sortBy, sortOrd, data));
+      const body = {
+        limit: 2,
+        sortBy: "name",
+        sortOrd: "asc",
+        data: {},
+      };
+      const handleSuccess = (data) => {
+        setTicket(data);
+      };
+      dispatch(getFindFlight(page - 1, body, handleSuccess));
     }
   };
 
-  //SORTING
-  // const handlesortOrd = () => {
-  //   if (sort == "id") {
-  //     setSort("title");
-  //   } else {
-  //     setSort("id");
-  //   }
-  //   dispatch(getPagination(sort, asc, 3, page));
-  // };
   return (
     <section>
       {/* Start Navbar */}
@@ -76,60 +114,62 @@ const SeacrhResult = () => {
               />
             </div>
             <div className="col-md-8 search-container-fluid-search-result">
-              <div className="row">
-                <div className="col-auto icon-airplane">
-                  <img
-                    className=""
-                    src={require("../../assets/images/icon airplane.png")}
-                  />
-                </div>
-                <div className="col-auto input-from">
-                  <div>
-                    <span>From</span>
+              <form>
+                <div className="row">
+                  <div className="col-auto icon-airplane">
+                    <img
+                      className=""
+                      src={require("../../assets/images/icon airplane.png")}
+                    />
                   </div>
-                  <div>
-                    <input placeholder="Medan (IDN)" />
+                  <div className="col-auto input-from">
+                    <div>
+                      <span>From</span>
+                    </div>
+                    <div>
+                      <input placeholder="Medan (IDN)" />
+                    </div>
+                    <div></div>
                   </div>
-                  <div></div>
-                </div>
-                <div className="col-auto icon-switch">
-                  <img
-                    className=""
-                    src={require("../../assets/images/Vector (4).png")}
-                  />
-                </div>
-                <div className="col-auto input-to">
-                  <div>
-                    <span>To</span>
+                  <div className="col-auto icon-switch">
+                    <img
+                      className=""
+                      src={require("../../assets/images/Vector (4).png")}
+                    />
                   </div>
-                  <div>
-                    <input placeholder="Tokyo (JPN)" />
-                  </div>
-                </div>
-                <div className="mt-1 result-search">
-                  <div className="row">
-                    <div className="col-auto">
-                      <p className="date">Monday, 20 July 20</p>
+                  <div className="col-auto input-to">
+                    <div>
+                      <span>To</span>
                     </div>
-                    <div className="col-auto icon-hole">
-                      <img
-                        src={require("../../assets/images/Ellipse 36.png")}
-                      />
-                    </div>
-                    <div className="col-auto">
-                      <p className="passenger">6 Passenger</p>
-                    </div>
-                    <div className="col-auto icon-hole">
-                      <img
-                        src={require("../../assets/images/Ellipse 36.png")}
-                      />
-                    </div>
-                    <div className="col-auto">
-                      <p className="class">First Economy</p>
+                    <div>
+                      <input placeholder="Tokyo (JPN)" />
                     </div>
                   </div>
+                  <div className="mt-1 result-search">
+                    <div className="row">
+                      <div className="col-auto">
+                        <p className="date">Monday, 20 July 20</p>
+                      </div>
+                      <div className="col-auto icon-hole">
+                        <img
+                          src={require("../../assets/images/Ellipse 36.png")}
+                        />
+                      </div>
+                      <div className="col-auto">
+                        <p className="passenger">6 Passenger</p>
+                      </div>
+                      <div className="col-auto icon-hole">
+                        <img
+                          src={require("../../assets/images/Ellipse 36.png")}
+                        />
+                      </div>
+                      <div className="col-auto">
+                        <p className="class">First Economy</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
             <div className="col-md-2 bottom-container-fluid-search-result">
               <button>Change Search</button>
@@ -177,11 +217,7 @@ const SeacrhResult = () => {
                         <span>Garuda Indnesia</span>
                       </div>
                       <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          name=""
-                        />
+                        <input className="form-check-input" type="checkbox" />
                       </div>
                       <div className="mt-2 col-md-10">
                         <span>Lion Air</span>
@@ -437,17 +473,7 @@ const SeacrhResult = () => {
                               class="dropdown-item"
                               onClick={() => handlesortOrd()}
                             >
-                              {sort}
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" onClick="">
-                              Price
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" onClick="">
-                              Facilities
+                              {sort.toUpperCase()}
                             </a>
                           </li>
                         </ul>
@@ -459,170 +485,207 @@ const SeacrhResult = () => {
 
               {/* TICKET */}
               {/* {JSON.stringify(flight)} */}
-              {flight.flight.map((data, index) => (
-                <div
-                  key={index}
-                  className="mt-3 form-select-ticket-search-result"
-                >
-                  <div className="select-ticket-search-result">
-                    <div className="row">
-                      <div className="col-auto">
-                        <img
-                          src={`http://localhost:3001/airline/${data.logo}`}
-                        />
-                      </div>
-                      <div className="col-auto name-airplane-select-ticket">
-                        <span className="text-secondary">{data.name}</span>
-                      </div>
-                    </div>
-                    <div className="mt-4 row">
-                      <div className="col-auto">
-                        <h4>
-                          <b>{data.city_departure}</b>
-                        </h4>
-                        <span className="text-secondary">
-                          {data.time_departure}
-                        </span>
-                      </div>
-                      <div className="col-auto">
-                        <img src={require("../../assets/images/Vector.png")} />
-                      </div>
-                      <div className="col-auto">
-                        <h4>
-                          <b>{data.city_destination}</b>
-                        </h4>
-                        <span className="text-secondary">
-                          {data.time_arrived}
-                        </span>
-                      </div>
-                      <div className="col-auto">
-                        <div className="row">
-                          <div className="col-auto">
-                            <span className="text-secondary">
-                              3 hours 11 minutes
-                            </span>
-                          </div>
-                          <div>
-                            <span className="text-secondary">
-                              {data.transit === 0
-                                ? "Direct"
-                                : data.transit === 1
-                                ? "1 transit"
-                                : "2 transit"}
-                            </span>
-                          </div>
+              {flight.flight == "" ? (
+                <span className="text-center text-secondary">
+                  Data not found!
+                </span>
+              ) : (
+                flight.flight.map((data, index) => (
+                  <div
+                    key={index}
+                    className="mt-3 form-select-ticket-search-result"
+                  >
+                    <div className="select-ticket-search-result">
+                      <div className="row">
+                        <div className="col-auto logo-airline">
+                          <img
+                            src={`http://localhost:3001/airline/${data.logo}`}
+                          />
+                        </div>
+                        <div className="col-auto name-airplane-select-ticket">
+                          <span className="text-secondary">{data.name}</span>
                         </div>
                       </div>
-                      <div className="col-auto facility-select-ticket">
-                        <div className="row">
-                          <div className="col-auto facility-select-ticket-bag">
-                            {data.luggage === 1 && (
-                              <img
-                                src={require("../../assets/images/Vector (1).png")}
-                              />
-                            )}
-                          </div>
-                          <div className="col-auto facility-select-ticket-food">
-                            {data.inflight_meal === 1 && (
-                              <img
-                                src={require("../../assets/images/Vector (2).png")}
-                              />
-                            )}
-                          </div>
-                          <div className="col-auto facility-select-ticket-wifi">
-                            {data.wifi === 1 && (
-                              <img
-                                src={require("../../assets/images/Vector (3).png")}
-                              />
-                            )}
-                          </div>
+                      <div className="mt-4 row">
+                        <div className="col-auto">
+                          <h4>
+                            <b>{data.city_departure}</b>
+                          </h4>
+                          <span className="text-secondary">
+                            {String(data.time_departure).slice(0, 5)}
+                          </span>
                         </div>
-                      </div>
-                      <div className="col-auto">
-                        <div className="row">
-                          <div className="col-auto count-select-ticket">
-                            <h6>Rp.{data.price}</h6>
-                          </div>
-                          <div className="col-auto pax-select-ticket">
-                            <span className="text-secondary">/pax</span>
-                          </div>
+                        <div className="col-auto">
+                          <img
+                            src={require("../../assets/images/Vector.png")}
+                          />
                         </div>
-                      </div>
-                      <div className="mt-4 button-select-ticket">
-                        <Link to={`/flight-detail/${data.id_flight}`}>
-                          <button>Select</button>
-                        </Link>
-                      </div>
-                    </div>
-                    <div className="btn-view-detail">
-                      <button
-                        type="button"
-                        className="mt-3 btn btn-info"
-                        data-bs-toggle="collapse"
-                        data-bs-target={`#demo${index}`}
-                      >
-                        View Details <i className="fa fa-sort-down" />
-                      </button>
-                      <div id={`demo${index}`} className="collapse">
-                        <div className="mt-3 view-detail-ticket">
+                        <div className="col-auto">
+                          <h4>
+                            <b>{data.city_destination}</b>
+                          </h4>
+                          <span className="text-secondary">
+                            {String(data.time_arrived).slice(0, 5)}
+                          </span>
+                        </div>
+                        <div className="col-auto">
                           <div className="row">
-                            <div className="col-md-6 view-detail-ticket-left">
-                              <div className="text-secondary">
-                                <h6>Ticket Detail</h6>
-                              </div>
-                              <p className="text-secondary">
-                                Airline : {data.name}
-                              </p>
-                              <p className="text-secondary">
-                                City Departure : {data.city_departure} -{" "}
-                                {data.region_departure}
-                              </p>
-                              <p className="text-secondary">
-                                City Destination : {data.city_destination} -{" "}
-                                {data.region_destination}
-                              </p>
-                              <p className="text-secondary">
-                                Time estimation : {data.time_departure} -{" "}
-                                {data.time_arrived}
-                              </p>
-                              <p className="text-secondary">
-                                Transit :{" "}
+                            <div className="col-auto">
+                              <span className="text-secondary">
+                                3 hours 11 minutes
+                              </span>
+                            </div>
+                            <div>
+                              <span className="text-secondary">
                                 {data.transit === 0
                                   ? "Direct"
                                   : data.transit === 1
                                   ? "1 transit"
                                   : "2 transit"}
-                              </p>
+                              </span>
                             </div>
-                            <div className="col-md-6 view-detail-ticket-right">
-                              <div className="text-secondary">
-                                <h6>Facilities</h6>
+                          </div>
+                        </div>
+                        <div className="col-auto facility-select-ticket">
+                          <div className="row">
+                            <div className="col-auto facility-select-ticket-bag">
+                              {data.luggage === 1 && (
+                                <img
+                                  src={require("../../assets/images/Vector (1).png")}
+                                />
+                              )}
+                            </div>
+                            <div className="col-auto facility-select-ticket-food">
+                              {data.inflight_meal === 1 && (
+                                <img
+                                  src={require("../../assets/images/Vector (2).png")}
+                                />
+                              )}
+                            </div>
+                            <div className="col-auto facility-select-ticket-wifi">
+                              {data.wifi === 1 && (
+                                <img
+                                  src={require("../../assets/images/Vector (3).png")}
+                                />
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-auto">
+                          <div className="row">
+                            <div className="col-auto count-select-ticket">
+                              <h6>${String(data.price / 15000).slice(0, 7)}</h6>
+                            </div>
+                            <div className="col-auto pax-select-ticket">
+                              <span className="text-secondary">/pax</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="mt-4 button-select-ticket">
+                          <Link to={`/flight-detail/${data.id_flight}`}>
+                            <button>Select</button>
+                          </Link>
+                        </div>
+                      </div>
+                      <div className="btn-view-detail">
+                        <button
+                          type="button"
+                          className="mt-3 btn btn-info"
+                          data-bs-toggle="collapse"
+                          data-bs-target={`#demo${index}`}
+                        >
+                          View Details <i className="fa fa-sort-down" />
+                        </button>
+                        <div id={`demo${index}`} className="collapse">
+                          <div className="mt-3 view-detail-ticket">
+                            <div className="row">
+                              <div className="col-md-6 view-detail-ticket-left">
+                                <div className="text-secondary">
+                                  <h6>Ticket Detail</h6>
+                                </div>
+                                <p className="text-secondary">
+                                  Airline : {data.name}
+                                </p>
+                                <p className="text-secondary">
+                                  City Departure : {data.city_departure} -{" "}
+                                  {data.region_departure}
+                                </p>
+                                <p className="text-secondary">
+                                  City Destination : {data.city_destination} -{" "}
+                                  {data.region_destination}
+                                </p>
+                                <p className="text-secondary">
+                                  Time estimation : {data.time_departure} -{" "}
+                                  {data.time_arrived}
+                                </p>
+                                <p className="text-secondary">
+                                  Transit :{" "}
+                                  {data.transit === 0
+                                    ? "Direct"
+                                    : data.transit === 1
+                                    ? "1 transit"
+                                    : "2 transit"}
+                                </p>
                               </div>
-                              <p className="text-secondary">
-                                Refundable :{" "}
-                                {data.refundable === 1 ? "Yes" : "No"}
-                              </p>
-                              <p className="text-secondary">
-                                Luggage : {data.luggage === 1 ? "Yes" : "No"}
-                              </p>
-                              <p className="text-secondary">
-                                Meal : {data.inflight_meal === 1 ? "Yes" : "No"}
-                              </p>
-                              <p className="text-secondary">
-                                Wifi : {data.wifi === 1 ? "Yes" : "No"}
-                              </p>
-                              <p className="text-secondary">
-                                Insurance :{" "}
-                                {data.insurance === 1 ? "Yes" : "No"}
-                              </p>
+                              <div className="col-md-6 view-detail-ticket-right">
+                                <div className="text-secondary">
+                                  <h6>Facilities</h6>
+                                </div>
+                                <p className="text-secondary">
+                                  Refundable :{" "}
+                                  {data.refundable === 1 ? "Yes" : "No"}
+                                </p>
+                                <p className="text-secondary">
+                                  Luggage : {data.luggage === 1 ? "Yes" : "No"}
+                                </p>
+                                <p className="text-secondary">
+                                  Meal :{" "}
+                                  {data.inflight_meal === 1 ? "Yes" : "No"}
+                                </p>
+                                <p className="text-secondary">
+                                  Wifi : {data.wifi === 1 ? "Yes" : "No"}
+                                </p>
+                                <p className="text-secondary">
+                                  Insurance :{" "}
+                                  {data.insurance === 1 ? "Yes" : "No"}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
+              {/* Pagination */}
+              <div className="d-flex justify-content-center">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <button
+                      className="btn btn-warning-custom page-link"
+                      disabled={page == 1}
+                      onClick={() => PreviousPage()}
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  <li style={{ marginLeft: 3 }}>
+                    <button className="btn btn-warning-custom page-link">
+                      {page}
+                    </button>
+                  </li>
+                  <li style={{ marginLeft: 3 }} className="page-item">
+                    <button
+                      className="btn btn-warning-custom page-link"
+                      disabled={flight.flight <= 0}
+                      onClick={() => NextPage()}
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

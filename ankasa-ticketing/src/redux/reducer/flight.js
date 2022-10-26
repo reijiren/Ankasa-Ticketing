@@ -65,25 +65,6 @@ const flightReducer = (state = initialState, action) => {
 				isError: false,
 				flight: action.payload.data.data,
 			};
-		case "INSERT_FLIGHT_PENDING":
-			return {
-				...state,
-				isLoading: true,
-				isError: false,
-			};
-		case "INSERT_FLIGHT_REJECTED":
-			return {
-				...state,
-				isLoading: false,
-				isError: true,
-			};
-		case "INSERT_FLIGHT_FULFILLED":
-			return {
-				...state,
-				isLoading: false,
-				isError: false,
-				flight: action.payload.data.data,
-			};
 		default:
 			return state;
 	}
