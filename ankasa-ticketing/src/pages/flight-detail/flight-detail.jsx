@@ -160,8 +160,13 @@ const FlightDetail = () => {
                       </div>
                       <div className="col-auto">
                         <h5>
-                          Rp.
-                          {data.insurance === 1 ? (data.price * 5) / 100 : "0"}
+                          $
+                          {data.insurance === 1
+                            ? String(((data.price / 15000) * 5) / 100).slice(
+                                0,
+                                5
+                              )
+                            : "0"}
                         </h5>
                       </div>
                     </div>
@@ -172,7 +177,10 @@ const FlightDetail = () => {
                       </div>
                       <div className="col-auto">
                         <span>
-                          Rp.{data.insurance === 1 ? data.price * 2 : "0"}
+                          $
+                          {data.insurance === 1
+                            ? String((data.price / 15000) * 2).slice(0, 5)
+                            : "0"}
                         </span>
                       </div>
                     </div>
@@ -209,13 +217,17 @@ const FlightDetail = () => {
                     </div>
                     <div className="mt-4 row rute-airplane">
                       <div className="col-auto place-start">
-                        <span>{data.city_departure}</span>
+                        <h5>
+                          <b>{data.city_departure}</b>
+                        </h5>
                       </div>
                       <div className="col-auto icon-airplane">
                         <img src={require("../../assets/images/Vector.png")} />
                       </div>
                       <div className="col-auto place-destination">
-                        <span>{data.city_destination}</span>
+                        <h5>
+                          <b>{data.city_destination}</b>
+                        </h5>
                       </div>
                     </div>
                     <div className="mt-3 row keberangkatan-airplane">
@@ -231,7 +243,8 @@ const FlightDetail = () => {
                       </div>
                       <div className="col-auto clock-airplane">
                         <span className="text-secondary">
-                          {data.time_departure} - {data.time_arrived}
+                          {String(data.time_departure).slice(0, 5)} -
+                          {String(data.time_arrived).slice(0, 5)}
                         </span>
                       </div>
                     </div>
@@ -247,11 +260,7 @@ const FlightDetail = () => {
                                 checked
                               />
                             ) : (
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                name=""
-                              />
+                              "No"
                             )}
                             <span>Refundable</span>
                           </div>
@@ -281,7 +290,7 @@ const FlightDetail = () => {
                         <h4>Total Payment</h4>
                       </div>
                       <div className="col-auto count-payment">
-                        <h4>Rp.{data.price}</h4>
+                        <h4>${String(data.price / 15000).slice(0, 7)}</h4>
                       </div>
                     </div>
                   </div>
