@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/style.css";
 import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { useDispatch,useSelector } from "react-redux";
-import { getFlight } from "../../redux/action/flight";
+import { useDispatch, useSelector } from "react-redux";
+// import { getFlight } from "../../redux/action/flight";
 
 const LandingPage = () => {
-    const dispatch = useDispatch();
-    const flight = useSelector((state) => state.flight);
+  const dispatch = useDispatch();
+  const flight = useSelector((state) => state.flight);
 
     let output;
 
@@ -346,6 +346,7 @@ const LandingPage = () => {
                       }}
                       onSlideChange={() => console.log("slide change")}
                     >
+
                       {
                         flight.isLoading ? (
                           <h1>Loading</h1>
@@ -375,7 +376,6 @@ const LandingPage = () => {
                                 </div>
                               </SwiperSlide>
                             </div>
-                          
                       )))}
                     </Swiper>
                   </div>
@@ -387,10 +387,10 @@ const LandingPage = () => {
             <div className="row justify-content-center mt-4">
               <div className="col-md-8 text-center">
                 <nav aria-label="Page navigation example">
-                  <button type="button" className="btn infoBack mx-3" >
+                  <button type="button" className="btn infoBack mx-3">
                     <i className="fa fa-angle-left wArrow"></i>
                   </button>
-                  <button type="button" className="btn infoNext mx-3" >
+                  <button type="button" className="btn infoNext mx-3">
                     <i className="fa fa-angle-right wArrow"></i>
                   </button>
                 </nav>

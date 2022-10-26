@@ -47,7 +47,7 @@ const Router = () => {
       <Routes>
         <Route path="/">
           <Route index element={<Explore />} />
-          <Route path="flight-detail" element={<FlightDetail />} />
+          <Route path="flight-detail/:id_flight" element={<FlightDetail />} />
           <Route path="profile" element={<Profile />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
