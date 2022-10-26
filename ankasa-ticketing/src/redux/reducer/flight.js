@@ -19,7 +19,6 @@ const flightReducer = (state = initialState, action) => {
         isError: true,
       };
     case "GET_FLIGHT_FULFILLED":
-      console.log(action.payload.data.data)
       return {
         ...state,
         isLoading: false,

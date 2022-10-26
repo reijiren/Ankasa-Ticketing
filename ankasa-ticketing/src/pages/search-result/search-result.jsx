@@ -459,7 +459,7 @@ const SeacrhResult = () => {
                   <div className="select-ticket-search-result">
                     <div className="row">
                       <div className="col-auto">
-                        <img src={`http://localhost:3001/${data.logo}`} />
+                        <img src={`http://localhost:3001/airline/${data.logo}`} />
                       </div>
                       <div className="col-auto name-airplane-select-ticket">
                         <span className="text-secondary">{data.name}</span>
