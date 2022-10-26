@@ -4,7 +4,6 @@ import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import axios from "axios";
 import { useDispatch,useSelector } from "react-redux";
 import { getFlight } from "../../redux/action/flight";
 
@@ -17,92 +16,7 @@ const LandingPage = () => {
             console.log(data);
         }
         dispatch(getFlight(handleSuccess));
-        console.log(flight);
     }, []);
-    // const [data, setData] = useState([]);
-    // useEffect(() => {
-    //     axios
-    //       .get(`http://localhost:3001/flight`)
-    //       .then((res) => {
-    //         setTimeout(() => {
-    //           setData(res.data);    
-    //         });
-    //         console.log(data);
-    //         // console.log(Object.keys(data).length);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   }, []);
-
-    //   const handlePrevious = () => {
-    //     if (Object.id_flight.data > 1) {
-    //         console.log(Object.id_flight.data);
-    //       setData(data.slice(1));
-    //     }
-    //   }
-    //     const handleNext = () => {
-    //         if (Object.id_flight.data > 1) {
-    //             console.log(Object.id_flight.data);
-    //             setData(data.slice(0, -1));
-    //         }
-    //     }
-//   const data = [
-//     {
-//       id: 1,
-//       img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-//       label: 15,
-//       location: {
-//         city: "Barcelona",
-//         country: "Spain",
-//       },
-//     },
-//     {
-//       id: 2,
-//       img: "https://images.unsplash.com/photo-1666112567387-6eb27bd3ecba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1516&q=80",
-//       label: 15,
-//       location: {
-//         city: "Istana Negara",
-//         country: "Wakanda",
-//       },
-//     },
-//     {
-//       id: 3,
-//       img: "https://images.unsplash.com/photo-1665837231807-fcc190001ece?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1375&q=80",
-//       label: 15,
-//       location: {
-//         city: "Barcelona",
-//         country: "Spain",
-//       },
-//     },
-//     {
-//       id: 4,
-//       img: "https://images.unsplash.com/photo-1659719852548-4f097c37d448?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-//       label: 15,
-//       location: {
-//         city: "Barcelona",
-//         country: "Spain",
-//       },
-//     },
-//     {
-//       id: 5,
-//       img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-//       label: 15,
-//       location: {
-//         city: "Barcelona",
-//         country: "Spain",
-//       },
-//     },
-//     {
-//       id: 6,
-//       img: "https://images.unsplash.com/photo-1666213233530-1891c515baf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-//       label: 15,
-//       location: {
-//         city: "Barcelona",
-//         country: "Spain",
-//       },
-//     },
-//   ];
   return (
     <div className="body">
       <Navbar />

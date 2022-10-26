@@ -23,3 +23,18 @@ export const getFlight = (handleSuccess) => ({
         })
     }),
 })
+
+export const getFindFlight = (page, body, handleSuccess) => ({
+  type: "GET_FIND_FLIGHT",
+  payload: new Promise((resolve, reject) => {
+    axios
+      .post(`http://localhost:3001/flight/find/${page}`, body)
+      .then((res) => {
+        handleSuccess(res);
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  }),
+});
