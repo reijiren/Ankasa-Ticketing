@@ -7,12 +7,14 @@ import axios from "axios";
 // import { Link } from "react-router-dom";
 
 const Profile = () => {
-  const id_user = 1;
+  const id_user = localStorage.getItem("id_user");
+  const data = localStorage.getItem("userdata");
   useEffect(() => {
     axios
       .get(`http://localhost:3001/user/${id_user}`)
       .then((res) => {
         console.log(res.data);
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -47,7 +49,8 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputEmail"
                         placeholder="email@gmail.com"
-                        defaultValue="jon@gmail"
+                        name="email"
+                        value={data.email}
                       />
                       <hr />
                     </div>
@@ -60,7 +63,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputPhone"
                         placeholder="08123456789"
-                        defaultValue="08123456789"
+                        defaultValue="08122193"
                       />
                       <hr />
                     </div>
@@ -84,7 +87,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputUsername"
                         placeholder="John Doe"
-                        defaultValue="John Doe"
+                        value={data.username}
                       />
                       <hr />
                     </div>
@@ -117,7 +120,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputAddress"
                         placeholder="Jl. Sisingamangaraja No. 45"
-                        defaultValue="Jl. Sisingamangaraja No. 45"
+                        value={data.address}
                       />
                       <hr />
                     </div>
@@ -133,7 +136,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputPostCode"
                         placeholder="21***"
-                        defaultValue="20212"
+                        value="21212"
                       />
                       <hr />
                     </div>
