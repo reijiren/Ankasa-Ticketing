@@ -2,8 +2,13 @@ import React, {useState} from "react";
 import "../login/login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { userRegister } from "../../redux/action/user";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
   const navigate = useNavigate();
   const [form, setForm] = useState({
        username:'',
@@ -27,19 +32,17 @@ const Register = () => {
               password: form.password,
               email: form.email,
           }
-          axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, body)
-          .then((response) => {
-              if(response.data.code !== 200){
-                  alert('error:' + response.data.message)
-              }
-              else{
-                  console.log(response.data)
-                  return navigate('/login')
-              }
-          }).catch((err) => {
-              console.error(err)
-          })
-      }
+          const handleSuccess = (data) => {
+            if(data.data.code !== 200){
+              alert('error:' + data.data.message)
+          }
+          else{
+              console.log(data.data)
+              return navigate('/login')
+          }
+          }
+          dispatch (userRegister(form, handleSuccess))
+      }    
   }
 
   return (
