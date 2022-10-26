@@ -29,7 +29,7 @@ const BookingDetail = () => {
   //hook useEffect
   useEffect(() => {
     //panggil method "fetchData"
-    dispatch(getDetailAirline(id_airline));
+    dispatch(getDetailAirline(id));
     dispatch(getDetailBooking(id));
   }, []);
 

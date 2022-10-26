@@ -67,17 +67,6 @@ const Router = () => {
           <Route path="search-result" element={<SeacrhResult />} />
           <Route path="forget-password" element={<ForgetPassword />} />
         </Route>
-        <Route path="/admin">
-					<Route index element={<HomeAdmin />} />
-          <Route path="login" element={<LoginAdmin />} />
-          <Route path="insert-airlines" element={<InsertAirlines />} />
-          <Route path="update-airlines" element={<UpdateAirlines />} />
-          <Route path="search-airlines" element={<SearchAirlines />} />
-          <Route path="insert-flights" element={<InsertFlight />} />
-          <Route path="update-flights" element={<UpdateFlights />} />
-          <Route path="search-flights" element={<SearchFlights />} />
-          <Route path="search-user" element={<SearchUser />} />
-				</Route>
 				<Route path="/admin">
 					<Route index element={<LoginAdmin />} />
 					<Route path="home" element={<AdminRoute />}>
