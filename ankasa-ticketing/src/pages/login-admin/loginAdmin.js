@@ -76,7 +76,7 @@ const LoginAdmin = () => {
 							<div className="form-group mb-3">
 								<label htmlFor="password"></label>
 								<input
-									type="text"
+									type="password"
 									placeholder="Password"
 									className="form-control"
 									onChange={(e) =>
