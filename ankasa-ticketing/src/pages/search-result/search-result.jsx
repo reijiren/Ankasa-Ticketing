@@ -458,7 +458,8 @@ const SeacrhResult = () => {
               </div>
 
               {/* TICKET */}
-              {flight.data.map((data, index) => (
+              {/* {JSON.stringify(flight)} */}
+              {flight.flight.map((data, index) => (
                 <div
                   key={index}
                   className="mt-3 form-select-ticket-search-result"
@@ -466,9 +467,7 @@ const SeacrhResult = () => {
                   <div className="select-ticket-search-result">
                     <div className="row">
                       <div className="col-auto">
-                        <img
-                          src={`http://localhost:3001/airline/${data.logo}`}
-                        />
+                        <img src={`http://localhost:3001/airline/${data.logo}`} />
                       </div>
                       <div className="col-auto name-airplane-select-ticket">
                         <span className="text-secondary">{data.name}</span>
