@@ -4,7 +4,7 @@ import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbar";
 import Profiles from "../../Component/profile";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../../redux/action/user";
+import { getUser, updateUser } from "../../redux/action/user";
 // import { Link } from "react-router-dom";
 
 const Profile = () => {
@@ -17,11 +17,20 @@ const Profile = () => {
     dispatch(getUser(data.id_user, handleSuccess));
   }, []);
 
+
+  const handleSuccess = (data) => {
+    console.log(data);
+    alert("Update Success");
+  }
+
   const onSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    console.log(data);
+    let formData = new FormData(e.target);
+    // console.log(Object.fromEntries(formData));
+    // console.log(data.id_user)
+    dispatch(updateUser(Object.fromEntries(formData), data.id_user, handleSuccess));
   };
+
   return (
     <div className="body">
       <Navbar />
@@ -49,6 +58,7 @@ const Profile = () => {
                         id="inputEmail"
                         placeholder="email@gmail.com"
                         name="email"
+                        // onChange={handleChangeForm}
                         defaultValue={
                           user.isLoading
                             ? "Loading..."
@@ -70,6 +80,8 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputPhone"
+                        name="phone"
+                        // onChange={handleChangeForm}
                         placeholder="+62"
                         defaultValue={
                           user.isLoading
@@ -92,6 +104,8 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputCard"
+                        name="credit_card"
+                        // onChange={handleChangeForm}
                         placeholder="1234 5678 9012 3456"
                         defaultValue={
                           user.isLoading
@@ -114,6 +128,8 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputBalance"
+                        name="balance"
+                        // onChange={handleChangeForm}
                         placeholder="Rp. 0"
                         defaultValue={
                           user.isLoading
@@ -144,6 +160,8 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputUsername"
+                        name="username"
+                        // onChange={handleChangeForm}
                         placeholder="John Doe"
                         defaultValue={
                           user.isLoading
@@ -167,6 +185,8 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputFullname"
+                        name="fullname"
+                        // onChange={handleChangeForm}
                         placeholder="John Doe"
                         defaultValue={
                           user.isLoading
@@ -191,6 +211,8 @@ const Profile = () => {
                           type="text"
                           className="form-control customBorderInput"
                           id="inputCity"
+                          name="city"
+                          // onChange={handleChangeForm}
                           placeholder="Medan"
                           defaultValue={
                             user.isLoading
@@ -214,6 +236,8 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputAddress"
+                        name="address"
+                        // onChange={handleChangeForm}
                         placeholder="Jl. Sisingamangaraja No. 45"
                         defaultValue={
                           user.isLoading
@@ -236,6 +260,8 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputPostCode"
+                        name="post_code"
+                        // onChange={handleChangeForm}
                         placeholder="21***"
                         defaultValue={
                           user.isLoading
@@ -249,7 +275,7 @@ const Profile = () => {
                     </div>
                   </div>
                   <div className="col-md-12 text-end mt-3">
-                    <button className="btn btn-primary bgBlue">Save</button>
+                    <button type="submit" className="btn btn-primary bgBlue">Save</button>
                   </div>
                 </div>
               </form>
