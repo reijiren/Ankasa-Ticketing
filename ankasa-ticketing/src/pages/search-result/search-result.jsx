@@ -413,7 +413,7 @@ const SeacrhResult = () => {
                   </div>
                   <div className="col-auto">
                     <span className="text-secondary">
-                      ({Object.keys(flight.data).length} flight found)
+                      ({Object.keys(flight.flight).length} flight found)
                     </span>
                   </div>
                   <div className="col-auto sorting-title-select-ticket-search-result">
@@ -467,7 +467,9 @@ const SeacrhResult = () => {
                   <div className="select-ticket-search-result">
                     <div className="row">
                       <div className="col-auto">
-                        <img src={`http://localhost:3001/airline/${data.logo}`} />
+                        <img
+                          src={`http://localhost:3001/airline/${data.logo}`}
+                        />
                       </div>
                       <div className="col-auto name-airplane-select-ticket">
                         <span className="text-secondary">{data.name}</span>
