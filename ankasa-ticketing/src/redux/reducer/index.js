@@ -11,5 +11,4 @@ const rootReducer = combineReducers({
   // user: userReducer,
   flight: flightReducer,
 });
-
 export default rootReducer;
