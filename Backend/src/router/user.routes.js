@@ -37,6 +37,6 @@ userRouter
 	// .put("/forgot", forgotUserPassword)
 	.delete("/user/:id", removeProfilePic, deleteUser)
 	.post("/login", login)
-	.post("/admin/login", jwtAuth, isAdmin, login);
+	.post("/admin/login", login, jwtAuth, isAdmin);
 
 module.exports = userRouter;
