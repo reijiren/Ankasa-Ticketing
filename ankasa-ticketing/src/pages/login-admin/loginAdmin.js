@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { adminLogin } from "../../redux/action/user";
 
 const LoginAdmin = () => {
-	const navigate = useNavigate;
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const users = useSelector((state) => state.users);
+
 	const [form, setForm] = useState({
 		email: "",
 		password: "",
@@ -17,14 +21,30 @@ const LoginAdmin = () => {
 			password: form.password,
 		};
 
-		adminLogin(body)
-			.then((response) => {
-				console.log(response);
-				return navigate("/admin");
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		const handleSuccess = (data) => {
+			console.log(data.data);
+
+			if (data.data.status !== "success") {
+				alert(data.data.message);
+			} else {
+				localStorage.setItem(
+					"name",
+					JSON.stringify(data.data.token.data.fullname)
+				);
+				localStorage.setItem(
+					"email",
+					JSON.stringify(data.data.token.data.email)
+				);
+				localStorage.setItem("token", data.data.token.token);
+				localStorage.setItem(
+					"level",
+					JSON.stringify(data.data.token.data.level)
+				);
+				return navigate("/admin/home");
+			}
+		};
+
+		dispatch(adminLogin(form, handleSuccess));
 	};
 
 	return (

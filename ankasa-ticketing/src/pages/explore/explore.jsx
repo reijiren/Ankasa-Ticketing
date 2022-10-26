@@ -11,21 +11,10 @@ const LandingPage = () => {
   const dispatch = useDispatch();
   const flight = useSelector((state) => state.flight);
 
-<<<<<<< HEAD
-    let output;
-
-    useEffect( () => {
-        const handleSuccess = (data) => {
-            output = JSON.stringify(data)
-        }
-        //  dispatch(getFlight(handleSuccess));
-    }, []);
-=======
   useEffect(() => {
     const handleSuccess = (data) => {};
     dispatch(getFlight(handleSuccess));
   }, []);
->>>>>>> 5fb705260027124aea78d6f962ee527cf809beff
 
   return (
     <div className="body">

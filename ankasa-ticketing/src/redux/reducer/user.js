@@ -13,7 +13,8 @@ const userReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: false,
-				thisUser: action.payload.data.data.rows,
+				// thisUser: action.payload.data.data.rows,
+				thisUser: action.payload.data.data,
 			};
 		case "LOGIN_REJECTED":
 			return { ...state, isLoading: false, isError: true };
