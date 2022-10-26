@@ -47,7 +47,7 @@ const Navbar = () => {
               <Link
                 className="nav-link active mx-5"
                 aria-current="page"
-                to="search-result"
+                to="/search-result"
               >
                 Find Ticket
               </Link>
