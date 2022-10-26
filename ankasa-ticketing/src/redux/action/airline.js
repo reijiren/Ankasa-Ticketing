@@ -60,7 +60,7 @@ export const getDetailAirline = (id) => ({
   type: "GET_DETAIL_AIRLINE",
   payload: new Promise((resolve, reject) => {
     axios
-      .get(`http://localhost:3001/airline/${id_airline}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/airline/${id}`)
       .then((res) => {
         resolve(res);
       })

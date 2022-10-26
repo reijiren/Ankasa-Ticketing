@@ -55,7 +55,6 @@ const bookingReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isError: false,
-        booking: action.payload.data.data,
       };
     case "GET_MY_BOOKING_FULFILLED":
       return {

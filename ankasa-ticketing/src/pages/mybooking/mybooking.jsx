@@ -68,7 +68,7 @@ const id = user.thisUser.map((data) => data.id_user)
                   ): (
                     <button class="btn-custom btn-disabled color-status1">Eticked issued</button>
                   )}
-                  <div class="details"><Link to={`/booking-detail/${data.id_booking}`}>View Details</Link></div>
+                  <div class="view-details"><Link to={`/booking-detail/${data.id_booking}`}>View Details</Link></div>
                 </div>
                 
               </div>
