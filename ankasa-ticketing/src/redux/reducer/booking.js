@@ -25,6 +25,25 @@ const bookingReducer = (state = initialState, action) => {
         isError: false,
         booking: action.payload.data.data,
       };
+    case "ADD_BOOKING_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "ADD_BOOKING_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    case "ADD_BOOKING_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        booking: action.payload.data.data,
+      };
     default:
       return state;
   }
