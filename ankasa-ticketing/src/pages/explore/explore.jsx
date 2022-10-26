@@ -1,22 +1,25 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/style.css";
 import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { useDispatch,useSelector } from "react-redux";
-import { getFlight } from "../../redux/action/flight";
+import { useDispatch, useSelector } from "react-redux";
+// import { getFlight } from "../../redux/action/flight";
 
 const LandingPage = () => {
-    const dispatch = useDispatch();
-    const flight = useSelector((state) => state.flight);
+  const dispatch = useDispatch();
+  const flight = useSelector((state) => state.flight);
 
-    useEffect(() => {
+    let output;
+
+    useEffect( () => {
         const handleSuccess = (data) => {
-            console.log(data);
+            output = JSON.stringify(data)
         }
-        dispatch(getFlight(handleSuccess));
+         dispatch(getFlight(handleSuccess));
     }, []);
+
   return (
     <div className="body">
       <Navbar />
@@ -265,33 +268,43 @@ const LandingPage = () => {
                 }}
                 onSlideChange={() => console.log("slide change")}
               >
+                {/* {JSON.stringify(flight)} */}
                 {
-                flight.data.data.map((data, i) => (
-                  <SwiperSlide key={data.id_flight}>
-                    <div className="cardSlider">
-                      <div className="cardOverlay" />
-                      <div className="cardImage">
-                        <img src={`http://localhost:3001/airline/${data.logo}`} alt="" className="image" />
-                      </div>
-                      <div className="cardLabel">{data.max_capacity} Airlines</div>
-                      <div className="cardDescription flexRow">
-                        <div className="flexCol flexAuto">
-                          <p>{data.city_departure},</p>
-                          <h4>{data.region_destination}</h4>
+                  flight.isLoading ? (
+                    <h1>Loading</h1>
+                  ) : flight.isError ? (
+                    <h1>Error</h1>
+                  ) : flight.flight == '' ? (
+                    <h1>Data is not found</h1>
+                  ) : (
+                    flight.flight.map((data, i) => (
+                      <SwiperSlide key={data.id_flight}>
+                        <div className="cardSlider">
+                          <div className="cardOverlay" />
+                          <div className="cardImage">
+                            <img src={`http://localhost:3001/airline/${data.logo}`} alt="" className="image" />
+                          </div>
+                          <div className="cardLabel">{data.max_capacity} Airlines</div>
+                          <div className="cardDescription flexRow">
+                            <div className="flexCol flexAuto">
+                              <p>{data.city_departure},</p>
+                              <h4>{data.region_destination}</h4>
+                            </div>
+                            <div>
+                              <button
+                                type="button"
+                                className="customButton"
+                                onClick={() => console.log(data.region_departure)}
+                              >
+                                <i className="fa fa-angle-right wArrow"></i>
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <button
-                            type="button"
-                            className="customButton"
-                            onClick={() => console.log(data.region_departure)}
-                          >
-                            <i className="fa fa-angle-right wArrow"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
+                      </SwiperSlide>
+                    ))
+                  )
+                }
               </Swiper>
             </div>
           ) : (
@@ -333,29 +346,37 @@ const LandingPage = () => {
                       }}
                       onSlideChange={() => console.log("slide change")}
                     >
+
                       {
-                      flight.data.data.map((data) => (
-                        <div className="">
-                          <SwiperSlide key={data.id_flight}>
-                            <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
-                              <div className="row">
-                                <div className="col-md-12 story">
-                                  <img
-                                    // src="jakarta.png"
-                                    // src={data.img}
-                                    src={`http://localhost:3001/airline/${data.logo}`}
-                                    alt="wrapkit"
-                                    className="imgCustom rounded-circle"
-                                  />
-                                  <h5 className="mt-4 text-center">
-                                    {data.region_destination}
-                                  </h5>
+                        flight.isLoading ? (
+                          <h1>Loading</h1>
+                        ) : flight.isError ? (
+                          <h1>Error</h1>
+                        ) : flight.flight == '' ? (
+                          <h1>Data is not found</h1>
+                        ) : (
+                          flight.flight.map((data) => (
+                            <div className="">
+                              <SwiperSlide key={data.id_flight}>
+                                <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
+                                  <div className="row">
+                                    <div className="col-md-12 story">
+                                      <img
+                                        // src="jakarta.png"
+                                        // src={data.img}
+                                        src={`http://localhost:3001/airline/${data.logo}`}
+                                        alt="wrapkit"
+                                        className="imgCustom rounded-circle"
+                                      />
+                                      <h5 className="mt-4 text-center">
+                                        {data.region_destination}
+                                      </h5>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
+                              </SwiperSlide>
                             </div>
-                          </SwiperSlide>
-                        </div>
-                      ))}
+                      )))}
                     </Swiper>
                   </div>
                 ) : (
@@ -366,10 +387,10 @@ const LandingPage = () => {
             <div className="row justify-content-center mt-4">
               <div className="col-md-8 text-center">
                 <nav aria-label="Page navigation example">
-                  <button type="button" className="btn infoBack mx-3" >
+                  <button type="button" className="btn infoBack mx-3">
                     <i className="fa fa-angle-left wArrow"></i>
                   </button>
-                  <button type="button" className="btn infoNext mx-3" >
+                  <button type="button" className="btn infoNext mx-3">
                     <i className="fa fa-angle-right wArrow"></i>
                   </button>
                 </nav>
