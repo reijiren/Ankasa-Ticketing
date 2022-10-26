@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../mybooking/mybooking.css";
 import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbar";
 import Profiles from "../../Component/profile";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { myBooking } from "../../redux/action/booking";
 // import { Link } from "react-router-dom";
 
 const Mybook = () => {
+  const dispatch = useDispatch();
+  const booking = useSelector((state)=>state.booking)
+
+const user = useSelector((state)=>state.user)
+const id = user.thisUser.map((data) => data.id_user) 
+  useEffect(()=>{
+    dispatch (myBooking(id))
+  })
+
+
   return (
     <>
       <Navbar />

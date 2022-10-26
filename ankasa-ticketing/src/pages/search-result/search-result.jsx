@@ -28,7 +28,7 @@ const SeacrhResult = () => {
 
   useEffect(() => {
     const body = {
-      limit: 3,
+      limit: 2,
       sortBy: "name",
       sortOrd: sort,
       data: {},
@@ -41,26 +41,16 @@ const SeacrhResult = () => {
 
   const NextPage = () => {
     setPage(page + 1);
-    // getDataFindFLight(2, page, sortBy, sortOrd, data);
-    console.log(page);
+    dispatch(getFindFlight(page));
   };
 
   const PreviousPage = () => {
     if (page > 1) {
       setPage(page - 1);
-      // dispatch(getDataFindFLight(2, page, sortBy, sortOrd, data));
+      dispatch(getFindFlight(page - 1));
     }
   };
 
-  //SORTING
-  // const handlesortOrd = () => {
-  //   if (sort == "id") {
-  //     setSort("title");
-  //   } else {
-  //     setSort("id");
-  //   }
-  //   dispatch(getPagination(sort, asc, 3, page));
-  // };
   return (
     <section>
       {/* Start Navbar */}
@@ -76,60 +66,62 @@ const SeacrhResult = () => {
               />
             </div>
             <div className="col-md-8 search-container-fluid-search-result">
-              <div className="row">
-                <div className="col-auto icon-airplane">
-                  <img
-                    className=""
-                    src={require("../../assets/images/icon airplane.png")}
-                  />
-                </div>
-                <div className="col-auto input-from">
-                  <div>
-                    <span>From</span>
+              <form>
+                <div className="row">
+                  <div className="col-auto icon-airplane">
+                    <img
+                      className=""
+                      src={require("../../assets/images/icon airplane.png")}
+                    />
                   </div>
-                  <div>
-                    <input placeholder="Medan (IDN)" />
+                  <div className="col-auto input-from">
+                    <div>
+                      <span>From</span>
+                    </div>
+                    <div>
+                      <input placeholder="Medan (IDN)" />
+                    </div>
+                    <div></div>
                   </div>
-                  <div></div>
-                </div>
-                <div className="col-auto icon-switch">
-                  <img
-                    className=""
-                    src={require("../../assets/images/Vector (4).png")}
-                  />
-                </div>
-                <div className="col-auto input-to">
-                  <div>
-                    <span>To</span>
+                  <div className="col-auto icon-switch">
+                    <img
+                      className=""
+                      src={require("../../assets/images/Vector (4).png")}
+                    />
                   </div>
-                  <div>
-                    <input placeholder="Tokyo (JPN)" />
-                  </div>
-                </div>
-                <div className="mt-1 result-search">
-                  <div className="row">
-                    <div className="col-auto">
-                      <p className="date">Monday, 20 July 20</p>
+                  <div className="col-auto input-to">
+                    <div>
+                      <span>To</span>
                     </div>
-                    <div className="col-auto icon-hole">
-                      <img
-                        src={require("../../assets/images/Ellipse 36.png")}
-                      />
-                    </div>
-                    <div className="col-auto">
-                      <p className="passenger">6 Passenger</p>
-                    </div>
-                    <div className="col-auto icon-hole">
-                      <img
-                        src={require("../../assets/images/Ellipse 36.png")}
-                      />
-                    </div>
-                    <div className="col-auto">
-                      <p className="class">First Economy</p>
+                    <div>
+                      <input placeholder="Tokyo (JPN)" />
                     </div>
                   </div>
+                  <div className="mt-1 result-search">
+                    <div className="row">
+                      <div className="col-auto">
+                        <p className="date">Monday, 20 July 20</p>
+                      </div>
+                      <div className="col-auto icon-hole">
+                        <img
+                          src={require("../../assets/images/Ellipse 36.png")}
+                        />
+                      </div>
+                      <div className="col-auto">
+                        <p className="passenger">6 Passenger</p>
+                      </div>
+                      <div className="col-auto icon-hole">
+                        <img
+                          src={require("../../assets/images/Ellipse 36.png")}
+                        />
+                      </div>
+                      <div className="col-auto">
+                        <p className="class">First Economy</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
             <div className="col-md-2 bottom-container-fluid-search-result">
               <button>Change Search</button>
@@ -413,7 +405,7 @@ const SeacrhResult = () => {
                   </div>
                   <div className="col-auto">
                     <span className="text-secondary">
-                      ({Object.keys(flight.data).length} flight found)
+                      ({Object.keys(flight.flight).length} flight found)
                     </span>
                   </div>
                   <div className="col-auto sorting-title-select-ticket-search-result">
@@ -467,7 +459,9 @@ const SeacrhResult = () => {
                   <div className="select-ticket-search-result">
                     <div className="row">
                       <div className="col-auto">
-                        <img src={`http://localhost:3001/airline/${data.logo}`} />
+                        <img
+                          src={`http://localhost:3001/airline/${data.logo}`}
+                        />
                       </div>
                       <div className="col-auto name-airplane-select-ticket">
                         <span className="text-secondary">{data.name}</span>
@@ -479,7 +473,7 @@ const SeacrhResult = () => {
                           <b>{data.city_departure}</b>
                         </h4>
                         <span className="text-secondary">
-                          {data.time_departure}
+                          {String(data.time_departure).slice(0, 5)}
                         </span>
                       </div>
                       <div className="col-auto">
@@ -490,7 +484,7 @@ const SeacrhResult = () => {
                           <b>{data.city_destination}</b>
                         </h4>
                         <span className="text-secondary">
-                          {data.time_arrived}
+                          {String(data.time_arrived).slice(0, 5)}
                         </span>
                       </div>
                       <div className="col-auto">
@@ -539,7 +533,7 @@ const SeacrhResult = () => {
                       <div className="col-auto">
                         <div className="row">
                           <div className="col-auto count-select-ticket">
-                            <h6>Rp.{data.price}</h6>
+                            <h6>${String(data.price / 15000).slice(0, 7)}</h6>
                           </div>
                           <div className="col-auto pax-select-ticket">
                             <span className="text-secondary">/pax</span>
@@ -621,6 +615,34 @@ const SeacrhResult = () => {
                   </div>
                 </div>
               ))}
+              {/* Pagination */}
+              <div className="d-flex justify-content-center">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <button
+                      className="btn btn-warning-custom page-link"
+                      disabled={page == 1}
+                      onClick={() => PreviousPage()}
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  <li style={{ marginLeft: 3 }}>
+                    <button className="btn btn-warning-custom page-link">
+                      {page}
+                    </button>
+                  </li>
+                  <li style={{ marginLeft: 3 }} className="page-item">
+                    <button
+                      className="btn btn-warning-custom page-link"
+                      disable={flight.flight <= 0}
+                      onClick={() => NextPage()}
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

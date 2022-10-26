@@ -33,8 +33,6 @@ const flightController = {
     const page = req.params.page;
     const data = req.body;
 
-    console.log(data);
-
     flightModel
       .findFlight(data.limit, page, data.sortBy, data.sortOrd, data.data)
       .then((result) => {

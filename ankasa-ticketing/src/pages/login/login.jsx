@@ -3,13 +3,8 @@ import { useState } from "react";
 import "../login/login.css";
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux";
-import { userLogin } from "../../redux/action/user";
-import { useSelector } from "react-redux";
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
   const navigate = useNavigate();
     const [form, setForm] = useState({
       email:'',
@@ -21,22 +16,20 @@ const onSubmit = (e) => {
   const body = {
     email: form.email, password: form.password
   }
-  const handleSuccess = (data) => {
-    console.log(data.data);
-
-                if(data.data.status !== "success"){
-                    alert(data.data.message);
-                }else{
-                    localStorage.setItem("name", JSON.stringify(data.data.token.data.name))
-                    localStorage.setItem("email", JSON.stringify(data.data.token.data.email))
-                    localStorage.setItem("token", data.data.token.token);
-                    return navigate("/");
-                }
-
+  axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, form)
+  .then ((res) => {
+    const userData = res.data.token
+        console.log(res)
+        localStorage.setItem("token", userData.token)
+        localStorage.setItem("userdata", JSON.stringify(userData.data))
+        localStorage.setItem("email", JSON.stringify(userData.data.email))
+        alert("Berhasil Login")
+        navigate("/")
+  }).catch ((err) => {
+    console.log(err)
+    alert("Password Salah")
+  })
 }
- dispatch (userLogin(form, handleSuccess))
-}
-
   return (
     <section>
      <div className="container-fluid">

@@ -11,6 +11,19 @@ import axios from "axios";
 //         })
 //     })
 // }
+export const getUser = (id_user,handleSuccess) => ({
+    type: 'GET_USER',
+    payload: new Promise((resolve, reject) => {
+        axios.get(`http://localhost:3001/user/${id_user}`)
+        .then((res) => {
+            handleSuccess(res)
+            resolve(res);
+        })
+        .catch((err) => {
+            reject(err);
+        })
+    })
+})
 
 export const userLogin = (form, handleSuccess) => ({
     type: "LOGIN",
