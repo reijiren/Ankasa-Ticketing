@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     // airline: airlineReducer,
     // booking: bookingReducer,
     // user: userReducer,
-    // flight: flightReducer,
+    flight: flightReducer,
 })
 
 export default rootReducer;

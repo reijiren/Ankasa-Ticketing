@@ -5,36 +5,48 @@ import Navbar from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import axios from "axios";
+import { useDispatch,useSelector } from "react-redux";
+import { getFlight } from "../../redux/action/flight";
 
 const LandingPage = () => {
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        axios
-          .get(`http://localhost:3001/flight`)
-          .then((res) => {
-            setTimeout(() => {
-              setData(res.data);    
-            });
-            console.log(data);
-            // console.log(Object.keys(data).length);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }, []);
+    const dispatch = useDispatch();
+    const flight = useSelector((state) => state.flight);
 
-      const handlePrevious = () => {
-        if (Object.id_flight.data > 1) {
-            console.log(Object.id_flight.data);
-          setData(data.slice(1));
+    useEffect(() => {
+        const handleSuccess = (data) => {
+            console.log(data);
         }
-      }
-        const handleNext = () => {
-            if (Object.id_flight.data > 1) {
-                console.log(Object.id_flight.data);
-                setData(data.slice(0, -1));
-            }
-        }
+        dispatch(getFlight(handleSuccess));
+        console.log(flight);
+    }, []);
+    // const [data, setData] = useState([]);
+    // useEffect(() => {
+    //     axios
+    //       .get(`http://localhost:3001/flight`)
+    //       .then((res) => {
+    //         setTimeout(() => {
+    //           setData(res.data);    
+    //         });
+    //         console.log(data);
+    //         // console.log(Object.keys(data).length);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   }, []);
+
+    //   const handlePrevious = () => {
+    //     if (Object.id_flight.data > 1) {
+    //         console.log(Object.id_flight.data);
+    //       setData(data.slice(1));
+    //     }
+    //   }
+    //     const handleNext = () => {
+    //         if (Object.id_flight.data > 1) {
+    //             console.log(Object.id_flight.data);
+    //             setData(data.slice(0, -1));
+    //         }
+    //     }
 //   const data = [
 //     {
 //       id: 1,
@@ -314,7 +326,7 @@ const LandingPage = () => {
             <button className="whitespace-nowrap">View All</button>
           </div> */}
           </div>
-          {Object.keys(data).length > 0 ? (
+          {Object.keys(flight).length > 0 ? (
             <div className="customSpace">
               <Swiper
                 spaceBetween={30}
@@ -339,9 +351,8 @@ const LandingPage = () => {
                 }}
                 onSlideChange={() => console.log("slide change")}
               >
-                
                 {
-                data.data.map((data, i) => (
+                flight.data.data.map((data, i) => (
                   <SwiperSlide key={data.id_flight}>
                     <div className="cardSlider">
                       <div className="cardOverlay" />
@@ -383,7 +394,7 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
-                {Object.keys(data).length ? (
+                {Object.keys(flight).length ? (
                   <div className="">
                     <Swiper
                       spaceBetween={10}
@@ -408,7 +419,8 @@ const LandingPage = () => {
                       }}
                       onSlideChange={() => console.log("slide change")}
                     >
-                      {data.data.map((data) => (
+                      {
+                      flight.data.data.map((data) => (
                         <div className="">
                           <SwiperSlide key={data.id_flight}>
                             <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
@@ -440,10 +452,10 @@ const LandingPage = () => {
             <div className="row justify-content-center mt-4">
               <div className="col-md-8 text-center">
                 <nav aria-label="Page navigation example">
-                  <button type="button" className="btn infoBack mx-3" onClick={()=>handlePrevious()}>
+                  <button type="button" className="btn infoBack mx-3" >
                     <i className="fa fa-angle-left wArrow"></i>
                   </button>
-                  <button type="button" className="btn infoNext mx-3" onClick={()=>handleNext()}>
+                  <button type="button" className="btn infoNext mx-3" >
                     <i className="fa fa-angle-right wArrow"></i>
                   </button>
                 </nav>
