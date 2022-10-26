@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../assets/style.css";
 
 const NavAdmin = () => {
+	const name = JSON.parse(localStorage.getItem("name"));
 	return (
 		<>
 			<nav className="navbar bg-light">
@@ -108,7 +109,7 @@ const NavAdmin = () => {
 					<div className={`d-flex`}>
 						<ul className="navbar-nav">
 							<li className="nav-item">
-								<Link className="nav-link" aria-current="page" to="/admin">
+								<Link className="nav-link" aria-current="page" to="/admin/home">
 									Admin Home
 								</Link>
 							</li>
@@ -119,7 +120,7 @@ const NavAdmin = () => {
 								className="btn btn-secondary dropdown-toggle mx-3"
 								data-bs-toggle="dropdown"
 								aria-expanded="false">
-								Al Fath
+								{name}
 							</button>
 							<ul className="dropdown-menu">
 								<li>

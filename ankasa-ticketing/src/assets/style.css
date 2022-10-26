@@ -37,6 +37,22 @@
   margin-bottom: 10px;
 }
 
+.details {
+  border: 2px solid #6c757d;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.logo {
+  width: 75px;
+  height: 75px;
+  margin-bottom: 30px;
+}
+
+.airline-name {
+  padding-top: 50px;
+}
+
 .ms-10 {
   margin-left: 100px !important;
 }

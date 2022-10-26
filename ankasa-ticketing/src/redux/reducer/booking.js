@@ -1,12 +1,52 @@
 const initialState = {
-    booking: [],
-    userBook: [],
-    isLoading: false,
-    isError: false,
-}
+  booking: [],
+  isLoading: false,
+  isError: false,
+};
 
 const bookingReducer = (state = initialState, action) => {
-
-}
+  switch (action.type) {
+    case "GET_DETAIL_BOOKING_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "GET_DETAIL_BOOKING_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    case "GET_DETAIL_BOOKING_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        booking: action.payload.data.data,
+      };
+    case "GET_MY_BOOKING_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "GET_MY_BOOKING_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    case "GET_MY_BOOKING_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        booking: action.payload.data.data,
+      };
+    default:
+      return state;
+  }
+};
 
 export default bookingReducer;

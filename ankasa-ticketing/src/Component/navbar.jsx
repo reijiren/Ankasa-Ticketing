@@ -51,9 +51,13 @@ const Navbar = () => {
               >
                 Find Ticket
               </Link>
-              <a className="nav-link active mx-5" aria-current="page" href="#">
+              <Link
+                className="nav-link active mx-5"
+                aria-current="page"
+                to="/mybook"
+              >
                 My Booking
-              </a>
+              </Link>
               <div className="dropdown">
                 <a
                   className="nav-link active mx-5"

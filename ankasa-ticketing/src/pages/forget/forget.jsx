@@ -1,9 +1,29 @@
 import React, {useState} from "react";
 import "../login/login.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { checkEmail } from "../../redux/action/user";
 
 const Forget = () => {
-  // const 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const handleSuccess = (data) => {
+      console.log(data.data.data)
+      if (data.data.data.length !== 0) {
+        localStorage.setItem("email", email)
+        return navigate("/forget-password")
+      } else {
+        alert ("Email is not registered")
+      }
+    }
+    dispatch (checkEmail(email, handleSuccess))
+  }
+  
 
 
   return (
@@ -20,9 +40,9 @@ const Forget = () => {
           <div className="heading">
             <h1 className="fw-bold">Forget Password</h1>
           </div>
-          <form>
+          <form onSubmit={(e) => onSubmit(e)}>
             <div className="form-input">
-              <input type="email" name="email" id="email" placeholder="Email" required />
+              <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} id="email" placeholder="Email" required />
             </div>
             <div className="text-left mb-3">
               <button type="submit" className="custom-btn">Next</button>
