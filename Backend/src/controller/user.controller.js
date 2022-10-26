@@ -113,7 +113,6 @@ const userController = {
 						level: user.level,
 					});
 					delete user.password;
-					delete user.credit_card;
 					successWithToken(
 						res,
 						{ token, data: user },
