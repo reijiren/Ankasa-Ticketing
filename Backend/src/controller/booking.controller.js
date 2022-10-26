@@ -22,7 +22,6 @@ const bookingController = {
             const data = result.rows;
             data.map((e, i) => {
                 delete data[i].password;
-                delete data[i].credit_card;
             });
             
             success(res, data, 'success', 'Get All Booking List Success');
@@ -41,7 +40,6 @@ const bookingController = {
             const data = result.rows;
             data.map((e, i) => {
                 delete data[i].password;
-                delete data[i].credit_card;
             });
             
             success(res, data, 'success', 'Get User BOoking Success');
@@ -58,7 +56,6 @@ const bookingController = {
         bookingModel.getDetailBooking(id)
         .then((result) => {
             delete result.rows[0].password;
-            delete result.rows[0].credit_card;
 
             success(res, result.rows, 'success', 'Get Booking Detail Success');
         })

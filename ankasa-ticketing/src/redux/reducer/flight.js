@@ -1,5 +1,5 @@
 const initialState = {
-  data: [],
+  flight: [],
   isLoading: false,
   isError: false,
 };
@@ -19,12 +19,12 @@ const flightReducer = (state = initialState, action) => {
         isError: true,
       };
     case "GET_FLIGHT_FULFILLED":
-      // console.log(action.payload.data)
+      console.log(action.payload.data.data)
       return {
         ...state,
         isLoading: false,
         isError: false,
-        data: action.payload.data,
+        data: action.payload.data.data,
       };
 
     case "GET_FIND_FLIGHT_PENDING":

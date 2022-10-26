@@ -1,5 +1,5 @@
 const initialState = {
-    data: [],
+    airline: [],
     isLoading: false,
     isError: false,
 }
