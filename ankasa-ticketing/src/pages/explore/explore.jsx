@@ -11,12 +11,8 @@ const LandingPage = () => {
   const dispatch = useDispatch();
   const flight = useSelector((state) => state.flight);
 
-  let output;
-
   useEffect(() => {
-    const handleSuccess = (data) => {
-      output = JSON.stringify(data);
-    };
+    const handleSuccess = (data) => {};
     dispatch(getFlight(handleSuccess));
   }, []);
 
@@ -77,7 +73,7 @@ const LandingPage = () => {
                       <i className="fa fa-angle-right blue fw-bold"></i>
                     </div>
                   </div>
-                  <div className="row border-destination mb-3 m-1 pt-2">
+                  <div className="row border-destination mb-3 pt-2">
                     <div className="col-6 text-start">
                       <p>from</p>
                     </div>
