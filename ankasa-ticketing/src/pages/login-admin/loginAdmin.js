@@ -1,7 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { adminLogin } from "../../redux/action/user";
 
 const LoginAdmin = () => {
+	const navigate = useNavigate;
+	const [form, setForm] = useState({
+		email: "",
+		password: "",
+	});
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+
+		const body = {
+			email: form.email,
+			password: form.password,
+		};
+
+		adminLogin(body)
+			.then((response) => {
+				console.log(response);
+				return navigate("/admin");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
 	return (
 		<div className="container-fluid row">
 			<div className="text-center mb-3">
@@ -15,18 +40,17 @@ const LoginAdmin = () => {
 			<div className="d-flex justify-content-center align-items-center">
 				<div className="card">
 					<div className="card-body">
-						{/* <form onSubmit={(e) => onSubmit(e)}> */}
-						<form>
+						<form onSubmit={(e) => onSubmit(e)}>
+							{/* <form> */}
 							<div className="form-group mb-3">
 								<label htmlFor="username"></label>
 								<input
 									type="text"
 									placeholder="Username or Email"
 									className="form-control"
-									// onChange={(e) =>
-									// 	setForm({ ...form, username: e.target.value })
-									// }
-								></input>
+									onChange={(e) =>
+										setForm({ ...form, email: e.target.value })
+									}></input>
 							</div>
 
 							<div className="form-group mb-3">
@@ -35,10 +59,9 @@ const LoginAdmin = () => {
 									type="text"
 									placeholder="Password"
 									className="form-control"
-									// onChange={(e) =>
-									// 	setForm({ ...form, password: e.target.value })
-									// }
-								></input>
+									onChange={(e) =>
+										setForm({ ...form, password: e.target.value })
+									}></input>
 							</div>
 							<button type="submit" className="btn btn-primary">
 								Log In

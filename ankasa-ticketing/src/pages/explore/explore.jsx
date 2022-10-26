@@ -17,7 +17,7 @@ const LandingPage = () => {
         const handleSuccess = (data) => {
             output = JSON.stringify(data)
         }
-         dispatch(getFlight(handleSuccess));
+        //  dispatch(getFlight(handleSuccess));
     }, []);
 
   return (
