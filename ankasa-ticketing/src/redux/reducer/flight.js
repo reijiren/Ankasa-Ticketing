@@ -26,7 +26,6 @@ const flightReducer = (state = initialState, action) => {
         isError: false,
         data: action.payload.data,
       };
-
     case "GET_FIND_FLIGHT_PENDING":
       return {
         ...state,
