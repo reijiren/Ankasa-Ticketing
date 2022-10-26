@@ -7,10 +7,9 @@ import Footer from "../../Component/footer";
 import { getDetailBooking } from "../../redux/action/booking";
 
 const BookingDetail = () => {
-  //get ID from parameter URL
-  // const {id} = useParams();
+  // get ID from parameter URL
+  const {id} = useParams();
 
-  const id = 2;
 
   //untuk get action
   const dispatch = useDispatch();

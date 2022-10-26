@@ -18,6 +18,7 @@ import InsertFlight from "../pages/admin-insertFlight/insertFlight";
 import SearchFlights from "../pages/admin-searchFlights/searchFlights";
 import UpdateFlights from "../pages/admin-updateFlights/updateFlights";
 import SearchUser from "../pages/admin-searchUser/searchUser";
+import ForgetPassword from "../pages/forgetpassword/forgetpassword";
 
 import ScrollToTop from "../Component/ScrollToTop";
 
@@ -56,8 +57,9 @@ const Router = () => {
           <Route path="register" element={<Register />} />
           <Route path="forget" element={<Forget />} />
           <Route path="mybook" element={<Mybook />} />
-          <Route path="booking-detail" element={<BookingDetail />} />
+          <Route path="booking-detail/:id" element={<BookingDetail />} />
           <Route path="search-result" element={<SeacrhResult />} />
+          <Route path="forget-password" element={<ForgetPassword />} />
         </Route>
         <Route path="/admin">
 					<Route index element={<HomeAdmin />} />

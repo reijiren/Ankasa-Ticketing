@@ -54,3 +54,33 @@ export const userRegister = (form, handleSuccess) => ({
         });
     }),
   });
+
+  export const checkEmail = (email, handleSuccess) => ({
+    type: "FORGET",
+    payload: new Promise((resolve, reject) => {
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_URL}/user/findemail/${email}`)
+        .then((res) => {
+          handleSuccess(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }),
+  });
+
+  export const changePassword = (form, handleSuccess) => ({
+    type: "FORGET",
+    payload: new Promise((resolve, reject) => {
+      axios
+        .put(`${process.env.REACT_APP_BACKEND_URL}/update/password/`, form)
+        .then((res) => {
+          handleSuccess(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }),
+  });
