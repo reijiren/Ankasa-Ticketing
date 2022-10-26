@@ -35,7 +35,7 @@ const Navbar = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="where you want to go?"
+                  placeholder="where you go?"
                   aria-label="Search"
                 />
                 <span className="input-group-text" id="basic-addon2">

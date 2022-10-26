@@ -23,7 +23,7 @@ const Profiles = () => {
           </div>
           <div className="col-md-12">
             <h3 className="text-center">{user.thisUser.map((data) => data.fullname)}</h3>
-            <p className="text-muted">{user.thisUser.map((data) => data.city)}, Indonesia</p>
+            <p className="text-muted">{user.thisUser.map((data) => data.city)} Indonesia</p>
           </div>
           <div className="col-md-12">
             <div className="row">
