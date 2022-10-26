@@ -81,14 +81,14 @@ const Navbar = () => {
                   />
                 </a>
               </div>
-              <a href="#">
+              <Link to="/profile">
                 <img
                   src={require("../assets/images/nnzkZNYWHaU.png")}
                   width="40"
                   className="mobileProfileNavbar rounded-circle customBorder"
                   alt="profile image"
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </nav>

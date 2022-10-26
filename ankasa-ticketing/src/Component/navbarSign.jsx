@@ -64,15 +64,21 @@ const NavbarSign = () => {
               >
                 Find Ticket
               </Link>
-              <a class="nav-link active mx-5" aria-current="page" href="#">
-                My Booking
-              </a>
-              <button
-                type="button"
-                class="btn btn-primary shadow-lg bgBlue rounded mx-5"
+              <Link
+                class="nav-link active mx-5"
+                aria-current="page"
+                to="/mybook"
               >
-                Sign Up
-              </button>
+                My Booking
+              </Link>
+              <Link to="/register">
+                <button
+                  type="button"
+                  class="btn btn-primary shadow-lg bgBlue rounded mx-5"
+                >
+                  Sign Up
+                </button>
+              </Link>
             </div>
           </div>
         </nav>

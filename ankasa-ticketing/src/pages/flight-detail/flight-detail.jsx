@@ -1,22 +1,50 @@
 import React, { useState, useEffect } from "react";
 import "./flight-detail.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
 import { getDetailFlight } from "../../redux/action/flight";
+import { insertBooking } from "../../redux/action/booking";
 
 const FlightDetail = () => {
   const userdata = JSON.parse(localStorage.getItem("userdata"));
   //untuk get action
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  //get ID from parameter URL
+  const { id_flight } = useParams();
+
+  const [form, setForm] = useState({
+    id_user: "",
+    id_flight: "",
+    status: 0,
+    passenger: "",
+    terminal: "",
+    gate: "",
+    class: "",
+    seat: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const body = {
+      id_user: userdata.id_user,
+      id_flight: id_flight,
+      status: form.status,
+      passenger: form.passenger,
+      terminal: form.terminal,
+      gate: form.gate,
+      class: form.class,
+      seat: form.seat,
+    };
+    dispatch(insertBooking(body));
+    alert("Booking Ticket Success");
+  };
 
   const detailflight = useSelector((state) => {
     return state.flight;
   });
-
-  //get ID from parameter URL
-  const { id_flight } = useParams();
 
   //hook useEffect
   useEffect(() => {
@@ -108,15 +136,94 @@ const FlightDetail = () => {
                         </div>
                       </div>
                       <div className="mb-3 form-group">
-                        <label className="text-secondary" htmlFor="email">
-                          Full Name
-                        </label>
+                        <label className="text-secondary">Full Name</label>
                         <input
                           type="text"
                           defaultValue={userdata.fullname}
                           className="form-control"
-                          id="email"
                         />
+                      </div>
+                      <div className="mb-3 form-group">
+                        <label className="text-secondary">Passenger</label>
+                        <input
+                          type="number"
+                          placeholder="Person"
+                          className="form-control"
+                          onChange={(e) =>
+                            setForm({ ...form, passenger: e.target.value })
+                          }
+                        />
+                      </div>
+                      <div className="mb-3 form-group">
+                        <label className="text-secondary">Terminal</label>
+                        <div className="mt-2 nationality">
+                          <select
+                            onChange={(e) =>
+                              setForm({ ...form, terminal: e.target.value })
+                            }
+                          >
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="mb-3 form-group">
+                        <label className="text-secondary">Gate</label>
+                        <div className="mt-2 nationality">
+                          <select
+                            onChange={(e) =>
+                              setForm({ ...form, gate: e.target.value })
+                            }
+                          >
+                            <option value="221">221</option>
+                            <option value="213">213</option>
+                            <option value="222">222</option>
+                            <option value="219">219</option>
+                            <option value="215">15</option>
+                            <option value="210">210</option>
+                            <option value="209">209</option>
+                            <option value="211">211</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="mb-3 form-group">
+                        <label className="text-secondary">Class</label>
+                        <div className="mt-2 nationality">
+                          <select
+                            onChange={(e) =>
+                              setForm({ ...form, class: e.target.value })
+                            }
+                          >
+                            <option value="Business">Business</option>
+                            <option value="Economy">Economy</option>
+                            <option value="First Class">First Class</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="mb-3 form-group">
+                        <label className="text-secondary">Seat</label>
+                        <div className="mt-2 nationality">
+                          <select
+                            onChange={(e) =>
+                              setForm({ ...form, seat: e.target.value })
+                            }
+                          >
+                            <option value="1A">1A</option>
+                            <option value="2A">2A</option>
+                            <option value="3A">3A</option>
+                            <option value="4A">4A</option>
+                            <option value="5A">5A</option>
+                            <option value="6A">6A</option>
+                            <option value="7A">7A</option>
+                            <option value="8A">8A</option>
+                          </select>
+                        </div>
                       </div>
                       <div className="form-group">
                         <label className="text-secondary" htmlFor="nationality">
@@ -187,8 +294,9 @@ const FlightDetail = () => {
                   </div>
                 ))}
               </div>
+
               <div className="mt-4 button-payment text-center">
-                <button>Proceed to Payment</button>
+                <button onClick={handleSubmit}>Proceed to Payment</button>
               </div>
             </div>
             <div className="col-md-4">
