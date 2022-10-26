@@ -4,25 +4,33 @@ import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbar";
 import Profiles from "../../Component/profile";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../../redux/action/user";
-import { json } from "react-router-dom";
+import { getUser, updateUser } from "../../redux/action/user";
 // import { Link } from "react-router-dom";
 
 const Profile = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const data = (JSON.parse(localStorage.getItem("userdata")));
-  
+  const data = JSON.parse(localStorage.getItem("userdata"));
+
   useEffect(() => {
-    // const handleSuccess = (data) => {};
-    // dispatch(getUser(data.id_user, handleSuccess));
+    const handleSuccess = (data) => {};
+    dispatch(getUser(data.id_user, handleSuccess));
   }, []);
- 
+
+
+  const handleSuccess = (data) => {
+    console.log(data);
+    alert("Update Success");
+  }
+
   const onSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    console.log(data);
+    let formData = new FormData(e.target);
+    // console.log(Object.fromEntries(formData));
+    // console.log(data.id_user)
+    dispatch(updateUser(Object.fromEntries(formData), data.id_user, handleSuccess));
   };
+
   return (
     <div className="body">
       <Navbar />
@@ -38,7 +46,10 @@ const Profile = () => {
                   <div className="col-md-6">
                     <h5 className="mb-4">Contact</h5>
                     <div>
-                      <label htmlFor="inputEmail" className="form-label text-muted">
+                      <label
+                        htmlFor="inputEmail"
+                        className="form-label text-muted"
+                      >
                         Email
                       </label>
                       <input
@@ -47,31 +58,85 @@ const Profile = () => {
                         id="inputEmail"
                         placeholder="email@gmail.com"
                         name="email"
+                        // onChange={handleChangeForm}
                         defaultValue={
-                          user.isLoading ? (
-                            "Loading..."
-                          ) : (
-                            user.thisUser.map((data) => {return data.email})
-                          )
+                          user.isLoading
+                            ? "Loading..."
+                            : user.thisUser.map((data) => {
+                                return data.email;
+                              })
                         }
                       />
                       <hr />
                     </div>
                     <div>
-                      <label htmlFor="inputPhone" className="form-label text-muted">
+                      <label
+                        htmlFor="inputPhone"
+                        className="form-label text-muted"
+                      >
                         Phone Number
                       </label>
                       <input
                         type="text"
                         className="form-control customBorderInput"
                         id="inputPhone"
-                        placeholder="08123456789"
+                        name="phone"
+                        // onChange={handleChangeForm}
+                        placeholder="+62"
                         defaultValue={
-                          user.isLoading ? (
-                            "Loading..."
-                          ) : (
-                            user.thisUser.map((data) => {return data.phone})
-                          )
+                          user.isLoading
+                            ? "Loading..."
+                            : user.thisUser.map((data) => {
+                                return data.phone;
+                              })
+                        }
+                      />
+                      <hr />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="inputCard"
+                        className="form-label text-muted"
+                      >
+                        Credit Card
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control customBorderInput"
+                        id="inputCard"
+                        name="credit_card"
+                        // onChange={handleChangeForm}
+                        placeholder="1234 5678 9012 3456"
+                        defaultValue={
+                          user.isLoading
+                            ? "Loading..."
+                            : user.thisUser.map((data) => {
+                              return data.credit_card;
+                            })
+                        }
+                      />
+                      <hr />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="inputBalance"
+                        className="form-label text-muted"
+                      >
+                        Balance
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control customBorderInput"
+                        id="inputBalance"
+                        name="balance"
+                        // onChange={handleChangeForm}
+                        placeholder="Rp. 0"
+                        defaultValue={
+                          user.isLoading
+                            ? "Loading..."
+                            : user.thisUser.map((data) => {
+                              return data.balance;
+                            })
                         }
                       />
                       <hr />
@@ -95,31 +160,68 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputUsername"
+                        name="username"
+                        // onChange={handleChangeForm}
                         placeholder="John Doe"
                         defaultValue={
-                          user.isLoading ? (
-                            "Loading..."
-                          ) : (
-                            user.thisUser.map((data) => {return data.username})
-                          )
+                          user.isLoading
+                            ? "Loading..."
+                            : user.thisUser.map((data) => {
+                                return data.username;
+                              })
                         }
                       />
                       <hr />
                     </div>
+
                     <div>
-                      <label htmlFor="inputCity" className="form-label text-muted">
+                      <label
+                        htmlFor="inputFullname"
+                        className="form-label text-muted"
+                      >
+                        Fullname
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control customBorderInput"
+                        id="inputFullname"
+                        name="fullname"
+                        // onChange={handleChangeForm}
+                        placeholder="John Doe"
+                        defaultValue={
+                          user.isLoading
+                            ? "Loading..."
+                            : user.thisUser.map((data) => {
+                                return data.fullname;
+                              })
+                        }
+                      />
+                      <hr />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="inputCity"
+                        className="form-label text-muted"
+                      >
                         City
                       </label>
                       <div className="col-md-6 w-100">
-                        <select
-                          className="form-select customBorderInput"
+                        <input
+                          type="text"
+                          className="form-control customBorderInput"
                           id="inputCity"
-                        >
-                          <option selected>Medan</option>
-                          <option defaultValue="1">Jakarta</option>
-                          <option defaultValue="2">Bandung</option>
-                          <option defaultValue="3">Surabaya</option>
-                        </select>
+                          name="city"
+                          // onChange={handleChangeForm}
+                          placeholder="Medan"
+                          defaultValue={
+                            user.isLoading
+                              ? "Loading..."
+                              : user.thisUser.map((data) => {
+                                return data.city;
+                              })
+                          }
+                        />
                       </div>
                       <hr />
                     </div>
@@ -134,13 +236,15 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputAddress"
+                        name="address"
+                        // onChange={handleChangeForm}
                         placeholder="Jl. Sisingamangaraja No. 45"
                         defaultValue={
-                          user.isLoading ? (
-                            "Loading..."
-                          ) : (
-                            user.thisUser.map((data) => {return data.address})
-                          )
+                          user.isLoading
+                            ? "Loading..."
+                            : user.thisUser.map((data) => {
+                              return data.address;
+                            })
                         }
                       />
                       <hr />
@@ -156,20 +260,22 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputPostCode"
+                        name="post_code"
+                        // onChange={handleChangeForm}
                         placeholder="21***"
                         defaultValue={
-                          user.isLoading ? (
-                            "Loading..."
-                          ) : (
-                            user.thisUser.map((data) => {return data.post_code})
-                          )
+                          user.isLoading
+                            ? "Loading..."
+                            : user.thisUser.map((data) => {
+                              return data.post_code;
+                            })
                         }
                       />
                       <hr />
                     </div>
                   </div>
                   <div className="col-md-12 text-end mt-3">
-                    <button className="btn btn-primary bgBlue">Save</button>
+                    <button type="submit" className="btn btn-primary bgBlue">Save</button>
                   </div>
                 </div>
               </form>

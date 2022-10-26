@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import "../login/login.css";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { changePassword } from "../../redux/action/user";
 
-const Forget = () => {
+const ForgetPassword = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    email: localStorage.getItem("email"),
+    password: "",
+  });
+
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (form.password !== confirmPassword) {
+      alert ("Password is not match")
+    } else {
+   const handleSuccess = (data) => {
+      alert ("Password has been updated")
+      return navigate("/login")
+   }
+   dispatch(changePassword(form, handleSuccess))
+    }
+  }
   return (
     <section>
         <div>
@@ -16,12 +40,12 @@ const Forget = () => {
           <div className="heading">
             <h1 className="fw-bold">Forget Password</h1>
           </div>
-          <form>
+          <form onSubmit={(e) => onSubmit(e)}>
             <div className="form-input">
-              <input type="password" name="password" id="password" placeholder="New Password" required />
+              <input type="password" name="password" onChange={(e) => setForm({...form, password: e.target.value})} id="password" placeholder="New Password" required />
             </div>
             <div className="form-input">
-              <input type="password" name="password2" id="password2" placeholder="Confirm New Password" required />
+              <input type="password" name="password2" onChange={(e) => setConfirmPassword(e.target.value)} id="password2" placeholder="Confirm New Password" required />
             </div>
             <div className="text-left mb-3">
               <button type="submit" className="custom-btn">Sign in</button>
@@ -39,4 +63,4 @@ const Forget = () => {
   );
 };
 
-export default Forget;
+export default ForgetPassword;

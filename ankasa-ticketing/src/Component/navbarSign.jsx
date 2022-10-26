@@ -35,7 +35,7 @@ const NavbarSign = () => {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="where you want to go?"
+                  placeholder="where you go?"
                   aria-label="Search"
                   aria-describedby="basic-addon2"
                 />
