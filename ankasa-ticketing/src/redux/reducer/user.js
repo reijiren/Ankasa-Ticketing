@@ -1,13 +1,13 @@
 const initialState = {
-    user: [],
-    thisUser: [],
-    isLoading: false,
-    isError: false,
-}
+	user: [],
+	thisUser: [],
+	isLoading: false,
+	isError: false,
+};
 
 const userReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "LOGIN_PENDING":
+	switch (action.type) {
+		case "LOGIN_PENDING":
 			return { ...state, isLoading: true };
 		case "LOGIN_FULFILLED":
 			return {
@@ -17,7 +17,7 @@ const userReducer = (state = initialState, action) => {
 			};
 		case "LOGIN_REJECTED":
 			return { ...state, isLoading: false, isError: true };
-        case "REGISTER_PENDING":
+		case "REGISTER_PENDING":
 			return { ...state, isLoading: true };
 		case "REGISTER_FULFILLED":
 			return {
@@ -27,9 +27,9 @@ const userReducer = (state = initialState, action) => {
 			};
 		case "REGISTER_REJECTED":
 			return { ...state, isLoading: false, isError: true };
-        default:
-            return state;
-    }
-}
+		default:
+			return state;
+	}
+};
 
 export default userReducer;
