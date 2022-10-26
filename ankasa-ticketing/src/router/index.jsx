@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+	BrowserRouter,
+	Navigate,
+	Outlet,
+	Route,
+	Routes,
+} from "react-router-dom";
 import BookingDetail from "../pages/booking-detail/booking-detail";
 import FlightDetail from "../pages/flight-detail/flight-detail";
 import Profile from "../pages/profile/Profile";
@@ -23,25 +29,25 @@ import ForgetPassword from "../pages/forgetpassword/forgetpassword";
 import ScrollToTop from "../Component/ScrollToTop";
 
 const PrivateRoute = () => {
-  const token = localStorage.getItem("token");
+	const token = localStorage.getItem("token");
 
-  if (token) {
-    return <Outlet />;
-  } else {
-    alert("Please login first");
-    return <Navigate to="/login" />;
-  }
+	if (token) {
+		return <Outlet />;
+	} else {
+		alert("Please login first");
+		return <Navigate to="/login" />;
+	}
 };
 
 const AdminRoute = () => {
-  const data = localStorage.getItem("data");
+	const level = localStorage.getItem("level");
 
-  if (data.level !== 0) {
-    return <Outlet />;
-  } else {
-    alert("You have no access to this site");
-    return <Navigate to="/" />;
-  }
+	if (level == 0) {
+		return <Outlet />;
+	} else {
+		alert("You have no access to this site");
+		return <Navigate to="/admin" />;
+	}
 };
 
 const Router = () => {
@@ -72,8 +78,38 @@ const Router = () => {
           <Route path="search-flights" element={<SearchFlights />} />
           <Route path="search-user" element={<SearchUser />} />
 				</Route>
-      </Routes>
-    </BrowserRouter>
-  );
+				<Route path="/admin">
+					<Route index element={<LoginAdmin />} />
+					<Route path="home" element={<AdminRoute />}>
+						<Route index element={<HomeAdmin />} />
+					</Route>
+					<Route path="insert-airlines" element={<AdminRoute />}>
+						<Route index element={<InsertAirlines />} />
+					</Route>
+					<Route path="search-airlines" element={<AdminRoute />}>
+						<Route index element={<SearchAirlines />} />
+					</Route>
+					{/* <Route path="airlines" element={<AdminRoute />}>
+						<Route index element={<SearchAirlineDetail />} />
+					</Route> */}
+					<Route path="update-airlines/:id" element={<AdminRoute />}>
+						<Route index element={<UpdateAirlines />} />
+					</Route>
+					<Route path="insert-flights" element={<AdminRoute />}>
+						<Route index element={<InsertFlight />} />
+					</Route>
+					<Route path="search-flights" element={<AdminRoute />}>
+						<Route index element={<SearchFlights />} />
+					</Route>
+					<Route path="update-flights" element={<AdminRoute />}>
+						<Route index element={<UpdateFlights />} />
+					</Route>
+					<Route path="search-user" element={<AdminRoute />}>
+						<Route index element={<SearchUser />} />
+					</Route>
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
 };
 export default Router;

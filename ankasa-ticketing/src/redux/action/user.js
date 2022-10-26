@@ -26,19 +26,34 @@ export const getUser = (id_user,handleSuccess) => ({
 })
 
 export const userLogin = (form, handleSuccess) => ({
-    type: "LOGIN",
-    payload: new Promise((resolve, reject) => {
-      axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}/login`, form)
-        .then((res) => {
-          handleSuccess(res);
-          resolve(res);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    }),
-  });
+	type: "LOGIN",
+	payload: new Promise((resolve, reject) => {
+		axios
+			.post(`${process.env.REACT_APP_BACKEND_URL}/login`, form)
+			.then((res) => {
+				handleSuccess(res);
+				resolve(res);
+			})
+			.catch((err) => {
+				reject(err);
+			});
+	}),
+});
+
+export const adminLogin = (form, handleSuccess) => ({
+	type: "LOGIN",
+	payload: new Promise((resolve, reject) => {
+		axios
+			.post(`${process.env.REACT_APP_BACKEND_URL}/admin/login`, form)
+			.then((res) => {
+				handleSuccess(res);
+				resolve(res);
+			})
+			.catch((err) => {
+				reject(err);
+			});
+	}),
+});
 
 export const userRegister = (form, handleSuccess) => ({
     type: "REGISTER",
