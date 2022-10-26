@@ -5,14 +5,22 @@ import "./booking-detail.css";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
 import { getDetailBooking } from "../../redux/action/booking";
+import { getDetailAirline } from "../../redux/action/airline";
 
 const BookingDetail = () => {
   // get ID from parameter URL
   const {id} = useParams();
 
-
   //untuk get action
   const dispatch = useDispatch();
+
+  // {detailbooking.booking.map((data) => (
+  //   const id_airline = data.id_airline
+  // ))}
+
+  const detailairline = useSelector((state) => {
+    return state.airline;
+  });
 
   const detailbooking = useSelector((state) => {
     return state.booking;
@@ -21,6 +29,7 @@ const BookingDetail = () => {
   //hook useEffect
   useEffect(() => {
     //panggil method "fetchData"
+    dispatch(getDetailAirline(id_airline));
     dispatch(getDetailBooking(id));
   }, []);
 

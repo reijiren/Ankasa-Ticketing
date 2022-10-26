@@ -225,6 +225,12 @@
     margin-bottom: 20px;
 }
 
+.container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .logo-airline img {
+    width: 100px;
+    height: auto;
+}
+
+
 .container-main-search-result .form-select-ticket-search-result .select-ticket-search-result .btn-info {
     color: #2395FF;
     background-color: white;
