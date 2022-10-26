@@ -4,6 +4,7 @@ import "../assets/style.css";
 
 const NavAdmin = () => {
 	const name = JSON.parse(localStorage.getItem("name"));
+
 	return (
 		<>
 			<nav className="navbar bg-light">
@@ -129,7 +130,7 @@ const NavAdmin = () => {
 									</Link>
 								</li>
 								<li>
-									<Link className="dropdown-item" to="">
+									<Link className="dropdown-item" to="/login">
 										Logout
 									</Link>
 								</li>

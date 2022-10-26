@@ -12,6 +12,7 @@ const airlineReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: false,
+				isError: false,
 				// thisUser: action.payload.data.data.rows,
 				airline: action.payload.data.data,
 			};
@@ -23,6 +24,7 @@ const airlineReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: false,
+				isError: false,
 				// thisUser: action.payload.data.data.rows,
 				airline: action.payload.data.data,
 			};
@@ -34,6 +36,7 @@ const airlineReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: false,
+				isError: false,
 				// thisUser: action.payload.data.data.rows,
 				airline: action.payload.data.data,
 			};

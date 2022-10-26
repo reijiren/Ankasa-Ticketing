@@ -73,7 +73,7 @@ const Mybook = () => {
                           Eticked issued
                         </button>
                       )}
-                      <div class="details">
+                      <div class="view-details">
                         <Link to={`/booking-detail/${data.id_booking}`}>
                           View Details
                         </Link>

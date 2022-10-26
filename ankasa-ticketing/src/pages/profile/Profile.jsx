@@ -57,9 +57,9 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputEmail"
                         placeholder="email@gmail.com"
-                        name="email"
+                        // name="email"
                         // onChange={handleChangeForm}
-                        defaultValue={
+                        value={
                           user.isLoading
                             ? "Loading..."
                             : user.thisUser.map((data) => {
@@ -160,10 +160,10 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput"
                         id="inputUsername"
-                        name="username"
+                        // name="username"
                         // onChange={handleChangeForm}
                         placeholder="John Doe"
-                        defaultValue={
+                        value={
                           user.isLoading
                             ? "Loading..."
                             : user.thisUser.map((data) => {
