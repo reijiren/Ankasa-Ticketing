@@ -15,22 +15,22 @@ const bookingRouter = require("./src/router/booking.routes");
 const app = express();
 
 try {
-  app.use(express.static("assets"));
-  app.use(helmet());
-  app.use(bodyParser.json());
-  app.use(xss());
-  // app.use(cookieparser());
-  app.use(cors());
-  //   app.options('*', cors())
-  app.use(airlineRouter);
-  app.use(userRouter);
-  app.use(flightRouter);
-  app.use(bookingRouter);
+	app.use(express.static("assets"));
+	app.use(helmet());
+	app.use(bodyParser.json());
+	app.use(xss());
+	// app.use(cookieparser());
+	app.use(cors());
+	//   app.options('*', cors())
+	app.use(airlineRouter);
+	app.use(userRouter);
+	app.use(flightRouter);
+	app.use(bookingRouter);
 } catch (err) {
-  console.log(err);
+	console.log(err);
 }
 
 // jalankan express
 app.listen(process.env.PORT, () => {
-  console.log("SERVICE IS RUNNING ON PORT 3001");
+	console.log("SERVICE IS RUNNING ON PORT 3001");
 });

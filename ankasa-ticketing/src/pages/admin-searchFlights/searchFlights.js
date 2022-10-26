@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import NavAdmin from "../../Component/navAdmin";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getDetailFlight } from "../../redux/action/flight";
+import SearchFlightDetail from "../../Component/detailSearchFlight";
 
 const SearchFlights = () => {
+	const [idFlight, setIdFlight] = useState("");
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+
+		const handleSuccess = () => {
+			return navigate(`/admin/search-flights?id=${idFlight}`);
+		};
+
+		dispatch(getDetailFlight(idFlight, handleSuccess));
+	};
+
 	return (
 		<div>
 			<NavAdmin />
@@ -11,7 +29,7 @@ const SearchFlights = () => {
 						<h1>Search Flights</h1>
 					</div>
 					<div class="mb-3">
-						<label htmlFor="exampleInputEmail1" class="form-label">
+						<label for="exampleInputEmail1" class="form-label">
 							Search Flights
 						</label>
 						<input
