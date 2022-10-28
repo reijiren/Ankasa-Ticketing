@@ -17,7 +17,7 @@ const SeacrhResult = () => {
 
   // SORTING ASCENDING - DESCENDING
   const [sort, setSort] = useState("desc");
-  const handlesortOrd = () => {
+  const handleSortOrder = () => {
     if (sort == "desc") {
       setSort("asc");
     } else {
@@ -471,7 +471,7 @@ const SeacrhResult = () => {
                           <li>
                             <a
                               class="dropdown-item"
-                              onClick={() => handlesortOrd()}
+                              onClick={handleSortOrder}
                             >
                               {sort.toUpperCase()}
                             </a>

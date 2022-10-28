@@ -45,7 +45,7 @@ const flightModel = {
         sortBy.toLowerCase() === "city_destination" ||
         sortBy.toLowerCase() === "region_departure" ||
         sortBy.toLowerCase() === "region_destination" ||
-        sortBy.toLowerCase() === "transit" ||
+        sortBy.toLowerCase() === "class" ||
         sortBy.toLowerCase() === "price"
       )
     )
