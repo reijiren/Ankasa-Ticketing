@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import NavAdmin from "../../Component/navAdmin";
+import { getDetailAirline } from "../../redux/action/airline";
 
 const UpdateAirlines = () => {
+	const dispatch = useDispatch();
+	const {id} = useParams();
+
+	const [name, setName] = useState('');
+
+	useEffect(() => {
+		const handleSuccess = (data) => {
+			setName(data.data.data[0].name)
+		}
+
+		dispatch(getDetailAirline(id, handleSuccess))
+	}, [])
+
+	const onSubmit = (e) => {
+
+	}
+
 	return (
 		<div>
 			<NavAdmin />
@@ -19,6 +39,8 @@ const UpdateAirlines = () => {
 							className="form-control"
 							id="formGroupExampleInput"
 							placeholder="Example: Garuda Indonesia"
+							defaultValue={ name }
+							onChange={(e) => setName(e.target.value)}
 						/>
 					</div>
 					<div className="mb-3">

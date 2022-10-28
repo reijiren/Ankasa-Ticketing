@@ -10,7 +10,7 @@ export const getSearchAirlines = (name, handleSuccess) => {
 			})
 				.then((response) => {
 					resolve(response);
-					handleSuccess();
+					handleSuccess(response);
 				})
 				.catch((error) => {
 					reject(error);
@@ -18,6 +18,22 @@ export const getSearchAirlines = (name, handleSuccess) => {
 		}),
 	};
 };
+
+export const findAirline = (page, body, handleSuccess) => ({
+	type: "FIND_AIRLINES",
+	payload: new Promise((resolve, reject) => {
+	  axios
+		.post(`${process.env.REACT_APP_BACKEND_URL}/airline/find/${page}`, body)
+		.then((res) => {
+		  handleSuccess(res);
+		  resolve(res);
+		})
+		.catch((err) => {
+		  reject(err);
+		});
+	}),
+  });
+  
 
 export const addAirlines = (form, addImage, handleSuccess) => {
 	return {
@@ -56,16 +72,47 @@ export const airlineDelete = (id_airline) => {
 	});
 };
 
-export const getDetailAirline = (id) => ({
+export const getDetailAirline = (id, handleSuccess) => ({
   type: "GET_DETAIL_AIRLINE",
   payload: new Promise((resolve, reject) => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/airline/${id}`)
       .then((res) => {
+		handleSuccess(res);
         resolve(res);
       })
       .catch((err) => {
         reject(err);
       });
   }),
+});
+
+export const updateAirline = (id, body, handleSuccess) => ({
+	type: "UPDATE_AIRLINE",
+	payload: new Promise((resolve, reject) => {
+	  axios
+		.put(`${process.env.REACT_APP_BACKEND_URL}/airline/update/${id}`, body)
+		.then((res) => {
+		  handleSuccess(res);
+		  resolve(res);
+		})
+		.catch((err) => {
+		  reject(err);
+		});
+	}),
+});
+
+export const updateLogo = (id, form, handleSuccess) => ({
+	type: "UPDATE_LOGO",
+	payload: new Promise((resolve, reject) => {
+	  axios
+		.put(`${process.env.REACT_APP_BACKEND_URL}/airline/changeimg/${id}`, form)
+		.then((res) => {
+		  handleSuccess(res);
+		  resolve(res);
+		})
+		.catch((err) => {
+		  reject(err);
+		});
+	}),
 });

@@ -25,10 +25,20 @@ const airlineReducer = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				isError: false,
-				// thisUser: action.payload.data.data.rows,
 				airline: action.payload.data.data,
 			};
 		case "GET_SEARCH_AIRLINES_REJECTED":
+			return { ...state, isLoading: false, isError: true };
+		case "FIND_AIRLINES_PENDING":
+			return { ...state, isLoading: true };
+		case "FIND_AIRLINES_FULFILLED":
+			return {
+				...state,
+				isLoading: false,
+				isError: false,
+				airline: action.payload.data.data,
+			};
+		case "FIND_AIRLINES_REJECTED":
 			return { ...state, isLoading: false, isError: true };
 		case "DELETE_AIRLINES_PENDING":
 			return { ...state, isLoading: true };
@@ -37,32 +47,30 @@ const airlineReducer = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				isError: false,
-				// thisUser: action.payload.data.data.rows,
-				airline: action.payload.data.data,
 			};
 		case "DELETE_AIRLINES_REJECTED":
 			return { ...state, isLoading: false, isError: true };
-    case "GET_DETAIL_AIRLINE_PENDING":
-      return {
-        ...state,
-        isLoading: true,
-        isError: false,
-      };
-    case "GET_DETAIL_AIRLINE_REJECTED":
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-      };
-    case "GET_DETAIL_AIRLINE_FULFILLED":
-      return {
-        ...state,
-        isLoading: false,
-        isError: false,
-        airline: action.payload.data,
-      };
-		default:
-			return state;
+		case "GET_DETAIL_AIRLINE_PENDING":
+		return {
+			...state,
+			isLoading: true,
+			isError: false,
+		};
+		case "GET_DETAIL_AIRLINE_REJECTED":
+		return {
+			...state,
+			isLoading: false,
+			isError: true,
+		};
+		case "GET_DETAIL_AIRLINE_FULFILLED":
+		return {
+			...state,
+			isLoading: false,
+			isError: false,
+			airline: action.payload.data.data,
+		};
+			default:
+				return state;
 	}
 };
 

@@ -1,17 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
-import { airlineDelete, getSearchAirlines } from "../redux/action/airline";
+import { airlineDelete, findAirline, getSearchAirlines } from "../redux/action/airline";
 import "../assets/style.css";
 
 const SearchAirlineDetail = () => {
 	const [queryParam] = useSearchParams();
 	const dispatch = useDispatch();
 
-	const name = queryParam.get("name");
+	const name = queryParam.get("name") || "";
+	const page = 1;
+
+	const body = {
+		limit: 3,
+		sortBy: "name",
+		sortOrd: "asc",
+		airlineName: name ? name : "",
+	}
 
 	useEffect(() => {
-		dispatch(getSearchAirlines(name));
+		const handleSuccess = (data) => {
+			console.log(data);
+		};
+
+		dispatch(findAirline(page, body, handleSuccess));
 	}, []);
 
 	const [delAirlines, setDelAirlines] = useState([]);
@@ -41,7 +53,7 @@ const SearchAirlineDetail = () => {
 				alert("Failed Delete Data");
 			});
 	};
-	console.log(airline.airline);
+	// console.log(airline.airline);
 
 	return (
 		<div>
@@ -50,6 +62,8 @@ const SearchAirlineDetail = () => {
 					<h1>loading</h1>
 				) : airline.isError ? (
 					<div></div>
+				) : (!airline.airline || airline.airline == "") ? (
+					<h1>Data is not found</h1>
 				) : (
 					airline.airline.map((item, index) => {
 						return (
