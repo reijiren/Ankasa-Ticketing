@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
 import { getFindFlight } from "../../redux/action/flight";
+import { sortBy, sortOrder } from "../../redux/action/search";
 
 const SeacrhResult = () => {
   const [page, setPage] = useState(1);
@@ -12,19 +13,29 @@ const SeacrhResult = () => {
   const dispatch = useDispatch();
   const [ticket, setTicket] = useState([]);
 
+  // let search = useSelector((state) => {return state.search})
+
   const flight = useSelector((state) => {
     return state.flight;
   });
 
+  const handleSortBy = (e) => {
+    dispatch(sortBy(e));
+  }
+
+  const handleSortOrder = () => {
+    dispatch(sortOrder());
+  }
+
   const [sort, setSort] = useState("desc");
   //SORT ORDER
-  const handlesortOrd = (body) => {
-    if (sort == "desc") {
-      setSort("asc");
-    } else {
-      setSort("desc");
-    }
-  };
+  // const handlesortOrd = (e) => {
+  //   if (e == "desc") {
+  //     setSort("asc");
+  //   } else {
+  //     setSort("desc");
+  //   }
+  // };
 
   useEffect(() => {
     const body = {
@@ -63,6 +74,7 @@ const SeacrhResult = () => {
   // };
   return (
     <section>
+      {/* {JSON.stringify(search)} */}
       {/* Start Navbar */}
       <Navbar />
       {/* End Navbar */}
@@ -435,19 +447,19 @@ const SeacrhResult = () => {
                           <li>
                             <a
                               class="dropdown-item"
-                              onClick={() => handlesortOrd()}
+                              onClick={handleSortOrder}
                             >
-                              {sort}
+                              {/* {search.sortOrd} */}
                             </a>
                           </li>
                           <li>
-                            <a class="dropdown-item" onClick="">
+                            <a class="dropdown-item" onClick={handleSortBy("PRICE")}>
                               Price
                             </a>
                           </li>
                           <li>
-                            <a class="dropdown-item" onClick="">
-                              Facilities
+                            <a class="dropdown-item" onClick={handleSortBy("DATE")}>
+                              Date Created
                             </a>
                           </li>
                         </ul>
