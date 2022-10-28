@@ -126,6 +126,7 @@ export const updatePhoto = (form, id_user, handleSuccess) => ({
         form,
         {
           headers: {
+            
             "Content-Type": "multipart/form-data",
           },
         }
