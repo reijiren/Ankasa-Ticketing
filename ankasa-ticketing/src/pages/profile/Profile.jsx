@@ -54,7 +54,7 @@ const Profile = () => {
                       </label>
                       <input
                         type="email"
-                        className="form-control customBorderInput"
+                        className="form-control customBorderInput bg-light"
                         id="inputEmail"
                         placeholder="email@gmail.com"
                         // name="email"
@@ -158,7 +158,7 @@ const Profile = () => {
                       </label>
                       <input
                         type="text"
-                        className="form-control customBorderInput"
+                        className="form-control customBorderInput bg-light"
                         id="inputUsername"
                         // name="username"
                         // onChange={handleChangeForm}

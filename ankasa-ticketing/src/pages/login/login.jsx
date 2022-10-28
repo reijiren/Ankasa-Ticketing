@@ -30,7 +30,7 @@ const onSubmit = (e) => {
         localStorage.setItem("token", userData.token)
         localStorage.setItem("userdata", JSON.stringify(userData.data))
         localStorage.setItem("email", JSON.stringify(userData.data.email))
-        alert("Berhasil Login")
+        alert("Login Success")
         navigate("/")
   }
   dispatch (userLogin(form, handleSuccess))
