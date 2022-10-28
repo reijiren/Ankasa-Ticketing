@@ -61,7 +61,7 @@ const LandingPage = () => {
                   class="collapse collapse-vertical"
                   id="collapseWidthExample"
                 > */}
-              <div class="card card-body customCard">
+              <div className="card card-body customCard">
                 <div className="col-12">
                   <p>Hey,</p>
                   <h5>Where you want to go?</h5>
