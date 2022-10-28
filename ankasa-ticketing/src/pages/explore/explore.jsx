@@ -6,14 +6,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { getFlight } from "../../redux/action/flight";
+import { getUser } from "../../redux/action/user";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
   const flight = useSelector((state) => state.flight);
+  const user = JSON.parse(localStorage.getItem("userdata"))
 
   useEffect(() => {
     const handleSuccess = (data) => {};
     dispatch(getFlight(handleSuccess));
+    dispatch(getUser(user.id_user, handleSuccess));
   }, []);
 
   return (
@@ -61,7 +64,7 @@ const LandingPage = () => {
                   class="collapse collapse-vertical"
                   id="collapseWidthExample"
                 > */}
-              <div class="card card-body customCard">
+              <div className="card card-body customCard">
                 <div className="col-12">
                   <p>Hey,</p>
                   <h5>Where you want to go?</h5>

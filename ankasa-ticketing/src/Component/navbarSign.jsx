@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const NavbarSign = () => {
   return (
     <>
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg bg-white fixed-top">
-          <Link class="navbar-brand ms-10" to="/">
+      <div className="container-fluid">
+        <nav className="navbar navbar-expand-lg bg-white fixed-top">
+          <Link className="navbar-brand ms-10" to="/">
             <img
               src={require("../assets/images/vector 02.png")}
               width="30"
@@ -16,7 +16,7 @@ const NavbarSign = () => {
             Ankasa
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup"
@@ -24,29 +24,29 @@ const NavbarSign = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            class="collapse navbar-collapse justify-content-end"
+            className="collapse navbar-collapse justify-content-end"
             id="navbarNavAltMarkup"
           >
-            <form class="d-flex mx-5" role="search">
-              <div class="input-group">
+            <form className="d-flex mx-5" role="search">
+              <div className="input-group">
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="where you want to go?"
+                  className="form-control"
+                  placeholder="where you go?"
                   aria-label="Search"
                   aria-describedby="basic-addon2"
                 />
-                <span class="input-group-text" id="basic-addon2">
-                  <i class="fa fa-search"></i>
+                <span className="input-group-text" id="basic-addon2">
+                  <i className="fa fa-search"></i>
                 </span>
               </div>
             </form>
-            <div class="navbar-nav me-5 mx-5">
+            <div className="navbar-nav me-5 mx-5">
               {/* <a
-                class="nav-link active mx-5"
+                className="nav-link active mx-5"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseWidthExample"
@@ -64,15 +64,21 @@ const NavbarSign = () => {
               >
                 Find Ticket
               </Link>
-              <a class="nav-link active mx-5" aria-current="page" href="#">
-                My Booking
-              </a>
-              <button
-                type="button"
-                class="btn btn-primary shadow-lg bgBlue rounded mx-5"
+              <Link
+                className="nav-link active mx-5"
+                aria-current="page"
+                to="/mybook"
               >
-                Sign Up
-              </button>
+                My Booking
+              </Link>
+              <Link to="/login">
+                <button
+                  type="button"
+                  className="btn btn-primary shadow-lg bgBlue rounded mx-5"
+                >
+                  Sign In
+                </button>
+              </Link>
             </div>
           </div>
         </nav>

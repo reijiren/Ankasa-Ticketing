@@ -3,32 +3,37 @@ import { useState } from "react";
 import "../login/login.css";
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../redux/action/user";
+import { useEffect } from "react";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
     const [form, setForm] = useState({
       email:'',
       password: '',
     })
 
+useEffect(() => {
+  localStorage.clear();
+}, [])   
+
 const onSubmit = (e) => {
   e.preventDefault();
   const body = {
     email: form.email, password: form.password
   }
-  axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, form)
-  .then ((res) => {
-    const userData = res.data.token
-        console.log(res)
+  const handleSuccess = (data) => {
+    const userData = data.data.token
+        console.log(data)
         localStorage.setItem("token", userData.token)
         localStorage.setItem("userdata", JSON.stringify(userData.data))
         localStorage.setItem("email", JSON.stringify(userData.data.email))
-        alert("Berhasil Login")
+        alert("Login Success")
         navigate("/")
-  }).catch ((err) => {
-    console.log(err)
-    alert("Password Salah")
-  })
+  }
+  dispatch (userLogin(form, handleSuccess))
 }
   return (
     <section>
