@@ -16,6 +16,7 @@ const Profiles = () => {
   };
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
+    console.log(fileUploaded);
   };
 
   const handleSuccess = (data) => {
@@ -23,12 +24,14 @@ const Profiles = () => {
     alert("Success");
   };
 
+  // update photo profile
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("photo", e.target.photo.files[0]);
-    console.log(data.id_user);
-    updatePhoto(data.id_user, formData, handleSuccess);
+    console.log(formData);
+    console.log(hiddenFileInput.current.files[0]);
+    formData.append("photo", hiddenFileInput.current.files[0]);
+    dispatch(updatePhoto(formData, data.id_user, handleSuccess));
   };
 
   return (
