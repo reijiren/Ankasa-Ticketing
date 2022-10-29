@@ -56,21 +56,22 @@ export const addAirlines = (form, addImage, handleSuccess) => {
 	};
 };
 
-export const airlineDelete = (id_airline) => {
-	return new Promise((resolve, reject) => {
+export const airlineDelete = (id_airline, handleSuccess) => ({
+	type: "DELETE_AIRLINE",
+	payload: new Promise((resolve, reject) => {
 		axios
 			.delete(
 				`${process.env.REACT_APP_BACKEND_URL}/airline/delete/${id_airline}
-			`
-			)
-			.then((response) => {
-				resolve(response);
-			})
-			.catch((error) => {
-				reject(error);
-			});
-	});
-};
+			`)
+		.then((res) => {
+			handleSuccess(res);
+			resolve(res);
+		})
+		.catch((err) => {
+			reject(err);
+		});
+	}),
+});
 
 export const getDetailAirline = (id, handleSuccess) => ({
   type: "GET_DETAIL_AIRLINE",

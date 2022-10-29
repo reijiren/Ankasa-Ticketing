@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { airlineDelete, findAirline, getSearchAirlines } from "../redux/action/airline";
 import "../assets/style.css";
 
 const SearchAirlineDetail = () => {
 	const [queryParam] = useSearchParams();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const name = queryParam.get("name") || "";
-	const page = 1;
+	const {page} = useParams();
+
+	const pagination = parseInt(page);
 
 	const body = {
 		limit: 3,
@@ -19,12 +22,13 @@ const SearchAirlineDetail = () => {
 	}
 
 	useEffect(() => {
+		console.log(pagination)
 		const handleSuccess = (data) => {
 			console.log(data);
 		};
 
 		dispatch(findAirline(page, body, handleSuccess));
-	}, []);
+	}, [pagination]);
 
 	const [delAirlines, setDelAirlines] = useState([]);
 
@@ -32,28 +36,30 @@ const SearchAirlineDetail = () => {
 		return state.airline;
 	});
 
+	const onPrev = () => {
+		return navigate(`/admin/search-airlines/${pagination - 1}`)
+	}
+
+	const onNext = () => {
+		return navigate(`/admin/search-airlines/${pagination + 1}`)
+	}
+
 	const deleteAirlines = (id_airline, e) => {
 		e.preventDefault();
 
-		airlineDelete(id_airline)
-			.then((res) => {
-				console.log(res);
+		const handleSuccess = (data) => {
+				console.log(data);
 
 				const posts = delAirlines.filter(
 					(item) => item.id_airline !== id_airline
 				);
 				setDelAirlines({ data: posts });
 
-				alert("Data berhasil dihapus");
+				alert("Airline deleted. All related data will also be deleted.");
+		}
 
-				// return navigate("/home");
-			})
-			.catch((err) => {
-				console.log(err);
-				alert("Failed Delete Data");
-			});
+		dispatch(airlineDelete(id_airline, handleSuccess));
 	};
-	// console.log(airline.airline);
 
 	return (
 		<div>
@@ -95,6 +101,11 @@ const SearchAirlineDetail = () => {
 						);
 					})
 				)}
+
+				<div className="d-flex flex-row">
+					<button onClick={() => onPrev()} disabled={pagination === 1}>&#60;</button>
+					<button onClick={() => onNext()} disabled={airline.airline == ""}>&#62;</button>
+				</div>
 			</div>
 		</div>
 	);

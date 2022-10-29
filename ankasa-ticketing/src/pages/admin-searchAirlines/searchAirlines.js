@@ -21,7 +21,7 @@ const SearchAirlines = () => {
 
 	useEffect(() => {
 		const handleSuccess = () => {
-			console.log("data fetched!");
+			console.log("Data fetched!");
 		}
 
 		dispatch(findAirline(page, body, handleSuccess))
@@ -31,7 +31,7 @@ const SearchAirlines = () => {
 		e.preventDefault();
 
 		const handleSuccess = () => {
-			return navigate(`/admin/search-airlines?name=${name}`);
+			return navigate(`/admin/search-airlines/1?name=${name}`);
 		};
 
 		dispatch(findAirline(page, body, handleSuccess));

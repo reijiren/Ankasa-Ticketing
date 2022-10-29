@@ -13,8 +13,6 @@ const airlineReducer = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				isError: false,
-				// thisUser: action.payload.data.data.rows,
-				airline: action.payload.data.data,
 			};
 		case "INSERT_AIRLINES_REJECTED":
 			return { ...state, isLoading: false, isError: true };
