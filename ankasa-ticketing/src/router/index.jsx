@@ -87,7 +87,7 @@ const Router = () => {
 					<Route path="insert-airlines" element={<AdminRoute />}>
 						<Route index element={<InsertAirlines />} />
 					</Route>
-					<Route path="search-airlines" element={<AdminRoute />}>
+					<Route path="search-airlines/:page" element={<AdminRoute />}>
 						<Route index element={<SearchAirlines />} />
 					</Route>
 					<Route path="update-airlines/:id" element={<AdminRoute />}>
