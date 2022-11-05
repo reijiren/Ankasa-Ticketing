@@ -58,19 +58,19 @@ const Router = () => {
         <Route path="/">
           <Route index element={<Explore />} />
 		  <Route path="profile" element={<PrivateRoute/>}>
-		  <Route index element={<Profile />} />
+		  	<Route index element={<Profile />} />
 		  </Route>
 		  <Route path="flight-detail/:id_flight" element={<PrivateRoute/>}>
-		  <Route index element={<FlightDetail />} />
+		  	<Route index element={<FlightDetail />} />
 		  </Route>
 		  <Route path="mybook" element={<PrivateRoute/>}>
-		  <Route index element={<Mybook />} />
+		  	<Route index element={<Mybook />} />
 		  </Route>
 		  <Route path="booking-detail/:id" element={<PrivateRoute/>}>
-		  <Route index element={<BookingDetail />} />
+		  	<Route index element={<BookingDetail />} />
 		  </Route>
 		  <Route path="search-result" element={<PrivateRoute/>}>
-		  <Route index element={<SeacrhResult />} />
+		  	<Route index element={<SeacrhResult />} />
 		  </Route>
           
           
@@ -87,12 +87,9 @@ const Router = () => {
 					<Route path="insert-airlines" element={<AdminRoute />}>
 						<Route index element={<InsertAirlines />} />
 					</Route>
-					<Route path="search-airlines" element={<AdminRoute />}>
+					<Route path="search-airlines/:page" element={<AdminRoute />}>
 						<Route index element={<SearchAirlines />} />
 					</Route>
-					{/* <Route path="airlines" element={<AdminRoute />}>
-						<Route index element={<SearchAirlineDetail />} />
-					</Route> */}
 					<Route path="update-airlines/:id" element={<AdminRoute />}>
 						<Route index element={<UpdateAirlines />} />
 					</Route>

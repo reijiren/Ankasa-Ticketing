@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavAdmin from "../../Component/navAdmin";
-import { getSearchAirlines } from "../../redux/action/airline";
+import { findAirline, getSearchAirlines } from "../../redux/action/airline";
 import SearchAirlineDetail from "../../Component/detailSearchAirlines";
 
 const SearchAirlines = () => {
@@ -10,15 +10,31 @@ const SearchAirlines = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	const page = 1;
+
+	const body = {
+		limit: 3,
+		sortBy: "name",
+		sortOrd: "asc",
+		airlineName: name ? name : "",
+	}
+
+	useEffect(() => {
+		const handleSuccess = () => {
+			console.log("Data fetched!");
+		}
+
+		dispatch(findAirline(page, body, handleSuccess))
+	}, [])
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 
 		const handleSuccess = () => {
-			// return navigate(`/admin/airlines?name=${name}`);
-			return navigate(`/admin/search-airlines?name=${name}`);
+			return navigate(`/admin/search-airlines/1?name=${name}`);
 		};
 
-		dispatch(getSearchAirlines(name, handleSuccess));
+		dispatch(findAirline(page, body, handleSuccess));
 	};
 
 	return (

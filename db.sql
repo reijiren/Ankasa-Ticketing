@@ -27,7 +27,7 @@ create table airline(
 
 create table flight(
     id_flight varchar(10) primary key,
-    airline integer references airline(id_airline),
+    airline integer references airline(id_airline) on delete cascade,
     city_departure varchar(30),
     city_destination varchar(30),
     region_departure varchar(30),
@@ -49,8 +49,8 @@ create table flight(
 
 create table booking(
     id_booking serial primary key,
-    id_user integer references users(id_user),
-    id_flight varchar(10) references flight(id_flight),
+    id_user integer references users(id_user) on delete cascade,
+    id_flight varchar(10) references flight(id_flight) on delete cascade,
     status integer, -- 0: Payment Incomplete, 1: Payment Complete
     passenger integer,
     terminal varchar(5),
