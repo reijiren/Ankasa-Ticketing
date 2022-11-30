@@ -17,6 +17,14 @@ const Profile = () => {
     dispatch(getUser(data.id_user, handleSuccess));
   }, []);
 
+  const [editform, setEditform] = useState(false);
+  const handleEdit = () => {
+    if (editform) {
+      setEditform(false);
+    } else {
+      setEditform(true);
+    }
+  }
 
   const handleSuccess = (data) => {
     console.log(data);
@@ -56,6 +64,7 @@ const Profile = () => {
                         type="email"
                         className="form-control customBorderInput bg-light"
                         id="inputEmail"
+                        disabled
                         placeholder="email@gmail.com"
                         // name="email"
                         // onChange={handleChangeForm}
@@ -81,6 +90,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputPhone"
                         name="phone"
+                        disabled={!editform}
                         // onChange={handleChangeForm}
                         placeholder="+62"
                         defaultValue={
@@ -105,6 +115,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputCard"
                         name="credit_card"
+                        disabled={!editform}
                         // onChange={handleChangeForm}
                         placeholder="1234 5678 9012 3456"
                         defaultValue={
@@ -129,6 +140,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputBalance"
                         name="balance"
+                        disabled={!editform}
                         // onChange={handleChangeForm}
                         placeholder="Rp. 0"
                         defaultValue={
@@ -160,6 +172,7 @@ const Profile = () => {
                         type="text"
                         className="form-control customBorderInput bg-light"
                         id="inputUsername"
+                        disabled
                         // name="username"
                         // onChange={handleChangeForm}
                         placeholder="John Doe"
@@ -186,6 +199,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputFullname"
                         name="fullname"
+                        disabled={!editform}
                         // onChange={handleChangeForm}
                         placeholder="John Doe"
                         defaultValue={
@@ -212,6 +226,7 @@ const Profile = () => {
                           className="form-control customBorderInput"
                           id="inputCity"
                           name="city"
+                          disabled={!editform}
                           // onChange={handleChangeForm}
                           placeholder="Medan"
                           defaultValue={
@@ -237,6 +252,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputAddress"
                         name="address"
+                        disabled={!editform}
                         // onChange={handleChangeForm}
                         placeholder="Jl. Sisingamangaraja No. 45"
                         defaultValue={
@@ -261,6 +277,7 @@ const Profile = () => {
                         className="form-control customBorderInput"
                         id="inputPostCode"
                         name="post_code"
+                        disabled={!editform}
                         // onChange={handleChangeForm}
                         placeholder="21***"
                         defaultValue={
@@ -273,10 +290,16 @@ const Profile = () => {
                       />
                       <hr />
                     </div>
+                    <div className="row">
+                  <div className="col-md-6 text-end mt-3">
+                    <button type="button" onClick={handleEdit} className="btn btn-primary bg-danger">Edit</button>
                   </div>
-                  <div className="col-md-12 text-end mt-3">
+                  <div className="col-md-6 text-center mt-3">
                     <button type="submit" className="btn btn-primary bgBlue">Save</button>
                   </div>
+                  </div>
+                  </div>
+                  
                 </div>
               </form>
             </div>

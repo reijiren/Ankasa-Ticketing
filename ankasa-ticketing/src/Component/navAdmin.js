@@ -53,7 +53,7 @@ const NavAdmin = () => {
 										<div className="card card-body">
 											<Link
 												className="side-link mid"
-												to="/admin/search-airlines">
+												to="/admin/search-airlines/1">
 												Search Airlines
 											</Link>
 											<Link className="side-link" to="/admin/insert-airlines">
