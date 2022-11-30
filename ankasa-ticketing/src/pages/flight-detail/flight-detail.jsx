@@ -40,6 +40,7 @@ const FlightDetail = () => {
     };
     dispatch(insertBooking(body));
     alert("Booking Ticket Success");
+    return navigate("/mybook");
   };
 
   const detailflight = useSelector((state) => {
@@ -162,14 +163,10 @@ const FlightDetail = () => {
                               setForm({ ...form, terminal: e.target.value })
                             }
                           >
+                            <option value="">Terminal</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="E">E</option>
-                            <option value="F">F</option>
-                            <option value="G">G</option>
-                            <option value="H">H</option>
                           </select>
                         </div>
                       </div>
@@ -181,14 +178,15 @@ const FlightDetail = () => {
                               setForm({ ...form, gate: e.target.value })
                             }
                           >
-                            <option value="221">221</option>
-                            <option value="213">213</option>
-                            <option value="222">222</option>
-                            <option value="219">219</option>
-                            <option value="215">15</option>
-                            <option value="210">210</option>
-                            <option value="209">209</option>
-                            <option value="211">211</option>
+                            <option value="">Gate</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
                           </select>
                         </div>
                       </div>
@@ -200,6 +198,7 @@ const FlightDetail = () => {
                               setForm({ ...form, class: e.target.value })
                             }
                           >
+                            <option value="">Class</option>
                             <option value="Business">Business</option>
                             <option value="Economy">Economy</option>
                             <option value="First Class">First Class</option>
@@ -214,6 +213,7 @@ const FlightDetail = () => {
                               setForm({ ...form, seat: e.target.value })
                             }
                           >
+                            <option value="">Seat</option>
                             <option value="1A">1A</option>
                             <option value="2A">2A</option>
                             <option value="3A">3A</option>
@@ -226,11 +226,10 @@ const FlightDetail = () => {
                         </div>
                       </div>
                       <div className="form-group">
-                        <label className="text-secondary" htmlFor="nationality">
-                          Nationality
-                        </label>
+                        <label className="text-secondary">Nationality</label>
                         <div className="mt-2 nationality">
-                          <select name="nationality" id="nationality">
+                          <select>
+                            <option value="">Nationality</option>
                             <option value="Indonesia">Indonesia</option>
                             <option value="Malaysia">Malaysia</option>
                             <option value="Singapore">Singapore</option>

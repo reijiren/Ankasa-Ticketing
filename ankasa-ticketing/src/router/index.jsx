@@ -57,7 +57,6 @@ const Router = () => {
       <Routes>
         <Route path="/">
           <Route index element={<Explore />} />
-<<<<<<< HEAD
           <Route path="profile" element={<PrivateRoute />}>
             <Route index element={<Profile />} />
           </Route>
@@ -74,31 +73,11 @@ const Router = () => {
             <Route index element={<SeacrhResult />} />
           </Route>
 
-=======
-		  <Route path="profile" element={<PrivateRoute/>}>
-		  	<Route index element={<Profile />} />
-		  </Route>
-		  <Route path="flight-detail/:id_flight" element={<PrivateRoute/>}>
-		  	<Route index element={<FlightDetail />} />
-		  </Route>
-		  <Route path="mybook" element={<PrivateRoute/>}>
-		  	<Route index element={<Mybook />} />
-		  </Route>
-		  <Route path="booking-detail/:id" element={<PrivateRoute/>}>
-		  	<Route index element={<BookingDetail />} />
-		  </Route>
-		  <Route path="search-result" element={<PrivateRoute/>}>
-		  	<Route index element={<SeacrhResult />} />
-		  </Route>
-          
-          
->>>>>>> bd0418e19328e7e77ce1615cc76b613cc25c59ef
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forget" element={<Forget />} />
           <Route path="forget-password" element={<ForgetPassword />} />
         </Route>
-<<<<<<< HEAD
         <Route path="/admin">
           <Route index element={<LoginAdmin />} />
           <Route path="home" element={<AdminRoute />}>
@@ -110,9 +89,6 @@ const Router = () => {
           <Route path="search-airlines" element={<AdminRoute />}>
             <Route index element={<SearchAirlines />} />
           </Route>
-          {/* <Route path="airlines" element={<AdminRoute />}>
-						<Route index element={<SearchAirlineDetail />} />
-					</Route> */}
           <Route path="update-airlines/:id" element={<AdminRoute />}>
             <Route index element={<UpdateAirlines />} />
           </Route>
@@ -132,37 +108,5 @@ const Router = () => {
       </Routes>
     </BrowserRouter>
   );
-=======
-				<Route path="/admin">
-					<Route index element={<LoginAdmin />} />
-					<Route path="home" element={<AdminRoute />}>
-						<Route index element={<HomeAdmin />} />
-					</Route>
-					<Route path="insert-airlines" element={<AdminRoute />}>
-						<Route index element={<InsertAirlines />} />
-					</Route>
-					<Route path="search-airlines" element={<AdminRoute />}>
-						<Route index element={<SearchAirlines />} />
-					</Route>
-					<Route path="update-airlines/:id" element={<AdminRoute />}>
-						<Route index element={<UpdateAirlines />} />
-					</Route>
-					<Route path="insert-flights" element={<AdminRoute />}>
-						<Route index element={<InsertFlight />} />
-					</Route>
-					<Route path="search-flights" element={<AdminRoute />}>
-						<Route index element={<SearchFlights />} />
-					</Route>
-					<Route path="update-flights" element={<AdminRoute />}>
-						<Route index element={<UpdateFlights />} />
-					</Route>
-					<Route path="search-user" element={<AdminRoute />}>
-						<Route index element={<SearchUser />} />
-					</Route>
-				</Route>
-			</Routes>
-		</BrowserRouter>
-	);
->>>>>>> bd0418e19328e7e77ce1615cc76b613cc25c59ef
 };
 export default Router;

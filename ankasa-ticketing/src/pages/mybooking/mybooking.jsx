@@ -58,9 +58,7 @@ const Mybook = () => {
                       />
                       <h3 class="pe-4">{data.region_destination}</h3>
                     </div>
-                    <p>
-                      {}, {data.id_flight}
-                    </p>
+                    <p>{data.id_flight}</p>
                     <hr class="w-100" />
                     <div class="d-flex align-items-end mt-2">
                       <p class="pe-4 mt-2 status">Status</p>
@@ -74,9 +72,13 @@ const Mybook = () => {
                         </button>
                       )}
                       <div class="view-details">
-                        <Link to={`/booking-detail/${data.id_booking}`}>
-                          View Details
-                        </Link>
+                        {data.status === 1 ? (
+                          <Link to={`/booking-detail/${data.id_booking}`}>
+                            View Details
+                          </Link>
+                        ) : (
+                          "Please pay"
+                        )}
                       </div>
                     </div>
                   </div>
