@@ -21,10 +21,11 @@ import InsertAirlines from "../pages/admin-insertAirlines/insertAirlines";
 import UpdateAirlines from "../pages/admin-updateAirlines/updateAirlines";
 import SearchAirlines from "../pages/admin-searchAirlines/searchAirlines";
 import InsertFlight from "../pages/admin-insertFlight/insertFlight";
-import SearchFlights from "../pages/admin-searchFlights/searchFlights";
+import FlightList from "../pages/admin-searchFlights/flightList";
 import UpdateFlights from "../pages/admin-updateFlights/updateFlights";
 import SearchUser from "../pages/admin-searchUser/searchUser";
 import ForgetPassword from "../pages/forgetpassword/forgetpassword";
+import SearchFlightDetail from "../pages/admin-searchFlights/searchFlights";
 
 import ScrollToTop from "../Component/ScrollToTop";
 
@@ -51,35 +52,34 @@ const AdminRoute = () => {
 };
 
 const Router = () => {
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/">
-          <Route index element={<Explore />} />
-		  <Route path="profile" element={<PrivateRoute/>}>
-		  	<Route index element={<Profile />} />
-		  </Route>
-		  <Route path="flight-detail/:id_flight" element={<PrivateRoute/>}>
-		  	<Route index element={<FlightDetail />} />
-		  </Route>
-		  <Route path="mybook" element={<PrivateRoute/>}>
-		  	<Route index element={<Mybook />} />
-		  </Route>
-		  <Route path="booking-detail/:id" element={<PrivateRoute/>}>
-		  	<Route index element={<BookingDetail />} />
-		  </Route>
-		  <Route path="search-result" element={<PrivateRoute/>}>
-		  	<Route index element={<SeacrhResult />} />
-		  </Route>
-          
-          
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="forget" element={<Forget />} />
-          <Route path="forget-password" element={<ForgetPassword />} />
-        </Route>
-				<Route path="/admin">
+	return (
+		<BrowserRouter>
+			<ScrollToTop />
+			<Routes>
+				<Route path="/">
+					<Route index element={<Explore />} />
+					<Route path="profile" element={<PrivateRoute />}>
+						<Route index element={<Profile />} />
+					</Route>
+					<Route path="flight-detail/:id_flight" element={<PrivateRoute />}>
+						<Route index element={<FlightDetail />} />
+					</Route>
+					<Route path="mybook" element={<PrivateRoute />}>
+						<Route index element={<Mybook />} />
+					</Route>
+					<Route path="booking-detail/:id" element={<PrivateRoute />}>
+						<Route index element={<BookingDetail />} />
+					</Route>
+					<Route path="search-result" element={<PrivateRoute />}>
+						<Route index element={<SeacrhResult />} />
+					</Route>
+
+					<Route path="login" element={<Login />} />
+					<Route path="register" element={<Register />} />
+					<Route path="forget" element={<Forget />} />
+					<Route path="forget-password" element={<ForgetPassword />} />
+				</Route>
+				<Route path="/admin/">
 					<Route index element={<LoginAdmin />} />
 					<Route path="home" element={<AdminRoute />}>
 						<Route index element={<HomeAdmin />} />
@@ -96,8 +96,11 @@ const Router = () => {
 					<Route path="insert-flights" element={<AdminRoute />}>
 						<Route index element={<InsertFlight />} />
 					</Route>
+					<Route path="flights" element={<AdminRoute />}>
+						<Route index element={<FlightList />} />
+					</Route>
 					<Route path="search-flights" element={<AdminRoute />}>
-						<Route index element={<SearchFlights />} />
+						<Route index element={<SearchFlightDetail />} />
 					</Route>
 					<Route path="update-flights" element={<AdminRoute />}>
 						<Route index element={<UpdateFlights />} />

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
-import "../assets/style.css";
-import { flightDelete, getDetailFlight } from "../redux/action/flight";
+import "../../assets/style.css";
+import { flightDelete, getDetailFlight } from "../../redux/action/flight";
+import NavAdmin from "../../Component/navAdmin";
 
 const SearchFlightDetail = () => {
 	const [queryParam] = useSearchParams();
@@ -44,6 +45,28 @@ const SearchFlightDetail = () => {
 
 	return (
 		<div>
+			<div>
+				<NavAdmin />
+				<div className={`container-fluid row`}>
+					<div
+						className={`col-7 position relative start-50 translate-middle-x`}>
+						<div className={`text-center`}>
+							<h1>Search Flights</h1>
+						</div>
+						<div class="mb-3">
+							<label for="exampleInputEmail1" class="form-label">
+								Search Flights
+							</label>
+							<input
+								type="email"
+								class="form-control"
+								id="exampleInputEmail1"
+								aria-describedby="emailHelp"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div className="container-fluid row">
 				{flight.isLoading ? (
 					<h1>loading</h1>

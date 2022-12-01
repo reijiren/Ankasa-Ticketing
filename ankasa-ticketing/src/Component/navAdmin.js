@@ -74,10 +74,8 @@ const NavAdmin = () => {
 									</button>
 									<div className="collapse" id="flight">
 										<div className="card card-body">
-											<Link
-												className="side-link mid"
-												to="/admin/search-flights">
-												Search Flight
+											<Link className="side-link mid" to="/admin/flights">
+												Flight Detail
 											</Link>
 											<Link className="side-link" to="/admin/insert-flights">
 												Insert Flights
