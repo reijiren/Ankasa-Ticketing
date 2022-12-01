@@ -55,19 +55,56 @@ const SeacrhResult = () => {
   //   };
   //   dispatch(getFindFlight(page, body, handleSuccess));
   // };
-
+  const [filter, setFilter] = useState("");
+  const [category, setCategory] = useState("");
+  const [direct, setDirect] = useState("");
+  const [transit, setTransit] = useState("");
+  const [transit2, setTransit2] = useState("");
+  const [destination, setDestination] = useState("");
+  const [derpature, setDeparture] = useState("");
+  const [luggage, setLuggage] = useState("");
+  const [inflightMeal, setInflightMeal] = useState("");
+  const [wifi, setWifi] = useState("");
   useEffect(() => {
     const body = {
       limit: 2,
       sortBy: "name",
       sortOrd: sort,
-      data: {},
+      data: filter
+        ? { airlineName: filter }
+        : destination || derpature
+        ? { city_destination: destination } || { city_departure: derpature }
+        : direct
+        ? { direct: direct }
+        : transit
+        ? { transit: transit }
+        : transit2
+        ? { transit2: transit2 }
+        : luggage
+        ? { luggage: luggage }
+        : inflightMeal
+        ? { inflight_meal: inflightMeal }
+        : wifi
+        ? { wifi: wifi }
+        : {},
     };
     const handleSuccess = (data) => {
       setTicket(data);
     };
     dispatch(getFindFlight(page, body, handleSuccess));
-  }, [page, sort]);
+  }, [
+    page,
+    sort,
+    filter,
+    transit,
+    direct,
+    transit2,
+    derpature,
+    destination,
+    luggage,
+    inflightMeal,
+    wifi,
+  ]);
 
   const NextPage = () => {
     setPage(page + 1);
@@ -127,7 +164,10 @@ const SeacrhResult = () => {
                       <span>From</span>
                     </div>
                     <div>
-                      <input placeholder="Medan (IDN)" />
+                      <input
+                        placeholder="Medan (IDN)"
+                        onChange={(e) => setDeparture(e.target.value)}
+                      />
                     </div>
                     <div></div>
                   </div>
@@ -142,7 +182,10 @@ const SeacrhResult = () => {
                       <span>To</span>
                     </div>
                     <div>
-                      <input placeholder="Tokyo (JPN)" />
+                      <input
+                        placeholder="Tokyo (JPN)"
+                        onChange={(e) => setDestination(e.target.value)}
+                      />
                     </div>
                   </div>
                   <div className="mt-1 result-search">
@@ -172,7 +215,9 @@ const SeacrhResult = () => {
               </form>
             </div>
             <div className="col-md-2 bottom-container-fluid-search-result">
-              <button>Change Search</button>
+              <button onClick={(e) => setDestination("") && setDeparture("")}>
+                Change Search
+              </button>
             </div>
           </div>
         </div>
@@ -187,7 +232,18 @@ const SeacrhResult = () => {
                     </h5>
                   </div>
                   <div className="col-auto">
-                    <button className="button-title-filter-search-result">
+                    <button
+                      onClick={(e) =>
+                        setFilter("") ||
+                        setDirect("") ||
+                        setTransit("") ||
+                        setTransit2("") ||
+                        setLuggage("") ||
+                        setInflightMeal("") ||
+                        setWifi("")
+                      }
+                      className="button-title-filter-search-result"
+                    >
                       Reset
                     </button>
                   </div>
@@ -214,10 +270,15 @@ const SeacrhResult = () => {
                   <div id="select-airline" className="collapse-airline show">
                     <div className="row">
                       <div className="mt-2 col-md-10">
-                        <span>Garuda Indnesia</span>
+                        <span>Garuda Indonesia</span>
                       </div>
                       <div className="mt-2 col-md-2">
-                        <input className="form-check-input" type="checkbox" />
+                        <input
+                          className="form-check-input"
+                          value="Garuda Indonesia"
+                          type="checkbox"
+                          onClick={(e) => setFilter(e.target.value)}
+                        />
                       </div>
                       <div className="mt-2 col-md-10">
                         <span>Lion Air</span>
@@ -225,8 +286,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="Lion Air"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setFilter(e.target.value)}
                         />
                       </div>
                       <div className="mt-2 col-md-10">
@@ -235,8 +297,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="Air Asia"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setFilter(e.target.value)}
                         />
                       </div>
                       <div className="mt-2 col-md-10">
@@ -245,8 +308,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="Air Bus"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setFilter(e.target.value)}
                         />
                       </div>
                       <div className="mt-2 col-md-10">
@@ -255,8 +319,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="Batik Air"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setFilter(e.target.value)}
                         />
                       </div>
                       <div className="mt-2 col-md-10">
@@ -265,8 +330,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="Citilink"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setFilter(e.target.value)}
                         />
                       </div>
                     </div>
@@ -351,8 +417,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="transit=0"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setDirect(e.target.value)}
                         />
                       </div>
                       <div className="mt-2 col-md-10">
@@ -361,8 +428,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="transit=1"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setTransit(e.target.value)}
                         />
                       </div>
                       <div className="mt-2 col-md-10">
@@ -371,8 +439,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="transit=2"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setTransit2(e.target.value)}
                         />
                       </div>
                     </div>
@@ -402,13 +471,14 @@ const SeacrhResult = () => {
                   >
                     <div className="row">
                       <div className="mt-2 col-md-10">
-                        <span>LugBage</span>
+                        <span>Luggage</span>
                       </div>
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="luggage=1"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setLuggage(e.target.value)}
                         />
                       </div>
                       <div className="mt-2 col-md-10">
@@ -417,8 +487,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="inflight_meal=1"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setInflightMeal(e.target.value)}
                         />
                       </div>
                       <div className="mt-2 col-md-10">
@@ -427,8 +498,9 @@ const SeacrhResult = () => {
                       <div className="mt-2 col-md-2">
                         <input
                           className="form-check-input"
+                          value="wifi=1"
                           type="checkbox"
-                          name=""
+                          onClick={(e) => setWifi(e.target.value)}
                         />
                       </div>
                     </div>
@@ -448,9 +520,9 @@ const SeacrhResult = () => {
                     </h5>
                   </div>
                   <div className="col-auto">
-                    <span className="text-secondary">
+                    {/* <span className="text-secondary">
                       ({Object.keys(flight.flight).length} flight found)
-                    </span>
+                    </span> */}
                   </div>
                   <div className="col-auto sorting-title-select-ticket-search-result">
                     <div className="row">
@@ -469,10 +541,7 @@ const SeacrhResult = () => {
                           aria-labelledby="sorting"
                         >
                           <li>
-                            <a
-                              class="dropdown-item"
-                              onClick={handleSortOrder}
-                            >
+                            <a class="dropdown-item" onClick={handleSortOrder}>
                               {sort.toUpperCase()}
                             </a>
                           </li>
@@ -484,8 +553,8 @@ const SeacrhResult = () => {
               </div>
 
               {/* TICKET */}
-              {/* {JSON.stringify(flight)} */}
-              {flight.flight == "" ? (
+              {JSON.stringify(flight)}
+              {/* {flight.flight == "" ? (
                 <span className="text-center text-secondary">
                   Data not found!
                 </span>
@@ -657,7 +726,7 @@ const SeacrhResult = () => {
                     </div>
                   </div>
                 ))
-              )}
+              )} */}
               {/* Pagination */}
               <div className="d-flex justify-content-center">
                 <ul className="pagination">
