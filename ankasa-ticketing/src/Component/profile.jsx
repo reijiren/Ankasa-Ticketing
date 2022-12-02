@@ -3,9 +3,11 @@ import { useSelector } from "react-redux";
 import "../assets/style.css";
 import { useDispatch } from "react-redux";
 import { updatePhoto } from "../redux/action/user";
+import { useNavigate } from "react-router-dom";
 
 const Profiles = () => {
-    const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const data = JSON.parse(localStorage.getItem("userdata"));
 
@@ -32,6 +34,10 @@ const Profiles = () => {
     console.log(hiddenFileInput.current.files[0]);
     formData.append("photo", hiddenFileInput.current.files[0]);
     dispatch(updatePhoto(formData, data.id_user, handleSuccess));
+  };
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
   };
 
   return (
@@ -121,7 +127,9 @@ const Profiles = () => {
               </div>
               <div className="col-md-12 text-bold my-1">
                 <p>
-                  <i className="fa fa-sign-out text-danger"> Logout</i>
+                  <i onClick={logout} 
+                   style={{cursor: "pointer"}} 
+                   className="fa fa-sign-out text-danger"> Logout</i>
                 </p>
               </div>
             </div>
