@@ -4,7 +4,7 @@ export const getFlight = (handleSuccess) => ({
 	type: "GET_FLIGHT",
 	payload: new Promise((resolve, reject) => {
 		axios
-			.get("http://localhost:3001/flight")
+			.get(`${process.env.REACT_APP_BACKEND_URL}/flight`)
 			.then((res) => {
 				handleSuccess(res);
 				resolve(res);

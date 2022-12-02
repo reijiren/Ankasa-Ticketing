@@ -292,7 +292,7 @@ const LandingPage = () => {
                         <div className="cardDescription flexRow">
                           <div className="flexCol flexAuto">
                             <p>{data.city_departure},</p>
-                            <h4>{data.region_destination}</h4>
+                            <h4>{data.region_departure}</h4>
                           </div>
                           <div>
                             <button
@@ -370,7 +370,7 @@ const LandingPage = () => {
                                       className="imgCustom rounded-circle"
                                     />
                                     <h5 className="mt-4 text-center">
-                                      {data.region_destination}
+                                      {data.city_departure}
                                     </h5>
                                   </div>
                                 </div>

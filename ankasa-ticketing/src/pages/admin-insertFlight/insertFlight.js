@@ -10,18 +10,18 @@ const InsertFlight = () => {
 
 	const data = {
 		id_flight: "",
-		airline: "",
+		airline: 1,
 		city_departure: "",
 		city_destination: "",
 		region_departure: "",
 		region_destination: "",
-		max_capacity: "",
+		max_capacity: 0,
 		luggage: 0,
 		inflight_meal: 0,
 		wifi: 0,
 		time_departure: "",
 		time_arrived: "",
-		price: "",
+		price: 0,
 		refundable: 0,
 		reschedule: 0,
 		insurance: 0,
@@ -33,24 +33,24 @@ const InsertFlight = () => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		let inputForm = new FormData();
-		inputForm.append("id_flight", form.id_flight);
-		inputForm.append("airline", form.airline);
-		inputForm.append("city_departure", form.city_departure);
-		inputForm.append("city_destination", form.city_destination);
-		inputForm.append("region_departure", form.region_departure);
-		inputForm.append("region_destination", form.region_destination);
-		inputForm.append("max_capacity", form.max_capacity);
-		inputForm.append("luggage", form.luggage);
-		inputForm.append("inflight_meal", form.inflight_meal);
-		inputForm.append("wifi", form.wifi);
-		inputForm.append("time_departure", form.time_departure);
-		inputForm.append("time_arrived", form.time_arrived);
-		inputForm.append("price", form.price);
-		inputForm.append("refundable", form.refundable);
-		inputForm.append("reschedule", form.reschedule);
-		inputForm.append("insurance", form.insurance);
-		inputForm.append("transit", form.transit);
+		// let inputForm = new FormData();
+		// inputForm.append("id_flight", form.id_flight);
+		// inputForm.append("airline", form.airline);
+		// inputForm.append("city_departure", form.city_departure);
+		// inputForm.append("city_destination", form.city_destination);
+		// inputForm.append("region_departure", form.region_departure);
+		// inputForm.append("region_destination", form.region_destination);
+		// inputForm.append("max_capacity", form.max_capacity);
+		// inputForm.append("luggage", form.luggage);
+		// inputForm.append("inflight_meal", form.inflight_meal);
+		// inputForm.append("wifi", form.wifi);
+		// inputForm.append("time_departure", form.time_departure);
+		// inputForm.append("time_arrived", form.time_arrived);
+		// inputForm.append("price", form.price);
+		// inputForm.append("refundable", form.refundable);
+		// inputForm.append("reschedule", form.reschedule);
+		// inputForm.append("insurance", form.insurance);
+		// inputForm.append("transit", form.transit);
 
 		console.log(form);
 
@@ -91,7 +91,7 @@ const InsertFlight = () => {
 								id="formGroupExampleInput"
 								placeholder="Example: 1"
 								onChange={(e) => {
-									setForm({ ...form, airline: e.target.value });
+									setForm({ ...form, airline: parseInt(e.target.value) });
 								}}
 							/>
 						</div>
@@ -161,7 +161,7 @@ const InsertFlight = () => {
 								id="formGroupExampleInput"
 								placeholder="Example: 1000"
 								onChange={(e) => {
-									setForm({ ...form, max_capacity: e.target.value });
+									setForm({ ...form, max_capacity: parseInt(e.target.value) });
 								}}
 							/>
 						</div>
@@ -173,11 +173,11 @@ const InsertFlight = () => {
 								className="form-select form-select-sm"
 								aria-label=".form-select-sm example"
 								onChange={(e) => {
-									setForm({ ...form, luggage: e.target.value });
+									setForm({ ...form, luggage: parseInt(e.target.value) });
 								}}>
 								<option defaultValue="">Luggage Option</option>
-								<option value="0">No Luggage</option>
-								<option value="1">With</option>
+								<option value={0}>No Luggage</option>
+								<option value={1}>With</option>
 							</select>
 						</div>
 						<div className="mb-3">
@@ -188,11 +188,11 @@ const InsertFlight = () => {
 								className="form-select form-select-sm"
 								aria-label=".form-select-sm example"
 								onChange={(e) => {
-									setForm({ ...form, inflight_meal: e.target.value });
+									setForm({ ...form, inflight_meal: parseInt(e.target.value) });
 								}}>
 								<option defaultValue="">Meal Option</option>
-								<option value="0">No Meal</option>
-								<option value="1">With Meal</option>
+								<option value={0}>No Meal</option>
+								<option value={1}>With Meal</option>
 							</select>
 						</div>
 						<div className="mb-3">
@@ -203,11 +203,11 @@ const InsertFlight = () => {
 								className="form-select form-select-sm"
 								aria-label=".form-select-sm example"
 								onChange={(e) => {
-									setForm({ ...form, wifi: e.target.value });
+									setForm({ ...form, wifi: parseInt(e.target.value) });
 								}}>
 								<option defaultValue="">WiFi Option</option>
-								<option value="0">No WiFi</option>
-								<option value="1">With WiFi</option>
+								<option value={0}>No WiFi</option>
+								<option value={1}>With WiFi</option>
 							</select>
 						</div>
 						<div className="mb-3">
@@ -248,7 +248,7 @@ const InsertFlight = () => {
 								id="formGroupExampleInput"
 								placeholder="Example: 5000000"
 								onChange={(e) => {
-									setForm({ ...form, price: e.target.value });
+									setForm({ ...form, price: parseInt(e.target.value) });
 								}}
 							/>
 						</div>
@@ -260,11 +260,11 @@ const InsertFlight = () => {
 								className="form-select form-select-sm"
 								aria-label=".form-select-sm example"
 								onChange={(e) => {
-									setForm({ ...form, refundable: e.target.value });
+									setForm({ ...form, refundable: parseInt(e.target.value) });
 								}}>
 								<option defaultValue="">Refundable Option</option>
-								<option value="0">No Refundable</option>
-								<option value="1">With Refundable</option>
+								<option value={0}>No Refundable</option>
+								<option value={1}>With Refundable</option>
 							</select>
 						</div>
 						<div className="mb-3">
@@ -275,11 +275,11 @@ const InsertFlight = () => {
 								className="form-select form-select-sm"
 								aria-label=".form-select-sm example"
 								onChange={(e) => {
-									setForm({ ...form, reschedule: e.target.value });
+									setForm({ ...form, reschedule: parseInt(e.target.value) });
 								}}>
 								<option defaultValue="">Reschedule Option</option>
-								<option value="0">No Reschedule</option>
-								<option value="1">With Reschedule</option>
+								<option value={0}>No Reschedule</option>
+								<option value={1}>With Reschedule</option>
 							</select>
 						</div>
 						<div className="mb-3">
@@ -290,11 +290,11 @@ const InsertFlight = () => {
 								className="form-select form-select-sm"
 								aria-label=".form-select-sm example"
 								onChange={(e) => {
-									setForm({ ...form, insurance: e.target.value });
+									setForm({ ...form, insurance: parseInt(e.target.value) });
 								}}>
 								<option defaultValue="">Insurance Option</option>
-								<option value="0">No Insurance</option>
-								<option value="1">With Insurance</option>
+								<option value={0}>No Insurance</option>
+								<option value={1}>With Insurance</option>
 							</select>
 						</div>
 						<div className="mb-3">
@@ -305,11 +305,11 @@ const InsertFlight = () => {
 								className="form-select form-select-sm"
 								aria-label=".form-select-sm example"
 								onChange={(e) => {
-									setForm({ ...form, transit: e.target.value });
+									setForm({ ...form, transit: parseInt(e.target.value) });
 								}}>
 								<option defaultValue="">Transit Option</option>
-								<option value="0">No Transit</option>
-								<option value="1">With Transit</option>
+								<option value={0}>No Transit</option>
+								<option value={1}>With Transit</option>
 							</select>
 						</div>
 						<div className="mb-4 mt-4">
