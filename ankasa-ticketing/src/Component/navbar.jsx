@@ -71,7 +71,7 @@ const Navbar = () => {
                     src={require("../assets/images/Group 797.png")}
                     width="20"
                     alt=""
-                    class="mx-4"
+                    className="mx-4"
                   />
                   <img
                     src={require("../assets/images/btnNotifications.png")}

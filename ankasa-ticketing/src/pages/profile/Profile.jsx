@@ -5,16 +5,13 @@ import Navbar from "../../Component/navbar";
 import Profiles from "../../Component/profile";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser, updateUser } from "../../redux/action/user";
-// import { Link } from "react-router-dom";
 
 const Profile = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const data = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(() => {
-    const handleSuccess = (data) => {};
-    dispatch(getUser(data.id_user, handleSuccess));
+    console.log(user)
   }, []);
 
   const [editform, setEditform] = useState(false);
@@ -34,9 +31,9 @@ const Profile = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     let formData = new FormData(e.target);
-    // console.log(Object.fromEntries(formData));
+    console.log(Object.fromEntries(formData));
     // console.log(data.id_user)
-    dispatch(updateUser(Object.fromEntries(formData), data.id_user, handleSuccess));
+    dispatch(updateUser(Object.fromEntries(formData), user.id_user, handleSuccess));
   };
 
   return (

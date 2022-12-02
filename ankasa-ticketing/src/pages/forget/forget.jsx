@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import "../login/login.css";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { checkEmail } from "../../redux/action/user";
@@ -23,8 +22,6 @@ const Forget = () => {
     }
     dispatch (checkEmail(email, handleSuccess))
   }
-  
-
 
   return (
     <section>
@@ -48,7 +45,7 @@ const Forget = () => {
               <button type="submit" className="custom-btn">Next</button>
             </div>
             <div className="text-center mt-2">
-              <p>You’ll get message soon on your email</p><p>
+              <p></p><p>
               </p></div>
           </form>
         </div>

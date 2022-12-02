@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../login/login.css";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { changePassword } from "../../redux/action/user";
+import { useEffect } from "react";
 
 const ForgetPassword = () => {
   const dispatch = useDispatch();
@@ -12,6 +12,14 @@ const ForgetPassword = () => {
     email: localStorage.getItem("email"),
     password: "",
   });
+
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if(!email){
+      alert('Please find your email');
+      return navigate('/forget')
+    }
+  }, [])
 
   const [confirmPassword, setConfirmPassword] = useState("")
   const onSubmit = (e) => {
@@ -51,7 +59,7 @@ const ForgetPassword = () => {
               <button type="submit" className="custom-btn">Sign in</button>
             </div>
             <div className="text-center mt-2">
-              <p>You’ll get message soon on your email</p><p>
+              <p></p><p>
               </p></div>
           </form>
         </div>

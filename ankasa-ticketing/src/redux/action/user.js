@@ -1,21 +1,10 @@
 import axios from "axios";
 
-// export const userLogin = (form) => {
-//     return new Promise ((resolve, reject) => {
-//         axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, form)
-//         .then((response) => {
-//             resolve(response);
-//         })
-//         .catch((err) => {
-//             reject(err);
-//         })
-//     })
-// }
 export const getUser = (id_user, handleSuccess) => ({
   type: "GET_USER",
   payload: new Promise((resolve, reject) => {
     axios
-      .get(`http://localhost:3001/user/${id_user}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/user/${id_user}`)
       .then((res) => {
         handleSuccess(res);
         resolve(res);
@@ -72,7 +61,7 @@ export const userRegister = (form, handleSuccess) => ({
 });
 
 export const checkEmail = (email, handleSuccess) => ({
-  type: "FORGET",
+  type: "CHECK_EMAIL",
   payload: new Promise((resolve, reject) => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/user/findemail/${email}`)
@@ -107,7 +96,6 @@ export const updateUser = (form, id_user, handleSuccess) => ({
     axios
       .put(`${process.env.REACT_APP_BACKEND_URL}/user/update/${id_user}`, form)
       .then((res) => {
-        console.log(res);
         handleSuccess(res);
         resolve(res);
       })
@@ -126,13 +114,11 @@ export const updatePhoto = (form, id_user, handleSuccess) => ({
         form,
         {
           headers: {
-            
             "Content-Type": "multipart/form-data",
           },
         }
       )
       .then((res) => {
-        console.log(res);
         handleSuccess(res);
         resolve(res);
       })

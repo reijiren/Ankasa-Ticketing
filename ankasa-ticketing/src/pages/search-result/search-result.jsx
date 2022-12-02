@@ -61,7 +61,7 @@ const SeacrhResult = () => {
   const [transit, setTransit] = useState("");
   const [transit2, setTransit2] = useState("");
   const [destination, setDestination] = useState("");
-  const [derpature, setDeparture] = useState("");
+  const [departure, setDeparture] = useState("");
   const [luggage, setLuggage] = useState("");
   const [inflightMeal, setInflightMeal] = useState("");
   const [wifi, setWifi] = useState("");
@@ -72,8 +72,8 @@ const SeacrhResult = () => {
       sortOrd: sort,
       data: filter
         ? { airlineName: filter }
-        : destination || derpature
-        ? { city_destination: destination } || { city_departure: derpature }
+        : destination || departure
+        ? { city_destination: destination } || { city_departure: departure }
         : direct
         ? { direct: direct }
         : transit
@@ -99,7 +99,7 @@ const SeacrhResult = () => {
     transit,
     direct,
     transit2,
-    derpature,
+    departure,
     destination,
     luggage,
     inflightMeal,
