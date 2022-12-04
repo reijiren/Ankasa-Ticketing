@@ -2,43 +2,56 @@ import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import "../assets/style.css";
 import { useDispatch } from "react-redux";
-import { updatePhoto } from "../redux/action/user";
+import { getUser, updatePhoto } from "../redux/action/user";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Profiles = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const data = JSON.parse(localStorage.getItem("userdata"));
+  const thisUser = user.user;
+
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    const handleSuccess = (data) => {}
+    dispatch(getUser(thisUser.id_user, handleSuccess))
+  }, [])
 
   const hiddenFileInput = useRef(null);
   const handleClick = (event) => {
-    console.log(event);
     hiddenFileInput.current.click();
   };
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
-    console.log(fileUploaded);
+    setImage(fileUploaded);
   };
 
   const handleSuccess = (data) => {
-    console.log(data);
-    alert("Success");
+    alert("Photo Uploaded");
+    window.location.reload();
   };
 
   // update photo profile
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    console.log(formData);
-    console.log(hiddenFileInput.current.files[0]);
-    formData.append("photo", hiddenFileInput.current.files[0]);
-    dispatch(updatePhoto(formData, data.id_user, handleSuccess));
+    if(image){
+      const formData = new FormData();
+      formData.append("photo", image);
+      dispatch(updatePhoto(formData, thisUser.id_user, handleSuccess));
+    }
   };
+
   const logout = () => {
     localStorage.clear();
     navigate("/login");
   };
+
+  const replaceImage = (img) => {
+    img.target.src = `${process.env.REACT_APP_BACKEND_URL}/profile_pic/default.png`;
+  }
 
   return (
     <>
@@ -46,18 +59,20 @@ const Profiles = () => {
         <div className="row text-center">
           <div className="col-md-12 my-2">
             <img
-              src={`http://localhost:3001/profile_pic/${user.thisUser.map(
-                (data) => data.photo
-              )}`}
+              src={`${process.env.REACT_APP_BACKEND_URL}/profile_pic/${user.user.photo}`}
+              onError={replaceImage}
               width="100"
               alt=""
               className="mx-auto d-block rounded-circle customBorder"
             />
           </div>
           <div className="col-md-12 my-2">
-            <form action="" onSubmit={handleSubmit}>
-              <button className="btn btn-outline-primary" onClick={handleClick}>
+            <form action="" onSubmit={handleSubmit} id="form-photo">
+              <button type="button" className="btn btn-outline-primary" onClick={handleClick}>
                 Select Photo
+              </button>
+              <button type="submit" className="btn btn-outline-primary" hidden={image ? false : true}>
+                Upload Photo
               </button>
               <input
                 type="file"
@@ -70,10 +85,10 @@ const Profiles = () => {
           </div>
           <div className="col-md-12">
             <h3 className="text-center">
-              {user.thisUser.map((data) => data.fullname)}
+              {user.user.fullname}
             </h3>
             <p className="text-muted">
-              {user.thisUser.map((data) => data.city)} Indonesia
+              {user.user.city} Indonesia
             </p>
           </div>
           <div className="col-md-12">
@@ -89,9 +104,7 @@ const Profiles = () => {
               <div className="card-body">
                 <div className="row">
                   <p>
-                    {user.thisUser.map((data) =>
-                      data.credit_card ? data.credit_card : "-"
-                    )}
+                    {user.user.credit_card || "-"}
                   </p>
                   <div className="col-md-6 text-start">
                     <p>X Card</p>
@@ -99,9 +112,7 @@ const Profiles = () => {
                   <div className="col-md-6 text-end">
                     <p>
                       ${" "}
-                      {user.thisUser.map((data) =>
-                        data.balance ? data.balance : "-"
-                      )}
+                      {user.user.balance || "-"}
                     </p>
                   </div>
                 </div>

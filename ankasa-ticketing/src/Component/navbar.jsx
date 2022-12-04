@@ -1,8 +1,15 @@
 import React from "react";
 import "../assets/style.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.user.user);
+
+  const replaceImage = (img) => {
+    img.target.src = `${process.env.REACT_APP_BACKEND_URL}/profile_pic/default.png`;
+  }
+
   return (
     <>
       <div className="container-fluid">
@@ -35,7 +42,7 @@ const Navbar = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="where you go?"
+                  placeholder="where do you go?"
                   aria-label="Search"
                 />
                 <span className="input-group-text" id="basic-addon2">
@@ -83,7 +90,8 @@ const Navbar = () => {
               </div>
               <Link to="/profile">
                 <img
-                  src={require("../assets/images/nnzkZNYWHaU.png")}
+                  src={`${process.env.REACT_APP_BACKEND_URL}/profile_pic/${user.photo}`}
+                  onError={replaceImage}
                   width="40"
                   className="mobileProfileNavbar rounded-circle customBorder"
                   alt="profile image"

@@ -10,7 +10,9 @@ const userController = {
 		userModel
 			.selectUserId(id)
 			.then((result) => {
-				success(res, result.rows, "success", "get user success");
+				const user = result.rows[0];
+				delete user.password;
+				success(res, user, "success", "get user success");
 			})
 			.catch((err) => {
 				failed(res, err.message, "failed", "get user failed");
@@ -36,7 +38,6 @@ const userController = {
 
 		userModel
 			.searchUser(username, limit, offset)
-			// .searchUser(username)
 			.then((result) => {
 				success(res, result.rows, "success", "get user success");
 			})
@@ -177,7 +178,7 @@ const userController = {
 			address,
 			post_code,
 			level,
-			balance,
+			balance: typeof balance !== "integer" ? (balance === "" ? null : parseInt(balance)) : balance,
 			gender,
 		};
 
@@ -185,11 +186,13 @@ const userController = {
 		.then((result) => {
 			userModel.selectUserId(data.id)
 			.then((result) => {
-				success(res, result.rows, 'success', 'Update user success')
+				const user = result.rows[0];
+				delete user.password;
+				success(res, user, 'success', 'Update user success')
 			})
 		})
 		.catch((error) => {
-			res.json(error);
+			failed(res, error.message, "failed", "failed hash password");
 		});
 	},
 
@@ -197,7 +200,7 @@ const userController = {
 		const { email, password } = req.body;
 		bcrypt.hash(password, 10, (err, hash) => {
 			if (err) {
-				failed(res, err.message, "failer", "failed hash password");
+				failed(res, err.message, "failed", "failed hash password");
 			}
 
 			const data = {

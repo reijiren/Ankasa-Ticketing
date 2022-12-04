@@ -1,36 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./booking-detail.css";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
 import { getDetailBooking } from "../../redux/action/booking";
-import { getDetailAirline } from "../../redux/action/airline";
 
 const BookingDetail = () => {
-  // get ID from parameter URL
   const {id} = useParams();
 
-  //untuk get action
   const dispatch = useDispatch();
 
-  // {detailbooking.booking.map((data) => (
-  //   const id_airline = data.id_airline
-  // ))}
+  const [detail, setDetail] = useState([]);
 
-  const detailairline = useSelector((state) => {
-    return state.airline;
-  });
-
-  const detailbooking = useSelector((state) => {
-    return state.booking;
-  });
-
-  //hook useEffect
   useEffect(() => {
-    //panggil method "fetchData"
-    dispatch(getDetailAirline(id_airline));
-    dispatch(getDetailBooking(id));
+    const handleSuccess = (data) => {
+      setDetail(data.data.data);
+    }
+    dispatch(getDetailBooking(id, handleSuccess));
   }, []);
 
   return (
@@ -52,19 +39,22 @@ const BookingDetail = () => {
               </div>
             </div>
             <div className="mt-3 container ticket-flight-main">
-              {detailbooking.booking.map((data, index) => (
-                <div className="row">
+              {detail ? 
+              detail.map((data, index) => (
+                <div key={index} className="row">
                   <div className="col-md-9 ticket-flight-main-left-border">
                     <div className="ticket-flight-main-left">
                       <div className="row">
                         <div className="col-auto">
                           <img
-                            src={require("../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo 1.png")}
+                            src={`${process.env.REACT_APP_BACKEND_URL}/airline/${data.logo}`}
+                            width={100}
+                            height={50}
                           />
                         </div>
                         <div className="pt-3 col-auto">
                           <h3>
-                            <b>{data.city_departure}</b>
+                            <b>{data.city_departure}, {data.region_departure}</b>
                           </h3>
                         </div>
                         <div className="pt-3 col-auto">
@@ -74,7 +64,7 @@ const BookingDetail = () => {
                         </div>
                         <div className="pt-3 col-auto">
                           <h3>
-                            <b>{data.city_destination}</b>
+                            <b>{data.city_destination}, {data.region_destination}</b>
                           </h3>
                         </div>
                       </div>
@@ -115,7 +105,12 @@ const BookingDetail = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              )) : (
+                <div className="row">
+                  Data not found!
+                </div>
+              )
+            }
             </div>
           </div>
         </div>

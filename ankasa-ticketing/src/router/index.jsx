@@ -102,7 +102,7 @@ const Router = () => {
 					<Route path="search-flights" element={<AdminRoute />}>
 						<Route index element={<SearchFlightDetail />} />
 					</Route>
-					<Route path="update-flights" element={<AdminRoute />}>
+					<Route path="update-flight/:id" element={<AdminRoute />}>
 						<Route index element={<UpdateFlights />} />
 					</Route>
 					<Route path="search-user" element={<AdminRoute />}>

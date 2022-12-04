@@ -63,6 +63,13 @@ const bookingReducer = (state = initialState, action) => {
         isError: false,
         booking: action.payload.data.data,
       };
+    case "RESET_BOOKING":
+			return {
+				...state,
+				isLoading: false,
+				isError: false,
+				booking: [],
+			}
     default:
       return state;
   }

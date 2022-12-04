@@ -127,3 +127,9 @@ export const updatePhoto = (form, id_user, handleSuccess) => ({
       });
   }),
 });
+
+export const resetUser = () => {
+  return {
+      type: "RESET_USER",
+  }
+}

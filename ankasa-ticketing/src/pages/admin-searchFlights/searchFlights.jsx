@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import "../../assets/style.css";
 import { flightDelete, getDetailFlight } from "../../redux/action/flight";
 import NavAdmin from "../../Component/navAdmin";
@@ -8,9 +8,9 @@ import NavAdmin from "../../Component/navAdmin";
 const SearchFlightDetail = () => {
 	const [queryParam] = useSearchParams();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const idFlight = queryParam.get("id_flight");
-	console.log(idFlight);
 
 	useEffect(() => {
 		dispatch(getDetailFlight(idFlight));
@@ -34,14 +34,13 @@ const SearchFlightDetail = () => {
 
 				alert("Data berhasil dihapus");
 
-				// return navigate("/home");
+				return navigate("/admin/home");
 			})
 			.catch((err) => {
 				console.log(err);
 				alert("Failed Delete Data");
 			});
 	};
-	console.log(flight);
 
 	return (
 		<div>
@@ -53,13 +52,13 @@ const SearchFlightDetail = () => {
 						<div className={`text-center`}>
 							<h1>Search Flights</h1>
 						</div>
-						<div class="mb-3">
-							<label for="exampleInputEmail1" class="form-label">
+						<div className="mb-3">
+							<label for="exampleInputEmail1" className="form-label">
 								Search Flights
 							</label>
 							<input
-								type="email"
-								class="form-control"
+								type="text"
+								className="form-control"
 								id="exampleInputEmail1"
 								aria-describedby="emailHelp"
 							/>

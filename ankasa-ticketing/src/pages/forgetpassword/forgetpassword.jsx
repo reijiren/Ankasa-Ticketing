@@ -27,11 +27,11 @@ const ForgetPassword = () => {
     if (form.password !== confirmPassword) {
       alert ("Password is not match")
     } else {
-   const handleSuccess = (data) => {
-      alert ("Password has been updated")
-      return navigate("/login")
-   }
-   dispatch(changePassword(form, handleSuccess))
+    const handleSuccess = (data) => {
+        alert ("Password has been updated")
+        return navigate("/login")
+    }
+    dispatch(changePassword(form, handleSuccess))
     }
   }
   return (

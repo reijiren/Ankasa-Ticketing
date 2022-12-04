@@ -15,12 +15,13 @@ export const myBooking = (id_user, handleSuccess) => ({
     }),
   });
 
-export const getDetailBooking = (id) => ({
+export const getDetailBooking = (id, handleSuccess) => ({
   type: "GET_DETAIL_BOOKING",
   payload: new Promise((resolve, reject) => {
     axios
-      .get(`http://localhost:3001/booking/detail/${id}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/booking/detail/${id}`)
       .then((res) => {
+        handleSuccess(res)
         resolve(res);
       })
       .catch((err) => {
@@ -33,7 +34,7 @@ export const insertBooking = (body) => ({
   type: "ADD_BOOKING",
   payload: new Promise((resolve, reject) => {
     axios
-      .post(`http://localhost:3001/booking/insert`, body)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/booking/insert`, body)
       .then((res) => {
         resolve(res);
       })
@@ -42,3 +43,9 @@ export const insertBooking = (body) => ({
       });
   }),
 });
+
+export const resetBooking = () => {
+  return {
+      type: "RESET_BOOKING",
+  }
+}

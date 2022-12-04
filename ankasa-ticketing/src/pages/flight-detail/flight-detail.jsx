@@ -6,20 +6,25 @@ import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
 import { getDetailFlight } from "../../redux/action/flight";
 import { insertBooking } from "../../redux/action/booking";
+import { updateUser } from "../../redux/action/user";
 
 const FlightDetail = () => {
-  const userdata = JSON.parse(localStorage.getItem("userdata"));
-  //untuk get action
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //get ID from parameter URL
   const { id_flight } = useParams();
+
+  const thisUser = useSelector((state) => state.user.user);
+  const [ticket, setTicket] = useState([]);
+  const [insurance, setInsurance] = useState(false);
+
+  const toggleInsurance = () => {
+    setInsurance((prevstate) => !prevstate);
+  };
 
   const [form, setForm] = useState({
     id_user: "",
     id_flight: "",
-    status: 0,
-    passenger: "",
+    passenger: 1,
     terminal: "",
     gate: "",
     class: "",
@@ -29,9 +34,9 @@ const FlightDetail = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
-      id_user: userdata.id_user,
+      id_user: thisUser.id_user,
       id_flight: id_flight,
-      status: form.status,
+      status: thisUser.balance >= (insurance ? ticket[0].price + (ticket[0].price * 5 / 100) : ticket[0].price) ? 1 : 0,
       passenger: form.passenger,
       terminal: form.terminal,
       gate: form.gate,
@@ -39,18 +44,24 @@ const FlightDetail = () => {
       seat: form.seat,
     };
     dispatch(insertBooking(body));
+
+    if(body.status === 1){
+      const handleSuccess = (data) => {console.log(data)}
+      const body = {
+        balance: thisUser.balance - (insurance ? ticket[0].price + (ticket[0].price * 5 / 100) : ticket[0].price)
+      }
+      dispatch(updateUser(body, thisUser.id_user, handleSuccess))
+    }
     alert("Booking Ticket Success");
     return navigate("/mybook");
   };
 
-  const detailflight = useSelector((state) => {
-    return state.flight;
-  });
-
   //hook useEffect
   useEffect(() => {
-    //panggil method "fetchData"
-    dispatch(getDetailFlight(id_flight));
+    const handleSuccess = (data) => {
+      setTicket(data.data.data)
+    }
+    dispatch(getDetailFlight(id_flight, handleSuccess));
   }, []);
 
   return (
@@ -77,7 +88,7 @@ const FlightDetail = () => {
                       </label>
                       <input
                         type="text"
-                        defaultValue={userdata.fullname}
+                        defaultValue={thisUser.fullname}
                         className="form-control"
                       />
                     </div>
@@ -87,7 +98,7 @@ const FlightDetail = () => {
                       </label>
                       <input
                         type="email"
-                        defaultValue={userdata.email}
+                        defaultValue={thisUser.email}
                         className="form-control"
                         id="email"
                       />
@@ -97,8 +108,8 @@ const FlightDetail = () => {
                         Phone Number
                       </label>
                       <input
-                        type="number"
-                        defaultValue={userdata.phone}
+                        type="text"
+                        defaultValue={thisUser.phone}
                         className="form-control"
                         id="phone"
                       />
@@ -106,15 +117,15 @@ const FlightDetail = () => {
                   </form>
                 </div>
               </div>
-              {detailflight.flight.map((data, index) => (
-                <div className="passenger-details-one">
+              {ticket.map((data, index) => (
+                <div key={index} className="passenger-details-one">
                   <div className="title-passenger-details-one">
                     <h5>Passenger Details</h5>
                   </div>
                   <div className="form-passenger-details-one">
                     <form>
                       <div className="passenger">
-                        <span> Passenger : 1 Adult</span>
+                        <span> Passenger : {form.passenger} Adult</span>
                       </div>
                       <div className="mb-3 form-group">
                         <label className="mt-3 text-secondary" htmlFor="title">
@@ -140,7 +151,7 @@ const FlightDetail = () => {
                         <label className="text-secondary">Full Name</label>
                         <input
                           type="text"
-                          defaultValue={userdata.fullname}
+                          defaultValue={thisUser.fullname}
                           className="form-control"
                         />
                       </div>
@@ -150,6 +161,8 @@ const FlightDetail = () => {
                           type="number"
                           placeholder="Person"
                           className="form-control"
+                          defaultValue={1}
+                          min={1}
                           onChange={(e) =>
                             setForm({ ...form, passenger: e.target.value })
                           }
@@ -246,16 +259,16 @@ const FlightDetail = () => {
                 <div className="title-passenger-details-two">
                   <h5>Passenger Details</h5>
                 </div>
-                {detailflight.flight.map((data, index) => (
-                  <div className="form-passenger-details-two">
+                {ticket.map((data, index) => (
+                  <div key={index} className="form-passenger-details-two">
                     <div className="row">
                       <div className="col-auto">
                         {data.insurance === 1 ? (
                           <input
                             className="form-check-input"
                             type="checkbox"
-                            name=""
-                            checked
+                            name="insurance"
+                            onClick={toggleInsurance}
                           />
                         ) : (
                           "No"
@@ -267,12 +280,9 @@ const FlightDetail = () => {
                       <div className="col-auto">
                         <h5>
                           $
-                          {data.insurance === 1
-                            ? String(((data.price / 15000) * 5) / 100).slice(
-                                0,
-                                5
-                              )
-                            : "0"}
+                          {insurance
+                            ? String((data.price * 5) / 100)
+                            : 0}
                         </h5>
                       </div>
                     </div>
@@ -285,8 +295,8 @@ const FlightDetail = () => {
                         <span>
                           $
                           {data.insurance === 1
-                            ? String((data.price / 15000) * 2).slice(0, 5)
-                            : "0"}
+                            ? data.price * 5 / 100
+                            : 0}
                         </span>
                       </div>
                     </div>
@@ -310,12 +320,14 @@ const FlightDetail = () => {
                     </div>
                   </div>
                 </div>
-                {detailflight.flight.map((data, index) => (
-                  <div className="form-flight-details">
+                {ticket.map((data, index) => (
+                  <div key={index} className="form-flight-details">
                     <div className="row">
                       <div className="col-auto brand-airplane">
                         <img
-                          src={`http://localhost:3001/airline/${data.logo}`}
+                          src={`${process.env.REACT_APP_BACKEND_URL}/airline/${data.logo}`}
+                          width={80}
+                          height={60}
                         />
                       </div>
                       <div className="col-auto name-airplane">
@@ -359,16 +371,13 @@ const FlightDetail = () => {
                       <div className="refundable">
                         <div className="row">
                           <div className="col-auto">
-                            {data.refundable === 1 ? (
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                name=""
-                                checked
-                              />
-                            ) : (
-                              "No"
-                            )}
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              name=""
+                              checked={data.refundable === 1 ? true : false}
+                              readOnly
+                            />
                             <span>Refundable</span>
                           </div>
                         </div>
@@ -376,17 +385,14 @@ const FlightDetail = () => {
                       <div className="mt-2 reschedule">
                         <div className="row">
                           <div className="col-auto">
-                            {data.reschedule === 1 ? (
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                name=""
-                                checked
-                              />
-                            ) : (
-                              "No"
-                            )}
-                            <span>Can Reschedule</span>
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              name=""
+                              checked={data.reschedule === 1 ? true : false}
+                              readOnly
+                            />
+                            <span>Reschedule</span>
                           </div>
                         </div>
                       </div>
@@ -397,7 +403,7 @@ const FlightDetail = () => {
                         <h4>Total Payment</h4>
                       </div>
                       <div className="col-auto count-payment">
-                        <h4>${String(data.price / 15000).slice(0, 7)}</h4>
+                        <h4>${insurance ? data.price + (data.price * 5 / 100) : data.price}</h4>
                       </div>
                     </div>
                   </div>

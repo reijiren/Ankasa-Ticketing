@@ -152,21 +152,21 @@ const flightModel = {
                 : ""
             }
             ${
-              data.city_departure
+              (data.city_departure !== undefined && data.city_departure !== null)
                 ? `lower(city_departure) like lower('%${
                     data.city_departure
                   }%') ${counter < max ? addCount() : ""}`
                 : ""
             }
             ${
-              data.city_destination
+              (data.city_destination !== undefined && data.city_destination !== null)
                 ? `lower(city_destination) like lower('%${
                     data.city_destination
                   }%') ${counter < max ? addCount() : ""}`
                 : ""
             }
             ${
-              data.airlineName
+              (data.airlineName !== undefined && data.airlineName !== null)
                 ? `lower(name) like lower('%${data.airlineName}%')`
                 : ""
             }

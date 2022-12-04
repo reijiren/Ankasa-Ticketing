@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavAdmin from "../../Component/navAdmin";
+import { findAirline } from "../../redux/action/airline";
 import { insertDataFlight } from "../../redux/action/flight";
 
 const InsertFlight = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [airline, setAirline] = useState([]);
 
-	const data = {
+	useEffect(() => {
+		const body = {
+			limit: 99,
+			sortBy: "name",
+			sortOrd: "asc",
+			airlineName: "",
+		}
+		const handleSuccess = (data) => {
+			setAirline(data.data.data);
+		};
+		dispatch(findAirline(1, body, handleSuccess));
+	}, [])
+
+	const [form, setForm] = useState({
 		id_flight: "",
 		airline: 1,
 		city_departure: "",
@@ -26,35 +41,14 @@ const InsertFlight = () => {
 		reschedule: 0,
 		insurance: 0,
 		transit: 0,
-	};
-
-	const [form, setForm] = useState(data);
+	});
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		// let inputForm = new FormData();
-		// inputForm.append("id_flight", form.id_flight);
-		// inputForm.append("airline", form.airline);
-		// inputForm.append("city_departure", form.city_departure);
-		// inputForm.append("city_destination", form.city_destination);
-		// inputForm.append("region_departure", form.region_departure);
-		// inputForm.append("region_destination", form.region_destination);
-		// inputForm.append("max_capacity", form.max_capacity);
-		// inputForm.append("luggage", form.luggage);
-		// inputForm.append("inflight_meal", form.inflight_meal);
-		// inputForm.append("wifi", form.wifi);
-		// inputForm.append("time_departure", form.time_departure);
-		// inputForm.append("time_arrived", form.time_arrived);
-		// inputForm.append("price", form.price);
-		// inputForm.append("refundable", form.refundable);
-		// inputForm.append("reschedule", form.reschedule);
-		// inputForm.append("insurance", form.insurance);
-		// inputForm.append("transit", form.transit);
-
-		console.log(form);
-
 		dispatch(insertDataFlight(form));
+		alert("Flight inserted successfully");
+		return navigate("/admin/home");
 	};
 
 	return (
@@ -85,15 +79,22 @@ const InsertFlight = () => {
 							<label htmlFor="formGroupExampleInput" className="form-label">
 								ID Airlines
 							</label>
-							<input
-								type="text"
-								className="form-control"
+							<select
+								onChange={(e) =>
+									setForm({ ...form, airline: e.target.value })
+								}
+								className="form-select form-select-sm"
 								id="formGroupExampleInput"
-								placeholder="Example: 1"
-								onChange={(e) => {
-									setForm({ ...form, airline: parseInt(e.target.value) });
-								}}
-							/>
+							>
+								<option value={null} disabled selected hidden>Select airline</option>
+								{
+									airline.length === 0 ? 
+									<option value={null} disabled>No Airline Found</option> : 
+									airline.map((e, i) => (
+										<option key={i} value={e.id_airline}>{e.name}</option>
+									))
+								}
+							</select>
 						</div>
 						<div className="mb-3">
 							<label htmlFor="formGroupExampleInput" className="form-label">
@@ -175,9 +176,9 @@ const InsertFlight = () => {
 								onChange={(e) => {
 									setForm({ ...form, luggage: parseInt(e.target.value) });
 								}}>
-								<option defaultValue="">Luggage Option</option>
+								<option value={null} disabled selected hidden>Luggage Option</option>
 								<option value={0}>No Luggage</option>
-								<option value={1}>With</option>
+								<option value={1}>With Luggage</option>
 							</select>
 						</div>
 						<div className="mb-3">
@@ -190,7 +191,7 @@ const InsertFlight = () => {
 								onChange={(e) => {
 									setForm({ ...form, inflight_meal: parseInt(e.target.value) });
 								}}>
-								<option defaultValue="">Meal Option</option>
+								<option value={null} disabled selected hidden>Meal Option</option>
 								<option value={0}>No Meal</option>
 								<option value={1}>With Meal</option>
 							</select>
@@ -205,7 +206,7 @@ const InsertFlight = () => {
 								onChange={(e) => {
 									setForm({ ...form, wifi: parseInt(e.target.value) });
 								}}>
-								<option defaultValue="">WiFi Option</option>
+								<option value={null} disabled selected hidden>WiFi Option</option>
 								<option value={0}>No WiFi</option>
 								<option value={1}>With WiFi</option>
 							</select>
@@ -262,9 +263,9 @@ const InsertFlight = () => {
 								onChange={(e) => {
 									setForm({ ...form, refundable: parseInt(e.target.value) });
 								}}>
-								<option defaultValue="">Refundable Option</option>
-								<option value={0}>No Refundable</option>
-								<option value={1}>With Refundable</option>
+								<option value={null} disabled selected hidden>Refund Option</option>
+								<option value={0}>No Refund</option>
+								<option value={1}>With Refund</option>
 							</select>
 						</div>
 						<div className="mb-3">
@@ -277,7 +278,7 @@ const InsertFlight = () => {
 								onChange={(e) => {
 									setForm({ ...form, reschedule: parseInt(e.target.value) });
 								}}>
-								<option defaultValue="">Reschedule Option</option>
+								<option value={null} disabled selected hidden>Reschedule Option</option>
 								<option value={0}>No Reschedule</option>
 								<option value={1}>With Reschedule</option>
 							</select>
@@ -292,7 +293,7 @@ const InsertFlight = () => {
 								onChange={(e) => {
 									setForm({ ...form, insurance: parseInt(e.target.value) });
 								}}>
-								<option defaultValue="">Insurance Option</option>
+								<option value={null} disabled selected hidden>Insurance Option</option>
 								<option value={0}>No Insurance</option>
 								<option value={1}>With Insurance</option>
 							</select>
@@ -307,7 +308,7 @@ const InsertFlight = () => {
 								onChange={(e) => {
 									setForm({ ...form, transit: parseInt(e.target.value) });
 								}}>
-								<option defaultValue="">Transit Option</option>
+								<option value={null} disabled selected hidden>Transit Option</option>
 								<option value={0}>No Transit</option>
 								<option value={1}>With Transit</option>
 							</select>

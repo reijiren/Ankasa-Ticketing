@@ -1,27 +1,37 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/style.css";
 import Footer from "../../Component/footer";
-import Navbar from "../../Component/navbarSign";
+import Navbar from "../../Component/navbar";
+import NavbarSign from "../../Component/navbarSign";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { getFlight } from "../../redux/action/flight";
-import { getUser } from "../../redux/action/user";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
   const flight = useSelector((state) => state.flight);
-  const user = JSON.parse(localStorage.getItem("userdata"))
+  const user = useSelector((state) => state.user);
+
+  const [login, setLogin] = useState(false);
 
   useEffect(() => {
     const handleSuccess = (data) => {};
     dispatch(getFlight(handleSuccess));
-    dispatch(getUser(user.id_user, handleSuccess));
+
+    const token = localStorage.getItem('token')
+    if(token){
+      setLogin(true);
+    }else{
+      setLogin(false);
+    }
   }, []);
 
   return (
     <div className="body">
-      <Navbar />
+      {
+        login ? <Navbar /> : <NavbarSign />
+      }
       <main>
         <section className="container-fluid">
           <div className="row">
@@ -34,7 +44,6 @@ const LandingPage = () => {
               </div>
               <div className="col-md-12 text-start">
                 <img
-                  //  src="image 4.png"
                   src={require("../../assets/images/image 4.png")}
                   className="customImg"
                   alt=""
@@ -44,7 +53,6 @@ const LandingPage = () => {
             <div className="col-md-6">
               <div className="col-md-12 text-end mt-2">
                 <img
-                  //  src="image 5.png"
                   src={require("../../assets/images/image 5.png")}
                   className="img-fluid cusImg"
                   alt=""
@@ -52,18 +60,12 @@ const LandingPage = () => {
               </div>
               <div className="col-md-12 text-end">
                 <img
-                  //   src="vector 6.png"
                   src={require("../../assets/images/vector 6.png")}
                   className="img-fluid customImageBubble"
                   width="180"
                   alt=""
                 />
               </div>
-              {/* <div className="customCollapseView">
-                <div
-                  class="collapse collapse-vertical"
-                  id="collapseWidthExample"
-                > */}
               <div className="card card-body customCard">
                 <div className="col-12">
                   <p>Hey,</p>
@@ -80,8 +82,6 @@ const LandingPage = () => {
                     <div className="col-6 text-start">
                       <p>from</p>
                     </div>
-                    {/* <div className="col-4">
-                            </div> */}
                     <div className="col-6 text-end">
                       <p>to</p>
                     </div>
@@ -138,7 +138,7 @@ const LandingPage = () => {
                         className="form-control customBorderInput"
                         id="inputDeparture"
                         placeholder="Medan"
-                        value="Medan"
+                        defaultValue="Medan"
                       />
                     </div>
                   </div>
@@ -156,7 +156,7 @@ const LandingPage = () => {
                           className="form-control customBorderInput"
                           id="inputDeparture"
                           placeholder="Child"
-                          value="2"
+                          defaultValue="2"
                         />
                       </div>
                       <div className="col-6">
@@ -165,7 +165,7 @@ const LandingPage = () => {
                           className="form-control customBorderInput"
                           id="inputDeparture"
                           placeholder="Adult"
-                          value="4"
+                          defaultValue="4"
                         />
                       </div>
                     </div>
@@ -183,7 +183,7 @@ const LandingPage = () => {
                           type="radio"
                           name="class"
                           id="class"
-                          value="Economy"
+                          defaultValue="Economy"
                         />
                         <label
                           htmlFor="class"
@@ -197,7 +197,7 @@ const LandingPage = () => {
                           type="radio"
                           name="class"
                           id="class"
-                          value="Business"
+                          defaultValue="Business"
                         />
                         <label
                           htmlFor="class"
@@ -211,7 +211,7 @@ const LandingPage = () => {
                           type="radio"
                           name="class"
                           id="class"
-                          value="First Class"
+                          defaultValue="First Class"
                         />
                         <label
                           htmlFor="class"
@@ -228,8 +228,6 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-            {/* </div>
-            </div> */}
           </div>
         </section>
         <section id="trending" className="flex-col">
@@ -238,11 +236,8 @@ const LandingPage = () => {
               <h5 className="blue">TRENDING</h5>
               <h2 className="fw-bold mb-3">Trending Destinations</h2>
             </div>
-            {/* <div>
-            <button className="whitespace-nowrap">View All</button>
-          </div> */}
           </div>
-          {Object.keys(flight).length > 0 ? (
+          {flight.flight.length > 0 ? (
             <div className="customSpace">
               <Swiper
                 spaceBetween={30}
@@ -250,7 +245,7 @@ const LandingPage = () => {
                 slidesOffsetAfter={10}
                 breakpoints={{
                   100: {
-                    slidesPerView: 1.5, // tampilkan sedikit preview dari card sebelum dan sesudahnya
+                    slidesPerView: 1.5,
                   },
                   400: {
                     slidesPerView: 2.1,
@@ -281,7 +276,7 @@ const LandingPage = () => {
                         <div className="cardOverlay" />
                         <div className="cardImage">
                           <img
-                            src={`http://localhost:3001/airline/${data.logo}`}
+                            src={`${process.env.REACT_APP_BACKEND_URL}/airline/${data.logo}`}
                             alt=""
                             className="image"
                           />
@@ -324,7 +319,7 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
-                {Object.keys(flight).length ? (
+                {flight.flight.length > 0 ? (
                   <div className="">
                     <Swiper
                       spaceBetween={10}
@@ -357,26 +352,22 @@ const LandingPage = () => {
                         <h1>Data is not found</h1>
                       ) : (
                         flight.flight.map((data) => (
-                          <div className="">
-                            <SwiperSlide key={data.id_flight}>
-                              <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
-                                <div className="row">
-                                  <div className="col-md-12 story">
-                                    <img
-                                      // src="jakarta.png"
-                                      // src={data.img}
-                                      src={`http://localhost:3001/airline/${data.logo}`}
-                                      alt="wrapkit"
-                                      className="imgCustom rounded-circle"
-                                    />
-                                    <h5 className="mt-4 text-center">
-                                      {data.city_departure}
-                                    </h5>
-                                  </div>
+                          <SwiperSlide key={data.id_flight}>
+                            <div className="col-lg-2 spaceCust p-5 mb-4 d-flex justify-content-center">
+                              <div className="row">
+                                <div className="col-md-12 story">
+                                  <img
+                                    src={`${process.env.REACT_APP_BACKEND_URL}/airline/${data.logo}`}
+                                    alt="wrapkit"
+                                    className="imgCustom rounded-circle"
+                                  />
+                                  <h5 className="mt-4 text-center">
+                                    {data.city_departure}
+                                  </h5>
                                 </div>
                               </div>
-                            </SwiperSlide>
-                          </div>
+                            </div>
+                          </SwiperSlide>
                         ))
                       )}
                     </Swiper>

@@ -13,10 +13,7 @@ module.exports = {
 				if (img !== "default.png") {
 					fs.unlink(`./assets/profile_pic/${img}`, (err) => {
 						if (err) {
-							res.json({
-								message: "delete failed",
-								error: err,
-							});
+							console.log(err)
 						}
 					});
 				}
@@ -39,10 +36,7 @@ module.exports = {
 				if (img !== "default.png") {
 					fs.unlink(`./assets/airline/${img}`, (err) => {
 						if (err) {
-							res.json({
-								message: "delete failed",
-								error: err,
-							});
+							console.log(err)
 						}
 					});
 				}

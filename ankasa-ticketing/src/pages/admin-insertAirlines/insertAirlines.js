@@ -27,13 +27,11 @@ const InsertAirlines = () => {
 		inputForm.append("logo", addImage);
 
 		const handleSuccess = (data) => {
-			console.log(data.code);
-			if (data.payload.data.code == 200) {
+			if (data.data.code == 200) {
 				alert("Input Airlines Success");
 				return navigate("/admin/home");
 			}
 		};
-
 		dispatch(addAirlines(inputForm, handleSuccess));
 	};
 

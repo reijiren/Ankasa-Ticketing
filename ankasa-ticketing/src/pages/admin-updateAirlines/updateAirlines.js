@@ -41,7 +41,8 @@ const UpdateAirlines = () => {
 			dispatch(updateLogo(id, form, handleSuccess))
 		}
 
-		alert('Airline updated')
+		alert('Airline updated');
+		navigate('/admin/search-airlines/1')
 	}
 
 	return (

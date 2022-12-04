@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/action/user";
 import { useEffect } from "react";
+import { resetAirline } from "../../redux/action/airline";
+import { resetBooking } from "../../redux/action/booking";
+import { resetFlight } from "../../redux/action/flight";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -33,8 +36,10 @@ const Login = () => {
       if(data.data.status === "success"){
         const userData = data.data.token;
         localStorage.setItem("token", userData.token)
-        localStorage.setItem("userdata", JSON.stringify(userData.data))
         localStorage.setItem("email", JSON.stringify(userData.data.email))
+        dispatch(resetAirline());
+        dispatch(resetBooking());
+        dispatch(resetFlight());
         alert("Login Success")
         
         navigate("/")
