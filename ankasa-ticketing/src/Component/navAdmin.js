@@ -83,24 +83,6 @@ const NavAdmin = () => {
 										</div>
 									</div>
 								</div>
-								<div>
-									<button
-										className="btn btn-secondary butts"
-										type="button"
-										data-bs-toggle="collapse"
-										data-bs-target="#user"
-										aria-expanded="false"
-										aria-controls="user">
-										User
-									</button>
-									<div className="collapse" id="user">
-										<div className="card card-body">
-											<Link className="side-link mid" to="/admin/search-user">
-												Search User
-											</Link>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>

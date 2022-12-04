@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../Component/navbar";
 import Footer from "../../Component/footer";
 import { getFindFlight } from "../../redux/action/flight";
+import { findAirline } from "../../redux/action/airline";
 
 const SeacrhResult = () => {
   const [page, setPage] = useState(1);
@@ -14,6 +15,22 @@ const SeacrhResult = () => {
   const flight = useSelector((state) => {
     return state.flight;
   });
+
+  const [listAirline, setListAirline] = useState([]);
+  useEffect(() => {
+    const body = {
+      limit: 10,
+      sortBy: "name",
+      sortOrd: "asc",
+      airlineName: "",
+    }
+
+    const handleSuccess = (data) => {
+      setListAirline(data.data.data);
+		};
+
+		dispatch(findAirline(page, body, handleSuccess));
+  }, [])
 
   // SORTING ASCENDING - DESCENDING
   const [sort, setSort] = useState("desc");
@@ -30,41 +47,34 @@ const SeacrhResult = () => {
       data: {},
     };
     const handleSuccess = (data) => {
-      setTicket(data);
+      setTicket(data.data.data);
     };
     dispatch(getFindFlight(page, body, handleSuccess));
   };
 
-  //SORT ORDER PRICE
-  // const [price, setPrice] = useState(price.min);
-  // const handlesorPrice = () => {
-  //   if (price == price.min) {
-  //     setPrice(price.max);
-  //   } else {
-  //     setPrice(price.min);
-  //   }
-  //   const body = {
-  //     limit: 2,
-  //     sortBy: "name",
-  //     sortOrd: sort,
-  //     price,
-  //     data: {},
-  //   };
-  //   const handleSuccess = (data) => {
-  //     setTicket(data);
-  //   };
-  //   dispatch(getFindFlight(page, body, handleSuccess));
-  // };
   const [filter, setFilter] = useState("");
-  const [category, setCategory] = useState("");
   const [direct, setDirect] = useState("");
   const [transit, setTransit] = useState("");
   const [transit2, setTransit2] = useState("");
   const [destination, setDestination] = useState("");
-  const [derpature, setDeparture] = useState("");
+  const [departure, setDeparture] = useState("");
   const [luggage, setLuggage] = useState("");
   const [inflightMeal, setInflightMeal] = useState("");
   const [wifi, setWifi] = useState("");
+
+  useEffect(() => {
+    const handleSuccess = (data) => {
+      setTicket(data.data.data);
+    }
+    const body = {
+      limit: 2,
+      sortBy: "name",
+      sortOrd: sort,
+      data: {}
+    }
+    dispatch(getFindFlight(1, body, handleSuccess));
+  }, [])
+
   useEffect(() => {
     const body = {
       limit: 2,
@@ -72,8 +82,8 @@ const SeacrhResult = () => {
       sortOrd: sort,
       data: filter
         ? { airlineName: filter }
-        : destination || derpature
-        ? { city_destination: destination } || { city_departure: derpature }
+        : destination || departure
+        ? (destination ? { city_destination: destination } : { city_departure: departure })
         : direct
         ? { direct: direct }
         : transit
@@ -89,7 +99,7 @@ const SeacrhResult = () => {
         : {},
     };
     const handleSuccess = (data) => {
-      setTicket(data);
+      setTicket(data.data.data);
     };
     dispatch(getFindFlight(page, body, handleSuccess));
   }, [
@@ -99,7 +109,7 @@ const SeacrhResult = () => {
     transit,
     direct,
     transit2,
-    derpature,
+    departure,
     destination,
     luggage,
     inflightMeal,
@@ -115,7 +125,7 @@ const SeacrhResult = () => {
       data: {},
     };
     const handleSuccess = (data) => {
-      setTicket(data);
+      setTicket(data.data.data);
     };
     dispatch(getFindFlight(page, body, handleSuccess));
   };
@@ -130,11 +140,21 @@ const SeacrhResult = () => {
         data: {},
       };
       const handleSuccess = (data) => {
-        setTicket(data);
+        setTicket(data.data.data);
       };
       dispatch(getFindFlight(page - 1, body, handleSuccess));
     }
   };
+
+  const onReset = () => {
+    setFilter("")
+    setDirect("")
+    setTransit("")
+    setTransit2("")
+    setLuggage("")
+    setInflightMeal("")
+    setWifi("")
+  }
 
   return (
     <section>
@@ -233,16 +253,10 @@ const SeacrhResult = () => {
                   </div>
                   <div className="col-auto">
                     <button
-                      onClick={(e) =>
-                        setFilter("") ||
-                        setDirect("") ||
-                        setTransit("") ||
-                        setTransit2("") ||
-                        setLuggage("") ||
-                        setInflightMeal("") ||
-                        setWifi("")
-                      }
+                      onClick={onReset}
                       className="button-title-filter-search-result"
+                      type="reset"
+                      form="filter-form"
                     >
                       Reset
                     </button>
@@ -250,262 +264,225 @@ const SeacrhResult = () => {
                 </div>
               </div>
               <div className="mt-3 form-filter-search-result">
-                {/* FILTER AIRLINE */}
-                <div className="airline text-left">
-                  <button
-                    type="button"
-                    className="mt-3 btn btn-info"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#select-airline"
-                  >
-                    <div className="row">
-                      <div className="col-auto">
-                        <b>Airline</b>
+                <form id="filter-form">
+                  {/* FILTER AIRLINE */}
+                  <div className="airline text-left">
+                    <button
+                      type="button"
+                      className="mt-3 btn btn-info"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#select-airline"
+                    >
+                      <div className="row">
+                        <div className="col-auto">
+                          <b>Airline</b>
+                        </div>
+                        <div className="col-auto icon-collapse-airline">
+                          <i className="fa fa-sort-up" />
+                        </div>
                       </div>
-                      <div className="col-auto icon-collapse-airline">
-                        <i className="fa fa-sort-up" />
-                      </div>
+                    </button>
+                    <div id="select-airline" className="collapse-airline show">
+                      {
+                        listAirline.length === 0 ? (
+                          <div className="mt-2 col-md-10">
+                            <span>No Airline Found</span>
+                          </div>
+                        ) : listAirline.map((e, i) => (
+                          <div key={i} className="row">
+                            <div className="mt-2 col-md-10">
+                              <span>{e.name}</span>
+                            </div>
+                            <div className="mt-2 col-md-2">
+                              <input
+                                className="form-check-input"
+                                value={e.name}
+                                type="checkbox"
+                                name="filter-checkbox"
+                                onClick={(e) => setFilter(e.target.value)}
+                              />
+                            </div>
+                          </div>
+                        ))
+                      }
                     </div>
-                  </button>
-                  <div id="select-airline" className="collapse-airline show">
-                    <div className="row">
-                      <div className="mt-2 col-md-10">
-                        <span>Garuda Indonesia</span>
+                  </div>
+                  <hr />
+                  {/* FILTER TYPE */}
+                  <div className="type text-left">
+                    <button
+                      type="button"
+                      className="btn btn-info"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#filter-type"
+                    >
+                      <div className="row">
+                        <div className="col-auto">
+                          <b>Type</b>
+                        </div>
+                        <div className="col-auto icon-filter-type">
+                          <i className="fa fa-sort-up" />
+                        </div>
                       </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="Garuda Indonesia"
-                          type="checkbox"
-                          onClick={(e) => setFilter(e.target.value)}
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Lion Air</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="Lion Air"
-                          type="checkbox"
-                          onClick={(e) => setFilter(e.target.value)}
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Air Asia</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="Air Asia"
-                          type="checkbox"
-                          onClick={(e) => setFilter(e.target.value)}
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Air Bus</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="Air Bus"
-                          type="checkbox"
-                          onClick={(e) => setFilter(e.target.value)}
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Batik Air</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="Batik Air"
-                          type="checkbox"
-                          onClick={(e) => setFilter(e.target.value)}
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Citilink</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="Citilink"
-                          type="checkbox"
-                          onClick={(e) => setFilter(e.target.value)}
-                        />
+                    </button>
+                    <div id="filter-type" className="collapse-type show">
+                      <div className="row">
+                        <div className="mt-2 col-md-10">
+                          <span>Economy</span>
+                        </div>
+                        <div className="mt-2 col-md-2">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="filter-checkbox"
+                            name=""
+                          />
+                        </div>
+                        <div className="mt-2 col-md-10">
+                          <span>Business</span>
+                        </div>
+                        <div className="mt-2 col-md-2">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            name="filter-checkbox"
+                          />
+                        </div>
+                        <div className="mt-2 col-md-10">
+                          <span>First Class</span>
+                        </div>
+                        <div className="mt-2 col-md-2">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            name="filter-checkbox"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <hr />
-                {/* FILTER TYPE */}
-                <div className="type text-left">
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#filter-type"
-                  >
-                    <div className="row">
-                      <div className="col-auto">
-                        <b>Type</b>
+                  <hr />
+                  {/* TRANSIT */}
+                  <div className="transit text-left">
+                    <button
+                      type="button"
+                      className="btn btn-info"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#filter-transit"
+                    >
+                      <div className="row">
+                        <div className="col-auto">
+                          <b>Transit</b>
+                        </div>
+                        <div className="col-auto icon-filter-transit">
+                          <i className="fa fa-sort-up" />
+                        </div>
                       </div>
-                      <div className="col-auto icon-filter-type">
-                        <i className="fa fa-sort-up" />
-                      </div>
-                    </div>
-                  </button>
-                  <div id="filter-type" className="collapse-type show">
-                    <div className="row">
-                      <div className="mt-2 col-md-10">
-                        <span>Economy</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          name=""
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Business</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          name=""
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>First Class</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          name=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                {/* TRANSIT */}
-                <div className="transit text-left">
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#filter-transit"
-                  >
-                    <div className="row">
-                      <div className="col-auto">
-                        <b>Transit</b>
-                      </div>
-                      <div className="col-auto icon-filter-transit">
-                        <i className="fa fa-sort-up" />
-                      </div>
-                    </div>
-                  </button>
-                  <div id="filter-transit" className="collapse-transit show">
-                    <div className="row">
-                      <div className="mt-2 col-md-10">
-                        <span>Direct</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="transit=0"
-                          type="checkbox"
-                          onClick={(e) => setDirect(e.target.value)}
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Transit</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="transit=1"
-                          type="checkbox"
-                          onClick={(e) => setTransit(e.target.value)}
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Trasit 2+</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="transit=2"
-                          type="checkbox"
-                          onClick={(e) => setTransit2(e.target.value)}
-                        />
+                    </button>
+                    <div id="filter-transit" className="collapse-transit show">
+                      <div className="row">
+                        <div className="mt-2 col-md-10">
+                          <span>Direct</span>
+                        </div>
+                        <div className="mt-2 col-md-2">
+                          <input
+                            className="form-check-input"
+                            value={1}
+                            type="checkbox"
+                            name="filter-checkbox"
+                            onClick={(e) => setDirect(e.target.value)}
+                          />
+                        </div>
+                        <div className="mt-2 col-md-10">
+                          <span>Transit</span>
+                        </div>
+                        <div className="mt-2 col-md-2">
+                          <input
+                            className="form-check-input"
+                            value={1}
+                            type="checkbox"
+                            name="filter-checkbox"
+                            onClick={(e) => setTransit(e.target.value)}
+                          />
+                        </div>
+                        <div className="mt-2 col-md-10">
+                          <span>Trasit 2+</span>
+                        </div>
+                        <div className="mt-2 col-md-2">
+                          <input
+                            className="form-check-input"
+                            value={1}
+                            type="checkbox"
+                            name="filter-checkbox"
+                            onClick={(e) => setTransit2(e.target.value)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <hr />
-                {/* FACILITIES */}
-                <div className="facilities text-left">
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#filter-facilities"
-                  >
-                    <div className="row">
-                      <div className="col-auto">
-                        <b>Facilities</b>
+                  <hr />
+                  {/* FACILITIES */}
+                  <div className="facilities text-left">
+                    <button
+                      type="button"
+                      className="btn btn-info"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#filter-facilities"
+                    >
+                      <div className="row">
+                        <div className="col-auto">
+                          <b>Facilities</b>
+                        </div>
+                        <div className="col-auto icon-filter-facilities">
+                          <i className="fa fa-sort-up" />
+                        </div>
                       </div>
-                      <div className="col-auto icon-filter-facilities">
-                        <i className="fa fa-sort-up" />
-                      </div>
-                    </div>
-                  </button>
-                  <div
-                    id="filter-facilities"
-                    className="collapse-facilities show"
-                  >
-                    <div className="row">
-                      <div className="mt-2 col-md-10">
-                        <span>Luggage</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="luggage=1"
-                          type="checkbox"
-                          onClick={(e) => setLuggage(e.target.value)}
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Lauch</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="inflight_meal=1"
-                          type="checkbox"
-                          onClick={(e) => setInflightMeal(e.target.value)}
-                        />
-                      </div>
-                      <div className="mt-2 col-md-10">
-                        <span>Wi-fi</span>
-                      </div>
-                      <div className="mt-2 col-md-2">
-                        <input
-                          className="form-check-input"
-                          value="wifi=1"
-                          type="checkbox"
-                          onClick={(e) => setWifi(e.target.value)}
-                        />
+                    </button>
+                    <div
+                      id="filter-facilities"
+                      className="collapse-facilities show"
+                    >
+                      <div className="row">
+                        <div className="mt-2 col-md-10">
+                          <span>Luggage</span>
+                        </div>
+                        <div className="mt-2 col-md-2">
+                          <input
+                            className="form-check-input"
+                            value={1}
+                            type="checkbox"
+                            name="filter-checkbox"
+                            onClick={(e) => setLuggage(e.target.value)}
+                          />
+                        </div>
+                        <div className="mt-2 col-md-10">
+                          <span>Lunch</span>
+                        </div>
+                        <div className="mt-2 col-md-2">
+                          <input
+                            className="form-check-input"
+                            value={1}
+                            type="checkbox"
+                            name="filter-checkbox"
+                            onClick={(e) => setInflightMeal(e.target.value)}
+                          />
+                        </div>
+                        <div className="mt-2 col-md-10">
+                          <span>Wi-fi</span>
+                        </div>
+                        <div className="mt-2 col-md-2">
+                          <input
+                            className="form-check-input"
+                            value={1}
+                            type="checkbox"
+                            name="filter-checkbox"
+                            onClick={(e) => setWifi(e.target.value)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
 
@@ -520,28 +497,25 @@ const SeacrhResult = () => {
                     </h5>
                   </div>
                   <div className="col-auto">
-                    {/* <span className="text-secondary">
-                      ({Object.keys(flight.flight).length} flight found)
-                    </span> */}
                   </div>
                   <div className="col-auto sorting-title-select-ticket-search-result">
                     <div className="row">
-                      <div class="dropdown dropdown-sorting">
+                      <div className="dropdown dropdown-sorting">
                         <button
-                          class="btn dropdown-toggle"
+                          className="btn dropdown-toggle"
                           type="button"
                           id="sorting"
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
                         >
-                          <b>Sort by</b>
+                          <b>Sort order</b>
                         </button>
                         <ul
-                          class="dropdown-menu dropdown-menu"
+                          className="dropdown-menu dropdown-menu"
                           aria-labelledby="sorting"
                         >
                           <li>
-                            <a class="dropdown-item" onClick={handleSortOrder}>
+                            <a className="dropdown-item" onClick={handleSortOrder}>
                               {sort.toUpperCase()}
                             </a>
                           </li>
@@ -553,13 +527,17 @@ const SeacrhResult = () => {
               </div>
 
               {/* TICKET */}
-              {JSON.stringify(flight)}
-              {/* {flight.flight == "" ? (
+              {flight.isLoading ? (
+                <span className="text-center text-secondary">
+                  Loading...
+                </span>
+              ) : ticket &&
+              ticket.length === 0 ? (
                 <span className="text-center text-secondary">
                   Data not found!
                 </span>
               ) : (
-                flight.flight.map((data, index) => (
+                ticket.map((data, index) => (
                   <div
                     key={index}
                     className="mt-3 form-select-ticket-search-result"
@@ -568,7 +546,7 @@ const SeacrhResult = () => {
                       <div className="row">
                         <div className="col-auto logo-airline">
                           <img
-                            src={`http://localhost:3001/airline/${data.logo}`}
+                            src={`${process.env.REACT_APP_BACKEND_URL}/airline/${data.logo}`}
                           />
                         </div>
                         <div className="col-auto name-airplane-select-ticket">
@@ -726,7 +704,7 @@ const SeacrhResult = () => {
                     </div>
                   </div>
                 ))
-              )} */}
+              )}
               {/* Pagination */}
               <div className="d-flex justify-content-center">
                 <ul className="pagination">

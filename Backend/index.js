@@ -19,9 +19,7 @@ try {
 	app.use(helmet());
 	app.use(bodyParser.json());
 	app.use(xss());
-	// app.use(cookieparser());
 	app.use(cors());
-	//   app.options('*', cors())
 	app.use(airlineRouter);
 	app.use(userRouter);
 	app.use(flightRouter);
@@ -32,5 +30,5 @@ try {
 
 // jalankan express
 app.listen(process.env.PORT, () => {
-	console.log("SERVICE IS RUNNING ON PORT 3001");
+	console.log("SERVICE IS RUNNING ON PORT " + process.env.PORT);
 });

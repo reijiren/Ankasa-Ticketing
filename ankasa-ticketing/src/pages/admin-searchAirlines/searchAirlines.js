@@ -23,7 +23,6 @@ const SearchAirlines = () => {
 		const handleSuccess = () => {
 			console.log("Data fetched!");
 		}
-
 		dispatch(findAirline(page, body, handleSuccess))
 	}, [])
 

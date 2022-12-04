@@ -21,7 +21,6 @@ const FlightList = () => {
 	}, []);
 
 	const flight = useSelector((state) => state.flight);
-	console.log(flight);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -46,7 +45,7 @@ const FlightList = () => {
 
 				alert("Data berhasil dihapus");
 
-				// return navigate("/home");
+				return navigate("/admin/home");
 			})
 			.catch((err) => {
 				console.log(err);
@@ -63,13 +62,13 @@ const FlightList = () => {
 						<h1>Search Flights</h1>
 					</div>
 					<form>
-						<div class="mb-3">
-							<label for="exampleInputEmail1" class="form-label">
+						<div className="mb-3">
+							<label for="exampleInputEmail1" className="form-label">
 								Search Flights
 							</label>
 							<input
-								type="email"
-								class="form-control"
+								type="text"
+								className="form-control"
 								id="exampleInputEmail1"
 								aria-describedby="emailHelp"
 							/>
@@ -120,7 +119,7 @@ const FlightList = () => {
 											</Link>
 											<button
 												type="button"
-												onClick={(e) => deleteFlight(item.flight, e)}
+												onClick={(e) => deleteFlight(item.id_flight, e)}
 												className="btn btn-danger">
 												Delete
 											</button>

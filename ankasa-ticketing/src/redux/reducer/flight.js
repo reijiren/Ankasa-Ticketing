@@ -19,7 +19,6 @@ const flightReducer = (state = initialState, action) => {
 				isError: true,
 			};
 		case "GET_FLIGHT_FULFILLED":
-			console.log(action.payload.data.data);
 			return {
 				...state,
 				isLoading: false,
@@ -43,7 +42,6 @@ const flightReducer = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				isError: false,
-				flight: action.payload.data.data,
 			};
 		case "GET_DETAIL_FLIGHT_PENDING":
 			return {
@@ -62,8 +60,14 @@ const flightReducer = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				isError: false,
-				flight: action.payload.data.data,
 			};
+		case "RESET_FLIGHT":
+			return {
+				...state,
+				isLoading: false,
+				isError: false,
+				flight: [],
+			}
 		default:
 			return state;
 	}

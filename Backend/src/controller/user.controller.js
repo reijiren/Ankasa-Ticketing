@@ -10,7 +10,9 @@ const userController = {
 		userModel
 			.selectUserId(id)
 			.then((result) => {
-				success(res, result.rows, "success", "get user success");
+				const user = result.rows[0];
+				delete user.password;
+				success(res, user, "success", "get user success");
 			})
 			.catch((err) => {
 				failed(res, err.message, "failed", "get user failed");
@@ -36,7 +38,6 @@ const userController = {
 
 		userModel
 			.searchUser(username, limit, offset)
-			// .searchUser(username)
 			.then((result) => {
 				success(res, result.rows, "success", "get user success");
 			})
@@ -130,26 +131,6 @@ const userController = {
 			.then((result) => {
 				if (result.rowCount > 0) {
 					login(result.rows[0]);
-				// const user = result.rows[0];
-					// bcrypt.compare(password, result.rows[0].password)
-					// .then(async (result) => {
-					// 	if (result) {
-					// 		const token = await jwtToken({
-					// 			email: user.email,
-					// 			level: user.level,
-					// 		});
-					// 		delete user.password;
-					// 		delete user.credit_card;
-					// 		successWithToken(
-					// 			res,
-					// 			{ token, data: user },
-					// 			"success",
-					// 			"login success"
-					// 		);
-					// 	} else {
-					// 		failed(res, null, "failed", "username or password incorrect");
-					// 	}
-					// });
 				} else {
 					userModel.checkUsername(email)
 					.then((result) => {
@@ -171,7 +152,7 @@ const userController = {
 
 	updateUser: (req, res) => {
 		const id = req.params.id;
-		// const photo = req.file.filename;
+		
 		const {
 			username,
 			fullname,
@@ -197,41 +178,29 @@ const userController = {
 			address,
 			post_code,
 			level,
-			// photo,
-			balance,
+			balance: typeof balance !== "integer" ? (balance === "" ? null : parseInt(balance)) : balance,
 			gender,
 		};
 
-		userModel.checkEmail(data.email)
+		userModel.updateProfile(data)
 		.then((result) => {
-			if (result.rowCount == 0) {
-				userModel.checkUsername(username)
-				.then((result) => {
-					if (result.rowCount == 0) {
-						userModel.updateProfile(data)
-						.then((result) => {
-							res.json(result);
-						})
-						.catch((error) => {
-							res.json(error);
-						});
-					}else{
-						failed(res, null, "failed", "username has been taken");
-					}
-				})
-			}
-			if (result.rowCount > 0) {
-				failed(res, null, "failed", "email has been taken");
-			}
+			userModel.selectUserId(data.id)
+			.then((result) => {
+				const user = result.rows[0];
+				delete user.password;
+				success(res, user, 'success', 'Update user success')
+			})
+		})
+		.catch((error) => {
+			failed(res, error.message, "failed", "failed hash password");
 		});
-		
 	},
 
 	updateUserPassword: (req, res) => {
 		const { email, password } = req.body;
 		bcrypt.hash(password, 10, (err, hash) => {
 			if (err) {
-				failed(res, err.message, "failer", "failed hash password");
+				failed(res, err.message, "failed", "failed hash password");
 			}
 
 			const data = {
@@ -257,29 +226,6 @@ const userController = {
 			});
 		});
 	},
-
-	// forgotUserPassword: (req, res) => {
-	// 	const { email, password } = req.body;
-	// 	bcrypt.hash(password, 10, (err, hash) => {
-	// 		if (err) {
-	// 			failed(res, err.message, "failer", "failed hash password");
-	// 		}
-
-	// 		const data = {
-	// 			email,
-	// 			password: hash,
-	// 		};
-
-	// 		userModel
-	// 			.forgotUserPassword(data)
-	// 			.then((result) => {
-	// 				success(res, result, "success", "update password success");
-	// 			})
-	// 			.catch((err) => {
-	// 				failed(res, err.message, "failed", "update password failed");
-	// 			});
-	// 	});
-	// },
 
 	updatePhoto: (req, res) => {
 		const id = req.params.id;

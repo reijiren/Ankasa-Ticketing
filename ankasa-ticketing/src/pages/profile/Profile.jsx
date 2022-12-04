@@ -4,20 +4,15 @@ import Footer from "../../Component/footer";
 import Navbar from "../../Component/navbar";
 import Profiles from "../../Component/profile";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser, updateUser } from "../../redux/action/user";
-// import { Link } from "react-router-dom";
+import { updateUser } from "../../redux/action/user";
 
 const Profile = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const data = JSON.parse(localStorage.getItem("userdata"));
-
-  useEffect(() => {
-    const handleSuccess = (data) => {};
-    dispatch(getUser(data.id_user, handleSuccess));
-  }, []);
+  const thisUser = user.user;
 
   const [editform, setEditform] = useState(false);
+
   const handleEdit = () => {
     if (editform) {
       setEditform(false);
@@ -28,15 +23,12 @@ const Profile = () => {
 
   const handleSuccess = (data) => {
     console.log(data);
-    alert("Update Success");
   }
 
   const onSubmit = (e) => {
     e.preventDefault();
     let formData = new FormData(e.target);
-    // console.log(Object.fromEntries(formData));
-    // console.log(data.id_user)
-    dispatch(updateUser(Object.fromEntries(formData), data.id_user, handleSuccess));
+    dispatch(updateUser(Object.fromEntries(formData), thisUser.id_user, handleSuccess));
   };
 
   return (
@@ -49,7 +41,7 @@ const Profile = () => {
             <div className="col-md-8 bg-warning p-5 bg-white m-2 customBorderProfile">
               <h5 className="blue">PROFILE</h5>
               <h3 className="mb-5">Profile</h3>
-              <form onSubmit={(e) => onSubmit(e)}>
+              <form onSubmit={(e) => onSubmit(e)} id="form-user">
                 <div className="row">
                   <div className="col-md-6">
                     <h5 className="mb-4">Contact</h5>
@@ -66,14 +58,10 @@ const Profile = () => {
                         id="inputEmail"
                         disabled
                         placeholder="email@gmail.com"
-                        // name="email"
-                        // onChange={handleChangeForm}
                         value={
                           user.isLoading
                             ? "Loading..."
-                            : user.thisUser.map((data) => {
-                                return data.email;
-                              })
+                            : thisUser.email
                         }
                       />
                       <hr />
@@ -91,14 +79,11 @@ const Profile = () => {
                         id="inputPhone"
                         name="phone"
                         disabled={!editform}
-                        // onChange={handleChangeForm}
                         placeholder="+62"
                         defaultValue={
                           user.isLoading
                             ? "Loading..."
-                            : user.thisUser.map((data) => {
-                                return data.phone;
-                              })
+                            : thisUser.phone
                         }
                       />
                       <hr />
@@ -116,14 +101,11 @@ const Profile = () => {
                         id="inputCard"
                         name="credit_card"
                         disabled={!editform}
-                        // onChange={handleChangeForm}
                         placeholder="1234 5678 9012 3456"
                         defaultValue={
                           user.isLoading
                             ? "Loading..."
-                            : user.thisUser.map((data) => {
-                              return data.credit_card;
-                            })
+                            : thisUser.credit_card
                         }
                       />
                       <hr />
@@ -141,14 +123,11 @@ const Profile = () => {
                         id="inputBalance"
                         name="balance"
                         disabled={!editform}
-                        // onChange={handleChangeForm}
                         placeholder="Rp. 0"
                         defaultValue={
                           user.isLoading
                             ? "Loading..."
-                            : user.thisUser.map((data) => {
-                              return data.balance;
-                            })
+                            : thisUser.balance
                         }
                       />
                       <hr />
@@ -173,15 +152,11 @@ const Profile = () => {
                         className="form-control customBorderInput bg-light"
                         id="inputUsername"
                         disabled
-                        // name="username"
-                        // onChange={handleChangeForm}
                         placeholder="John Doe"
                         value={
                           user.isLoading
                             ? "Loading..."
-                            : user.thisUser.map((data) => {
-                                return data.username;
-                              })
+                            : thisUser.username
                         }
                       />
                       <hr />
@@ -200,14 +175,11 @@ const Profile = () => {
                         id="inputFullname"
                         name="fullname"
                         disabled={!editform}
-                        // onChange={handleChangeForm}
                         placeholder="John Doe"
                         defaultValue={
                           user.isLoading
                             ? "Loading..."
-                            : user.thisUser.map((data) => {
-                                return data.fullname;
-                              })
+                            : thisUser.fullname
                         }
                       />
                       <hr />
@@ -227,14 +199,11 @@ const Profile = () => {
                           id="inputCity"
                           name="city"
                           disabled={!editform}
-                          // onChange={handleChangeForm}
                           placeholder="Medan"
                           defaultValue={
                             user.isLoading
                               ? "Loading..."
-                              : user.thisUser.map((data) => {
-                                return data.city;
-                              })
+                              : thisUser.city
                           }
                         />
                       </div>
@@ -253,14 +222,11 @@ const Profile = () => {
                         id="inputAddress"
                         name="address"
                         disabled={!editform}
-                        // onChange={handleChangeForm}
                         placeholder="Jl. Sisingamangaraja No. 45"
                         defaultValue={
                           user.isLoading
                             ? "Loading..."
-                            : user.thisUser.map((data) => {
-                              return data.address;
-                            })
+                            : thisUser.address
                         }
                       />
                       <hr />
@@ -278,14 +244,11 @@ const Profile = () => {
                         id="inputPostCode"
                         name="post_code"
                         disabled={!editform}
-                        // onChange={handleChangeForm}
                         placeholder="21***"
                         defaultValue={
                           user.isLoading
                             ? "Loading..."
-                            : user.thisUser.map((data) => {
-                              return data.post_code;
-                            })
+                            : thisUser.post_code
                         }
                       />
                       <hr />
@@ -295,11 +258,10 @@ const Profile = () => {
                     <button type="button" onClick={handleEdit} className="btn btn-primary bg-danger">Edit</button>
                   </div>
                   <div className="col-md-6 text-center mt-3">
-                    <button type="submit" className="btn btn-primary bgBlue">Save</button>
+                    <button type="submit" className="btn btn-primary bgBlue" hidden={!editform}>Save</button>
                   </div>
                   </div>
                   </div>
-                  
                 </div>
               </form>
             </div>

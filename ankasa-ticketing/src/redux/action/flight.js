@@ -19,7 +19,7 @@ export const getFindFlight = (page, body, handleSuccess) => ({
 	type: "GET_FIND_FLIGHT",
 	payload: new Promise((resolve, reject) => {
 		axios
-			.post(`http://localhost:3001/flight/find/${page}`, body)
+			.post(`${process.env.REACT_APP_BACKEND_URL}/flight/find/${page}`, body)
 			.then((res) => {
 				handleSuccess(res);
 				resolve(res);
@@ -36,8 +36,8 @@ export const getDetailFlight = (id_flight, handleSuccess) => ({
 		axios
 			.get(`${process.env.REACT_APP_BACKEND_URL}/flight/detail?id=${id_flight}`)
 			.then((res) => {
+				handleSuccess(res);
 				resolve(res);
-				handleSuccess();
 			})
 			.catch((err) => {
 				reject(err);
@@ -50,7 +50,7 @@ export const insertDataFlight = (form) => {
 		type: "INSERT_FLIGHT",
 		payload: new Promise((resolve, reject) => {
 			const body = { data: form };
-			console.log(body);
+			
 			axios
 				.post(`${process.env.REACT_APP_BACKEND_URL}/flight/insert`, body)
 				.then((response) => {
@@ -67,7 +67,7 @@ export const flightDelete = (id_flight) => {
 	return new Promise((resolve, reject) => {
 		axios
 			.delete(
-				`${process.env.REACT_APP_BACKEND_URL}/airline/delete?id=${id_flight}
+				`${process.env.REACT_APP_BACKEND_URL}/flight/delete?id=${id_flight}
 			`
 			)
 			.then((response) => {
@@ -78,3 +78,23 @@ export const flightDelete = (id_flight) => {
 			});
 	});
 };
+
+export const flightUpdate = (form) => {
+	return new Promise((resolve, reject) => {
+		axios.put(
+				`${process.env.REACT_APP_BACKEND_URL}/flight/update`, form
+			)
+			.then((response) => {
+				resolve(response);
+			})
+			.catch((error) => {
+				reject(error);
+			});
+	});
+};
+
+export const resetFlight = () => {
+    return {
+        type: "RESET_FLIGHT",
+    }
+}

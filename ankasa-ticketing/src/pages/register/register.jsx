@@ -1,14 +1,11 @@
 import React, {useState} from "react";
 import "../login/login.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { userRegister } from "../../redux/action/user";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 const Register = () => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
   const navigate = useNavigate();
   const [form, setForm] = useState({
        username:'',
@@ -19,7 +16,6 @@ const Register = () => {
   
   const onSubmit =  (e) => {
       e.preventDefault();
-      // console.log(form)
       if(form.username == "" || form.email == "" || form.password == ""){
           alert('Semua input wajib diisi')
       }else {

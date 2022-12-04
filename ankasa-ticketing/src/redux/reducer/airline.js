@@ -67,6 +67,13 @@ const airlineReducer = (state = initialState, action) => {
 			isError: false,
 			airline: action.payload.data.data,
 		};
+		case "RESET_AIRLINE":
+		return {
+			...state,
+			isLoading: false,
+			isError: false,
+			airline: [],
+		}
 			default:
 				return state;
 	}

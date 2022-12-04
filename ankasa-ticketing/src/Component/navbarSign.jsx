@@ -35,7 +35,7 @@ const NavbarSign = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="where you go?"
+                  placeholder="where do you go?"
                   aria-label="Search"
                   aria-describedby="basic-addon2"
                 />
@@ -45,18 +45,6 @@ const NavbarSign = () => {
               </div>
             </form>
             <div className="navbar-nav me-5 mx-5">
-              {/* <a
-                className="nav-link active mx-5"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseWidthExample"
-                aria-expanded="false"
-                aria-controls="collapseWidthExample"
-                href="#"
-                aria-current="page"
-              >
-                Find Ticket
-              </a> */}
               <Link
                 className="nav-link active mx-5"
                 aria-current="page"

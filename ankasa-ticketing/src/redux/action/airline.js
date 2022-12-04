@@ -34,19 +34,18 @@ export const findAirline = (page, body, handleSuccess) => ({
 	}),
 });
 
-export const addAirlines = (form, addImage, handleSuccess) => {
+export const addAirlines = (form, handleSuccess) => {
 	return {
 		type: "INSERT_AIRLINES",
 		payload: new Promise((resolve, reject) => {
 			axios
 				.post(
 					`${process.env.REACT_APP_BACKEND_URL}/airline/insert`,
-					form,
-					addImage
+					form
 				)
 				.then((response) => {
+					handleSuccess(response);
 					resolve(response);
-					handleSuccess();
 				})
 				.catch((error) => {
 					reject(error);
@@ -116,3 +115,9 @@ export const updateLogo = (id, form, handleSuccess) => ({
 			});
 	}),
 });
+
+export const resetAirline = () => {
+    return {
+        type: "RESET_AIRLINE",
+    }
+}
