@@ -24,7 +24,6 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Related Project](#related-project-backend)
 * [Contact](#contact)
 
 
@@ -91,11 +90,6 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/yourbranch`)
 5. Open a Pull Request
-
-
-
-## Related Project
-
 
 
 <!-- CONTACT -->
