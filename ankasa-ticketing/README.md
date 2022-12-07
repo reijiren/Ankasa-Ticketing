@@ -36,126 +36,126 @@ Ankasa Ticketing is an application that allows users to find and order airline t
   <summary>
     Login Page
   </summary>
-<img src="/screenshot/login.png" alt="login page" />
+<img src="./screenshot/login.png" alt="login page" />
 </details>
 
 <details>
   <summary>
     Register Page
   </summary>
-<img src="/screenshot/register.png" alt="register page" />
+<img src="./screenshot/register.png" alt="register page" />
 </details>
 
 <details>
   <summary>
     Forgot Password Page
   </summary>
-<img src="/screenshot/forgotpassword.png" alt="forgot password page" />
+<img src="./screenshot/forgotpassword.png" alt="forgot password page" />
 </details>
 
 <details>
   <summary>
     Reset Password Page
   </summary>
-<img src="/screenshot/resetpassword.png" alt="reset password page" />
+<img src="./screenshot/resetpassword.png" alt="reset password page" />
 </details>
 
 <details>
   <summary>
     Landing Page
   </summary>
-<img src="/screenshot/landing.png" alt="landing page" />
+<img src="./screenshot/landing.png" alt="landing page" />
 </details>
 
 <details>
   <summary>
     Flight Search Page
   </summary>
-<img src="/screenshot/search flight.png" alt="flight search page" />
+<img src="./screenshot/search flight.png" alt="flight search page" />
 </details>
 
 <details>
   <summary>
     Flight Detail Page
   </summary>
-<img src="/screenshot/flight detail.png" alt="flight detail page" />
+<img src="./screenshot/flight detail.png" alt="flight detail page" />
 </details>
 
 <details>
   <summary>
     MyBooking Page
   </summary>
-<img src="/screenshot/mybooking.png" alt="mybooking page" />
+<img src="./screenshot/mybooking.png" alt="mybooking page" />
 </details>
 
 <details>
   <summary>
     Booking Detail Page
   </summary>
-<img src="/screenshot/booking detail.png" alt="booking detail page" />
+<img src="./screenshot/booking detail.png" alt="booking detail page" />
 </details>
 
 <details>
   <summary>
     Profile Page
   </summary>
-<img src="/screenshot/profile.png" alt="profile page" />
+<img src="./screenshot/profile.png" alt="profile page" />
 </details>
 
 <details>
   <summary>
     Admin Login Page
   </summary>
-<img src="/screenshot/admin/login admin.png" alt="admin login page" />
+<img src="./screenshot/admin/login admin.png" alt="admin login page" />
 </details>
 
 <details>
   <summary>
     Admin Landing Page
   </summary>
-<img src="/screenshot/admin/admin landing.png" alt="admin landing page" />
+<img src="./screenshot/admin/admin landing.png" alt="admin landing page" />
 </details>
 
 <details>
   <summary>
     Admin Airline Search Page
   </summary>
-<img src="/screenshot/admin/admin search airline.png" alt="admin airline search page" />
+<img src="./screenshot/admin/admin search airline.png" alt="admin airline search page" />
 </details>
 
 <details>
   <summary>
     Admin Insert Airline Page
   </summary>
-<img src="/screenshot/admin/admin insert airline.png" alt="admin insert airline page" />
+<img src="./screenshot/admin/admin insert airline.png" alt="admin insert airline page" />
 </details>
 
 <details>
   <summary>
     Admin Update Airline Page
   </summary>
-<img src="/screenshot/admin/admin update airline.png" alt="admin update airline page" />
+<img src="./screenshot/admin/admin update airline.png" alt="admin update airline page" />
 </details>
 
 <details>
   <summary>
     Admin Flight Search Page
   </summary>
-<img src="/screenshot/admin/admin search flight.png" alt="admin flight search page" />
+<img src="./screenshot/admin/admin search flight.png" alt="admin flight search page" />
 </details>
 
 <details>
   <summary>
     Admin Insert Flight Page
   </summary>
-<img src="/screenshot/admin/admin insert flight.png" alt="admin insert flight page" />
+<img src="./screenshot/admin/admin insert flight.png" alt="admin insert flight page" />
 </details>
 
 <details>
   <summary>
     Admin Update Flight Page
   </summary>
-<img src="/screenshot/admin/admin flight update.png" alt="admin update flight page" />
+<img src="./screenshot/admin/admin flight update.png" alt="admin update flight page" />
 </details>
 
 ### Built With
