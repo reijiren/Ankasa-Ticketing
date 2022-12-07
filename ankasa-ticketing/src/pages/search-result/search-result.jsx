@@ -579,7 +579,7 @@ const SeacrhResult = () => {
                           <div className="row">
                             <div className="col-auto">
                               <span className="text-secondary">
-                                3 hours 11 minutes
+                                {data.time_arrived.slice(0, 2) - data.time_departure.slice(0, 2)} hours
                               </span>
                             </div>
                             <div>
@@ -621,7 +621,7 @@ const SeacrhResult = () => {
                         <div className="col-auto">
                           <div className="row">
                             <div className="col-auto count-select-ticket">
-                              <h6>${String(data.price / 15000).slice(0, 7)}</h6>
+                              <h6>${data.price}</h6>
                             </div>
                             <div className="col-auto pax-select-ticket">
                               <span className="text-secondary">/pax</span>

@@ -271,7 +271,7 @@ const FlightDetail = () => {
                             onClick={toggleInsurance}
                           />
                         ) : (
-                          "No"
+                          ""
                         )}
                       </div>
                       <div className="col-auto">
