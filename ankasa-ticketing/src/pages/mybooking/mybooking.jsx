@@ -14,7 +14,6 @@ const Mybook = () => {
   const booking = useSelector((state) => state.booking);
 
   const user = useSelector((state) => state.user);
-  const flight = useSelector((state) => state.flight);
   const thisUser = user.user;
 
   useEffect(() => {

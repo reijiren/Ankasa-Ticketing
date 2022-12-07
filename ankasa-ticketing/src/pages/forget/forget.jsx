@@ -35,7 +35,7 @@ const Forget = () => {
             <img src={require("../../assets/images/Group 29.png")} width="150px" alt />
           </div>
           <div className="heading">
-            <h1 className="fw-bold">Forget Password</h1>
+            <h1 className="fw-bold">Forgot Password</h1>
           </div>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="form-input">

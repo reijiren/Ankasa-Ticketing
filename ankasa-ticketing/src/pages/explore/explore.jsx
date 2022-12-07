@@ -360,9 +360,11 @@ const LandingPage = () => {
                                     src={`${process.env.REACT_APP_BACKEND_URL}/airline/${data.logo}`}
                                     alt="wrapkit"
                                     className="imgCustom rounded-circle"
+                                    style={{backgroundColor: 'white'}}
                                   />
                                   <h5 className="mt-4 text-center">
-                                    {data.city_departure}
+                                    {data.city_destination}, <br />
+                                    {data.region_destination}
                                   </h5>
                                 </div>
                               </div>

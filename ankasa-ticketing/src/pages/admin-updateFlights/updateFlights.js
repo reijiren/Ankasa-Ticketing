@@ -119,7 +119,7 @@ const UpdateFlights = () => {
 						</div>
 						<div className="mb-3">
 							<label htmlFor="formGroupExampleInput" className="form-label">
-								Region Deestination
+								Region Destination
 							</label>
 							<input
 								type="text"
