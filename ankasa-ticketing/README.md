@@ -161,7 +161,7 @@ Ankasa Ticketing is an application that allows users to find and order airline t
 
 ### Built With
 
-* [React JS](https://nodejs.org/en/docs/)
+* [React JS](https://reactjs.org/)
 * [Bootstrap](https://getbootstrap.com/)
 * [Axios](https://axios-http.com/)
 * [jQuery](https://jquery.com/)
