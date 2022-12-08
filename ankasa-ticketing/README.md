@@ -20,6 +20,7 @@
   * [Installation](#installation)
 * [Contributing](#contributing)
 * [Related Project](#related-project)
+* [Contact](#contact)
 
 
 
@@ -214,3 +215,16 @@ Ankasa Ticketing RESTful API used in this application
 * [Ankasa Backend](https://github.com/reijiren/Ankasa-Ticketing/tree/main/Backend)
 
 
+<!-- CONTACT -->
+## Contact
+
+Contributors name and contact info
+
+* FULLSTACK TEAM (Backend & Frontend)
+  * Muhammad Rhefa Farizi [@reijiren](https://github.com/reijiren)
+  * Ichsan Ramadhan Mokodompit [@IchsanR](https://github.com/IchsanR)
+
+* FRONTEND TEAM
+  * Muhammad Alfath Aditya [@alfatpololo](https://github.com/alfatpololo)
+  * Reza Fauzan Akbar [@rezafauzanakbar](https://github.com/rezafauzanakbar)
+  * Taufik Ramadhan [@taufikrmdhan](https://github.com/taufikrmdhan)
