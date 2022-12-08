@@ -49,7 +49,7 @@ Ankasa Ticketing is an application that allows users to find and order airline t
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Please open [FRONTEND](https://github.com/reijiren/Ankasa-Ticketing/tree/main/ankasa-ticketing) and [BACKEND](https://github.com/reijiren/Ankasa-Ticketing/tree/main/Backend) documentation to see prerequisites and example on how to run Ankasa Ticketing Application.
+Please visit [FRONTEND](https://github.com/reijiren/Ankasa-Ticketing/tree/main/ankasa-ticketing) and [BACKEND](https://github.com/reijiren/Ankasa-Ticketing/tree/main/Backend) documentation to see prerequisites and example on how to run Ankasa Ticketing Application.
 
 
 <!-- CONTACT -->
