@@ -37,14 +37,14 @@ Ankasa Ticketing is an application that allows users to find and order airline t
 #### Backend API
 * [Node JS](https://nodejs.org/en/docs/)
 * [Express JS](https://expressjs.com/)
+* [PostgreSQL](https://www.postgresql.org/)
 
 #### Frontend App
 * [React JS](https://reactjs.org/)
 * [Redux](https://redux.js.org/)
 * [Bootstrap](https://getbootstrap.com/)
 * [Axios](https://axios-http.com/)
-
-
+* [jQuery](https://jquery.com/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
